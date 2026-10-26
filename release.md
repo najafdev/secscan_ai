@@ -11,8 +11,7 @@
 > SecScan AI Enterprise is an independent open-source cybersecurity and AI penetration testing research platform created by [Yashab Alam](https://github.com/yashab-cyber). To continuously maintain the platform, support multi-provider frontier AI integrations, and sustain security research infrastructure, **we welcome donations, community sponsorships, and token support**.
 >
 > - **Official CA**: Soon Available
-> - **GitHub Sponsors**: [Sponsor @yashab-cyber on GitHub Sponsors](https://github.com/sponsors/yashab-cyber)
-> - **Cryptocurrency Inquiries**: [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com)
+> - **Cryptocurrency Inquiries**: [sai466769@gmail.com](mailto:sai466769@gmail.com)
 > - **Full Guidelines**: Please visit [DONATE.md](DONATE.md).
 
 ---

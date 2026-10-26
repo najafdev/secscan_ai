@@ -91,8 +91,7 @@ git checkout -b feature/your-feature-name
 
 ### Individual Supporters
 Support SecScan AI development through:
-- **GitHub Sponsors**: [Sponsor Yashab Alam](https://github.com/sponsors/yashab-cyber)
-- **Cryptocurrency**: Email [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com) or see [DONATE.md](../DONATE.md)
+- **Cryptocurrency**: See [DONATE.md](../DONATE.md) for details
 
 ### Corporate Sponsorship
 **For companies interested in sponsoring:**

@@ -3,7 +3,7 @@
 # This file enables the funding/sponsor button on the GitHub repository
 
 # Primary funding platforms
-github: [yashab-cyber] # GitHub Sponsors profile for Yashab Alam
+# github: []
 patreon: # Add Patreon username if available
 open_collective: # Add Open Collective project name if available
 ko_fi: # Add Ko-fi username if available
@@ -15,7 +15,7 @@ otechie: # Add Otechie username if available
 
 # Custom funding methods
 custom: [
-  "mailto:yashabalam707@gmail.com?subject=SecScan AI%20Enterprise%20Sponsorship%20Inquiry"
+  "mailto:sai466769@gmail.com?subject=SecScan%20AI%20Enterprise%20Sponsorship%20Inquiry"
 ]
 
 # For cryptocurrency donations and sponsorship, please see DONATE.md

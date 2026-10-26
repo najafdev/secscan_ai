@@ -7,7 +7,6 @@
 
 ![Version](https://img.shields.io/badge/version-2026.10.22.1-green.svg)
 ![Donations](https://img.shields.io/badge/donations-welcome-brightgreen.svg)
-[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?style=for-the-badge&logo=github-sponsors)](https://github.com/sponsors/yashab-cyber)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 > **🚀 Supporting Innovation in AI-Powered Penetration Testing & Enterprise Cybersecurity Platform 🔒**
@@ -25,22 +24,6 @@
 - 🧠 **AI Research** - Machine learning for vulnerability analysis, intelligent payload crafting, and automated exploitation strategies
 
 ## 💳 How to Donate & Sponsor
-
-### 💖 GitHub Sponsors (Active)
-
-<div align="center">
-  <a href="https://github.com/sponsors/yashab-cyber">
-    <img src="https://img.shields.io/badge/Sponsor%20SecScan AI-%E2%9D%A4-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white" alt="Sponsor SecScan AI on GitHub Sponsors" height="42">
-  </a>
-</div>
-
-<br>
-
-GitHub Sponsorship is **officially active**! You can now sponsor SecScan AI Enterprise development directly on GitHub with flexible monthly or one-time tiers:
-
-👉 **[Sponsor @yashab-cyber on GitHub Sponsors](https://github.com/sponsors/yashab-cyber)**
-
----
 
 ### 🪙 Cryptocurrency Transfer
 *Secure, direct, and borderless support for cybersecurity & AI research*
@@ -269,7 +252,7 @@ Every contribution, no matter the size, helps make SecScan AI Enterprise better 
   <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise" width="150" height="auto">
   
   <h3>**Made with ❤️ by Yashab Alam and the SecScan AI development team**</h3>
-  <p><strong>Repository:</strong> <a href="https://github.com/najafdev/secscan_ai">github.com/yashab-cyber/secscan_ai</a></p>
+  <p><strong>Repository:</strong> <a href="https://github.com/najafdev/secscan_ai">github.com/najafdev/secscan_ai</a></p>
   
   <p><em>Last updated: September 2026</em></p>
 </div>

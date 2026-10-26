@@ -295,7 +295,7 @@ By contributing to SecScan AI Enterprise, you agree that your contributions will
 
 ## 🔗 Links
 
-- **Main Repository**: [github.com/yashab-cyber/secscan_ai](https://github.com/najafdev/secscan_ai)
+- **Main Repository**: [github.com/najafdev/secscan_ai](https://github.com/najafdev/secscan_ai)
 - **Documentation**: [README.md](../README.md)
 - **Contributing Guide**: [CONTRIBUTING.md](.github/CONTRIBUTING.md)
 - **Code of Conduct**: [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md)

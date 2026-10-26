@@ -822,10 +822,7 @@ This project is licensed under the MIT License with additional enterprise terms:
 ### 💰 Support SecScan AI Development
 Your support accelerates development, research infrastructure, and frontier AI model integrations:
 
-[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?style=for-the-badge&logo=github-sponsors)](https://github.com/sponsors/yashab-cyber)
-
-- **💖 GitHub Sponsors (Active)**: [Sponsor @yashab-cyber on GitHub](https://github.com/sponsors/yashab-cyber)
-- **🪙 Cryptocurrency Donations**: For transfers (**Solana, Bitcoin, Ethereum, USDT, etc.**), please email **[yashabalam707@gmail.com](mailto:yashabalam707@gmail.com)**
+- **🪙 Cryptocurrency Donations**: For transfers (**Solana, Bitcoin, Ethereum, USDT, etc.**), please email **[sai466769@gmail.com](mailto:sai466769@gmail.com)**
 - **📄 Full Sponsorship & Donation Guide**: See [DONATE.md](DONATE.md) for tier perks, transparency reports, and roadmap goals
 
 ## ⚖️ Legal & Compliance

@@ -131,14 +131,8 @@ SecScan AI Enterprise is a revolutionary AI-powered penetration testing platform
 
 ## 🤝 How to Become a Sponsor
 
-### 💳 GitHub Sponsors (Easiest)
-1. Visit our [GitHub Sponsors page](https://github.com/sponsors/yashab-cyber)
-2. Choose your sponsorship tier
-3. Complete the payment setup
-4. Receive immediate recognition and benefits
-
 ### 💰 Direct Sponsorship
-**For custom arrangements and larger sponsorships:**
+**For custom arrangements and sponsorships:**
 - **Email**: yashabalam707@gmail.com
 - **Subject**: "SecScan AI Enterprise Sponsorship - [Company Name]"
 - **Include**: Company information, sponsorship goals, budget range
