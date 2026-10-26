@@ -14,7 +14,7 @@ from workbench.adapter_lifecycle import (
 )
 
 DECL = {
-    "schema": "hackpilot.execution-declaration/v1",
+    "schema": "secscan_ai.execution-declaration/v1",
     "adapter": {"id": "fake-safe", "version": "1"},
     "launcher": "native_python",
     "effect_level": "read_only",
@@ -30,7 +30,7 @@ DECL = {
 
 def receipt(summary):
     return {
-        "schema": "hackpilot.execution-receipt/v1",
+        "schema": "secscan_ai.execution-receipt/v1",
         "declaration": DECL,
         "request_summary": summary,
         "usage": {"objects_tested": 1, "network_requests": 0, "elapsed_ms": 2},

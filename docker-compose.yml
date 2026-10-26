@@ -1,15 +1,15 @@
-# HackPilot YAML configuration
+# SecScan AI YAML configuration
 version: '3.8'
 
 services:
   # PostgreSQL Database
-  hackpilot-database:
+  secscan_ai-database:
     image: postgres:15-alpine
-    container_name: hackpilot-db
+    container_name: secscan_ai-db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-hackpilot}
-      POSTGRES_USER: ${POSTGRES_USER:-hackpilot}
+      POSTGRES_DB: ${POSTGRES_DB:-secscan_ai}
+      POSTGRES_USER: ${POSTGRES_USER:-secscan_ai}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env file}
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
     volumes:
@@ -18,17 +18,17 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - hackpilot-network
+      - secscan_ai-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hackpilot -d hackpilot"]
+      test: ["CMD-SHELL", "pg_isready -U secscan_ai -d secscan_ai"]
       interval: 30s
       timeout: 10s
       retries: 5
 
   # Redis Cache
-  hackpilot-redis:
+  secscan_ai-redis:
     image: redis:7-alpine
-    container_name: hackpilot-redis
+    container_name: secscan_ai-redis
     restart: unless-stopped
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:?Set REDIS_PASSWORD in .env file}
     volumes:
@@ -37,28 +37,28 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - hackpilot-network
+      - secscan_ai-network
     healthcheck:
       test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
       interval: 30s
       timeout: 10s
       retries: 5
 
-  # HackPilot Main Application
-  hackpilot-app:
+  # SecScan AI Main Application
+  secscan_ai-app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: hackpilot-app
+    container_name: secscan_ai-app
     restart: unless-stopped
     depends_on:
-      hackpilot-database:
+      secscan_ai-database:
         condition: service_healthy
-      hackpilot-redis:
+      secscan_ai-redis:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://hackpilot:${POSTGRES_PASSWORD}@hackpilot-database:5432/hackpilot
-      - REDIS_URL=redis://:${REDIS_PASSWORD}@hackpilot-redis:6379/0
+      - DATABASE_URL=postgresql://secscan_ai:${POSTGRES_PASSWORD}@secscan_ai-database:5432/secscan_ai
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@secscan_ai-redis:6379/0
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - SECRET_KEY=${SECRET_KEY}
       - LOG_LEVEL=INFO
@@ -74,7 +74,7 @@ services:
       - "8000:8000"  # API Server
       - "8080:8080"  # Web Dashboard
     networks:
-      - hackpilot-network
+      - secscan_ai-network
     security_opt:
       - seccomp:unconfined
     cap_add:
@@ -87,21 +87,21 @@ services:
       retries: 5
 
   # Celery Worker for Background Tasks
-  hackpilot-worker:
+  secscan_ai-worker:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: hackpilot-worker
+    container_name: secscan_ai-worker
     restart: unless-stopped
     command: celery -A performance.parallel_processor worker --loglevel=info --concurrency=4
     depends_on:
-      hackpilot-database:
+      secscan_ai-database:
         condition: service_healthy
-      hackpilot-redis:
+      secscan_ai-redis:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://hackpilot:${POSTGRES_PASSWORD}@hackpilot-database:5432/hackpilot
-      - REDIS_URL=redis://:${REDIS_PASSWORD}@hackpilot-redis:6379/0
+      - DATABASE_URL=postgresql://secscan_ai:${POSTGRES_PASSWORD}@secscan_ai-database:5432/secscan_ai
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@secscan_ai-redis:6379/0
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - SECRET_KEY=${SECRET_KEY}
       - LOG_LEVEL=INFO
@@ -111,38 +111,38 @@ services:
       - ./wordlists:/app/wordlists
       - ./tools:/app/tools
     networks:
-      - hackpilot-network
+      - secscan_ai-network
     deploy:
       replicas: 2
 
   # Celery Beat Scheduler
-  hackpilot-scheduler:
+  secscan_ai-scheduler:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: hackpilot-scheduler
+    container_name: secscan_ai-scheduler
     restart: unless-stopped
     command: celery -A performance.parallel_processor beat --loglevel=info
     depends_on:
-      hackpilot-database:
+      secscan_ai-database:
         condition: service_healthy
-      hackpilot-redis:
+      secscan_ai-redis:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://hackpilot:${POSTGRES_PASSWORD}@hackpilot-database:5432/hackpilot
-      - REDIS_URL=redis://:${REDIS_PASSWORD}@hackpilot-redis:6379/0
+      - DATABASE_URL=postgresql://secscan_ai:${POSTGRES_PASSWORD}@secscan_ai-database:5432/secscan_ai
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@secscan_ai-redis:6379/0
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - SECRET_KEY=${SECRET_KEY}
       - LOG_LEVEL=INFO
     volumes:
       - ./logs:/app/logs
     networks:
-      - hackpilot-network
+      - secscan_ai-network
 
   # Prometheus Monitoring
   prometheus:
     image: prom/prometheus:latest
-    container_name: hackpilot-prometheus
+    container_name: secscan_ai-prometheus
     restart: unless-stopped
     ports:
       - "9090:9090"
@@ -157,12 +157,12 @@ services:
       - '--storage.tsdb.retention.time=200h'
       - '--web.enable-lifecycle'
     networks:
-      - hackpilot-network
+      - secscan_ai-network
 
   # Grafana Dashboard
   grafana:
     image: grafana/grafana:latest
-    container_name: hackpilot-grafana
+    container_name: secscan_ai-grafana
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -174,14 +174,14 @@ services:
       - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
     networks:
-      - hackpilot-network
+      - secscan_ai-network
     depends_on:
       - prometheus
 
   # Elasticsearch for Logging
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
-    container_name: hackpilot-elasticsearch
+    container_name: secscan_ai-elasticsearch
     restart: unless-stopped
     environment:
       - discovery.type=single-node
@@ -194,26 +194,26 @@ services:
       - "9200:9200"
       - "9300:9300"
     networks:
-      - hackpilot-network
+      - secscan_ai-network
 
   # Kibana for Log Visualization
   kibana:
     image: docker.elastic.co/kibana/kibana:8.11.0
-    container_name: hackpilot-kibana
+    container_name: secscan_ai-kibana
     restart: unless-stopped
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
       - "5601:5601"
     networks:
-      - hackpilot-network
+      - secscan_ai-network
     depends_on:
       - elasticsearch
 
   # Consul for Service Discovery
   consul:
     image: hashicorp/consul:latest
-    container_name: hackpilot-consul
+    container_name: secscan_ai-consul
     restart: unless-stopped
     command: agent -server -bootstrap-expect=1 -ui -client=0.0.0.0 -data-dir=/consul/data
     ports:
@@ -222,12 +222,12 @@ services:
     volumes:
       - consul_data:/consul/data
     networks:
-      - hackpilot-network
+      - secscan_ai-network
 
   # Nginx Reverse Proxy
   nginx:
     image: nginx:alpine
-    container_name: hackpilot-nginx
+    container_name: secscan_ai-nginx
     restart: unless-stopped
     ports:
       - "80:80"
@@ -236,26 +236,26 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/ssl:/etc/nginx/ssl:ro
     networks:
-      - hackpilot-network
+      - secscan_ai-network
     depends_on:
-      - hackpilot-app
+      - secscan_ai-app
 
   # Flower for Celery Monitoring
   flower:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: hackpilot-flower
+    container_name: secscan_ai-flower
     restart: unless-stopped
-    command: celery -A performance.parallel_processor flower --port=5555 --broker=redis://:${REDIS_PASSWORD}@hackpilot-redis:6379/0
+    command: celery -A performance.parallel_processor flower --port=5555 --broker=redis://:${REDIS_PASSWORD}@secscan_ai-redis:6379/0
     ports:
       - "5555:5555"
     environment:
-      - REDIS_URL=redis://:${REDIS_PASSWORD}@hackpilot-redis:6379/0
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@secscan_ai-redis:6379/0
     networks:
-      - hackpilot-network
+      - secscan_ai-network
     depends_on:
-      - hackpilot-redis
+      - secscan_ai-redis
 
 volumes:
   postgres_data:
@@ -272,7 +272,7 @@ volumes:
     driver: local
 
 networks:
-  hackpilot-network:
+  secscan_ai-network:
     driver: bridge
     ipam:
       config:

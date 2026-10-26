@@ -4,7 +4,7 @@ Current implemented adapter contract, updated 2026-09-21. This supersedes the hi
 
 ## Transport is not inference location
 
-`LocalRuntime` retains its name for compatibility and connects only to `127.0.0.1` on port `11434`, or the integer port in `HACKPILOT_OLLAMA_PORT`. The transport does not follow redirects or proxy variables. Direct remote provider endpoints, workbench-held API keys, automatic sign-in, model pulls and automatic fallback are not implemented in the current adapter. Cloud access is through an operator-managed, already configured Ollama daemon.
+`LocalRuntime` retains its name for compatibility and connects only to `127.0.0.1` on port `11434`, or the integer port in `SECSCAN_AI_OLLAMA_PORT`. The transport does not follow redirects or proxy variables. Direct remote provider endpoints, workbench-held API keys, automatic sign-in, model pulls and automatic fallback are not implemented in the current adapter. Cloud access is through an operator-managed, already configured Ollama daemon.
 
 Two independent controls exist:
 
@@ -71,7 +71,7 @@ This document describes the implemented Ollama adapter, not the permanent topolo
 
 Protocol tests use owned loopback HTTP servers implementing synthetic Ollama responses plus direct unit fixtures. A combined integration test traverses the API, fake cloud-backed gateway, engine, SQLite and export integrity without a real cloud account. JavaScript DOM/fetch doubles remain separate from the real Chromium browser-to-loopback E2E job.
 
-Historical Evidence Workbench run [35589788372](https://github.com/HostX0/HackPilot/actions/runs/35589788372) also passed the separate **real local-model compatibility probe**, at source head `328bfda14c1e2ea458391e491c575a8ee5303b9e` / PR checkout `87100841867832c72e26073bfc71ad664fe34481`. The fixed Ollama runtime `0.34.2` and `smollm2:135m-instruct-q5_K_M` model were preloaded; the inference daemon was restarted with `OLLAMA_NO_CLOUD=1` on a Docker internal network. A test-only loopback relay permits one explicit private container IP; it is not a production remote-provider adapter. One fixed structured-output inference sent no target, credentials or assessment evidence and executed no tool. Reported usage was 55 prompt / 19 output tokens.
+Historical Evidence Workbench run [35589788372](https://github.com/HostX0/secscan_ai/actions/runs/35589788372) also passed the separate **real local-model compatibility probe**, at source head `328bfda14c1e2ea458391e491c575a8ee5303b9e` / PR checkout `87100841867832c72e26073bfc71ad664fe34481`. The fixed Ollama runtime `0.34.2` and `smollm2:135m-instruct-q5_K_M` model were preloaded; the inference daemon was restarted with `OLLAMA_NO_CLOUD=1` on a Docker internal network. A test-only loopback relay permits one explicit private container IP; it is not a production remote-provider adapter. One fixed structured-output inference sent no target, credentials or assessment evidence and executed no tool. Reported usage was 55 prompt / 19 output tokens.
 
 This establishes one small runtime/model compatibility case, not analysis quality, tool-directed assessment performance, every provider, cloud inference or no-egress on every deployment. Read [PROGRESS.md](PROGRESS.md) and the exact commit's CI for current results; neither this historical run nor a configured workflow proves a newer head passed.
 

@@ -33,7 +33,7 @@ function report(id) {
 }
 function comparison(overrides = {}) {
   return {
-    schema: 'hackpilot.retest-diff/v1',
+    schema: 'secscan_ai.retest-diff/v1',
     comparable_scope: true,
     scope_comparison: {same_target: true, same_environment: true, same_mode: true, same_engine_version: true},
     counts: {still_present: 1, new: 1, not_reproduced: 1, not_retested: 1},

@@ -12,7 +12,7 @@
   let linkedReport = null;
 
   async function request(path, body) {
-    const token = sessionStorage.getItem('hackpilot-token') || '';
+    const token = sessionStorage.getItem('secscan_ai-token') || '';
     const response = await fetch(path, {
       method: body === undefined ? 'GET' : 'POST',
       headers: {
@@ -361,7 +361,7 @@
 
   byId('adapter-open-report').addEventListener('click', () => {
     if (!linkedReport || executing || pendingAction) return;
-    document.dispatchEvent(new CustomEvent('hackpilot:review-report', {detail: {id: linkedReport}}));
+    document.dispatchEvent(new CustomEvent('secscan_ai:review-report', {detail: {id: linkedReport}}));
   });
 
   resetPlan();

@@ -1,5 +1,5 @@
 {
-  "schema": "hackpilot.tool-pin/v1",
+  "schema": "secscan_ai.tool-pin/v1",
   "id": "semgrep-ce",
   "version": "1.177.0",
   "release_date": "2026-09-10",

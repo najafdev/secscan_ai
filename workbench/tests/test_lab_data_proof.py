@@ -46,7 +46,7 @@ class SyntheticDataProofTests(unittest.TestCase):
         )
         self.assertFalse(evidence["customer_data_sampled"])
         self.assertTrue(
-            summary["synthetic_canaries"][0]["value"].startswith("HACKPILOT-SYNTHETIC-")
+            summary["synthetic_canaries"][0]["value"].startswith("SECSCAN_AI-SYNTHETIC-")
         )
         self.assertNotIn("synthetic-alpha", rendered)
         self.assertNotIn("synthetic-beta", rendered)

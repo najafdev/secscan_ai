@@ -25,7 +25,7 @@ from pathlib import Path
 
 from workbench.ollama import Ollama
 
-SCHEMA = "hackpilot.live-model-validation/v1"
+SCHEMA = "secscan_ai.live-model-validation/v1"
 DEFAULT_MODEL = "smollm2:135m-instruct-q5_K_M"
 DEFAULT_DIGEST_PREFIX = "a703ae7fccb0"
 UPSTREAM_PORT = 11434
@@ -131,7 +131,7 @@ class _LoopbackRelay:
         self.listener = listener
         self.port = int(listener.getsockname()[1])
         self._accept_thread = threading.Thread(
-            target=self._accept, name="hackpilot-live-model-relay", daemon=True
+            target=self._accept, name="secscan_ai-live-model-relay", daemon=True
         )
         self._accept_thread.start()
         return self.port
@@ -214,20 +214,20 @@ def _run_probe(
 
 
 def main() -> int:
-    model = os.environ.get("HACKPILOT_LIVE_OLLAMA_MODEL", DEFAULT_MODEL)
+    model = os.environ.get("SECSCAN_AI_LIVE_OLLAMA_MODEL", DEFAULT_MODEL)
     expected_prefix = os.environ.get(
-        "HACKPILOT_LIVE_OLLAMA_DIGEST_PREFIX", DEFAULT_DIGEST_PREFIX
+        "SECSCAN_AI_LIVE_OLLAMA_DIGEST_PREFIX", DEFAULT_DIGEST_PREFIX
     ).lower()
     output_path = Path(
         os.environ.get(
-            "HACKPILOT_LIVE_OLLAMA_EVIDENCE",
+            "SECSCAN_AI_LIVE_OLLAMA_EVIDENCE",
             "_live_model_review/live-model-validation.json",
         )
     )
     deadline_seconds = float(
-        os.environ.get("HACKPILOT_LIVE_OLLAMA_DEADLINE_SECONDS", "60")
+        os.environ.get("SECSCAN_AI_LIVE_OLLAMA_DEADLINE_SECONDS", "60")
     )
-    upstream_host = os.environ.get("HACKPILOT_LIVE_OLLAMA_UPSTREAM", "").strip()
+    upstream_host = os.environ.get("SECSCAN_AI_LIVE_OLLAMA_UPSTREAM", "").strip()
     if not 5 <= deadline_seconds <= 180:
         raise RuntimeError("live-model deadline must be between 5 and 180 seconds")
 

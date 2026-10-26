@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-CVE Intelligence and Threat Scoring Engine for HackPilot.
+CVE Intelligence and Threat Scoring Engine for SecScan AI.
 Enriches vulnerability findings with CVE metadata, CVSS v3.1 metrics,
 EPSS (Exploit Prediction Scoring System) probabilities, and CISA KEV status.
 """

@@ -1,4 +1,4 @@
-# HackPilot YAML configuration
+# SecScan AI YAML configuration
 name: 🏢 Enterprise CI/CD Pipeline
 
 on:
@@ -202,7 +202,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: yashabcyber/hackpilot-enterprise
+        images: najafdev/secscan_ai-enterprise
         tags: |
           type=ref,event=branch
           type=ref,event=pr
@@ -259,4 +259,4 @@ jobs:
     steps:
     - name: Summarize validation state
       run: |
-        echo "HackPilot CI completed. Review every required job result and workbench/PROGRESS.md."
+        echo "SecScan AI CI completed. Review every required job result and workbench/PROGRESS.md."

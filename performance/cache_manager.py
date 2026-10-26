@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Cache Management System for HackPilot
+Cache Management System for SecScan AI
 Provides multi-layer caching with Redis and memory backends
 """
 
@@ -248,7 +248,7 @@ class RedisCache(CacheBackend):
         port: int = 6379,
         db: int = 0,
         password: Optional[str] = None,
-        prefix: str = "hackpilot:",
+        prefix: str = "secscan_ai:",
         default_ttl: int = 3600,
         sentinel_hosts: Optional[List[tuple]] = None,
         sentinel_service: str = "mymaster",
@@ -600,7 +600,7 @@ def get_cache_manager() -> CacheManager:
                     host=redis_host,
                     port=redis_port,
                     password=redis_password,
-                    prefix="hackpilot:cache:",
+                    prefix="secscan_ai:cache:",
                 )
             except Exception:
                 pass  # Fall back to L1 only

@@ -71,7 +71,7 @@ jobs:
     timeout-minutes: 12
     env:
       SEMGREP_IMAGE: semgrep/semgrep@sha256:d1825c2c72110b5bfbf0602ff68f7f117322597a7c33037a79dba9f897f5f1f0
-      HACKPILOT_RUN_REAL_SEMGREP: '1'
+      SECSCAN_AI_RUN_REAL_SEMGREP: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -95,7 +95,7 @@ jobs:
           python - <<'PY'
           import json, os
           document = {
-              "schema": "hackpilot.scanner-validation/v1",
+              "schema": "secscan_ai.scanner-validation/v1",
               "checked_out_revision": os.environ["GITHUB_SHA"],
               "adapter": "semgrep-project-local",
               "tool": "semgrep-ce",
@@ -129,10 +129,10 @@ jobs:
     timeout-minutes: 15
     env:
       OLLAMA_IMAGE: ollama/ollama:0.34.2
-      HACKPILOT_LIVE_OLLAMA_MODEL: smollm2:135m-instruct-q5_K_M
-      HACKPILOT_LIVE_OLLAMA_DIGEST_PREFIX: a703ae7fccb0
-      HACKPILOT_LIVE_OLLAMA_DEADLINE_SECONDS: '60'
-      HACKPILOT_LIVE_OLLAMA_EVIDENCE: _live_model_review/live-model-validation.json
+      SECSCAN_AI_LIVE_OLLAMA_MODEL: smollm2:135m-instruct-q5_K_M
+      SECSCAN_AI_LIVE_OLLAMA_DIGEST_PREFIX: a703ae7fccb0
+      SECSCAN_AI_LIVE_OLLAMA_DEADLINE_SECONDS: '60'
+      SECSCAN_AI_LIVE_OLLAMA_EVIDENCE: _live_model_review/live-model-validation.json
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -145,46 +145,46 @@ jobs:
           mkdir -p _live_model_review
           docker pull "$OLLAMA_IMAGE"
           docker image inspect "$OLLAMA_IMAGE" --format '{{index .RepoDigests 0}}' | tee _live_model_review/ollama-runtime-image.txt
-          docker volume create hackpilot-ollama-models >/dev/null
-          docker run -d --name hackpilot-ollama-seed \
+          docker volume create secscan_ai-ollama-models >/dev/null
+          docker run -d --name secscan_ai-ollama-seed \
             -e OLLAMA_HOST=0.0.0.0:11434 \
-            -v hackpilot-ollama-models:/root/.ollama \
+            -v secscan_ai-ollama-models:/root/.ollama \
             "$OLLAMA_IMAGE" serve >/dev/null
           for attempt in $(seq 1 60); do
-            if docker exec hackpilot-ollama-seed ollama list >/dev/null 2>&1; then break; fi
-            if [ "$attempt" = 60 ]; then docker logs hackpilot-ollama-seed; exit 1; fi
+            if docker exec secscan_ai-ollama-seed ollama list >/dev/null 2>&1; then break; fi
+            if [ "$attempt" = 60 ]; then docker logs secscan_ai-ollama-seed; exit 1; fi
             sleep 1
           done
-          docker exec hackpilot-ollama-seed ollama pull "$HACKPILOT_LIVE_OLLAMA_MODEL"
-          docker exec hackpilot-ollama-seed ollama list | tee _live_model_review/preloaded-models.txt
-          docker rm -f hackpilot-ollama-seed >/dev/null
+          docker exec secscan_ai-ollama-seed ollama pull "$SECSCAN_AI_LIVE_OLLAMA_MODEL"
+          docker exec secscan_ai-ollama-seed ollama list | tee _live_model_review/preloaded-models.txt
+          docker rm -f secscan_ai-ollama-seed >/dev/null
       - name: Restart preloaded daemon on an internal-only Docker network
         shell: bash
         run: |
           set -euo pipefail
-          docker network create --internal hackpilot-ollama-internal >/dev/null
-          docker run -d --name hackpilot-ollama-live \
-            --network hackpilot-ollama-internal \
+          docker network create --internal secscan_ai-ollama-internal >/dev/null
+          docker run -d --name secscan_ai-ollama-live \
+            --network secscan_ai-ollama-internal \
             -e OLLAMA_HOST=0.0.0.0:11434 \
             -e OLLAMA_NO_CLOUD=1 \
-            -v hackpilot-ollama-models:/root/.ollama \
+            -v secscan_ai-ollama-models:/root/.ollama \
             "$OLLAMA_IMAGE" serve >/dev/null
-          docker network inspect hackpilot-ollama-internal --format '{{.Internal}}' | grep -qx true
+          docker network inspect secscan_ai-ollama-internal --format '{{.Internal}}' | grep -qx true
           for attempt in $(seq 1 60); do
-            if docker exec hackpilot-ollama-live ollama list >/dev/null 2>&1; then break; fi
-            if [ "$attempt" = 60 ]; then docker logs hackpilot-ollama-live; exit 1; fi
+            if docker exec secscan_ai-ollama-live ollama list >/dev/null 2>&1; then break; fi
+            if [ "$attempt" = 60 ]; then docker logs secscan_ai-ollama-live; exit 1; fi
             sleep 1
           done
-          docker exec hackpilot-ollama-live ollama list | tee _live_model_review/isolated-models.txt
-          HACKPILOT_LIVE_OLLAMA_UPSTREAM="$(docker inspect hackpilot-ollama-live --format '{{with index .NetworkSettings.Networks "hackpilot-ollama-internal"}}{{.IPAddress}}{{end}}')"
-          export HACKPILOT_LIVE_OLLAMA_UPSTREAM
+          docker exec secscan_ai-ollama-live ollama list | tee _live_model_review/isolated-models.txt
+          SECSCAN_AI_LIVE_OLLAMA_UPSTREAM="$(docker inspect secscan_ai-ollama-live --format '{{with index .NetworkSettings.Networks "secscan_ai-ollama-internal"}}{{.IPAddress}}{{end}}')"
+          export SECSCAN_AI_LIVE_OLLAMA_UPSTREAM
           python - <<'PY'
           import ipaddress, os
-          address = ipaddress.ip_address(os.environ['HACKPILOT_LIVE_OLLAMA_UPSTREAM'])
+          address = ipaddress.ip_address(os.environ['SECSCAN_AI_LIVE_OLLAMA_UPSTREAM'])
           assert address.version == 4 and address.is_private and not address.is_multicast and not address.is_unspecified
           PY
-          echo "HACKPILOT_LIVE_OLLAMA_UPSTREAM=$HACKPILOT_LIVE_OLLAMA_UPSTREAM" >> "$GITHUB_ENV"
-          docker inspect hackpilot-ollama-live --format '{{json .NetworkSettings.Networks}}' > _live_model_review/container-networks.json
+          echo "SECSCAN_AI_LIVE_OLLAMA_UPSTREAM=$SECSCAN_AI_LIVE_OLLAMA_UPSTREAM" >> "$GITHUB_ENV"
+          docker inspect secscan_ai-ollama-live --format '{{json .NetworkSettings.Networks}}' > _live_model_review/container-networks.json
       - name: Run real assessment-data-free workbench inference compatibility probe
         shell: bash
         run: |
@@ -203,9 +203,9 @@ jobs:
         if: always()
         shell: bash
         run: |
-          docker rm -f hackpilot-ollama-live hackpilot-ollama-seed >/dev/null 2>&1 || true
-          docker network rm hackpilot-ollama-internal >/dev/null 2>&1 || true
-          docker volume rm hackpilot-ollama-models >/dev/null 2>&1 || true
+          docker rm -f secscan_ai-ollama-live secscan_ai-ollama-seed >/dev/null 2>&1 || true
+          docker network rm secscan_ai-ollama-internal >/dev/null 2>&1 || true
+          docker volume rm secscan_ai-ollama-models >/dev/null 2>&1 || true
 
   browser-e2e:
     runs-on: ubuntu-latest
@@ -285,7 +285,7 @@ jobs:
           }
           passed = all(value == "success" for value in results.values())
           document = {
-              "schema": "hackpilot.ci-validation/v1",
+              "schema": "secscan_ai.ci-validation/v1",
               "checked_out_revision": os.environ["GITHUB_SHA"],
               "workflow": "Evidence Workbench",
               "event": os.environ["GITHUB_EVENT_NAME"],

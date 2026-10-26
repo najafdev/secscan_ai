@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Service Registry for HackPilot Microservices
+Service Registry for SecScan AI Microservices
 Handles service discovery, registration, and health checking
 """
 

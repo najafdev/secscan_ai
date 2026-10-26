@@ -308,7 +308,7 @@ class LocalServer(ThreadingHTTPServer):
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "HackPilotWorkbench/" + __version__
+    server_version = "SecScanAIWorkbench/" + __version__
     sys_version = ""
 
     def setup(self):
@@ -456,7 +456,7 @@ class Handler(BaseHTTPRequestHandler):
                     200,
                     raw,
                     "application/zip",
-                    "hackpilot-" + bundle_match[1] + "-evidence.zip",
+                    "secscan_ai-" + bundle_match[1] + "-evidence.zip",
                 )
             match = re.fullmatch(
                 r"/api/runs/([a-f0-9]{32})(?:/export\.(json|md))?", self.path
@@ -489,7 +489,7 @@ class Handler(BaseHTTPRequestHandler):
                         else "application/json"
                     )
                     return self.reply(
-                        200, raw, kind, "hackpilot-" + match[1] + "." + extension
+                        200, raw, kind, "secscan_ai-" + match[1] + "." + extension
                     )
                 return self.reply(200, report)
             return self.reply(404, {"error": "Not found"})
@@ -587,11 +587,11 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="HackPilot Evidence Workbench (local single-user preview)"
+        description="SecScan AI Evidence Workbench (local single-user preview)"
     )
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument(
-        "--data-dir", type=Path, default=Path.home() / ".hackpilot-workbench"
+        "--data-dir", type=Path, default=Path.home() / ".secscan_ai-workbench"
     )
     args = parser.parse_args()
     if not 1024 <= args.port <= 65535:
@@ -600,7 +600,7 @@ def main():
     token = secrets.token_urlsafe(32)
     state = State(args.data_dir)
     server = LocalServer(("127.0.0.1", args.port), state, token)
-    print("HackPilot Evidence Workbench " + __version__)
+    print("SecScan AI Evidence Workbench " + __version__)
     print("Open locally: http://127.0.0.1:" + str(args.port) + "/#token=" + token)
     print(
         "Keep this launch URL private. Loopback only; do not expose through a tunnel."

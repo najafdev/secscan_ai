@@ -1,5 +1,5 @@
-# HackPilot YAML configuration
-name: Deploy HackPilot Website to Pages
+# SecScan AI YAML configuration
+name: Deploy SecScan AI Website to Pages
 
 on:
   push:

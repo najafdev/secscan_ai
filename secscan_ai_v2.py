@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-HackPilot - Enterprise AI-Powered Penetration Testing Platform
-Author: HackPilot Team
+SecScan AI - Enterprise AI-Powered Penetration Testing Platform
+Author: SecScan AI Team
 Version: 2.0.0 (Production-Ready)
 Description: Enterprise-grade pentesting automation platform with advanced AI, microservices architecture,
             and cloud-native capabilities for professional security assessments.
@@ -105,7 +105,7 @@ class Config:
             self.config.get(
                 "database",
                 "url",
-                fallback="postgresql://hackpilot:hackpilot123@localhost:5432/hackpilot",
+                fallback="postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai",
             ),
         )
         self.REDIS_URL = os.getenv(
@@ -167,7 +167,7 @@ class Config:
         sections = {
             "app": {"debug": "false", "log_level": "INFO"},
             "database": {
-                "url": "postgresql://hackpilot:hackpilot123@localhost:5432/hackpilot"
+                "url": "postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai"
             },
             "cache": {"redis_url": "redis://localhost:6379/0"},
             "ai": {"openai_api_key": "", "local_model": "llama2:7b"},
@@ -209,9 +209,9 @@ if not log_dir.exists() or not os.access(log_dir, os.W_OK):
 logging.basicConfig(
     level=getattr(logging, config.LOG_LEVEL),
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler(log_dir / "hackpilot.log"), logging.StreamHandler()],
+    handlers=[logging.FileHandler(log_dir / "secscan_ai.log"), logging.StreamHandler()],
 )
-logger = logging.getLogger("hackpilot")
+logger = logging.getLogger("secscan_ai")
 
 BANNER = """
 [bold red]
@@ -228,13 +228,13 @@ BANNER = """
 """
 
 
-class EnterpriseHackPilot:
-    """Main HackPilot Enterprise Application"""
+class EnterpriseSecScanAI:
+    """Main SecScan AI Enterprise Application"""
 
     def __init__(self):
         self.config = config
         self.console = Console()
-        self.logger = logging.getLogger("hackpilot.main")
+        self.logger = logging.getLogger("secscan_ai.main")
 
         self.initialize_components()
 
@@ -442,7 +442,7 @@ class EnterpriseHackPilot:
         signal.signal(signal.SIGTERM, signal_handler)
 
     def show_banner(self):
-        """Display the HackPilot banner with system status"""
+        """Display the SecScan AI banner with system status"""
         self.console.print(BANNER)
 
         status_table = Table(title="System Status", show_header=True)
@@ -488,7 +488,7 @@ class EnterpriseHackPilot:
 
     def show_main_menu(self):
         """Display enhanced main menu"""
-        menu_table = Table(title="HackPilot Enterprise Main Menu", show_header=True)
+        menu_table = Table(title="SecScan AI Enterprise Main Menu", show_header=True)
         menu_table.add_column("Option", style="cyan", width=8)
         menu_table.add_column("Category", style="magenta", width=20)
         menu_table.add_column("Description", style="white")
@@ -700,7 +700,7 @@ class EnterpriseHackPilot:
 
         cloud_options = [
             ("1", "View Docker Containers"),
-            ("2", "Deploy HackPilot Stack"),
+            ("2", "Deploy SecScan AI Stack"),
             ("3", "Kubernetes Management"),
             ("4", "Service Registry Status"),
             ("5", "Scale Services"),
@@ -719,7 +719,7 @@ class EnterpriseHackPilot:
         if choice == "1":
             self.show_docker_status()
         elif choice == "2":
-            self.deploy_hackpilot_stack()
+            self.deploy_secscan_ai_stack()
         elif choice == "3":
             self.manage_kubernetes()
         elif choice == "4":
@@ -774,27 +774,27 @@ class EnterpriseHackPilot:
         except Exception as e:
             self.console.print(f"[red]Error accessing Docker: {e}[/red]")
 
-    def deploy_hackpilot_stack(self):
-        """Deploy HackPilot microservices stack"""
+    def deploy_secscan_ai_stack(self):
+        """Deploy SecScan AI microservices stack"""
         if not self.docker_manager:
             return
 
-        self.console.print("[cyan]Deploying HackPilot Enterprise Stack...[/cyan]")
+        self.console.print("[cyan]Deploying SecScan AI Enterprise Stack...[/cyan]")
 
         from cloud.docker_manager import ServiceDefinition, ContainerConfig
 
         services = [
             ServiceDefinition(
-                service_name="hackpilot-api",
+                service_name="secscan_ai-api",
                 container_config=ContainerConfig(
-                    name="hackpilot-api",
-                    image="hackpilot/api:latest",
+                    name="secscan_ai-api",
+                    image="secscan_ai/api:latest",
                     ports={"8000": 8000},
                     environment={
                         "DATABASE_URL": config.DATABASE_URL,
                         "REDIS_URL": config.REDIS_URL,
                     },
-                    volumes={"/app/logs": "/var/log/hackpilot"},
+                    volumes={"/app/logs": "/var/log/secscan_ai"},
                 ),
                 dependencies=[],
                 health_check={
@@ -803,16 +803,16 @@ class EnterpriseHackPilot:
                 scaling={"min_replicas": 1, "max_replicas": 5},
             ),
             ServiceDefinition(
-                service_name="hackpilot-worker",
+                service_name="secscan_ai-worker",
                 container_config=ContainerConfig(
-                    name="hackpilot-worker",
-                    image="hackpilot/worker:latest",
+                    name="secscan_ai-worker",
+                    image="secscan_ai/worker:latest",
                     environment={
                         "DATABASE_URL": config.DATABASE_URL,
                         "REDIS_URL": config.REDIS_URL,
                     },
                 ),
-                dependencies=["hackpilot-database", "hackpilot-redis"],
+                dependencies=["secscan_ai-database", "secscan_ai-redis"],
                 health_check={
                     "test": ["CMD", "python", "-c", "import sys; sys.exit(0)"]
                 },
@@ -823,18 +823,18 @@ class EnterpriseHackPilot:
         compose_content = self.docker_manager.generate_docker_compose(services)
 
         success = self.docker_manager.deploy_stack(
-            compose_content, "hackpilot-enterprise"
+            compose_content, "secscan_ai-enterprise"
         )
 
         if success:
             self.console.print(
-                "[green]✓ HackPilot Enterprise Stack deployed successfully[/green]"
+                "[green]✓ SecScan AI Enterprise Stack deployed successfully[/green]"
             )
         else:
-            self.console.print("[red]✗ Failed to deploy HackPilot Enterprise Stack[/red]")
+            self.console.print("[red]✗ Failed to deploy SecScan AI Enterprise Stack[/red]")
 
     def start_api_server(self):
-        """Start HackPilot API server"""
+        """Start SecScan AI API server"""
         if not flask:
             self.console.print("[red]Flask not available for API server[/red]")
             return
@@ -903,7 +903,7 @@ class EnterpriseHackPilot:
             )
 
         self.console.print(
-            "[cyan]Starting HackPilot API Server on http://0.0.0.0:8000[/cyan]"
+            "[cyan]Starting SecScan AI API Server on http://0.0.0.0:8000[/cyan]"
         )
         app.run(host="0.0.0.0", port=8000, debug=config.DEBUG)
 
@@ -920,7 +920,7 @@ class EnterpriseHackPilot:
 
                 if choice == "0":
                     self.console.print(
-                        "[green]Shutting down HackPilot Enterprise...[/green]"
+                        "[green]Shutting down SecScan AI Enterprise...[/green]"
                     )
                     self.shutdown()
                     break
@@ -1112,8 +1112,8 @@ class EnterpriseVoiceInterface:
 class EnterpriseWebDashboard:
     """Enterprise web dashboard"""
 
-    def __init__(self, hackpilot_instance):
-        self.hackpilot = hackpilot_instance
+    def __init__(self, secscan_ai_instance):
+        self.secscan_ai = secscan_ai_instance
 
     def run(self):
         pass
@@ -1130,9 +1130,9 @@ class BasicReportGenerator:
 
 
 def main():
-    """Entry point for HackPilot Enterprise"""
+    """Entry point for SecScan AI Enterprise"""
     parser = argparse.ArgumentParser(
-        description="HackPilot Enterprise - AI-Powered Penetration Testing Platform"
+        description="SecScan AI Enterprise - AI-Powered Penetration Testing Platform"
     )
     parser.add_argument("--target", help="Target IP or domain")
     parser.add_argument("--scope", help="Scope description")
@@ -1160,15 +1160,15 @@ def main():
         global config
         config = Config(args.config)
 
-    hackpilot = EnterpriseHackPilot()
-    hackpilot = hackpilot
+    secscan_ai = EnterpriseSecScanAI()
+    secscan_ai = secscan_ai
 
     if args.api:
-        hackpilot.start_api_server()
+        secscan_ai.start_api_server()
     elif args.web:
-        hackpilot.launch_web_dashboard()
+        secscan_ai.launch_web_dashboard()
     elif args.realtime:
-        hackpilot.start_realtime_dashboard()
+        secscan_ai.start_realtime_dashboard()
     elif all([args.target, args.scope, args.auth_key]):
         target_info = {
             "target": args.target,
@@ -1179,16 +1179,16 @@ def main():
             "parallel_execution": True,
             "ai_enhanced": True,
         }
-        hackpilot.show_banner()
-        hackpilot.run_full_enterprise_pentest(target_info)
+        secscan_ai.show_banner()
+        secscan_ai.run_full_enterprise_pentest(target_info)
     else:
-        hackpilot.run()
+        secscan_ai.run()
 
 
 if __name__ == "__main__":
     main()
 
 # Backward compatibility aliases
-EnterpriseHackPilot = EnterpriseHackPilot
-HackPilot = EnterpriseHackPilot
-HackPilot = EnterpriseHackPilot
+EnterpriseSecScanAI = EnterpriseSecScanAI
+SecScanAI = EnterpriseSecScanAI
+SecScanAI = EnterpriseSecScanAI

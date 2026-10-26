@@ -1,14 +1,14 @@
-# HackPilot License
-HackPilot Enterprise License
+# SecScan AI License
+SecScan AI Enterprise License
 
-Copyright (c) 2025 HackPilot Enterprise Team
+Copyright (c) 2025 SecScan AI Enterprise Team
 All rights reserved.
 
 ENTERPRISE SOFTWARE LICENSE AGREEMENT
 
 This Enterprise Software License Agreement ("Agreement") is a legal agreement 
-between you (either an individual or a single entity) and the HackPilot Enterprise 
-Team ("Licensor") for the HackPilot Enterprise AI-Powered Penetration Testing 
+between you (either an individual or a single entity) and the SecScan AI Enterprise 
+Team ("Licensor") for the SecScan AI Enterprise AI-Powered Penetration Testing 
 Platform software ("Software").
 
 BY INSTALLING, COPYING, OR OTHERWISE USING THE SOFTWARE, YOU AGREE TO BE BOUND 
@@ -133,7 +133,7 @@ laws that apply to the Software, including export control regulations.
 
 14. SECURITY ASSESSMENT SPECIFIC TERMS
 
-HackPilot Enterprise is designed exclusively for authorized security testing, 
+SecScan AI Enterprise is designed exclusively for authorized security testing, 
 research, and educational purposes. By using this tool, you explicitly agree:
 
 a) Authorization: You have received explicit written permission from authorized 
@@ -149,7 +149,7 @@ e) Compliance: You will adhere to relevant standards and regulations, including
 
 15. CONTRIBUTION TERMS
 
-Any contributions made to the HackPilot Enterprise project are subject to 
+Any contributions made to the SecScan AI Enterprise project are subject to 
 the terms outlined in the CONTRIBUTING.md file and will become part of the 
 licensed software under these terms.
 
@@ -187,10 +187,10 @@ vulnerabilities, including coordinating with affected parties and allowing
 reasonable time for remediation before public disclosure.
 
 CONTACT INFORMATION:
-- General Inquiries: info@hackpilot.dev
-- Enterprise Support: enterprise@hackpilot.dev
-- Security Issues: security@hackpilot.dev
-- Legal Matters: legal@hackpilot.dev
+- General Inquiries: info@secscan_ai.dev
+- Enterprise Support: enterprise@secscan_ai.dev
+- Security Issues: security@secscan_ai.dev
+- Legal Matters: legal@secscan_ai.dev
 
 Last Updated: August 18, 2025
 Version: 2.0.0 Enterprise Edition

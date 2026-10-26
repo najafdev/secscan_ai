@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 """Shared pytest fixtures."""
 
 import sys

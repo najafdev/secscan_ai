@@ -80,8 +80,8 @@ def test_python38_ci_profile_excludes_unused_full_stack_cvss_dependency():
     }
     assert "cvsslib" not in module.CORE_IMPORTS
     assert canonicalize_name("cvsslib") not in profile
-    assert "cvsslib" not in _direct_imports("hackpilot.py")
-    assert "cvsslib" not in _direct_imports("hackpilot.py")
+    assert "cvsslib" not in _direct_imports("secscan_ai.py")
+    assert "cvsslib" not in _direct_imports("secscan_ai.py")
     assert canonicalize_name("cvsslib") in {
         canonicalize_name(item.name) for item in _requirements()
     }

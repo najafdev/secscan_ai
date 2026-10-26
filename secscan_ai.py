@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-HackPilot - Enterprise AI-Powered Penetration Testing Platform
-Author: HackPilot Team
+SecScan AI - Enterprise AI-Powered Penetration Testing Platform
+Author: SecScan AI Team
 Version: 2.0.0 (Production-Ready)
 Description: Enterprise-grade pentesting automation platform with advanced AI, microservices architecture,
             and cloud-native capabilities for professional security assessments.
@@ -92,7 +92,7 @@ try:
     from cloud import DockerManager, KubernetesManager, ServiceRegistry
     from performance import get_cache_manager, get_parallel_processor
 except ImportError as e:
-    print(f"Missing HackPilot modules: {e}")
+    print(f"Missing SecScan AI modules: {e}")
     print("Please ensure all modules are properly installed")
     sys.exit(1)
 
@@ -115,7 +115,7 @@ class Config:
             self.config.get(
                 "database",
                 "url",
-                fallback="postgresql://hackpilot:hackpilot123@localhost:5432/hackpilot",
+                fallback="postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai",
             ),
         )
         self.REDIS_URL = os.getenv(
@@ -183,7 +183,7 @@ class Config:
 
         self.config.add_section("database")
         self.config.set(
-            "database", "url", "postgresql://hackpilot:hackpilot123@localhost:5432/hackpilot"
+            "database", "url", "postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai"
         )
 
         self.config.add_section("cache")
@@ -230,9 +230,9 @@ log_dir.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
     level=getattr(logging, config.LOG_LEVEL),
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler(log_dir / "hackpilot.log"), logging.StreamHandler()],
+    handlers=[logging.FileHandler(log_dir / "secscan_ai.log"), logging.StreamHandler()],
 )
-logger = logging.getLogger("hackpilot")
+logger = logging.getLogger("secscan_ai")
 
 # ASCII Banner
 BANNER = """
@@ -295,7 +295,7 @@ class AIEngine:
     def _create_prompt(self, context, data, phase):
         """Create appropriate prompt based on phase"""
         base_prompt = f"""
-        You are HackPilot, an expert penetration testing AI assistant. 
+        You are SecScanAI, an expert penetration testing AI assistant. 
         
         Context: {context}
         Phase: {phase}
@@ -860,9 +860,9 @@ class VoiceInterface:
 class WebDashboard:
     """Flask web dashboard"""
 
-    def __init__(self, hackpilot_instance):
+    def __init__(self, secscan_ai_instance):
         self.app = Flask(__name__)
-        self.hackpilot = hackpilot_instance
+        self.secscan_ai = secscan_ai_instance
         self.setup_routes()
 
     def setup_routes(self):
@@ -881,7 +881,7 @@ class WebDashboard:
             data = request.json
             # Run pentest in background thread
             thread = threading.Thread(
-                target=self.hackpilot.run_full_pentest,
+                target=self.secscan_ai.run_full_pentest,
                 args=(data["target"], data["scope"], data["auth_key"]),
             )
             thread.start()
@@ -892,8 +892,8 @@ class WebDashboard:
         self.app.run(host=host, port=port, debug=False)
 
 
-class HackPilot:
-    """Main HackPilot application"""
+class SecScanAI:
+    """Main SecScan AI application"""
 
     def __init__(self):
         self.ai_engine = AIEngine()
@@ -903,12 +903,12 @@ class HackPilot:
         self.web_dashboard = None
 
     def show_banner(self):
-        """Display the HackPilot banner"""
+        """Display the SecScan AI banner"""
         self.console.print(BANNER)
 
     def show_menu(self):
         """Display main menu"""
-        table = Table(title="HackPilot Main Menu")
+        table = Table(title="SecScan AI Main Menu")
         table.add_column("Option", style="cyan")
         table.add_column("Description", style="magenta")
 
@@ -1066,7 +1066,7 @@ class HackPilot:
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HackPilot Dashboard</title>
+    <title>SecScan AI Dashboard</title>
     <style>
         body { background: #000; color: #0f0; font-family: monospace; }
         .container { margin: 20px; }
@@ -1077,7 +1077,7 @@ class HackPilot:
 </head>
 <body>
     <div class="container">
-        <h1>HackPilot - AI-Powered Penetration Testing</h1>
+        <h1>SecScan AI - AI-Powered Penetration Testing</h1>
         
         <div class="panel">
             <h2>Start Pentest</h2>
@@ -1180,7 +1180,7 @@ class HackPilot:
 def main():
     """Entry point"""
     parser = argparse.ArgumentParser(
-        description="HackPilot - AI-Powered Penetration Testing Tool"
+        description="SecScan AI - AI-Powered Penetration Testing Tool"
     )
     parser.add_argument("--target", help="Target IP or domain")
     parser.add_argument("--scope", help="Scope description")
@@ -1193,23 +1193,23 @@ def main():
 
     args = parser.parse_args()
 
-    hackpilot = HackPilot()
-    hackpilot = hackpilot
+    secscan_ai = SecScanAI()
+    secscan_ai = secscan_ai
 
     if args.web:
-        hackpilot.start_web_dashboard()
+        secscan_ai.start_web_dashboard()
     elif args.voice:
-        hackpilot.show_banner()
-        hackpilot.voice_command_mode()
+        secscan_ai.show_banner()
+        secscan_ai.voice_command_mode()
     elif args.target and args.scope and args.auth_key:
-        hackpilot.show_banner()
-        hackpilot.run_full_pentest(args.target, args.scope, args.auth_key)
+        secscan_ai.show_banner()
+        secscan_ai.run_full_pentest(args.target, args.scope, args.auth_key)
     else:
-        hackpilot.run()
+        secscan_ai.run()
 
 
 if __name__ == "__main__":
     main()
 
 # Backward compatibility alias
-HackPilot = HackPilot
+SecScanAI = SecScanAI

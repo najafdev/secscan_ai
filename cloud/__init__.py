@@ -1,8 +1,8 @@
-# HackPilot core module
+# SecScan AI core module
 """
 Cloud and Microservices Architecture Module
 
-This module provides cloud-native and microservices capabilities for HackPilot,
+This module provides cloud-native and microservices capabilities for SecScan AI,
 including Docker containerization, Kubernetes deployment, and service decomposition.
 """
 

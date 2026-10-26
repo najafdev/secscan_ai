@@ -19,7 +19,7 @@ The concurrent release-verification repair is retained. Add a check of the exact
 
 ## 0.1.0 review preview
 
-This is an isolated contribution under `workbench/`; it does not replace the legacy HackPilot entry points and is not a claim of complete penetration-testing coverage.
+This is an isolated contribution under `workbench/`; it does not replace the legacy SecScan AI entry points and is not a claim of complete penetration-testing coverage.
 
 ### Implemented
 

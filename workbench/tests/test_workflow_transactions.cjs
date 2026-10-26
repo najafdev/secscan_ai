@@ -158,7 +158,7 @@ test('linked report navigation is explicit, local and does not rerun the adapter
   assert.equal(h.events.length, 0);
   assert.equal(h.nodes['adapter-open-report'].disabled, false);
   await h.trigger('adapter-open-report');
-  assert.equal(h.events[0].type, 'hackpilot:review-report');
+  assert.equal(h.events[0].type, 'secscan_ai:review-report');
   assert.equal(h.events[0].detail.id, reportId);
   assert.equal(h.requests.filter((r) => r.path.endsWith('/execute')).length, 1);
 });
@@ -246,7 +246,7 @@ test('late comparison cannot replace the selected report comparison panel', asyn
 test('linked report opens through authenticated existing review endpoint only', async () => {
   const id = 'e'.repeat(32);
   const h = harness(async (path) => path === '/api/runs' ? {runs: []} : report(id));
-  await h.dispatch('hackpilot:review-report', {id});
+  await h.dispatch('secscan_ai:review-report', {id});
   assert.deepEqual(h.requests.map((r) => r.path), ['/api/runs/' + id, '/api/runs']);
   assert.equal(h.nodes['export-json'].disabled, false);
   assert.equal(h.nodes.verdict.focused, true);
@@ -254,8 +254,8 @@ test('linked report opens through authenticated existing review endpoint only', 
 
 test('report bridge denies invalid IDs and switching during an active assessment', async () => {
   const h = harness();
-  await h.dispatch('hackpilot:review-report', {id: '../secrets'});
-  h.run('running=true'); await h.dispatch('hackpilot:review-report', {id: 'a'.repeat(32)});
+  await h.dispatch('secscan_ai:review-report', {id: '../secrets'});
+  h.run('running=true'); await h.dispatch('secscan_ai:review-report', {id: 'a'.repeat(32)});
   assert.equal(h.requests.length, 0);
   assert.match(h.nodes.notice.textContent, /active operation/);
 });
@@ -267,7 +267,7 @@ test('download keeps requested report identity even if selection changes while w
   const pending = h.run("download('json')");
   h.run(`selectedRun='${newId}'`); gate.resolve({owned: true}); await pending;
   assert.equal(h.requests[0].path, '/api/runs/' + oldId + '/export.json');
-  assert.equal(h.downloads[0].download, 'hackpilot-' + oldId + '.json');
+  assert.equal(h.downloads[0].download, 'secscan_ai-' + oldId + '.json');
 });
 
 test('unconfirmed active run stays locked until explicit status refresh succeeds', async () => {

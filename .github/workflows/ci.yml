@@ -1,5 +1,5 @@
-# HackPilot YAML configuration
-name: HackPilot CI/CD
+# SecScan AI YAML configuration
+name: SecScan AI CI/CD
 
 on:
   push:
@@ -32,8 +32,8 @@ jobs:
     - name: Lint with flake8
       run: |
         pip install flake8
-        flake8 hackpilot.py --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 hackpilot.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        flake8 secscan_ai.py --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 secscan_ai.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Run unit tests
       run: |
@@ -45,7 +45,7 @@ jobs:
 
     - name: Test legacy entry-point import
       run: |
-        python -c "from hackpilot import HackPilot, AIEngine, ToolManager; print('Import successful')"
+        python -c "from secscan_ai import SecScanAI, AIEngine, ToolManager; print('Import successful')"
 
   security:
     runs-on: ubuntu-latest
@@ -61,7 +61,7 @@ jobs:
     - name: Generate Bandit advisory report
       run: |
         pip install bandit
-        bandit -r hackpilot.py -f json -o bandit-report.json || true
+        bandit -r secscan_ai.py -f json -o bandit-report.json || true
 
     - name: Upload security scan results
       uses: actions/upload-artifact@v4
@@ -78,9 +78,9 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t hackpilot:test .
+        docker build -t secscan_ai:test .
 
     - name: Test Docker image
       run: |
-        docker run --rm hackpilot:test --help
-        docker run --rm --entrypoint python3 hackpilot:test -c "import hackpilot; print('Docker image OK')"
+        docker run --rm secscan_ai:test --help
+        docker run --rm --entrypoint python3 secscan_ai:test -c "import secscan_ai; print('Docker image OK')"

@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 """OrcaRouter Cyber Inference integration.
 
 This module holds the OrcaRouter-specific pieces that are shared by the
@@ -88,7 +88,7 @@ MAX_CATALOG_BYTES = 2 * 1024 * 1024
 MAX_CATALOG_ITEMS = 500
 CATALOG_TIMEOUT_SECONDS = 8
 
-# Endpoint types that can serve the OpenAI-style chat contract HackPilot speaks.
+# Endpoint types that can serve the OpenAI-style chat contract SecScan AI speaks.
 CHAT_ENDPOINT_TYPES: frozenset = frozenset(
     {"openai", "anthropic", "gemini", "openai-response"}
 )
@@ -560,7 +560,7 @@ def discover_models(
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Accept": "application/json",
-        "X-Title": "HackPilot",
+        "X-Title": "SecScan AI",
     }
     getter = http_get or _default_http_get
     try:

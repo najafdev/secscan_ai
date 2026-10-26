@@ -1,5 +1,5 @@
--- HackPilot SQL schema
--- HackPilot PostgreSQL initialization script
+-- SecScan AI SQL schema
+-- SecScan AI PostgreSQL initialization script
 -- Runs once on first container start (postgres:15-alpine) via
 -- /docker-entrypoint-initdb.d. The application uses SQLAlchemy and
 -- creates/migrates its own tables, so this script intentionally stays

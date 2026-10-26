@@ -1,7 +1,7 @@
-<!-- HackPilot document -->
+<!-- SecScan AI document -->
 ---
 name: 💡 Feature Request
-about: Suggest an idea for HackPilot Enterprise
+about: Suggest an idea for SecScan AI Enterprise
 title: '[FEATURE] Brief description of the feature'
 labels: 'enhancement, needs-review'
 assignees: 'yashab-cyber'
@@ -107,4 +107,4 @@ If you have technical ideas or suggestions for implementation, please share them
 - [ ] I have considered the security implications
 - [ ] I have thought about the user experience
 - [ ] I have considered enterprise use cases
-- [ ] This aligns with HackPilot's mission and values
+- [ ] This aligns with SecScan AI's mission and values

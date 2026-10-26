@@ -31,7 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          PACKAGE_BASENAME="hackpilot-evidence-workbench-${GITHUB_SHA}"
+          PACKAGE_BASENAME="secscan_ai-evidence-workbench-${GITHUB_SHA}"
           mkdir -p _release/stage
           git archive --format=tar --prefix="${PACKAGE_BASENAME}/" HEAD workbench LICENSE | tar -xf - -C _release/stage
           python -m workbench.release_evidence --output-dir "_release/stage/${PACKAGE_BASENAME}/release-evidence"
@@ -40,9 +40,9 @@ jobs:
           from pathlib import Path
           root = Path('_release/stage') / os.environ['PACKAGE_BASENAME']
           document = {
-              'schema': 'hackpilot.portable-source-release/v1',
+              'schema': 'secscan_ai.portable-source-release/v1',
               'checked_out_revision': os.environ['GITHUB_SHA'],
-              'component': 'HackPilot Evidence Workbench',
+              'component': 'SecScan AI Evidence Workbench',
               'entrypoint': 'python -m workbench',
               'python_minimum': '3.11',
               'third_party_python_runtime_packages': [],
@@ -136,7 +136,7 @@ jobs:
         run: |
           set -euo pipefail
           : "${PACKAGE_BASENAME:?Missing package basename from build-package}"
-          test "$PACKAGE_BASENAME" = "hackpilot-evidence-workbench-${GITHUB_SHA}"
+          test "$PACKAGE_BASENAME" = "secscan_ai-evidence-workbench-${GITHUB_SHA}"
           test -s "_release/${PACKAGE_BASENAME}.tar.gz"
           sha256sum --check --strict _release/SHA256SUMS
       - name: Generate signed build provenance attestation

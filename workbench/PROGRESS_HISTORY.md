@@ -114,11 +114,11 @@ No live local/cloud model inference, account sign-in, paid API, GPU test, extern
 
 This contribution spans feature commits `fa95c429a1d9dd6c47eafde7e0d2bb8381b869bd`, `d5ac514b7b829750f4913c0fc34ce8a9a1068d53` and `e2268b88ddaf027db819ab04437d2bd91fb7039e`.
 
-- Added `contracts.py` with versioned `hackpilot.adapter-result/v1` validation, bounded evidence/coverage, deterministic fingerprints and a verification firewall: imported scanner findings are always `candidate`; an adapter cannot label its own output independently verified.
+- Added `contracts.py` with versioned `secscan_ai.adapter-result/v1` validation, bounded evidence/coverage, deterministic fingerprints and a verification firewall: imported scanner findings are always `candidate`; an adapter cannot label its own output independently verified.
 - Added `retest.py` with conservative cross-run states `still_present`, `new`, `not_reproduced` and `not_retested`. Missing findings are never labeled fixed solely by absence; comparable target/environment and successful relevant coverage are required even for `not_reproduced`.
 - Added `bundle.py` and authenticated `export.bundle.zip`: finalized intact reports can be packaged with JSON/Markdown and an unsigned manifest containing SHA-256/size metadata. This improves reviewer portability without pretending checksums are signatures.
 - Added authenticated `/api/runs/<previous>/compare/<current>` to expose retest comparison through the real loopback API. Unknown or non-intact runs fail explicitly.
-- Added `evidence_safety.py` for data-layer proof metadata. Ordinary record values are omitted; row count, column/type metadata and a content digest are retained, while only explicit `HACKPILOT-SYNTHETIC-*` canaries may be shown as sample proof.
+- Added `evidence_safety.py` for data-layer proof metadata. Ordinary record values are omitted; row count, column/type metadata and a content digest are retained, while only explicit `SECSCAN_AI-SYNTHETIC-*` canaries may be shown as sample proof.
 - Upgraded the owned synthetic authorization fixture so successful verification demonstrates unauthenticated read of designated synthetic records, records a denied control and fresh canary, and explicitly states `customer_data_sampled: false`. The corrected fixture does not export a data summary.
 - Rewrote `ROADMAP.md` with measurable cumulative Gates A–E covering evidence, reliability, adapter/scope boundaries, retest/reviewer evidence and usable review release. Current gates explicitly remain incomplete; this sprint must not stop early merely because optional polish remains.
 - Reconciled `PRODUCT_DIRECTION.md` to local-first, provider-agnostic architecture: Ollama is the only AI adapter implemented today, not a permanent architectural requirement. Future reviewed provider/self-hosted adapters must reuse the same independent evidence/action authority.
@@ -149,7 +149,7 @@ The stronger synthetic data proof is intentionally **not** a database dump. It d
 
 This contribution adds implementation commits `b436437bfee52478823e10587b72e5171466aa74`, `a6df41fa32dd71fb3094ada6530f9a6afa35890c`, `8c49a8a6cbab21de861e32cfa4a08940a2e3cbf0`, `83f67297e7825e96c8f7b9d0e1c3d6b53200d4f6` and documentation commit `932abb6101f3ddd69b13d804e27868a71e9f082a`.
 
-- Added `adapters.py`, an offline non-executing parser layer for Semgrep JSON, Trivy JSON and Nuclei JSONL. Input is UTF-8/NUL checked and bounded to 2 MiB; malformed/truncated output fails closed and normalized findings still pass through `hackpilot.adapter-result/v1`, so imported scanner data remains `candidate` rather than independently verified.
+- Added `adapters.py`, an offline non-executing parser layer for Semgrep JSON, Trivy JSON and Nuclei JSONL. Input is UTF-8/NUL checked and bounded to 2 MiB; malformed/truncated output fails closed and normalized findings still pass through `secscan_ai.adapter-result/v1`, so imported scanner data remains `candidate` rather than independently verified.
 - Semgrep parsing retains rule, path and line metadata but deliberately omits source snippets and metavariable contents. Scanner errors make coverage partial rather than successful.
 - Trivy parsing handles vulnerability, misconfiguration and secret observations while omitting secret matches and embedded source/configuration code from normalized evidence.
 - Nuclei JSONL parsing deliberately omits raw requests/responses, curl commands, extracted values and URL queries. A finding stream does not establish complete target/template coverage, so non-empty imports are marked partial; an empty stream keeps coverage unknown instead of implying the target is safe.
@@ -161,7 +161,7 @@ This contribution adds implementation commits `b436437bfee52478823e10587b72e5171
 - **20 focused Python tests passed locally** on Python 3.13 in the reconstructed pure-module slice: 12 parser/redaction/fail-closed tests plus 8 access-matrix tests. They cover stable fingerprints, oversized/non-UTF-8 input, malformed/truncated formats, Semgrep partial errors, Trivy secret/code omission, Nuclei raw-material omission, fixed/vulnerable matrix semantics, denied-control confidence, missing coverage, out-of-scope/duplicate cases and rejection of credential/body fields.
 - Hosted **Evidence Workbench** run `35557901717` completed successfully for branch head `932abb6101f3ddd69b13d804e27868a71e9f082a` on Python **3.11, 3.12 and 3.13**. The revision-bound Python 3.13 review artifact recorded **211 Python tests passed** and **23 JavaScript tests passed**. The artifact's `REVISION.txt` is the GitHub pull-request merge revision `29602520afa3ef33348ecb6339ac202985e78ab3`, while the workflow metadata records feature head `932abb6101f3ddd69b13d804e27868a71e9f082a`; this distinction is retained rather than presenting the synthetic merge SHA as the feature-branch commit.
 - The hosted log explicitly includes all 20 new `test_adapters` / `test_access_matrix` cases. No real scanner binary, external target, customer data, credential, model download or paid service was used.
-- Legacy Enterprise/HackPilot workflows are separate and are not inferred successful from the dedicated workbench workflow.
+- Legacy Enterprise/SecScan AI workflows are separate and are not inferred successful from the dedicated workbench workflow.
 
 ### Release-gate impact and remaining blockers
 
@@ -214,7 +214,7 @@ These changes improve evidence trust and interruption behavior without increasin
 
 Feature commits: `ffb7961ce19ed6003012cd5976b016116e8157e9` and `1c85853a1c4ad1a51ff91d4ab3e758de32f206b9`.
 
-- The existing `hackpilot.retest-diff/v1` output remains backward-compatible while each prior finding now receives an explicit `recheck` binding.
+- The existing `secscan_ai.retest-diff/v1` output remains backward-compatible while each prior finding now receives an explicit `recheck` binding.
 - The binding carries previous/current run IDs, prior finding ID when available, prior evidence SHA-256 when available, a SHA-256 reference to remediation guidance, exact mapped coverage status and scope comparability. It intentionally records `remediation_applied: unknown` rather than inferring that advice was implemented.
 - Changed target or environment is preserved as non-comparable scope and therefore `not_retested`, even if a similarly named check completed.
 - Failed, skipped, absent and unmapped check coverage remains visible in the recheck object. A failed mapped scanner cannot turn an absent finding into `not_reproduced`.
@@ -240,10 +240,10 @@ Feature commits: `ffb7961ce19ed6003012cd5976b016116e8157e9` and `1c85853a1c4ad1a
 
 Feature commit: `57dfcfede62e87b2485f5238533ca2c63e81ce2d`.
 
-- Added `hackpilot.execution-declaration/v1`, a closed execution-authority declaration independent of model output. It records adapter identity, launcher class, effect level, filesystem/network authority, subprocess/write/symlink flags, object/request/time limits and coverage unit. Unknown fields such as arbitrary command strings fail closed.
+- Added `secscan_ai.execution-declaration/v1`, a closed execution-authority declaration independent of model output. It records adapter identity, launcher class, effect level, filesystem/network authority, subprocess/write/symlink flags, object/request/time limits and coverage unit. Unknown fields such as arbitrary command strings fail closed.
 - Added `native-project-metadata/1`, a read-only native project adapter. It inventories bounded filenames only: no file-content reads, no network, no subprocesses, no writes and no symlink following. Candidate observations identify filenames commonly associated with environment/credential/key material without reading or exporting the underlying values.
 - Added `native-web-headers/1`, a passive one-request web adapter. Its production path reuses the existing explicit-URL, DNS-pinned, HEAD-only, no-redirect/body-free reader; normalized evidence retains only a small hardening-header observation and cannot self-promote past `candidate`.
-- Both adapters keep execution authority separate from `hackpilot.adapter-result/v1`, preserving the existing parser/result API rather than embedding new execution fields into it.
+- Both adapters keep execution authority separate from `secscan_ai.adapter-result/v1`, preserving the existing parser/result API rather than embedding new execution fields into it.
 - Added explicit policies and coverage accounting for configured bounds. Reaching a file/depth/deadline bound becomes partial coverage rather than a successful complete scan. Non-2xx web responses likewise remain partial/inconclusive for the intended HTML representation.
 
 ### Validation actually performed
@@ -336,7 +336,7 @@ This slice closes reliability gaps without adding destructive security behavior.
 
 Feature commits in this slice: `56c3ba166ec2141bfcd20c317ee680d7232c87f4`, `efb3d57a986ba0eb4fef41d140b4bb13f348f4cf`, `c390380a24df9da58e72dfaa691ad09c26f695f3`, hardening commit `f78cd11046502a20f71ba379bae8a2aa4dd352d5`, documentation commit `1aaf81304de483027ee7c7c33ba15298519f5fb4`, and roadmap status commit `31444b34515f0be91eef56efcb0b965a2990047b`.
 
-- Added `hackpilot.execution-receipt/v1`, a versioned review contract that binds the already reviewed execution declaration to a minimized request summary, observed object/request/elapsed-time usage and the normalized candidate-only adapter result.
+- Added `secscan_ai.execution-receipt/v1`, a versioned review contract that binds the already reviewed execution declaration to a minimized request summary, observed object/request/elapsed-time usage and the normalized candidate-only adapter result.
 - Added `ExecutionRegistry.plan()` as an I/O-free preflight. It validates the same typed adapter request and operator authority ceiling used by execution. Project plans retain only an asset key and sanitized root basename rather than the full local path; web plans preserve the exact approved URL plus fixed `HEAD`, no-redirect and no-response-body behavior.
 - Added `ExecutionRegistry.execute_with_receipt()` without removing or changing the existing `execute()` API. The project adapter accounts eligible filesystem objects and zero network requests. The native web adapter accounts exactly one request for completed/partial executions. Elapsed time is observational metadata rather than a fabricated performance guarantee.
 - Receipt validation rejects object/request usage above the execution declaration, adapter identity/version mismatches, self-verified findings and sensitive/execution fields such as password, token, cookie, authorization, secret, command, argv or environment in the request summary.

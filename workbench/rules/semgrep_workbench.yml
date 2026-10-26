@@ -1,11 +1,11 @@
 rules:
-  - id: hackpilot.python.dynamic-eval
+  - id: secscan_ai.python.dynamic-eval
     message: Dynamic eval executes a runtime expression and requires security review.
     languages:
       - python
     severity: WARNING
     pattern: eval(...)
     metadata:
-      source: hackpilot-evidence-workbench
+      source: secscan_ai-evidence-workbench
       confidence: high
       purpose: local-security-review

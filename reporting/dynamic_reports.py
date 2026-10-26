@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Enterprise Reporting System for HackPilot
+Enterprise Reporting System for SecScan AI
 Dynamic report generation with analytics and trend analysis
 """
 

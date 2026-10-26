@@ -51,7 +51,7 @@ def call(server: WorkbenchServer, path: str, body=None):
 
 
 def main():
-    with tempfile.TemporaryDirectory(prefix="hackpilot-fresh-install-") as directory:
+    with tempfile.TemporaryDirectory(prefix="secscan_ai-fresh-install-") as directory:
         state = State(Path(directory) / "state")
         server = WorkbenchServer(("127.0.0.1", 0), state, TOKEN)
         thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -114,7 +114,7 @@ def main():
             print(
                 json.dumps(
                     {
-                        "schema": "hackpilot.fresh-install-smoke/v1",
+                        "schema": "secscan_ai.fresh-install-smoke/v1",
                         "platform_runtime": __import__("platform").platform(),
                         "python": __import__("sys").version.split()[0],
                         "loopback_server": True,

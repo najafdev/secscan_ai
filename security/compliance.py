@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Compliance Framework for HackPilot
+Compliance Framework for SecScan AI
 Maps findings to various compliance frameworks and generates reports
 """
 

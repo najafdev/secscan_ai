@@ -1,1 +1,1 @@
-# HackPilot core module
+# SecScan AI core module

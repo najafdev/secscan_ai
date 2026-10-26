@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Unit tests for Enterprise API Security Scanner & OpenAPI Auditor in HackPilot.
+Unit tests for Enterprise API Security Scanner & OpenAPI Auditor in SecScan AI.
 """
 
 import pytest

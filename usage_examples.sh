@@ -1,32 +1,32 @@
 #!/bin/bash
-# HackPilot shell script
-# HackPilot Usage Examples
-# This script demonstrates various ways to use HackPilot
+# SecScan AI shell script
+# SecScan AI Usage Examples
+# This script demonstrates various ways to use SecScan AI
 
-echo "🔥 HackPilot Usage Examples 🔥"
+echo "🔥 SecScan AI Usage Examples 🔥"
 echo "=============================="
 echo ""
 
 echo "1. Interactive Mode (Recommended for beginners)"
-echo "   ./advance_hackpilot.py"
+echo "   ./advance_secscan_ai.py"
 echo ""
 
 echo "2. Full Automated Pentest"
-echo "   ./advance_hackpilot.py --target example.com --scope 'Web application' --auth-key 'AUTH123'"
+echo "   ./advance_secscan_ai.py --target example.com --scope 'Web application' --auth-key 'AUTH123'"
 echo ""
 
 echo "3. Web Dashboard"
-echo "   ./advance_hackpilot.py --web"
+echo "   ./advance_secscan_ai.py --web"
 echo "   # Then open browser to http://localhost:8080"
 echo ""
 
 echo "4. Voice Command Mode"
-echo "   ./advance_hackpilot.py --voice"
+echo "   ./advance_secscan_ai.py --voice"
 echo "   # Say: 'Start full pentest', 'View reports', 'Exit'"
 echo ""
 
 echo "5. Specific Phase Only"
-echo "   ./advance_hackpilot.py"
+echo "   ./advance_secscan_ai.py"
 echo "   # Select option 2 and choose phase 1-6"
 echo ""
 
@@ -45,12 +45,12 @@ echo ""
 
 echo "9. With OpenAI API (Online AI)"
 echo "   export OPENAI_API_KEY='your-key-here'"
-echo "   ./advance_hackpilot.py --target example.com --scope 'Test' --auth-key 'AUTH'"
+echo "   ./advance_secscan_ai.py --target example.com --scope 'Test' --auth-key 'AUTH'"
 echo ""
 
 echo "10. Local AI Only (Offline)"
 echo "    unset OPENAI_API_KEY"
-echo "    ./advance_hackpilot.py --target example.com --scope 'Test' --auth-key 'AUTH'"
+echo "    ./advance_secscan_ai.py --target example.com --scope 'Test' --auth-key 'AUTH'"
 echo ""
 
 echo "📋 Prerequisites Check:"
@@ -68,7 +68,7 @@ echo "==============="
 echo ""
 echo "1. chmod +x install.sh"
 echo "2. ./install.sh"
-echo "3. ./advance_hackpilot.py"
+echo "3. ./advance_secscan_ai.py"
 echo ""
 
 echo "🎯 Test Targets (Safe for testing):"

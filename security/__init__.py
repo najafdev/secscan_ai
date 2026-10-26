@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 from .authentication import (
     EnterpriseAuth,
     RoleBasedAccessControl,

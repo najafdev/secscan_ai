@@ -1,12 +1,12 @@
-<!-- HackPilot document -->
-# 🎨 HackPilot Enterprise Brand Assets
+<!-- SecScan AI document -->
+# 🎨 SecScan AI Enterprise Brand Assets
 
-This folder contains the official brand assets for HackPilot Enterprise.
+This folder contains the official brand assets for SecScan AI Enterprise.
 
 ## 📁 Files
 
 ### 🖼️ Logo Files
-- **`hackpilot-logo.png`** - Official logo (high resolution)
+- **`secscan_ai-logo.png`** - Official logo (high resolution)
 
 ## 📏 Usage Guidelines
 
@@ -41,25 +41,25 @@ This folder contains the official brand assets for HackPilot Enterprise.
 ### README Headers
 ```markdown
 <div align="center">
-  <img src="public/hackpilot-logo.png" alt="HackPilot Enterprise Logo" width="300" height="auto">
+  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="300" height="auto">
 </div>
 ```
 
 ### Social Media
 ```markdown
-![HackPilot Enterprise](public/hackpilot-logo.png)
+![SecScan AI Enterprise](public/secscan_ai-logo.png)
 ```
 
 ### Documentation
 ```markdown
-<img src="../public/hackpilot-logo.png" alt="HackPilot Enterprise" width="200">
+<img src="../public/secscan_ai-logo.png" alt="SecScan AI Enterprise" width="200">
 ```
 
 ## 📞 Contact for Brand Guidelines
 
 **For brand usage questions or permissions:**
 - **Email**: yashabalam707@gmail.com
-- **Subject**: "HackPilot Brand Usage Request"
+- **Subject**: "SecScan AI Brand Usage Request"
 
 ## ⚖️ Legal Information
 
@@ -67,7 +67,7 @@ This folder contains the official brand assets for HackPilot Enterprise.
 © 2025 Yashab Alam. All rights reserved.
 
 ### License
-The HackPilot Enterprise logo is proprietary. Usage is permitted for:
+The SecScan AI Enterprise logo is proprietary. Usage is permitted for:
 - Open source contributions to this project
 - Educational and non-commercial purposes
 - Social media sharing with proper attribution
@@ -76,7 +76,7 @@ The HackPilot Enterprise logo is proprietary. Usage is permitted for:
 
 ### Attribution
 When using the logo, please include:
-"HackPilot Enterprise logo © Yashab Alam"
+"SecScan AI Enterprise logo © Yashab Alam"
 
 ## 🔗 Brand Resources
 
@@ -87,7 +87,7 @@ When using the logo, please include:
 ### Style Guide
 For complete brand guidelines and additional assets:
 - Contact: yashabalam707@gmail.com
-- Subject: "HackPilot Brand Guidelines Request"
+- Subject: "SecScan AI Brand Guidelines Request"
 
 ---
 

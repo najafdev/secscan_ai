@@ -287,11 +287,11 @@ class WorkbenchServer(LocalServer):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="HackPilot Evidence Workbench (local single-user preview)"
+        description="SecScan AI Evidence Workbench (local single-user preview)"
     )
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument(
-        "--data-dir", type=Path, default=Path.home() / ".hackpilot-workbench"
+        "--data-dir", type=Path, default=Path.home() / ".secscan_ai-workbench"
     )
     args = parser.parse_args()
     if not 1024 <= args.port <= 65535:
@@ -300,7 +300,7 @@ def main():
     token = secrets.token_urlsafe(32)
     state = State(args.data_dir)
     server = WorkbenchServer(("127.0.0.1", args.port), state, token)
-    print("HackPilot Evidence Workbench " + __version__)
+    print("SecScan AI Evidence Workbench " + __version__)
     print("Open locally: http://127.0.0.1:" + str(args.port) + "/#token=" + token)
     print(
         "Keep this launch URL private. Loopback only; do not expose through a tunnel."

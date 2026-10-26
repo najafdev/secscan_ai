@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Unit tests for MITRE D3FEND Countermeasure Mapping, Detection-as-Code (Sigma),
-and Automated Playbook Generation in HackPilot Enterprise.
+and Automated Playbook Generation in SecScan AI Enterprise.
 """
 
 import pytest
@@ -84,8 +84,8 @@ def test_sigma_rules_export():
         assert "sigma_yaml" in rule
         assert "splunk_spl" in rule
         yaml_text = rule["sigma_yaml"]
-        assert "title: HackPilot Detection" in yaml_text
-        assert "author: HackPilot Enterprise" in yaml_text
+        assert "title: SecScan AI Detection" in yaml_text
+        assert "author: SecScan AI Enterprise" in yaml_text
         assert "logsource:" in yaml_text
         assert "detection:" in yaml_text
         assert "level:" in yaml_text
@@ -109,7 +109,7 @@ def test_automated_remediation_playbooks():
 
     ansible_yaml = playbooks["ansible"]
     assert "---" in ansible_yaml
-    assert "HackPilot Enterprise Automated Attack Graph Remediation" in ansible_yaml
+    assert "SecScan AI Enterprise Automated Attack Graph Remediation" in ansible_yaml
     assert "fs.protected_hardlinks" in ansible_yaml
     assert "NOPASSWD" in ansible_yaml
 
@@ -117,7 +117,7 @@ def test_automated_remediation_playbooks():
     assert "#!/usr/bin/env bash" in bash_script
     assert "fs.protected_hardlinks = 1" in bash_script
     assert "umask 027" in bash_script
-    assert "HackPilot Enterprise defensive hardening completed" in bash_script
+    assert "SecScan AI Enterprise defensive hardening completed" in bash_script
 
 
 def test_advanced_ai_engine_d3fend_and_playbook_integration():

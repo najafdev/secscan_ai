@@ -2,7 +2,7 @@
 
 ## Active milestone: reviewer evidence and product-readiness hardening
 
-This is the live continuation ledger for the owner's **HostX0/HackPilot** fork. Historical detail remains preserved in Git history and in [PROGRESS_HISTORY.md](PROGRESS_HISTORY.md), [PROGRESS_CONTINUATION_HISTORY_2026-09-23.md](PROGRESS_CONTINUATION_HISTORY_2026-09-23.md), and [ROADMAP_BASELINE.md](ROADMAP_BASELINE.md). This file records current shipping state and current-source evidence; it does not replace those historical records.
+This is the live continuation ledger for the owner's **HostX0/SecScan AI** fork. Historical detail remains preserved in Git history and in [PROGRESS_HISTORY.md](PROGRESS_HISTORY.md), [PROGRESS_CONTINUATION_HISTORY_2026-09-23.md](PROGRESS_CONTINUATION_HISTORY_2026-09-23.md), and [ROADMAP_BASELINE.md](ROADMAP_BASELINE.md). This file records current shipping state and current-source evidence; it does not replace those historical records.
 
 The fork itself is the product target. Upstream acceptance is not a release gate. Preserve the retained application and Evidence Workbench, deterministic no-AI operation, finite independently approved tools, local-first/provider-neutral model contracts, evidence integrity, cancellation and truthful limitations. No owner-side installation or testing is required.
 
@@ -18,7 +18,7 @@ The retained boundaries remain unchanged: portable source packaging is not nativ
 
 ## PR #11: truthful assessment stop-request state
 
-PR #11 is open at https://github.com/HostX0/HackPilot/pull/11 on branch `fix/cancel-request-state`, based on main `aa61ff910268419c2c17256b9f711588c7d651d7`.
+PR #11 is open at https://github.com/HostX0/secscan_ai/pull/11 on branch `fix/cancel-request-state`, based on main `aa61ff910268419c2c17256b9f711588c7d651d7`.
 
 ### Product defect and behavior
 
@@ -59,7 +59,7 @@ No external code or dependency was copied.
 
 - **W3C WCAG 2.1 SC 4.1.3 Status Messages** — https://www.w3.org/WAI/WCAG21/Understanding/status-messages : waiting, progress, results and errors should be programmatically available to assistive technology without moving focus. Applied: reuse the existing `role="status"` / `aria-live="polite"` notice for request acknowledgement, pending terminal confirmation and resolution, while avoiding repeated identical announcements on every poll.
 - **OWASP ZAP Automation Framework** — https://www.zaproxy.org/docs/desktop/addons/automation-framework/ : `stopPlan(planId)` is distinct from `planProgress(planId)` and some jobs may not stop immediately. Applied: the UI does not equate a successful stop request with a terminal cancellation result.
-- **OWASP ZAP Automation Framework changelog** — https://www.zaproxy.org/docs/addons/automation/changelog/ : recent releases add long-running progress visibility and soft-stop semantics. Applied only as a workflow-state design reference; HackPilot's existing server semantics are unchanged.
+- **OWASP ZAP Automation Framework changelog** — https://www.zaproxy.org/docs/addons/automation/changelog/ : recent releases add long-running progress visibility and soft-stop semantics. Applied only as a workflow-state design reference; SecScan AI's existing server semantics are unchanged.
 
 ## Required merge gate for PR #11
 

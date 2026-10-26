@@ -1,9 +1,9 @@
-<!-- HackPilot document -->
+<!-- SecScan AI document -->
 <div align="center">
-  <img src="public/hackpilot-logo.png" alt="HackPilot Enterprise Logo" width="250" height="auto">
+  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="250" height="auto">
 </div>
 
-# 💰 Support HackPilot Enterprise Development
+# 💰 Support SecScan AI Enterprise Development
 
 ![Version](https://img.shields.io/badge/version-2026.10.22.1-green.svg)
 ![Donations](https://img.shields.io/badge/donations-welcome-brightgreen.svg)
@@ -14,11 +14,11 @@
 
 ## 🙏 Why Your Support Matters
 
-**HackPilot Enterprise** is an advanced open-source cybersecurity platform created by **Yashab Alam**, dedicated to revolutionizing penetration testing with AI-powered automation, intelligent exploit generation, and enterprise-grade security assessments. Your donations help us:
+**SecScan AI Enterprise** is an advanced open-source cybersecurity platform created by **Yashab Alam**, dedicated to revolutionizing penetration testing with AI-powered automation, intelligent exploit generation, and enterprise-grade security assessments. Your donations help us:
 
 - 🚀 **Accelerate Development** - AI-powered vulnerability assessment, intelligent exploitation automation, and advanced enterprise penetration testing
 - 🔒 **Enhanced Security** - Machine learning-driven threat detection, automated payload generation, and advanced evasion techniques
-- 📚 **Educational Resources** - HackPilot tutorials, AI penetration testing guides, and ethical hacking training materials
+- 📚 **Educational Resources** - SecScan AI tutorials, AI penetration testing guides, and ethical hacking training materials
 - 🌍 **Community Growth** - Supporting contributors and maintaining cybersecurity research infrastructure
 - 🛠️ **Cross-Platform Support** - Ensuring compatibility across Linux, Windows, and macOS for comprehensive testing
 - 💻 **Professional Tools** - Advanced web interface, CLI automation, and AI-driven exploitation frameworks
@@ -30,13 +30,13 @@
 
 <div align="center">
   <a href="https://github.com/sponsors/yashab-cyber">
-    <img src="https://img.shields.io/badge/Sponsor%20HackPilot-%E2%9D%A4-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white" alt="Sponsor HackPilot on GitHub Sponsors" height="42">
+    <img src="https://img.shields.io/badge/Sponsor%20SecScan AI-%E2%9D%A4-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white" alt="Sponsor SecScan AI on GitHub Sponsors" height="42">
   </a>
 </div>
 
 <br>
 
-GitHub Sponsorship is **officially active**! You can now sponsor HackPilot Enterprise development directly on GitHub with flexible monthly or one-time tiers:
+GitHub Sponsorship is **officially active**! You can now sponsor SecScan AI Enterprise development directly on GitHub with flexible monthly or one-time tiers:
 
 👉 **[Sponsor @yashab-cyber on GitHub Sponsors](https://github.com/sponsors/yashab-cyber)**
 
@@ -48,7 +48,7 @@ GitHub Sponsorship is **officially active**! You can now sponsor HackPilot Enter
 To make a cryptocurrency donation (**Solana, Bitcoin, Ethereum, USDT, USDC, or any other cryptocurrency**), please send an email to:
 
 📧 **Email:** [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com)  
-📌 **Subject:** `HackPilot Crypto Donation Request`
+📌 **Subject:** `SecScan AI Crypto Donation Request`
 
 > **🔒 Security Notice:**
 > Specific cryptocurrency wallet addresses are provided strictly via email inquiry (**yashabalam707@gmail.com**) to prevent address tampering, phishing, and spoofing, and to provide you with the correct verified network address for your transfer.
@@ -182,7 +182,7 @@ All payment methods are verified and legitimate. For security concerns:
 
 ### 💬 **Donation Questions**
 - **Email:** yashabalam707@gmail.com
-- **GitHub Issues:** [HackPilot Repository](https://github.com/yashab-cyber/hackpilot)
+- **GitHub Issues:** [SecScan AI Repository](https://github.com/najafdev/secscan_ai)
 - **WhatsApp:** [Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 - **Discord:** [Discussion Server](https://discord.gg/eXPjM3Hxwb)
 
@@ -228,7 +228,7 @@ All payment methods are verified and legitimate. For security concerns:
 
 ### 📋 **Terms & Conditions**
 - Donations are voluntary and non-refundable (except within 30-day period)
-- HackPilot Enterprise project reserves the right to allocate funds as needed for project development
+- SecScan AI Enterprise project reserves the right to allocate funds as needed for project development
 - Contributors may be recognized publicly unless anonymity is requested
 - Tax implications vary by jurisdiction - consult your tax advisor
 
@@ -240,15 +240,15 @@ All payment methods are verified and legitimate. For security concerns:
 
 ## 🎉 **Thank You!**
 
-Every contribution, no matter the size, helps make HackPilot Enterprise better for everyone. Your support directly impacts:
+Every contribution, no matter the size, helps make SecScan AI Enterprise better for everyone. Your support directly impacts:
 
-- 🔒 **Security professionals** conducting advanced penetration testing with HackPilot Enterprise
-- 🎓 **Students** learning AI and cybersecurity through HackPilot platform
+- 🔒 **Security professionals** conducting advanced penetration testing with SecScan AI Enterprise
+- 🎓 **Students** learning AI and cybersecurity through SecScan AI platform
 - 🏢 **Organizations** improving their security testing capabilities with enterprise features
 - 🌍 **The global open-source security community**
-- 🧠 **AI researchers** advancing exploitation automation through HackPilot
+- 🧠 **AI researchers** advancing exploitation automation through SecScan AI
 
-**Together, we're building the future of AI-powered penetration testing with HackPilot!**
+**Together, we're building the future of AI-powered penetration testing with SecScan AI!**
 
 ---
 
@@ -261,15 +261,15 @@ Every contribution, no matter the size, helps make HackPilot Enterprise better f
 | **Total Raised** | $0 (Starting Goal) |
 | **Active Supporters** | 0 |
 | **Countries Represented** | 0 |
-| **GitHub Stars** | ⭐ [Check Live Count](https://github.com/yashab-cyber/hackpilot) |
+| **GitHub Stars** | ⭐ [Check Live Count](https://github.com/najafdev/secscan_ai) |
 
 ---
 
 <div align="center">
-  <img src="public/hackpilot-logo.png" alt="HackPilot Enterprise" width="150" height="auto">
+  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise" width="150" height="auto">
   
-  <h3>**Made with ❤️ by Yashab Alam and the HackPilot development team**</h3>
-  <p><strong>Repository:</strong> <a href="https://github.com/yashab-cyber/hackpilot">github.com/yashab-cyber/hackpilot</a></p>
+  <h3>**Made with ❤️ by Yashab Alam and the SecScan AI development team**</h3>
+  <p><strong>Repository:</strong> <a href="https://github.com/najafdev/secscan_ai">github.com/yashab-cyber/secscan_ai</a></p>
   
   <p><em>Last updated: September 2026</em></p>
 </div>

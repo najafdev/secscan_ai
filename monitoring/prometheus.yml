@@ -1,5 +1,5 @@
-# HackPilot YAML configuration
-# HackPilot Prometheus scrape configuration
+# SecScan AI YAML configuration
+# SecScan AI Prometheus scrape configuration
 global:
   scrape_interval: 15s
   evaluation_interval: 15s
@@ -10,7 +10,7 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  # HackPilot application metrics
-  - job_name: 'hackpilot-app'
+  # SecScan AI application metrics
+  - job_name: 'secscan_ai-app'
     static_configs:
-      - targets: ['hackpilot-app:8000']
+      - targets: ['secscan_ai-app:8000']

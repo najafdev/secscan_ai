@@ -1,13 +1,13 @@
-<!-- HackPilot document -->
+<!-- SecScan AI document -->
 <div align="center">
-  <img src="public/hackpilot-logo.png" alt="HackPilot Enterprise Logo" width="200" height="auto">
+  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="200" height="auto">
 </div>
 
-# HackPilot Enterprise Code of Conduct
+# SecScan AI Enterprise Code of Conduct
 
 ## 🌟 Our Pledge
 
-In the interest of fostering an open, welcoming, and secure environment, we as contributors and maintainers of **HackPilot Enterprise** pledge to make participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+In the interest of fostering an open, welcoming, and secure environment, we as contributors and maintainers of **SecScan AI Enterprise** pledge to make participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
 **We are committed to maintaining the highest standards of ethical cybersecurity practices while building an inclusive and collaborative community.**
 
@@ -24,13 +24,13 @@ Examples of behavior that contributes to creating a positive environment include
 - **Community Focus**: Focusing on what is best for the community and project advancement
 - **Professional Conduct**: Showing empathy towards other community members
 - **Security Mindset**: Prioritizing security, privacy, and ethical considerations
-- **Educational Intent**: Using HackPilot for learning and authorized security assessments only
+- **Educational Intent**: Using SecScan AI for learning and authorized security assessments only
 
 ### ❌ Unacceptable Behaviors
 
 Examples of unacceptable behavior by participants include:
 
-- **Malicious Activities**: Using HackPilot for unauthorized penetration testing or malicious attacks
+- **Malicious Activities**: Using SecScan AI for unauthorized penetration testing or malicious attacks
 - **Harassment**: Engaging in trolling, insulting/derogatory comments, and personal or political attacks
 - **Privacy Violations**: Publishing others' private information without explicit permission
 - **Inappropriate Content**: Sexual language, imagery, or unwelcome sexual attention or advances
@@ -44,7 +44,7 @@ Examples of unacceptable behavior by participants include:
 As a cybersecurity-focused project, we have additional ethical guidelines:
 
 ### 🎯 Authorized Testing Only
-- **Permission Required**: Only use HackPilot against systems you own or have explicit written permission to test
+- **Permission Required**: Only use SecScan AI against systems you own or have explicit written permission to test
 - **Legal Compliance**: Follow all applicable laws, regulations, and industry standards
 - **Scope Adherence**: Stay within the defined scope of authorized security assessments
 - **Documentation**: Maintain proper documentation and audit trails
@@ -56,7 +56,7 @@ As a cybersecurity-focused project, we have additional ethical guidelines:
 - **Professional Ethics**: Follow established cybersecurity industry ethical standards
 
 ### 📚 Educational Purpose
-- **Learning Focus**: Use HackPilot for educational and skill development purposes
+- **Learning Focus**: Use SecScan AI for educational and skill development purposes
 - **Knowledge Sharing**: Share knowledge responsibly within the security community
 - **Mentorship**: Support newcomers learning ethical hacking and cybersecurity
 - **Best Practices**: Promote cybersecurity best practices and awareness
@@ -86,10 +86,10 @@ If you experience or witness unacceptable behavior, including violations of cybe
 
 **Primary Contact:**
 - **Email**: yashabalam707@gmail.com
-- **Subject**: "[HackPilot Code of Conduct] - Brief Description"
+- **Subject**: "[SecScan AI Code of Conduct] - Brief Description"
 
 **Alternative Contacts:**
-- **GitHub Issues**: [Security-related reports](https://github.com/yashab-cyber/hackpilot/issues) (for non-sensitive matters)
+- **GitHub Issues**: [Security-related reports](https://github.com/najafdev/secscan_ai/issues) (for non-sensitive matters)
 - **WhatsApp Business**: [Secure Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 
 ### What to Include
@@ -188,7 +188,7 @@ This Code of Conduct may be updated periodically to reflect:
 
 ## 🤝 Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/), version 2.0, and enhanced with cybersecurity-specific ethical guidelines appropriate for the HackPilot Enterprise project.
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/), version 2.0, and enhanced with cybersecurity-specific ethical guidelines appropriate for the SecScan AI Enterprise project.
 
 ---
 
@@ -202,6 +202,6 @@ For questions about this Code of Conduct, please reach out through any of the co
 
 ---
 
-*Thank you for helping make HackPilot Enterprise a welcoming, secure, and ethical community for everyone!*
+*Thank you for helping make SecScan AI Enterprise a welcoming, secure, and ethical community for everyone!*
 
-**Made with ❤️ by the HackPilot Enterprise Team**
+**Made with ❤️ by the SecScan AI Enterprise Team**

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Database manager for HackPilot
+Database manager for SecScan AI
 Handles database connections, migrations, and operations
 """
 
@@ -23,7 +23,7 @@ class DatabaseManager:
     def __init__(self, database_url: str = None):
         if database_url is None:
             # Default to PostgreSQL, fallback to SQLite for development
-            database_url = os.getenv('DATABASE_URL', 'sqlite:///hackpilot.db')
+            database_url = os.getenv('DATABASE_URL', 'sqlite:///secscan_ai.db')
         
         self.database_url = database_url
         self.engine = create_engine(database_url, echo=False)

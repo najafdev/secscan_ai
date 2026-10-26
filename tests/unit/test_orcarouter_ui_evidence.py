@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 """Generate the OrcaRouter Cyber Inference UI evidence from the real dashboard.
 
 This test starts the project's own web dashboard, drives it in headless
@@ -64,12 +64,12 @@ def _wait_for_dashboard(process=None, log_path=None, timeout: float = 90.0) -> N
             return
         if process is not None and process.poll() is not None:
             raise AssertionError(
-                "the HackPilot dashboard exited with code "
+                "the SecScan AI dashboard exited with code "
                 f"{process.returncode}: {_tail(log_path)}"
             )
         time.sleep(0.5)
     raise AssertionError(
-        "the HackPilot dashboard did not become ready on :8080: " + _tail(log_path)
+        "the SecScan AI dashboard did not become ready on :8080: " + _tail(log_path)
     )
 
 
@@ -91,13 +91,13 @@ def _launch_dashboard():
     """Start the dashboard unless another instance is already serving it."""
     if _dashboard_ready():
         return None, None
-    assert not _port_open(), "port 8080 is occupied by a non-HackPilot service"
+    assert not _port_open(), "port 8080 is occupied by a non-SecScan AI service"
     env = os.environ.copy()
-    env.setdefault("HACKPILOT_DISABLE_ANIMATION", "1")
-    log_path = Path(tempfile.gettempdir()) / "hackpilot-dashboard.log"
+    env.setdefault("SECSCAN_AI_DISABLE_ANIMATION", "1")
+    log_path = Path(tempfile.gettempdir()) / "secscan_ai-dashboard.log"
     log_handle = log_path.open("wb")
     process = subprocess.Popen(
-        [sys.executable, str(ROOT / "advance_hackpilot.py"), "--web"],
+        [sys.executable, str(ROOT / "advance_secscan_ai.py"), "--web"],
         cwd=str(ROOT),
         env=env,
         stdout=log_handle,
@@ -304,7 +304,7 @@ def test_gui_evidence_matches_live_catalog():
                 "script": "tests/unit/test_orcarouter_ui_evidence.py",
                 "multimodal": False,
                 "multimodal_reason": (
-                    "HackPilot's AI entry points call text-only chat_completion; "
+                    "SecScan AI's AI entry points call text-only chat_completion; "
                     "there is no image/audio/video attachment input to filter, so "
                     "no multimodal selector exists."
                 ),

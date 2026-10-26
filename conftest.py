@@ -1,5 +1,5 @@
-# HackPilot core module
-"""Pytest root config — stub heavy deps before hackpilot.py is imported."""
+# SecScan AI core module
+"""Pytest root config — stub heavy deps before secscan_ai.py is imported."""
 
 import sys
 import types

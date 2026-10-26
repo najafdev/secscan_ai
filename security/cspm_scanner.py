@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
 Enterprise Cloud Security Posture Management (CSPM) & Kubernetes Security Posture (KSPM) Engine.
 Audits multi-cloud infrastructure (AWS, Azure, GCP, and Kubernetes) and Infrastructure-as-Code (Terraform / K8s YAML)
@@ -132,7 +132,7 @@ class CSPMReport:
     def export_remediation_script(self, script_format: str = "bash") -> str:
         """Generate ready-to-execute remediation script or Terraform patch."""
         if script_format.lower() == "terraform":
-            blocks = ["# HackPilot Enterprise CSPM - Automated Terraform HCL Remediation Patch\n"]
+            blocks = ["# SecScan AI Enterprise CSPM - Automated Terraform HCL Remediation Patch\n"]
             for f in self.findings:
                 if f.remediation_terraform:
                     blocks.append(f"# Remediation for {f.finding_id}: {f.title} ({f.resource_id})")
@@ -143,12 +143,12 @@ class CSPMReport:
         # Default bash
         lines = [
             "#!/bin/bash",
-            "# HackPilot Enterprise CSPM - Automated Cloud Remediation Script",
+            "# SecScan AI Enterprise CSPM - Automated Cloud Remediation Script",
             f"# Environment: {self.environment_name}",
             f"# Total Critical/High Issues: {self.critical_count + self.high_count}",
             "set -euo pipefail",
             "",
-            "echo '>>> Applying HackPilot Cloud Posture Remediations...'",
+            "echo '>>> Applying SecScan AI Cloud Posture Remediations...'",
             "",
         ]
         for f in self.findings:

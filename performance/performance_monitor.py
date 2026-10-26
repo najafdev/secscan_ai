@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Performance Monitor for HackPilot Enterprise
+Performance Monitor for SecScan AI Enterprise
 Monitors system and application performance metrics
 """
 

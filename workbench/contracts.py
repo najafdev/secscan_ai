@@ -13,7 +13,7 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-ADAPTER_SCHEMA = "hackpilot.adapter-result/v1"
+ADAPTER_SCHEMA = "secscan_ai.adapter-result/v1"
 _ALLOWED_STATUS = {"completed", "partial", "error", "skipped"}
 _ALLOWED_SEVERITY = {"info", "low", "medium", "high", "critical"}
 _ID = re.compile(r"[a-z0-9][a-z0-9._/-]{0,95}")

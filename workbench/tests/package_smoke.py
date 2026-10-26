@@ -28,7 +28,7 @@ def _sha256(path: Path) -> str:
 
 
 def _package_in(directory: Path) -> Path:
-    packages = sorted(directory.glob("hackpilot-evidence-workbench-*.tar.gz"))
+    packages = sorted(directory.glob("secscan_ai-evidence-workbench-*.tar.gz"))
     if len(packages) != 1:
         raise RuntimeError(
             f"expected exactly one portable package, found {len(packages)}"
@@ -80,7 +80,7 @@ def main() -> int:
     if actual != expected:
         raise RuntimeError("portable package SHA-256 does not match SHA256SUMS")
 
-    with tempfile.TemporaryDirectory(prefix="hackpilot-package-smoke-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="secscan_ai-package-smoke-") as temporary:
         destination = Path(temporary)
         with tarfile.open(package, "r:gz") as archive:
             members = _safe_members(archive)
@@ -94,7 +94,7 @@ def main() -> int:
         manifest = json.loads(
             (root / "PACKAGE-MANIFEST.json").read_text(encoding="utf-8")
         )
-        if manifest.get("schema") != "hackpilot.portable-source-release/v1":
+        if manifest.get("schema") != "secscan_ai.portable-source-release/v1":
             raise RuntimeError("portable package manifest schema is invalid")
         expected_revision = os.environ.get("GITHUB_SHA")
         if (
@@ -134,7 +134,7 @@ def main() -> int:
     print(
         json.dumps(
             {
-                "schema": "hackpilot.portable-source-package-smoke/v1",
+                "schema": "secscan_ai.portable-source-package-smoke/v1",
                 "package": package.name,
                 "sha256": actual,
                 "revision": os.environ.get("GITHUB_SHA", "unknown"),

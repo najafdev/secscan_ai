@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Optimization Module for HackPilot Enterprise
+Optimization Module for SecScan AI Enterprise
 Query optimization and resource optimization utilities
 """
 

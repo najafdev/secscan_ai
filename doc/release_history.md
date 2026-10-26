@@ -1,15 +1,15 @@
-<!-- HackPilot document -->
-# 🚀 HackPilot Enterprise Release History
+<!-- SecScan AI document -->
+# 🚀 SecScan AI Enterprise Release History
 
-This document logs the release updates, bug fixes, and feature integrations for HackPilot Enterprise.
+This document logs the release updates, bug fixes, and feature integrations for SecScan AI Enterprise.
 
 ---
 
 > [!IMPORTANT]
 > ### 💖 Critical Notice: Project Sponsorship, Donations & Funding Required
-> HackPilot Enterprise is an independent, community-driven AI security assessment framework. Maintaining cutting-edge penetration testing tools, supporting multi-provider AI model integrations, and sustaining security research infrastructure requires continuous resources. **We urgently require funds, donations, and sponsorships to maintain and advance this project.**
+> SecScan AI Enterprise is an independent, community-driven AI security assessment framework. Maintaining cutting-edge penetration testing tools, supporting multi-provider AI model integrations, and sustaining security research infrastructure requires continuous resources. **We urgently require funds, donations, and sponsorships to maintain and advance this project.**
 >
-> **Please consider donating and sponsoring HackPilot development!**
+> **Please consider donating and sponsoring SecScan AI development!**
 > - **GitHub Sponsors (Active)**: [Sponsor @yashab-cyber on GitHub Sponsors](https://github.com/sponsors/yashab-cyber)
 > - **Cryptocurrency Transfers**: For crypto donations (Solana, Bitcoin, Ethereum, USDT, etc.), please email: **yashabalam707@gmail.com**
 > - **Sponsorships & Inquiries**: Contact creator directly at: **yashabalam707@gmail.com**
@@ -24,7 +24,7 @@ This document logs the release updates, bug fixes, and feature integrations for 
 > [!IMPORTANT]
 > **Official Solana Contract Address (CA):** Soon Available
 
-We are excited to announce the release of **HackPilot Enterprise Version 2026.10.23**! This milestone release introduces the **OrcaRouter Cyber Inference** model provider contributed by community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** (PR #26), a comprehensive **Cloud Security Posture Management (CSPM)** and **Kubernetes Security Posture Management (KSPM)** engine with automated **Infrastructure-as-Code (IaC) Security Auditing**, AI-powered cloud blast radius threat modeling, automated multi-cloud remediation scripting, and robust installation enhancements for container and PRoot environments.
+We are excited to announce the release of **SecScan AI Enterprise Version 2026.10.23**! This milestone release introduces the **OrcaRouter Cyber Inference** model provider contributed by community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** (PR #26), a comprehensive **Cloud Security Posture Management (CSPM)** and **Kubernetes Security Posture Management (KSPM)** engine with automated **Infrastructure-as-Code (IaC) Security Auditing**, AI-powered cloud blast radius threat modeling, automated multi-cloud remediation scripting, and robust installation enhancements for container and PRoot environments.
 
 ### 🌟 What's New in Version 2026.10.23
 
@@ -63,7 +63,7 @@ We are excited to announce the release of **HackPilot Enterprise Version 2026.10
   * Synthesizes blast-radius severity tags: `TENANT_TAKEOVER_RISK`, `CLUSTER_TAKEOVER_RISK`, `DATA_EXFILTRATION_RISK`, and `LATERAL_MOVEMENT_RISK`.
   * Generates prioritized executive summaries and automated defensive recommendations.
 
-#### 4. 🖥️ Interactive Console & CLI Enhancements (`advance_hackpilot.py`)
+#### 4. 🖥️ Interactive Console & CLI Enhancements (`advance_secscan_ai.py`)
 * Interactive Menu Option 20: `Cloud Security Posture & K8s Audit (CSPM/KSPM)`.
 * New CLI options:
   * `--cspm-scan [PATH]`: Execute multi-cloud CSPM/IaC scan across Terraform directory, cloud config JSON, or built-in benchmark.
@@ -87,7 +87,7 @@ We are excited to announce the release of **HackPilot Enterprise Version 2026.10
 > [!IMPORTANT]
 > **Official Solana Contract Address (CA):** Soon Available
 
-We are proud to announce the major release of **HackPilot Enterprise Version 2026.10.22.1**! This milestone update delivers enterprise-grade **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, **Automated Ansible Remediation Playbooks**, and massive **50x cold start latency optimizations**.
+We are proud to announce the major release of **SecScan AI Enterprise Version 2026.10.22.1**! This milestone update delivers enterprise-grade **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, **Automated Ansible Remediation Playbooks**, and massive **50x cold start latency optimizations**.
 
 ### 🌟 What's New in Version 2026.10.22.1
 
@@ -159,7 +159,7 @@ We are proud to announce the major release of **HackPilot Enterprise Version 202
 > [!IMPORTANT]
 > **Official Solana Contract Address (CA):** Soon Available
 
-We are proud to present **HackPilot Enterprise Version 2026.10.22**! This release introduces the next-generation **Automated Attack Graph & Multi-Stage Chaining Engine**, **CVE Threat Intelligence with EPSS & CISA KEV Scoring**, and official Solana token contract address integration.
+We are proud to present **SecScan AI Enterprise Version 2026.10.22**! This release introduces the next-generation **Automated Attack Graph & Multi-Stage Chaining Engine**, **CVE Threat Intelligence with EPSS & CISA KEV Scoring**, and official Solana token contract address integration.
 
 ### 🌟 What's New in Version 2026.10.22
 
@@ -176,7 +176,7 @@ We are proud to present **HackPilot Enterprise Version 2026.10.22**! This releas
 * **CISA KEV Emergency Triage**: Flags vulnerabilities listed in CISA's Known Exploited Vulnerabilities catalog requiring urgent patching.
 * **Compound Prioritized Risk Score**: Weighted risk metric synthesizing CVSS v3.1, EPSS likelihood, KEV status, and weaponized exploit availability.
 
-#### 3. Interactive Console & CLI Enhancements (`advance_hackpilot.py`)
+#### 3. Interactive Console & CLI Enhancements (`advance_secscan_ai.py`)
 * **Main Menu Option 17**: Dedicated interactive console for `Threat Intel & Attack Graph Chaining`.
 * **New Dedicated CLI Flags**:
   * `--cve-lookup <CVE-ID|Text>`: Query CVE intelligence, CVSS v3.1, EPSS probability, and KEV metrics directly from the terminal.
@@ -192,7 +192,7 @@ We are proud to present **HackPilot Enterprise Version 2026.10.22**! This releas
 
 *Release Date: September 26, 2026*
 
-We are proud to present **HackPilot Enterprise Version 2026.09.26**! This release marks a significant milestone with the integration of the **Evidence Workbench**, cross-platform reliability hardening, reviewable AI and adapter execution lifecycles, and hardened CI test matrices contributed by **Abdulazeez A. Noaman** ([@HostX0](https://github.com/HostX0)) via Pull Request [#21](https://github.com/yashab-cyber/hackpilot/pull/21).
+We are proud to present **SecScan AI Enterprise Version 2026.09.26**! This release marks a significant milestone with the integration of the **Evidence Workbench**, cross-platform reliability hardening, reviewable AI and adapter execution lifecycles, and hardened CI test matrices contributed by **Abdulazeez A. Noaman** ([@HostX0](https://github.com/HostX0)) via Pull Request [#21](https://github.com/najafdev/secscan_ai/pull/21).
 
 ### 🌟 What's New in Version 2026.09.26
 
@@ -210,8 +210,8 @@ We are proud to present **HackPilot Enterprise Version 2026.09.26**! This releas
 
 #### 3. Cross-Platform Reliability & Launcher Hardening
 * **Multi-Platform Launchers**: Native launch scripts for Linux, macOS (`workbench/start.command`), and Windows (`workbench/start.cmd`, `workbench/start.py`).
-* **Container vs Host Installer Context**: Hardened `install.sh` supporting `HACKPILOT_INSTALL_CONTEXT` (`host` vs `container`) to prevent side effects during Docker builds.
-* **Backward-Compatible Legacy Entrypoints**: Retained `hackpilot.py` and `hackpilot_v2.py` alongside `advance_hackpilot.py` to preserve legacy tooling and automation workflows.
+* **Container vs Host Installer Context**: Hardened `install.sh` supporting `SECSCAN_AI_INSTALL_CONTEXT` (`host` vs `container`) to prevent side effects during Docker builds.
+* **Backward-Compatible Legacy Entrypoints**: Retained `secscan_ai.py` and `secscan_ai_v2.py` alongside `advance_secscan_ai.py` to preserve legacy tooling and automation workflows.
 
 #### 4. Hardened CI/CD & Automated Testing Matrix
 * **Multi-Tier CI Matrix**: Added bounded Python 3.8 CI profile (`requirements-ci-py38.txt`) for legacy core contracts alongside full Python 3.9-3.11 test matrices.
@@ -219,7 +219,7 @@ We are proud to present **HackPilot Enterprise Version 2026.09.26**! This releas
 * **Expanded Verification**: 90+ core unit tests, comprehensive contract suites (`test_docker_contract.py`, `test_enterprise_ci_contract.py`, `test_requirements_compat.py`), and workbench E2E tests.
 
 #### 5. Community & Contributor Recognition
-* **Special Thanks**: Full credit and gratitude to **Abdulazeez A. Noaman** ([@HostX0](https://github.com/HostX0)) for designing, implementing, and contributing Pull Request [#21](https://github.com/yashab-cyber/hackpilot/pull/21).
+* **Special Thanks**: Full credit and gratitude to **Abdulazeez A. Noaman** ([@HostX0](https://github.com/HostX0)) for designing, implementing, and contributing Pull Request [#21](https://github.com/najafdev/secscan_ai/pull/21).
 
 ---
 
@@ -227,7 +227,7 @@ We are proud to present **HackPilot Enterprise Version 2026.09.26**! This releas
 
 *Release Date: September 19, 2026*
 
-We are thrilled to announce **HackPilot Enterprise Version 2026.09.19**! This major release delivers dynamic multi-provider AI auto-fetching, frontier model registry expansion (`gpt-astra`, `gpt-6-astra`, `claude-3.7-sonnet`, `gemini-2.0`, `o1`, `deepseek-r1-zero`), custom routing gateways (including OpenRouter overrides and dedicated 9B task dispatchers), and comprehensive stability and bug fixes across the platform.
+We are thrilled to announce **SecScan AI Enterprise Version 2026.09.19**! This major release delivers dynamic multi-provider AI auto-fetching, frontier model registry expansion (`gpt-astra`, `gpt-6-astra`, `claude-3.7-sonnet`, `gemini-2.0`, `o1`, `deepseek-r1-zero`), custom routing gateways (including OpenRouter overrides and dedicated 9B task dispatchers), and comprehensive stability and bug fixes across the platform.
 
 ### 🌟 What's New in Version 2026.09.19
 
@@ -276,7 +276,7 @@ We are thrilled to announce **HackPilot Enterprise Version 2026.09.19**! This ma
 
 ## 🚀 Version 2026.07.beta.4
 
-We are excited to announce the release of **HackPilot Enterprise Version 2026.07.beta.4**! This release introduces the Advanced SOC (Security Operations Center) Analysis Engine, native SIEM Integrations, and expanded Threat Model compliance mapping to include the latest OWASP Top 10 guidelines and major 2024–2026 CVE detection rules.
+We are excited to announce the release of **SecScan AI Enterprise Version 2026.07.beta.4**! This release introduces the Advanced SOC (Security Operations Center) Analysis Engine, native SIEM Integrations, and expanded Threat Model compliance mapping to include the latest OWASP Top 10 guidelines and major 2024–2026 CVE detection rules.
 
 ### 🌟 What's New in Version 2026.07.beta.4
 
@@ -311,13 +311,13 @@ We are excited to announce the release of **HackPilot Enterprise Version 2026.07
 #### 2. Native SIEM Integration Connectors
 * **Splunk Connector**:
   * Pulls logs via Splunk REST API search job creation (`/services/search/jobs` and results retrieval `/services/search/jobs/{sid}/results`).
-  * Forwards correlated alerts to Splunk HTTP Event Collector (HEC) via the `sourcetype` `hackpilot:soc:alert` to `services/collector/event`.
+  * Forwards correlated alerts to Splunk HTTP Event Collector (HEC) via the `sourcetype` `secscan_ai:soc:alert` to `services/collector/event`.
 * **QRadar Connector**:
   * Ingests event logs by executing Ariel Query Language (AQL) search jobs via QRadar REST API (`/api/ariel/searches`).
   * Forwards alerts to QRadar API endpoint (`/api/custom_events`) to register them as custom security offenses.
 * **Elasticsearch Connector**:
   * Pulls logs using Elasticsearch search Query DSL (`/_search`).
-  * Posts alert JSON payloads to index `/hackpilot-soc-alerts/_doc`.
+  * Posts alert JSON payloads to index `/secscan_ai-soc-alerts/_doc`.
 * **Generic Webhook Connector**:
   * Pushes notifications to incoming webhooks like Slack, MS Teams, or custom SOAR solutions.
   * Auto-formats rich markdown messaging blocks for Slack/Teams, or sends full alert JSON structure depending on destination host name.
@@ -346,7 +346,7 @@ We are excited to announce the release of **HackPilot Enterprise Version 2026.07
 
 1. **Launch Interactive SOC Console**:
    ```bash
-   python advance_hackpilot.py
+   python advance_secscan_ai.py
    ```
    Select option **`16`** from the main menu.
 
@@ -365,7 +365,7 @@ We are excited to announce the release of **HackPilot Enterprise Version 2026.07
 
 ## 🚀 Version 2026.07.beta.3
 
-We are excited to announce the release of **HackPilot Enterprise Version 2026.07.beta.3**! This release introduces multi-provider AI model support, runtime model switching, automatic provider fallback, and a comprehensive model catalog of 26+ advanced AI models.
+We are excited to announce the release of **SecScan AI Enterprise Version 2026.07.beta.3**! This release introduces multi-provider AI model support, runtime model switching, automatic provider fallback, and a comprehensive model catalog of 26+ advanced AI models.
 
 ### 🌟 What's New in Version 2026.07.beta.3
 
@@ -399,7 +399,7 @@ We are excited to announce the release of **HackPilot Enterprise Version 2026.07
 1. **Configure Environment**:
    Copy `.env.example` to `.env` and provide your API keys:
    ```bash
-   HACKPILOT_MODEL=gpt-5
+   SECSCAN_AI_MODEL=gpt-5
    ANTHROPIC_API_KEY=your_key
    GOOGLE_API_KEY=your_key
    DEEPSEEK_API_KEY=your_key

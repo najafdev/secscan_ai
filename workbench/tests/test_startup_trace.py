@@ -26,7 +26,7 @@ class MacStartupTraceTests(unittest.TestCase):
     def test_stalled_launcher_reports_python_stack(self):
         with tempfile.TemporaryDirectory(prefix="workbench-mac-trace-") as directory:
             env = os.environ.copy()
-            env["HACKPILOT_STARTUP_TRACE"] = "1"
+            env["SECSCAN_AI_STARTUP_TRACE"] = "1"
             process = subprocess.Popen(
                 [
                     sys.executable,

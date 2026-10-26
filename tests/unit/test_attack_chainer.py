@@ -1,4 +1,4 @@
-# HackPilot unit test
+# SecScan AI unit test
 """Unit tests for Automated Attack Graph and Attack Chaining Engine."""
 
 import pytest

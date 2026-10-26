@@ -11,7 +11,7 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-EXECUTION_SCHEMA = "hackpilot.execution-declaration/v1"
+EXECUTION_SCHEMA = "secscan_ai.execution-declaration/v1"
 _ID = re.compile(r"[a-z0-9][a-z0-9._/-]{0,95}")
 _EFFECTS = {"read_only", "passive", "active_bounded"}
 _FILESYSTEM = {"none", "read_only_metadata", "read_only_content"}

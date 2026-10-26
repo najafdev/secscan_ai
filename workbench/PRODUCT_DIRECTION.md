@@ -25,7 +25,7 @@ Authorization is not unrestricted access. No autonomous persistence, credential 
 
 For database/API impact, the preferred proof pattern is a denied control plus an inert fresh canary. Ordinary customer row values are not needed in the report. Store schema/type information, row counts when appropriate, response/content digests and designated synthetic canaries. This gives a reviewer concrete evidence while reducing the chance that a security report becomes a secondary data breach.
 
-The new evidence-safety helper follows this rule: ordinary record values are omitted; only explicit `HACKPILOT-SYNTHETIC-*` canaries may appear as sample values. This helper is a foundation, not a claim that all future adapters are automatically safe.
+The new evidence-safety helper follows this rule: ordinary record values are omitted; only explicit `SECSCAN_AI-SYNTHETIC-*` canaries may appear as sample values. This helper is a foundation, not a claim that all future adapters are automatically safe.
 
 ## High-value differentiators to validate
 

@@ -1,13 +1,13 @@
-<!-- HackPilot document -->
-# HackPilot Project Summary
+<!-- SecScan AI document -->
+# SecScan AI Project Summary
 
 ## 🎯 Project Overview
-HackPilot is a production-ready AI-powered penetration testing automation tool designed for Kali Linux. It implements the complete 6-phase penetration testing methodology with intelligent AI decision-making.
+SecScan AI is a production-ready AI-powered penetration testing automation tool designed for Kali Linux. It implements the complete 6-phase penetration testing methodology with intelligent AI decision-making.
 
 ## 📁 Project Structure
 ```
-HackPilot/
-├── advance_hackpilot.py              # Main application (2,000+ lines)
+SecScan AI/
+├── advance_secscan_ai.py              # Main application (2,000+ lines)
 ├── requirements.txt        # Python dependencies
 ├── install.sh             # Automated installation script
 ├── test_installation.py   # Installation validation
@@ -71,7 +71,7 @@ HackPilot/
 3. **PentestingPhases**: Implements 6-phase methodology
 4. **VoiceInterface**: Speech recognition and TTS
 5. **WebDashboard**: Flask web interface
-6. **HackPilot**: Main orchestrator class
+6. **SecScan AI**: Main orchestrator class
 
 ### Key Technologies
 - **Python 3.8+**: Core language
@@ -91,23 +91,23 @@ HackPilot/
 ### Quick Setup
 ```bash
 git clone <repository-url>
-cd HackPilot
+cd SecScan AI
 chmod +x install.sh
 ./install.sh
 ```
 
 ### Usage Modes
 ```bash
-./advance_hackpilot.py                              # Interactive CLI
-./advance_hackpilot.py --target example.com --scope "Web app" --auth-key "AUTH123"
-./advance_hackpilot.py --web                        # Web dashboard
-./advance_hackpilot.py --voice                      # Voice commands
+./advance_secscan_ai.py                              # Interactive CLI
+./advance_secscan_ai.py --target example.com --scope "Web app" --auth-key "AUTH123"
+./advance_secscan_ai.py --web                        # Web dashboard
+./advance_secscan_ai.py --voice                      # Voice commands
 ```
 
 ### Docker Deployment
 ```bash
-docker-compose up hackpilot                 # Web dashboard
-docker-compose run hackpilot-cli            # CLI mode
+docker-compose up secscan_ai                 # Web dashboard
+docker-compose run secscan_ai-cli            # CLI mode
 ```
 
 ## 🧪 Testing & Quality Assurance
@@ -232,7 +232,7 @@ docker-compose run hackpilot-cli            # CLI mode
 
 ## 🎉 Conclusion
 
-HackPilot represents a complete, production-ready AI-powered penetration testing solution that successfully combines:
+SecScan AI represents a complete, production-ready AI-powered penetration testing solution that successfully combines:
 
 - **Advanced AI Integration** for intelligent decision-making
 - **Complete Pentesting Framework** following industry standards

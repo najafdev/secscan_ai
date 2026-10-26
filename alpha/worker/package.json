@@ -1,5 +1,5 @@
 {
-  "_comment": "HackPilot configuration file",
+  "_comment": "SecScan AI configuration file",
   "name": "alpha-worker",
   "version": "0.0.0",
   "description": "PROTOTYPE \u2014 NOT IMPLEMENTED. Stub worker/orchestrator for the Alpha autonomous web editor experiment.",

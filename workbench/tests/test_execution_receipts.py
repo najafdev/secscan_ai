@@ -11,7 +11,7 @@ from workbench.registry import ExecutionRegistry, RegistryPolicy
 
 class ExecutionReceiptTests(unittest.TestCase):
     def test_project_plan_is_io_free_and_does_not_disclose_full_root(self):
-        missing = Path(tempfile.gettempdir()) / "hackpilot-plan-missing-root"
+        missing = Path(tempfile.gettempdir()) / "secscan_ai-plan-missing-root"
         plan = ExecutionRegistry().plan(
             "native-project-metadata",
             {
@@ -35,7 +35,7 @@ class ExecutionReceiptTests(unittest.TestCase):
                 "native-project-metadata",
                 {"root": directory, "asset_key": "fixture", "max_files": 10},
             )
-        self.assertEqual(receipt["schema"], "hackpilot.execution-receipt/v1")
+        self.assertEqual(receipt["schema"], "secscan_ai.execution-receipt/v1")
         self.assertEqual(receipt["usage"]["objects_tested"], 2)
         self.assertEqual(receipt["usage"]["network_requests"], 0)
         self.assertLessEqual(

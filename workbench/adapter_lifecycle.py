@@ -20,7 +20,7 @@ from typing import Any
 
 from .execution_receipts import normalize_execution_receipt
 
-ADAPTER_LIFECYCLE_SCHEMA = "hackpilot.adapter-lifecycle/v1"
+ADAPTER_LIFECYCLE_SCHEMA = "secscan_ai.adapter-lifecycle/v1"
 _ALLOWED_STATES = {
     "planned",
     "approved",

@@ -1,7 +1,7 @@
-<!-- HackPilot document -->
-# 📖 HackPilot Enterprise User & Command Guide
+<!-- SecScan AI document -->
+# 📖 SecScan AI Enterprise User & Command Guide
 
-Welcome to the official user manual for **HackPilot Enterprise**, the state-of-the-art AI-powered penetration testing, vulnerability assessment, and Security Operations Center (SOC) platform.
+Welcome to the official user manual for **SecScan AI Enterprise**, the state-of-the-art AI-powered penetration testing, vulnerability assessment, and Security Operations Center (SOC) platform.
 
 ---
 
@@ -29,8 +29,8 @@ Welcome to the official user manual for **HackPilot Enterprise**, the state-of-t
 #### Option A: Local Virtual Environment (Recommended for Development)
 ```bash
 # Clone the repository
-git clone https://github.com/yashab-cyber/hackpilot.git
-cd HackPilot
+git clone https://github.com/najafdev/secscan_ai.git
+cd SecScan AI
 
 # Create and activate a virtual environment
 python3 -m venv venv
@@ -56,7 +56,7 @@ docker-compose up -d
 
 ## 2. Configuration Settings
 
-HackPilot settings can be controlled via environment variables (in `.env`) and the configuration file (`config.ini`).
+SecScan AI settings can be controlled via environment variables (in `.env`) and the configuration file (`config.ini`).
 
 ### 1. Environment File (`.env`)
 Copy the `.env.example` to `.env` and fill in active keys:
@@ -71,10 +71,10 @@ OPENROUTER_API_KEY=sk-or-...
 ORCAROUTER_API_KEY=sk-orca-...
 
 # Database Settings
-DATABASE_URL=postgresql://hackpilot:hackpilot_secure_pass@localhost:5432/hackpilot
+DATABASE_URL=postgresql://secscan_ai:secscan_ai_secure_pass@localhost:5432/secscan_ai
 
 # Platform Config
-HACKPILOT_MODEL=gpt-5
+SECSCAN_AI_MODEL=gpt-5
 SECRET_KEY=supersecretjwtkey123!
 ```
 
@@ -89,11 +89,11 @@ Contains service configurations, performance tuning, and threshold metrics:
 
 ## 3. Command Line Interface (CLI) Reference
 
-You can run HackPilot in direct execution mode or launch specific service daemons directly using CLI switches.
+You can run SecScan AI in direct execution mode or launch specific service daemons directly using CLI switches.
 
 ### CLI Commands Syntax
 ```bash
-python3 advance_hackpilot.py [SWITCHES]
+python3 advance_secscan_ai.py [SWITCHES]
 ```
 
 ### Supported CLI Switches
@@ -114,7 +114,7 @@ python3 advance_hackpilot.py [SWITCHES]
 
 #### 1. Start a Full Unattended Automatic Assessment
 ```bash
-python3 advance_hackpilot.py \
+python3 advance_secscan_ai.py \
   --target 192.168.1.50 \
   --scope "PCI Segment Server A" \
   --auth-key "SECURE_KEY" \
@@ -124,7 +124,7 @@ python3 advance_hackpilot.py \
 
 #### 2. Spin Up Web UI Dashboard and API Server
 ```bash
-python3 advance_hackpilot.py --web
+python3 advance_secscan_ai.py --web
 ```
 
 #### 3. Run Automated Tests
@@ -136,13 +136,13 @@ pytest tests/ unit/ -v
 
 ## 4. Interactive Console Options (0–16)
 
-When executed without arguments (`python3 advance_hackpilot.py`), HackPilot opens an interactive console menu.
+When executed without arguments (`python3 advance_secscan_ai.py`), SecScanAI opens an interactive console menu.
 
 ### Menu Breakdown
 
 ```
   ┌────────────────────────────────────────────────────────┐
-  │              HACKPILOT ENTERPRISE CONSOLE                │
+  │              SECSCAN_AI ENTERPRISE CONSOLE                │
   └────────────────────────────────────────────────────────┘
 ```
 
@@ -210,7 +210,7 @@ Closes active threads, updates logs, and exits the application cleanly.
 The Web Dashboard offers a graphical interface for real-time monitoring and scan management.
 
 ### Accessing the Web Dashboard
-1. Run `python3 advance_hackpilot.py --web`.
+1. Run `python3 advance_secscan_ai.py --web`.
 2. Open your browser and navigate to `http://localhost:8080`.
 
 ### UI Layout
@@ -239,7 +239,7 @@ Detects complex attack chains in real-time:
 * **LLM Prompt Injection**: Direct jailbreak patterns in model inputs.
 
 ### SIEM Integration Setup
-You can connect external logs to HackPilot's correlation engine:
+You can connect external logs to SecScan AI's correlation engine:
 1. **Splunk**: Configure REST API (port 8089) and HTTP Event Collector (HEC) for forwarding.
 2. **IBM QRadar**: Setup API endpoint and Ariel AQL query endpoints.
 3. **Elasticsearch**: Setup cluster endpoint (port 9200) and index mapping.
@@ -249,7 +249,7 @@ You can connect external logs to HackPilot's correlation engine:
 
 ## 7. Compliance & Threat Model Frameworks
 
-HackPilot maintains mapping templates for standard security guidelines:
+SecScan AI maintains mapping templates for standard security guidelines:
 
 * **OWASP Top 10 API Security (2023)**: Mapped with controls for **BOLA (Broken Object Level Authorization)** and **SSRF (Server-Side Request Forgery)**.
 * **OWASP Top 10 for LLM Applications (2025/2026)**: Mapped with checks for **Prompt Injection (LLM01)**, **Insecure Output Handling (LLM02)**, and **Excessive Agency (LLM08)**.

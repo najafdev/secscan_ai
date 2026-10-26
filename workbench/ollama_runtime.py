@@ -104,7 +104,7 @@ class LocalRuntime:
                 "The local-only policy does not allow this cloud-tagged model.",
                 "Select a local model or explicitly allow cloud processing for this assessment.",
             )
-        value = os.getenv("HACKPILOT_OLLAMA_PORT", "11434") if port is None else port
+        value = os.getenv("SECSCAN_AI_OLLAMA_PORT", "11434") if port is None else port
         if (
             isinstance(value, bool)
             or not isinstance(value, (str, int))
@@ -312,7 +312,7 @@ class LocalRuntime:
                     OllamaError(
                         "unreachable",
                         "The local Ollama service is unreachable.",
-                        "Start Ollama and check HACKPILOT_OLLAMA_PORT.",
+                        "Start Ollama and check SECSCAN_AI_OLLAMA_PORT.",
                         retryable=True,
                     ),
                 )
@@ -337,7 +337,7 @@ class LocalRuntime:
             conn.close()
 
         worker = threading.Thread(
-            target=perform, name="hackpilot-ollama-request", daemon=True
+            target=perform, name="secscan_ai-ollama-request", daemon=True
         )
         worker.start()
         while True:

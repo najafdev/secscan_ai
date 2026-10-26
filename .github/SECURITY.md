@@ -1,13 +1,13 @@
-<!-- HackPilot document -->
+<!-- SecScan AI document -->
 <div align="center">
-  <img src="../public/hackpilot-logo.png" alt="HackPilot Enterprise Logo" width="200" height="auto">
+  <img src="../public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="200" height="auto">
 </div>
 
 # 🔒 Security Policy
 
 ## 🛡️ Supported Versions
 
-The following versions of HackPilot Enterprise are currently supported with security updates:
+The following versions of SecScan AI Enterprise are currently supported with security updates:
 
 | Version | Supported          | End of Life |
 | ------- | ------------------ | ----------- |
@@ -19,18 +19,18 @@ The following versions of HackPilot Enterprise are currently supported with secu
 
 ### For Security Researchers and Users
 
-If you discover a security vulnerability in HackPilot Enterprise, please help us maintain the security of our users by following responsible disclosure practices.
+If you discover a security vulnerability in SecScan AI Enterprise, please help us maintain the security of our users by following responsible disclosure practices.
 
 ### 📧 Reporting Process
 
 **Primary Contact:**
 - **Email**: yashabalam707@gmail.com
-- **Subject**: `[SECURITY] HackPilot Vulnerability Report`
+- **Subject**: `[SECURITY] SecScan AI Vulnerability Report`
 - **PGP Key**: Available upon request
 
 **Please Include:**
 - **Vulnerability Description**: Clear, detailed description of the issue
-- **Affected Versions**: Which versions of HackPilot are affected
+- **Affected Versions**: Which versions of SecScan AI are affected
 - **Attack Vector**: How the vulnerability can be exploited
 - **Impact Assessment**: Potential impact and severity
 - **Proof of Concept**: Step-by-step reproduction (if safe to share)
@@ -59,7 +59,7 @@ If you discover a security vulnerability in HackPilot Enterprise, please help us
 ### ✅ In Scope
 The following components are within scope for security research:
 
-- **Core Application**: Main HackPilot Enterprise application
+- **Core Application**: Main SecScan AI Enterprise application
 - **Web Interface**: Dashboard and user interfaces
 - **API Endpoints**: REST API and authentication
 - **Database Layer**: Data storage and retrieval
@@ -92,7 +92,7 @@ We maintain a security researcher hall of fame to recognize those who help impro
 - **Social Media**: Mentioned on project social media channels
 - **Conference Mentions**: Acknowledged at security conferences (when appropriate)
 - **Anonymous**: Option to remain anonymous if preferred
-- **Swag**: HackPilot branded items for significant contributions
+- **Swag**: SecScan AI branded items for significant contributions
 
 ## 🚀 Bug Bounty Program
 
@@ -100,7 +100,7 @@ We maintain a security researcher hall of fame to recognize those who help impro
 While we don't currently have a formal bug bounty program, we do provide:
 
 - **Recognition**: Public acknowledgment of your contribution
-- **Merchandise**: HackPilot branded items
+- **Merchandise**: SecScan AI branded items
 - **Recommendation**: LinkedIn recommendations for your security research skills
 - **Future Opportunities**: First consideration for any future bug bounty programs
 
@@ -172,7 +172,7 @@ While we don't currently have a formal bug bounty program, we do provide:
 - **WhatsApp**: [Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 
 ### 🎯 Security Conferences
-We may present HackPilot security research at:
+We may present SecScan AI security research at:
 - DEF CON
 - Black Hat
 - RSA Conference
@@ -199,7 +199,7 @@ We support security research conducted in accordance with this policy. We will n
 ## 📋 Security Compliance
 
 ### 🏢 Enterprise Compliance
-HackPilot Enterprise supports compliance with:
+SecScan AI Enterprise supports compliance with:
 
 - **SOC 2 Type II** (in progress)
 - **ISO 27001** (planned)
@@ -237,6 +237,6 @@ This security policy is reviewed and updated quarterly to ensure it remains curr
 
 ---
 
-**Thank you for helping keep HackPilot Enterprise and its users safe!**
+**Thank you for helping keep SecScan AI Enterprise and its users safe!**
 
-*Made with ❤️ by the HackPilot Enterprise security team*
+*Made with ❤️ by the SecScan AI Enterprise security team*

@@ -17,7 +17,7 @@ from typing import Any
 
 from . import __version__
 
-RELEASE_EVIDENCE_SCHEMA = "hackpilot.review-release-evidence/v1"
+RELEASE_EVIDENCE_SCHEMA = "secscan_ai.review-release-evidence/v1"
 CYCLONEDX_SPEC_VERSION = "1.5"
 _REQUIRED_REVIEW_DOCS = (
     "README.md",
@@ -141,7 +141,7 @@ def cyclonedx_bom() -> dict[str, Any]:
     from .semgrep_runner import SEMGREP_IMAGE, SEMGREP_IMAGE_DIGEST, SEMGREP_VERSION
 
     serial = uuid.uuid5(
-        uuid.NAMESPACE_URL, f"https://github.com/HostX0/HackPilot/workbench/{__version__}"
+        uuid.NAMESPACE_URL, f"https://github.com/HostX0/secscan_ai/workbench/{__version__}"
     )
     digest_hex = SEMGREP_IMAGE_DIGEST.removeprefix("sha256:")
     return {
@@ -152,17 +152,17 @@ def cyclonedx_bom() -> dict[str, Any]:
         "metadata": {
             "component": {
                 "type": "application",
-                "name": "HackPilot Evidence Workbench",
+                "name": "SecScan AI Evidence Workbench",
                 "version": __version__,
-                "bom-ref": f"pkg:generic/hackpilot-evidence-workbench@{__version__}",
+                "bom-ref": f"pkg:generic/secscan_ai-evidence-workbench@{__version__}",
                 "properties": [
-                    {"name": "hackpilot:scope", "value": "isolated-workbench-only"},
+                    {"name": "secscan_ai:scope", "value": "isolated-workbench-only"},
                     {
-                        "name": "hackpilot:third-party-python-runtime-packages",
+                        "name": "secscan_ai:third-party-python-runtime-packages",
                         "value": "none",
                     },
-                    {"name": "hackpilot:bundled-scanners", "value": "none"},
-                    {"name": "hackpilot:optional-scanner-runners", "value": "semgrep-ce"},
+                    {"name": "secscan_ai:bundled-scanners", "value": "none"},
+                    {"name": "secscan_ai:optional-scanner-runners", "value": "semgrep-ce"},
                 ],
             }
         },
@@ -176,12 +176,12 @@ def cyclonedx_bom() -> dict[str, Any]:
                 "hashes": [{"alg": "SHA-256", "content": digest_hex}],
                 "licenses": [{"license": {"id": "LGPL-2.1-or-later"}}],
                 "properties": [
-                    {"name": "hackpilot:image-reference", "value": SEMGREP_IMAGE},
-                    {"name": "hackpilot:bundled", "value": "false"},
-                    {"name": "hackpilot:automatic-pull", "value": "false"},
-                    {"name": "hackpilot:validated-platform", "value": "linux/amd64"},
-                    {"name": "hackpilot:container-network", "value": "none"},
-                    {"name": "hackpilot:rules-source", "value": "repository-authored"},
+                    {"name": "secscan_ai:image-reference", "value": SEMGREP_IMAGE},
+                    {"name": "secscan_ai:bundled", "value": "false"},
+                    {"name": "secscan_ai:automatic-pull", "value": "false"},
+                    {"name": "secscan_ai:validated-platform", "value": "linux/amd64"},
+                    {"name": "secscan_ai:container-network", "value": "none"},
+                    {"name": "secscan_ai:rules-source", "value": "repository-authored"},
                 ],
             }
         ],

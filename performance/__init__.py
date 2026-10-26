@@ -1,8 +1,8 @@
-# HackPilot core module
+# SecScan AI core module
 """
 Performance and Scalability Module
 
-This module provides performance optimization and scalability features for HackPilot,
+This module provides performance optimization and scalability features for SecScan AI,
 including caching, parallel processing, load balancing, and performance monitoring.
 """
 

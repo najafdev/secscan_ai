@@ -1,5 +1,5 @@
-# HackPilot core module
-"""Model registry and provider abstraction layer for HackPilot.
+# SecScan AI core module
+"""Model registry and provider abstraction layer for SecScan AI.
 
 Provides a centralized catalog of supported AI models across multiple
 providers, along with helper functions for querying model metadata,

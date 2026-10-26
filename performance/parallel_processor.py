@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Parallel Processing Engine for HackPilot
+Parallel Processing Engine for SecScan AI
 Handles parallel execution, task queuing, and distributed processing
 """
 
@@ -300,7 +300,7 @@ class ParallelProcessor:
     def _setup_celery(self, redis_url: str):
         """Setup Celery for distributed task processing"""
         self.celery_app = Celery(
-            'hackpilot-tasks',
+            'secscan_ai-tasks',
             broker=redis_url,
             backend=redis_url
         )
@@ -415,7 +415,7 @@ class ParallelProcessor:
         # Start thread pool executor
         self.thread_executor = ThreadPoolExecutor(
             max_workers=self.max_workers,
-            thread_name_prefix="hackpilot-thread"
+            thread_name_prefix="secscan_ai-thread"
         )
         
         # Start process pool executor
@@ -431,7 +431,7 @@ class ParallelProcessor:
                 
                 worker_thread = threading.Thread(
                     target=worker.start,
-                    name=f"hackpilot-{worker_id}"
+                    name=f"secscan_ai-{worker_id}"
                 )
                 worker_thread.daemon = True
                 worker_thread.start()

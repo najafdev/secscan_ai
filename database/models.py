@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Database models for HackPilot
+Database models for SecScan AI
 SQLAlchemy ORM models for data persistence
 """
 

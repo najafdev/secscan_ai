@@ -31,5 +31,5 @@ jobs:
           python-version: '3.13'
       - name: Additive launcher, duplicate-start, storage-fault and owned-assessment regressions
         env:
-          HACKPILOT_STARTUP_TRACE: '1'
+          SECSCAN_AI_STARTUP_TRACE: '1'
         run: python -m unittest workbench.tests.test_startup_trace workbench.tests.test_startup workbench.tests.test_windows_launcher_contract -v

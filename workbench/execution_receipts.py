@@ -13,7 +13,7 @@ from typing import Any
 
 from .execution_contracts import ExecutionDeclaration
 
-EXECUTION_RECEIPT_SCHEMA = "hackpilot.execution-receipt/v1"
+EXECUTION_RECEIPT_SCHEMA = "secscan_ai.execution-receipt/v1"
 _MAX_SUMMARY_BYTES = 8192
 _FORBIDDEN_SUMMARY_KEYS = {
     "password",

@@ -1,4 +1,4 @@
-# HackPilot configuration file
+# SecScan AI configuration file
 # Development and CI test dependencies
 -r requirements.txt
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HackPilot installation readiness checks.
+SecScan AI installation readiness checks.
 
 The default profile checks the legacy application's core local prerequisites and
 reports optional workstation capabilities separately. ``--ci`` is deterministic
@@ -143,11 +143,11 @@ def test_permissions(project_root=PROJECT_ROOT, require_reports=False):
     project_root = Path(project_root)
     issues = []
 
-    script_path = project_root / "hackpilot.py"
+    script_path = project_root / "secscan_ai.py"
     script_ok = script_path.is_file()
     _print_result(script_ok, str(script_path))
     if not script_ok:
-        issues.append("missing hackpilot.py")
+        issues.append("missing secscan_ai.py")
 
     if require_reports:
         reports_dir = project_root / "reports"
@@ -191,8 +191,8 @@ def run_basic_functionality_test(project_root=PROJECT_ROOT):
     """Import the legacy public entry points in an isolated subprocess."""
     print("\nTesting legacy entry-point imports...")
     code = (
-        "from hackpilot import HackPilot, AIEngine, ToolManager; "
-        "print('HackPilot legacy imports successful')"
+        "from secscan_ai import SecScanAI, AIEngine, ToolManager; "
+        "print('SecScan AI legacy imports successful')"
     )
     try:
         result = subprocess.run(
@@ -209,7 +209,7 @@ def run_basic_functionality_test(project_root=PROJECT_ROOT):
     if result.returncode != 0:
         return False, [_subprocess_detail(result)]
 
-    print("  OK HackPilot, AIEngine and ToolManager import successfully.")
+    print("  OK SecScan AI, AIEngine and ToolManager import successfully.")
     return True, []
 
 
@@ -235,7 +235,7 @@ def build_checks(ci=False, require_ollama=False, require_reports=False):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Validate HackPilot local prerequisites")
+    parser = argparse.ArgumentParser(description="Validate SecScan AI local prerequisites")
     parser.add_argument(
         "--ci",
         action="store_true",
@@ -254,7 +254,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
 
     profile = "CI/offline" if args.ci else "local/core"
-    print("HackPilot Installation Readiness Checks ({0})".format(profile))
+    print("SecScan AI Installation Readiness Checks ({0})".format(profile))
     print("=" * 52)
 
     all_issues = []

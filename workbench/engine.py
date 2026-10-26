@@ -230,7 +230,7 @@ def _resolve_bounded(resolver, host, port, deadline, cancel=None):
                 pass
 
     threading.Thread(
-        target=worker, name="hackpilot-bounded-resolver", daemon=True
+        target=worker, name="secscan_ai-bounded-resolver", daemon=True
     ).start()
     while True:
         if cancel is not None and cancel.is_set():
@@ -343,7 +343,7 @@ def inspect_remote(url, deadline=None, cancel=None):
     watcher = None
     if cancel is not None:
         watcher = threading.Thread(
-            target=cancel_watcher, name="hackpilot-http-cancel", daemon=True
+            target=cancel_watcher, name="secscan_ai-http-cancel", daemon=True
         )
         watcher.start()
     connection = http.client.HTTPConnection(host, port, timeout=timeout)
@@ -362,7 +362,7 @@ def inspect_remote(url, deadline=None, cancel=None):
             "HEAD",
             parsed.path or "/",
             headers={
-                "User-Agent": "HackPilot-Workbench/" + __version__,
+                "User-Agent": "SecScanAI-Workbench/" + __version__,
                 "Connection": "close",
             },
         )
@@ -908,7 +908,7 @@ class Assessment:
 
 def markdown(report):
     lines = [
-        "# HackPilot Evidence Workbench report",
+        "# SecScan AI Evidence Workbench report",
         "",
         "- Run: " + report["id"],
         "- Target: "

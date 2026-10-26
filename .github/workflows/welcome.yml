@@ -1,4 +1,4 @@
-# HackPilot YAML configuration
+# SecScan AI YAML configuration
 name: 🌟 Welcome New Contributors
 
 on:
@@ -23,7 +23,7 @@ jobs:
       with:
         script: |
           const welcomeMessage = `
-          👋 **Welcome to HackPilot Enterprise!**
+          👋 **Welcome to SecScan AI Enterprise!**
 
           Thank you for opening an issue. Please keep reproduction details free of
           credentials, private customer data, and unapproved target information.
@@ -35,7 +35,7 @@ jobs:
 
           ## 🤝 Want to contribute?
           - Check out our [Contributing Guide](.github/CONTRIBUTING.md)
-          - Browse [good first issues](https://github.com/yashab-cyber/hackpilot/labels/good%20first%20issue)
+          - Browse [good first issues](https://github.com/najafdev/secscan_ai/labels/good%20first%20issue)
           - Join our community discussions
 
           ## 💰 Support the Project
@@ -60,7 +60,7 @@ jobs:
       with:
         script: |
           const welcomeMessage = `
-          🎉 **Thank you for contributing to HackPilot Enterprise!**
+          🎉 **Thank you for contributing to SecScan AI Enterprise!**
 
           Automated checks are review evidence, not a guarantee of acceptance or
           security completeness. Please keep secrets, credentials, and customer data out of the PR.
@@ -80,7 +80,7 @@ jobs:
           - Join [WhatsApp Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
           - Email: yashabalam707@gmail.com
 
-          **Welcome to the HackPilot Enterprise family! 🚀**
+          **Welcome to the SecScan AI Enterprise family! 🚀**
 
           *Made with ❤️ by [Yashab Alam](https://github.com/yashab-cyber)*
           `;

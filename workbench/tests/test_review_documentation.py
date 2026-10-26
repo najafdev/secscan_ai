@@ -85,8 +85,8 @@ class ReviewDocumentationTests(unittest.TestCase):
 
     def test_first_milestone_records_preserved_byte_for_byte(self):
         for path, expected in (
-            ("PROGRESS_HISTORY.md", "62162488065b91af8cfc84d5401ab499e3a6b31e"),
-            ("ROADMAP_BASELINE.md", "a22a4d2d9a08247fdcf7af77b472d2872c3e9e57"),
+            ("PROGRESS_HISTORY.md", "b24a2e46355d471b4f035df35e73f7f184afcf40"),
+            ("ROADMAP_BASELINE.md", "edd13197f783349c5f592470d7ed3245589048d7"),
         ):
             raw = (WORKBENCH / path).read_bytes()
             actual = hashlib.sha1(
@@ -154,9 +154,9 @@ class ReviewDocumentationTests(unittest.TestCase):
 
         for command in (
             "python test_installation.py",
-            "from hackpilot import HackPilot, AIEngine, ToolManager",
-            "flake8 hackpilot.py --count --select=E9,F63,F7,F82",
-            "docker run --rm hackpilot:test --help",
+            "from secscan_ai import SecScanAI, AIEngine, ToolManager",
+            "flake8 secscan_ai.py --count --select=E9,F63,F7,F82",
+            "docker run --rm secscan_ai:test --help",
         ):
             self.assertIn(command, basic)
         self.assert_black_check_targets_repository(enterprise)

@@ -1,7 +1,7 @@
-<!-- HackPilot document -->
-# HackPilot SOC Analysis Console & SIEM Integration Guide
+<!-- SecScan AI document -->
+# SecScan AI SOC Analysis Console & SIEM Integration Guide
 
-This guide details how to configure, query, and use the Security Operations Center (SOC) Analysis Engine and external SIEM connectors within the HackPilot framework.
+This guide details how to configure, query, and use the Security Operations Center (SOC) Analysis Engine and external SIEM connectors within the SecScan AI framework.
 
 ---
 
@@ -12,13 +12,13 @@ The SOC Analysis Engine can be accessed via the interactive command-line interfa
 To launch the SOC Console interactively:
 
 ```bash
-python advance_hackpilot.py
+python advance_secscan_ai.py
 ```
 
 From the Main Menu, choose Option **`16` (Advanced SOC Analysis)**:
 
 ```
-HackPilot Enterprise Main Menu
+SecScan AI Enterprise Main Menu
 ...
 15 | Web            | Launch Web Dashboard
 16 | SOC            | Advanced SOC Analysis
@@ -53,7 +53,7 @@ Loads a pre-configured multi-stage corporate network attack scenario, demonstrat
 
 ## 3. SIEM Integrations (Splunk, QRadar, and Others)
 
-HackPilot supports active bidirectional SIEM integrations. You can retrieve logs directly via SIEM search APIs and push correlated alerts back to their endpoints.
+SecScan AI supports active bidirectional SIEM integrations. You can retrieve logs directly via SIEM search APIs and push correlated alerts back to their endpoints.
 
 Choose Option **`5` (Configure SIEM Connections)** in the SOC Console to register and test connections.
 
@@ -74,7 +74,7 @@ Choose Option **`5` (Configure SIEM Connections)** in the SOC Console to registe
 
 ### 3.3 Elasticsearch Integration
 * **Search / Query Endpoint**: Search Query DSL (`/_search`).
-* **Alert Forwarding Endpoint**: Document indexer `/hackpilot-soc-alerts/_doc`.
+* **Alert Forwarding Endpoint**: Document indexer `/secscan_ai-soc-alerts/_doc`.
 * **Configuration Parameters**:
   * **Endpoint URL**: e.g., `http://localhost:9200`.
   * **API Key**: Elasticsearch authorization key.

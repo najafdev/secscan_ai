@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 """Regression unit tests for bug fixes."""
 
 import os
@@ -11,8 +11,8 @@ from database import get_db_manager, PentestSession
 from security.authentication import ComplianceAuditLogger, EnterpriseAuth
 from ai_engine.advanced_engine import PatternRecognizer, AdvancedAIEngine
 from performance.parallel_processor import TaskQueue, Task, TaskStatus, ParallelProcessor
-from advance_hackpilot import (
-    EnterpriseHackPilot,
+from advance_secscan_ai import (
+    EnterpriseSecScanAI,
     PentestingPhases,
     EnterprisePentestingPhases,
     AIEngine,
@@ -156,9 +156,9 @@ def test_database_session_assessment_type():
     assert found_mgr_param, "assessment_type parameter not found in create_pentest_session"
 
 
-def test_enterprise_hackpilot_menu_methods():
-    """Verify all previously missing EnterpriseHackPilot menu methods exist and execute without AttributeError."""
-    app = EnterpriseHackPilot()
+def test_enterprise_secscan_ai_menu_methods():
+    """Verify all previously missing EnterpriseSecScanAI menu methods exist and execute without AttributeError."""
+    app = EnterpriseSecScanAI()
     assert hasattr(app, "run_specific_phase")
     assert hasattr(app, "run_custom_workflow")
     assert hasattr(app, "view_reports_analytics")

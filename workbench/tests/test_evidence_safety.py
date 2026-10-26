@@ -15,10 +15,10 @@ class EvidenceSafetyTests(unittest.TestCase):
 
     def test_synthetic_canary_is_retained_as_proof(self):
         result = summarize_records(
-            [{"id": 1, "marker": "HACKPILOT-SYNTHETIC-abc123", "name": "do-not-export"}]
+            [{"id": 1, "marker": "SECSCAN_AI-SYNTHETIC-abc123", "name": "do-not-export"}]
         )
         self.assertEqual(
-            result["synthetic_canaries"][0]["value"], "HACKPILOT-SYNTHETIC-abc123"
+            result["synthetic_canaries"][0]["value"], "SECSCAN_AI-SYNTHETIC-abc123"
         )
         self.assertNotIn("do-not-export", repr(result))
 

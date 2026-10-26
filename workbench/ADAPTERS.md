@@ -16,7 +16,7 @@ Third-party output is untrusted input. The workbench therefore separates four au
 
 1. A scanner may produce a raw observation.
 2. A format parser may extract a bounded, privacy-minimized subset.
-3. `hackpilot.adapter-result/v1` normalizes that subset and forces every imported finding to `candidate`.
+3. `secscan_ai.adapter-result/v1` normalizes that subset and forces every imported finding to `candidate`.
 4. Only a separate workbench-controlled verification step may later prove a finding in an approved test context.
 
 A parser cannot widen target scope, execute a command, reuse a credential, mark itself independently verified, or turn missing coverage into a pass.
@@ -47,7 +47,7 @@ This is groundwork for designated test-account matrices in owned synthetic fixtu
 
 ## Implemented native execution declarations and adapters
 
-`execution_contracts.py` adds `hackpilot.execution-declaration/v1`. It is a closed declaration of required authority, not a permission grant. A declaration records the adapter/version, launcher class, effect level, filesystem/network authority, whether subprocesses/writes/symlinks are involved, hard object/request/time limits and a coverage unit. Unknown fields such as an arbitrary `command` are rejected. Native Python adapters cannot declare subprocess execution; read-only adapters cannot declare writes; network-none adapters must have a zero request budget.
+`execution_contracts.py` adds `secscan_ai.execution-declaration/v1`. It is a closed declaration of required authority, not a permission grant. A declaration records the adapter/version, launcher class, effect level, filesystem/network authority, whether subprocesses/writes/symlinks are involved, hard object/request/time limits and a coverage unit. Unknown fields such as an arbitrary `command` are rejected. Native Python adapters cannot declare subprocess execution; read-only adapters cannot declare writes; network-none adapters must have a zero request budget.
 
 Two native adapters currently implement this declaration:
 
@@ -56,7 +56,7 @@ Two native adapters currently implement this declaration:
 | `native-project-metadata/1` | read-only filesystem metadata, no network, no subprocess, no writes, no symlink following | Traverses bounded project filenames and reports candidate observations for filenames commonly associated with environment/credential/key material | Reads no file content or secret value, executes no scanner, follows no symlink |
 | `native-web-headers/1` | passive scoped-target network, exactly one request, no filesystem/subprocess/write authority | Issues one scoped HEAD request through the existing DNS-pinned/no-redirect/body-free reader and reports candidate HTML hardening-header observations | Sends no payload/body, follows no redirect, reads no response body, stores no cookie/header outside the small allowlist |
 
-Both adapters feed `hackpilot.adapter-result/v1`, so their observations remain `candidate`. Filename presence or a missing header is not exploit proof. Tests use vulnerable/corrected synthetic fixtures and also exercise fail-closed input/authority boundaries.
+Both adapters feed `secscan_ai.adapter-result/v1`, so their observations remain `candidate`. Filename presence or a missing header is not exploit proof. Tests use vulnerable/corrected synthetic fixtures and also exercise fail-closed input/authority boundaries.
 
 ## Reviewed third-party runner: Semgrep CE
 
@@ -85,9 +85,9 @@ This pass is **not** a claim that Semgrep covers every language/rule or that an 
 - web scans retain the exact approved URL plus the fixed `HEAD` / no-redirect / no-body behavior;
 - arbitrary commands, argv, environment fields and dynamic adapter identifiers are not part of the planning surface.
 
-`execution_receipts.py` adds `hackpilot.execution-receipt/v1`. `ExecutionRegistry.execute_with_receipt()` combines the reviewed declaration, minimized request summary, normalized candidate-only result and bounded observed usage. Receipt validation rejects object/request usage above the declaration's hard limits, adapter identity mismatches, self-verified findings and sensitive/execution fields such as passwords, tokens, cookies, authorization values, commands or argv at **any nesting depth** in the request summary.
+`execution_receipts.py` adds `secscan_ai.execution-receipt/v1`. `ExecutionRegistry.execute_with_receipt()` combines the reviewed declaration, minimized request summary, normalized candidate-only result and bounded observed usage. Receipt validation rejects object/request usage above the declaration's hard limits, adapter identity mismatches, self-verified findings and sensitive/execution fields such as passwords, tokens, cookies, authorization values, commands or argv at **any nesting depth** in the request summary.
 
-`adapter_lifecycle.py` adds `hackpilot.adapter-lifecycle/v1` and persists the reviewed sequence:
+`adapter_lifecycle.py` adds `secscan_ai.adapter-lifecycle/v1` and persists the reviewed sequence:
 
 `planned -> approved -> executing -> completed | failed | cancelled | interrupted`
 

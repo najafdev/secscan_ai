@@ -1,10 +1,10 @@
-<!-- HackPilot document -->
+<!-- SecScan AI document -->
 # Alpha — Autonomous Web Editor (EARLY PROTOTYPE / NOT IMPLEMENTED)
 
 > Status: **EARLY PROTOTYPE — NOT IMPLEMENTED.** This directory is an
 > experimental sketch, not a working subsystem. Nothing here runs yet.
 
-This `alpha/` directory is a separate experiment from the main HackPilot
+This `alpha/` directory is a separate experiment from the main SecScan AI
 Python platform. It explores the idea of an "autonomous web editor": a
 small Node.js service plus a browser UI that would let an LLM read and
 edit code/content through a web interface. It shares no runtime, build, or

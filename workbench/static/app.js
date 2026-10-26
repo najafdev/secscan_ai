@@ -1,6 +1,6 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
-let token = sessionStorage.getItem('hackpilot-token') || '';
+let token = sessionStorage.getItem('secscan_ai-token') || '';
 let selectedRun = null;
 let selectionEpoch = 0;
 let comparisonEpoch = 0;
@@ -16,7 +16,7 @@ const stopPendingMessage = 'Stop requested; waiting for terminal confirmation.';
 const fragment = new URLSearchParams(location.hash.slice(1));
 if (fragment.has('token')) {
   token = fragment.get('token');
-  sessionStorage.setItem('hackpilot-token', token);
+  sessionStorage.setItem('secscan_ai-token', token);
   history.replaceState(null, '', location.pathname);
 }
 function notice(text, error = false) {
@@ -70,7 +70,7 @@ function coverageText(coverage) {
   return parts.join(' · ');
 }
 function comparisonText(result) {
-  if (!result || result.schema !== 'hackpilot.retest-diff/v1') throw new Error('Unsupported comparison response.');
+  if (!result || result.schema !== 'secscan_ai.retest-diff/v1') throw new Error('Unsupported comparison response.');
   const scope = result.scope_comparison && typeof result.scope_comparison === 'object' ? result.scope_comparison : {};
   const lines = [
     result.comparable_scope ? 'Comparable scope: yes' : 'Comparable scope: no',
@@ -134,7 +134,7 @@ async function unlock() {
 }
 $('unlock-form').addEventListener('submit', async (event) => {
   event.preventDefault(); token = $('token').value.trim(); $('token').value = '';
-  sessionStorage.setItem('hackpilot-token', token); await unlock();
+  sessionStorage.setItem('secscan_ai-token', token); await unlock();
 });
 $('target-type').addEventListener('change', syncForm);
 $('use-ai').addEventListener('change', syncForm);
@@ -384,7 +384,7 @@ async function download(extension) {
   try {
     const response = await api('/api/runs/' + runId + '/export.' + extension, undefined, true);
     const url = URL.createObjectURL(await response.blob()); const link = document.createElement('a');
-    link.href = url; link.download = 'hackpilot-' + runId + '.' + extension; link.click();
+    link.href = url; link.download = 'secscan_ai-' + runId + '.' + extension; link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   } catch (error) { notice(error.message, true); }
 }
@@ -392,7 +392,7 @@ $('export-json').addEventListener('click', () => download('json'));
 $('export-md').addEventListener('click', () => download('md'));
 $('export-bundle').addEventListener('click', () => download('bundle.zip'));
 // This event only selects an existing local report; it grants no execution authority.
-if (document.addEventListener) document.addEventListener('hackpilot:review-report', async (event) => {
+if (document.addEventListener) document.addEventListener('secscan_ai:review-report', async (event) => {
   const id = event.detail && event.detail.id;
   if (typeof id !== 'string' || !/^[a-f0-9]{32}$/.test(id)) return;
   if (running || starting || testingModel) {

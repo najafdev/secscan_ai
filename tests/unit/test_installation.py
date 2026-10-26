@@ -3,7 +3,7 @@ from pathlib import Path
 from unittest import mock
 
 MODULE_PATH = Path(__file__).resolve().parents[2] / "test_installation.py"
-SPEC = importlib.util.spec_from_file_location("hackpilot_install_checks", MODULE_PATH)
+SPEC = importlib.util.spec_from_file_location("secscan_ai_install_checks", MODULE_PATH)
 ti = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(ti)
 
@@ -79,7 +79,7 @@ def test_required_ollama_absence_fails():
 
 
 def test_permissions_use_repository_relative_reports(tmp_path):
-    (tmp_path / "hackpilot.py").write_text("# test\n")
+    (tmp_path / "secscan_ai.py").write_text("# test\n")
     (tmp_path / "reports").mkdir()
 
     passed, issues = ti.test_permissions(tmp_path, require_reports=True)
@@ -93,7 +93,7 @@ def test_permissions_return_real_issue_details(tmp_path):
     passed, issues = ti.test_permissions(tmp_path, require_reports=True)
 
     assert not passed
-    assert "missing hackpilot.py" in issues
+    assert "missing secscan_ai.py" in issues
     assert "repository reports directory is missing or not writable" in issues
 
 
@@ -119,7 +119,7 @@ def test_basic_import_smoke_preserves_stdout_error_when_stderr_has_optional_warn
 ):
     result = mock.Mock(
         returncode=1,
-        stdout="Missing HackPilot modules: No module named 'psutil'\n",
+        stdout="Missing SecScan AI modules: No module named 'psutil'\n",
         stderr="WARNING:root:optional backend unavailable\n",
     )
     with mock.patch.object(ti.subprocess, "run", return_value=result):

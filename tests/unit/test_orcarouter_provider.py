@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 """Tests for the OrcaRouter Cyber Inference provider integration.
 
 These tests cover the API-key credential seam, the capability-aware model
@@ -177,9 +177,9 @@ def test_auth_origin_is_separate_from_inference_origin():
 
 
 def test_factory_dispatches_orcarouter_for_unknown_model(monkeypatch):
-    monkeypatch.setenv("HACKPILOT_PROVIDER", "orcarouter")
+    monkeypatch.setenv("SECSCAN_AI_PROVIDER", "orcarouter")
     monkeypatch.setenv("ORCAROUTER_API_KEY", FAKE_KEY)
-    monkeypatch.delenv("HACKPILOT_CUSTOM_ROUTE", raising=False)
+    monkeypatch.delenv("SECSCAN_AI_CUSTOM_ROUTE", raising=False)
     provider, info = ProviderFactory.get_provider_for_model("vendor/some-cyber-model")
     assert isinstance(provider, OrcaRouterProvider)
     assert info.provider is ModelProvider.ORCAROUTER

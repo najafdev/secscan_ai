@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 """Unit tests for the LiteLLM AI gateway provider."""
 
 import sys

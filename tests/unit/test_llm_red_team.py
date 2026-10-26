@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Unit tests for AI Red Teaming & LLM Security Assessment Engine in HackPilot.
+Unit tests for AI Red Teaming & LLM Security Assessment Engine in SecScan AI.
 """
 
 import pytest
@@ -83,7 +83,7 @@ def test_system_prompt_guardrail_generation():
     """Verify synthesized system prompt guardrail directives."""
     engine = LLMRedTeamEngine()
     guardrails = engine.generate_system_prompt_guardrails([])
-    assert "HACKPILOT ENTERPRISE AI DEFENSIVE GUARDRAIL" in guardrails
+    assert "SECSCAN_AI ENTERPRISE AI DEFENSIVE GUARDRAIL" in guardrails
     assert "CORE OPERATIONAL IMMUTABILITY" in guardrails
     assert "DELIMITER & INJECTION DEFENSE" in guardrails
     assert "OUTPUT SANITIZATION" in guardrails

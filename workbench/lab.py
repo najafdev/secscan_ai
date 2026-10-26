@@ -26,7 +26,7 @@ class _LoopbackHTTPServer(ThreadingHTTPServer):
 class CanaryLab:
     def __init__(self, fixed=False):
         self.fixed = fixed
-        canary = "HACKPILOT-SYNTHETIC-" + secrets.token_hex(24)
+        canary = "SECSCAN_AI-SYNTHETIC-" + secrets.token_hex(24)
         # Every value in this fixture is generated test data. The proof exporter still
         # exposes only schema/count/hash plus the explicitly marked canary.
         self.records = [

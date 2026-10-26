@@ -1,5 +1,5 @@
-# HackPilot configuration file
-# HackPilot Enterprise Requirements
+# SecScan AI configuration file
+# SecScan AI Enterprise Requirements
 # Production-ready dependencies for enterprise penetration testing platform
 
 # Core Dependencies

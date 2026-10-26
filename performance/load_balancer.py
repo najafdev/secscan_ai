@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Performance Load Balancer for HackPilot Enterprise
+Performance Load Balancer for SecScan AI Enterprise
 Distributes workload across multiple workers/processes
 """
 

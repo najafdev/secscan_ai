@@ -121,7 +121,7 @@ def check_local_install(directory, port):
     except Exception as exc:
         raise StartupCheckError("loopback_port", "loopback_port_unavailable") from exc
     return {
-        "schema": "hackpilot.startup-check/v1",
+        "schema": "secscan_ai.startup-check/v1",
         "status": "passed",
         "python": sys.version.split()[0],
         "checks": [
@@ -158,7 +158,7 @@ def main(argv=None):
     )
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument(
-        "--data-dir", type=Path, default=Path.home() / ".hackpilot-workbench"
+        "--data-dir", type=Path, default=Path.home() / ".secscan_ai-workbench"
     )
     parser.add_argument(
         "--check-install",
@@ -186,7 +186,7 @@ def main(argv=None):
         parser.error("--check-install cannot be combined with --open-browser")
     previous_umask = os.umask(0o077)
     lock = state = server = None
-    trace_startup = os.environ.get("HACKPILOT_STARTUP_TRACE") == "1"
+    trace_startup = os.environ.get("SECSCAN_AI_STARTUP_TRACE") == "1"
     if trace_startup:
         # CI-only diagnostic: preserve the bounded readiness assertion while making
         # a genuinely stuck child explain where it is blocked. Production startup
@@ -217,7 +217,7 @@ def main(argv=None):
         _PROCESS_LOCKS.append(lock)
         lock = None
         url = "http://127.0.0.1:" + str(args.port) + "/#token=" + server.token
-        print("HackPilot Evidence Workbench " + __version__, flush=True)
+        print("SecScan AI Evidence Workbench " + __version__, flush=True)
         print("Open locally: " + url, flush=True)
         print(
             "Keep this URL private. No tunnel/public binding. Stop with Ctrl+C.",
@@ -250,7 +250,7 @@ def main(argv=None):
             print(
                 json.dumps(
                     {
-                        "schema": "hackpilot.startup-check/v1",
+                        "schema": "secscan_ai.startup-check/v1",
                         "status": "failed",
                         "code": code,
                         "check": check,

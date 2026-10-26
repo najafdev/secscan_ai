@@ -37,7 +37,7 @@ class BundleTests(unittest.TestCase):
 
     def test_optional_retest_diff(self):
         raw = build_bundle(
-            self.report(), "# report", {"schema": "hackpilot.retest-diff/v1"}
+            self.report(), "# report", {"schema": "secscan_ai.retest-diff/v1"}
         )
         with zipfile.ZipFile(io.BytesIO(raw)) as archive:
             self.assertIn("retest-diff.json", archive.namelist())

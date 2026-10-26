@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 from .advanced_engine import (
     AdvancedAIEngine,
     AnalysisResult,

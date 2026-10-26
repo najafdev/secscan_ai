@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# HackPilot core module
+# SecScan AI core module
 """
-Kubernetes Management for HackPilot
+Kubernetes Management for SecScan AI
 Handles Kubernetes deployment, scaling, and orchestration
 """
 
@@ -60,7 +60,7 @@ class ServiceConfig:
 
 
 class KubernetesManager:
-    """Manages Kubernetes resources for HackPilot microservices"""
+    """Manages Kubernetes resources for SecScan AI microservices"""
 
     def __init__(self, kubeconfig_path: Optional[str] = None):
         self.logger = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class KubernetesManager:
         self.v1 = None
         self.apps_v1 = None
         self.networking_v1 = None
-        self.namespace = "hackpilot"
+        self.namespace = "secscan_ai"
 
         if KUBERNETES_AVAILABLE:
             try:
@@ -712,8 +712,8 @@ class KubernetesManager:
             self.logger.error(f"Error applying resource with kubectl: {e}")
             raise
 
-    def generate_hackpilot_manifests(self) -> Dict[str, str]:
-        """Generate Kubernetes manifests for HackPilot microservices"""
+    def generate_secscan_ai_manifests(self) -> Dict[str, str]:
+        """Generate Kubernetes manifests for SecScan AI microservices"""
 
         manifests = {}
 
@@ -722,9 +722,9 @@ class KubernetesManager:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: hackpilot
+  name: secscan_ai
   labels:
-    name: hackpilot
+    name: secscan_ai
 """
 
         # API Service
@@ -732,35 +732,35 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hackpilot-api
-  namespace: hackpilot
+  name: secscan_ai-api
+  namespace: secscan_ai
   labels:
-    app: hackpilot-api
+    app: secscan_ai-api
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: hackpilot-api
+      app: secscan_ai-api
   template:
     metadata:
       labels:
-        app: hackpilot-api
+        app: secscan_ai-api
     spec:
       containers:
       - name: api
-        image: hackpilot/api:latest
+        image: secscan_ai/api:latest
         ports:
         - containerPort: 8000
         env:
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: hackpilot-secrets
+              name: secscan_ai-secrets
               key: database-url
         - name: REDIS_URL
           valueFrom:
             secretKeyRef:
-              name: hackpilot-secrets
+              name: secscan_ai-secrets
               key: redis-url
         resources:
           requests:
@@ -785,11 +785,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hackpilot-api
-  namespace: hackpilot
+  name: secscan_ai-api
+  namespace: secscan_ai
 spec:
   selector:
-    app: hackpilot-api
+    app: secscan_ai-api
   ports:
   - port: 80
     targetPort: 8000
@@ -801,33 +801,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hackpilot-worker
-  namespace: hackpilot
+  name: secscan_ai-worker
+  namespace: secscan_ai
   labels:
-    app: hackpilot-worker
+    app: secscan_ai-worker
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: hackpilot-worker
+      app: secscan_ai-worker
   template:
     metadata:
       labels:
-        app: hackpilot-worker
+        app: secscan_ai-worker
     spec:
       containers:
       - name: worker
-        image: hackpilot/worker:latest
+        image: secscan_ai/worker:latest
         env:
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: hackpilot-secrets
+              name: secscan_ai-secrets
               key: database-url
         - name: REDIS_URL
           valueFrom:
             secretKeyRef:
-              name: hackpilot-secrets
+              name: secscan_ai-secrets
               key: redis-url
         resources:
           requests:
@@ -845,32 +845,32 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hackpilot-database
-  namespace: hackpilot
+  name: secscan_ai-database
+  namespace: secscan_ai
   labels:
-    app: hackpilot-database
+    app: secscan_ai-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hackpilot-database
+      app: secscan_ai-database
   template:
     metadata:
       labels:
-        app: hackpilot-database
+        app: secscan_ai-database
     spec:
       containers:
       - name: postgres
         image: postgres:15-alpine
         env:
         - name: POSTGRES_DB
-          value: hackpilot
+          value: secscan_ai
         - name: POSTGRES_USER
-          value: hackpilot
+          value: secscan_ai
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: hackpilot-secrets
+              name: secscan_ai-secrets
               key: database-password
         ports:
         - containerPort: 5432
@@ -887,16 +887,16 @@ spec:
       volumes:
       - name: postgres-storage
         persistentVolumeClaim:
-          claimName: hackpilot-database-pvc
+          claimName: secscan_ai-database-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hackpilot-database
-  namespace: hackpilot
+  name: secscan_ai-database
+  namespace: secscan_ai
 spec:
   selector:
-    app: hackpilot-database
+    app: secscan_ai-database
   ports:
   - port: 5432
     targetPort: 5432
@@ -905,8 +905,8 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: hackpilot-database-pvc
-  namespace: hackpilot
+  name: secscan_ai-database-pvc
+  namespace: secscan_ai
 spec:
   accessModes:
   - ReadWriteOnce
@@ -920,19 +920,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hackpilot-redis
-  namespace: hackpilot
+  name: secscan_ai-redis
+  namespace: secscan_ai
   labels:
-    app: hackpilot-redis
+    app: secscan_ai-redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hackpilot-redis
+      app: secscan_ai-redis
   template:
     metadata:
       labels:
-        app: hackpilot-redis
+        app: secscan_ai-redis
     spec:
       containers:
       - name: redis
@@ -950,11 +950,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hackpilot-redis
-  namespace: hackpilot
+  name: secscan_ai-redis
+  namespace: secscan_ai
 spec:
   selector:
-    app: hackpilot-redis
+    app: secscan_ai-redis
   ports:
   - port: 6379
     targetPort: 6379
@@ -966,23 +966,23 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hackpilot-web
-  namespace: hackpilot
+  name: secscan_ai-web
+  namespace: secscan_ai
   labels:
-    app: hackpilot-web
+    app: secscan_ai-web
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: hackpilot-web
+      app: secscan_ai-web
   template:
     metadata:
       labels:
-        app: hackpilot-web
+        app: secscan_ai-web
     spec:
       containers:
       - name: web
-        image: hackpilot/web:latest
+        image: secscan_ai/web:latest
         ports:
         - containerPort: 80
         resources:
@@ -996,11 +996,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hackpilot-web
-  namespace: hackpilot
+  name: secscan_ai-web
+  namespace: secscan_ai
 spec:
   selector:
-    app: hackpilot-web
+    app: secscan_ai-web
   ports:
   - port: 80
     targetPort: 80
@@ -1012,32 +1012,32 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hackpilot-ingress
-  namespace: hackpilot
+  name: secscan_ai-ingress
+  namespace: secscan_ai
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
   - hosts:
-    - hackpilot.example.com
-    secretName: hackpilot-tls
+    - secscan_ai.example.com
+    secretName: secscan_ai-tls
   rules:
-  - host: hackpilot.example.com
+  - host: secscan_ai.example.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: hackpilot-web
+            name: secscan_ai-web
             port:
               number: 80
       - path: /api
         pathType: Prefix
         backend:
           service:
-            name: hackpilot-api
+            name: secscan_ai-api
             port:
               number: 80
 """

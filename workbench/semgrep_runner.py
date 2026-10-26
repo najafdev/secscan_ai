@@ -51,7 +51,7 @@ def _load_tool_pin() -> dict[str, Any]:
     }
     if (
         not required.issubset(document)
-        or document.get("schema") != "hackpilot.tool-pin/v1"
+        or document.get("schema") != "secscan_ai.tool-pin/v1"
         or document.get("id") != "semgrep-ce"
     ):
         raise RuntimeError("Semgrep tool pin does not match the reviewed contract")
@@ -193,7 +193,7 @@ class SemgrepContainerAdapter:
         if time.monotonic() >= deadline:
             raise TimeoutError("Semgrep project scan deadline reached before launch")
 
-        container_name = "hackpilot-semgrep-" + secrets.token_hex(6)
+        container_name = "secscan_ai-semgrep-" + secrets.token_hex(6)
         command = self._build_command(docker, resolved, container_name)
         return_code, stdout = self._execute_docker(
             docker,

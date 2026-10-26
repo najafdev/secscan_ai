@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 """Unit tests for auto-fetching models across different AI providers."""
 
 from unittest.mock import MagicMock, patch

@@ -9,7 +9,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, '..', '..');
 const python = process.env.PYTHON || 'python';
 const chrome = process.env.CHROME_BIN || 'google-chrome';
-const workRoot = await mkdtemp(join(tmpdir(), 'hackpilot-browser-e2e-'));
+const workRoot = await mkdtemp(join(tmpdir(), 'secscan_ai-browser-e2e-'));
 const dataDir = join(workRoot, 'data');
 const profileDir = join(workRoot, 'chrome');
 const children = [];
@@ -244,7 +244,7 @@ try {
   assert(runtimeExceptions.length === 0, `browser runtime exceptions observed: ${runtimeExceptions.length}`);
 
   const summary = {
-    schema: 'hackpilot.browser-e2e/v1',
+    schema: 'secscan_ai.browser-e2e/v1',
     browser: version.Browser || 'unknown',
     protocol: version['Protocol-Version'] || 'unknown',
     loopback_server: true,

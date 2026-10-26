@@ -1,4 +1,4 @@
-# HackPilot core module
+# SecScan AI core module
 """ToolManager command execution (no shell=True)."""
 
 import sys
@@ -8,7 +8,7 @@ import pytest
 
 @pytest.fixture
 def tool_manager():
-    from advance_hackpilot import ToolManager
+    from advance_secscan_ai import ToolManager
 
     return ToolManager()
 

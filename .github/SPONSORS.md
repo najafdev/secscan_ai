@@ -1,15 +1,15 @@
-<!-- HackPilot document -->
+<!-- SecScan AI document -->
 <div align="center">
-  <img src="../public/hackpilot-logo.png" alt="HackPilot Enterprise Logo" width="250" height="auto">
+  <img src="../public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="250" height="auto">
 </div>
 
-# 💰 Sponsor HackPilot Enterprise Development
+# 💰 Sponsor SecScan AI Enterprise Development
 
-## 🚀 About HackPilot Enterprise
+## 🚀 About SecScan AI Enterprise
 
-HackPilot Enterprise is a revolutionary AI-powered penetration testing platform that combines cutting-edge artificial intelligence with enterprise-grade security assessment capabilities. Created by **Yashab Alam**, this platform is transforming how organizations approach cybersecurity testing.
+SecScan AI Enterprise is a revolutionary AI-powered penetration testing platform that combines cutting-edge artificial intelligence with enterprise-grade security assessment capabilities. Created by **Yashab Alam**, this platform is transforming how organizations approach cybersecurity testing.
 
-### 🎯 Why Sponsor HackPilot?
+### 🎯 Why Sponsor SecScan AI?
 
 - **🔥 Cutting-Edge Technology**: First-of-its-kind AI-powered penetration testing
 - **🏢 Enterprise Ready**: Built for production environments with enterprise features
@@ -71,7 +71,7 @@ HackPilot Enterprise is a revolutionary AI-powered penetration testing platform 
 ### 🤝 Partnership Opportunities
 - **Technology Integration**: API partnerships and technical integrations
 - **Co-Marketing**: Joint webinars, whitepapers, and case studies
-- **Sales Channel**: Become a certified HackPilot implementation partner
+- **Sales Channel**: Become a certified SecScan AI implementation partner
 - **Training Programs**: Co-branded training and certification programs
 
 ## 💰 Investment Opportunities
@@ -140,13 +140,13 @@ HackPilot Enterprise is a revolutionary AI-powered penetration testing platform 
 ### 💰 Direct Sponsorship
 **For custom arrangements and larger sponsorships:**
 - **Email**: yashabalam707@gmail.com
-- **Subject**: "HackPilot Enterprise Sponsorship - [Company Name]"
+- **Subject**: "SecScan AI Enterprise Sponsorship - [Company Name]"
 - **Include**: Company information, sponsorship goals, budget range
 
 ### 🏢 Corporate Partnerships
 **For strategic partnerships and investments:**
 - **Email**: yashabalam707@gmail.com
-- **Subject**: "HackPilot Enterprise Partnership Inquiry"
+- **Subject**: "SecScan AI Enterprise Partnership Inquiry"
 - **LinkedIn**: [Connect with Yashab Alam](https://linkedin.com/in/yashab-alam)
 
 ## 💎 Cryptocurrency Donations
@@ -155,7 +155,7 @@ HackPilot Enterprise is a revolutionary AI-powered penetration testing platform 
 For cryptocurrency transfers and donations (**Solana, Bitcoin, Ethereum, USDT, USDC, and other tokens**), please reach out directly via email:
 
 - **Contact Email**: [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com)
-- **Subject**: `HackPilot Crypto Sponsorship / Donation`
+- **Subject**: `SecScan AI Crypto Sponsorship / Donation`
 
 Wallet addresses are provided exclusively upon email verification to protect contributors and ensure network address accuracy.
 
@@ -200,10 +200,10 @@ Wallet addresses are provided exclusively upon email verification to protect con
 ## 📈 Success Stories
 
 ### 🎯 Sponsor Testimonials
-*"Supporting HackPilot has connected us with the cutting edge of AI-powered cybersecurity. The visibility in their community has been tremendous for our brand."* - Future Gold Sponsor
+*"Supporting SecScan AI has connected us with the cutting edge of AI-powered cybersecurity. The visibility in their community has been tremendous for our brand."* - Future Gold Sponsor
 
 ### 📊 Partnership Results
-*"Our partnership with HackPilot has opened new market opportunities and enhanced our security testing capabilities."* - Future Strategic Partner
+*"Our partnership with SecScan AI has opened new market opportunities and enhanced our security testing capabilities."* - Future Strategic Partner
 
 ## ⚖️ Legal & Compliance
 
@@ -225,7 +225,7 @@ Wallet addresses are provided exclusively upon email verification to protect con
 
 ## 🙏 Thank You to Our Supporters!
 
-Every sponsor and supporter helps accelerate the development of HackPilot Enterprise and advances the future of AI-powered cybersecurity. Together, we're building tools that make the digital world more secure for everyone.
+Every sponsor and supporter helps accelerate the development of SecScan AI Enterprise and advances the future of AI-powered cybersecurity. Together, we're building tools that make the digital world more secure for everyone.
 
 **Join us in revolutionizing cybersecurity through AI!**
 
