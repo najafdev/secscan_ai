@@ -21,7 +21,7 @@ This document logs the release updates, bug fixes, and feature integrations for 
 *Release Date: October 23, 2026*
 
 > [!IMPORTANT]
-> **Official Solana Contract Address (CA):** Soon Available
+> **Official Solana Contract Address (CA):** `6xJfHQBWz4A8jG9tD8zYBVNJHXjkqbPErkAcHdoVpump`
 
 We are excited to announce the release of **SecScan AI Enterprise Version 2026.10.23**! This milestone release introduces the **OrcaRouter Cyber Inference** model provider contributed by community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** (PR #26), a comprehensive **Cloud Security Posture Management (CSPM)** and **Kubernetes Security Posture Management (KSPM)** engine with automated **Infrastructure-as-Code (IaC) Security Auditing**, AI-powered cloud blast radius threat modeling, automated multi-cloud remediation scripting, and robust installation enhancements for container and PRoot environments.
 
@@ -84,7 +84,7 @@ We are excited to announce the release of **SecScan AI Enterprise Version 2026.1
 *Release Date: October 22, 2026*
 
 > [!IMPORTANT]
-> **Official Solana Contract Address (CA):** Soon Available
+> **Official Solana Contract Address (CA):** `6xJfHQBWz4A8jG9tD8zYBVNJHXjkqbPErkAcHdoVpump`
 
 We are proud to announce the major release of **SecScan AI Enterprise Version 2026.10.22.1**! This milestone update delivers enterprise-grade **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, **Automated Ansible Remediation Playbooks**, and massive **50x cold start latency optimizations**.
 
@@ -156,7 +156,7 @@ We are proud to announce the major release of **SecScan AI Enterprise Version 20
 *Release Date: October 22, 2026*
 
 > [!IMPORTANT]
-> **Official Solana Contract Address (CA):** Soon Available
+> **Official Solana Contract Address (CA):** `6xJfHQBWz4A8jG9tD8zYBVNJHXjkqbPErkAcHdoVpump`
 
 We are proud to present **SecScan AI Enterprise Version 2026.10.22**! This release introduces the next-generation **Automated Attack Graph & Multi-Stage Chaining Engine**, **CVE Threat Intelligence with EPSS & CISA KEV Scoring**, and official Solana token contract address integration.
 
@@ -183,7 +183,7 @@ We are proud to present **SecScan AI Enterprise Version 2026.10.22**! This relea
   * `--mermaid`: Export clean Mermaid diagram syntax for visualization.
 
 #### 4. Official Solana Contract Address (CA) Integration
-* **Verified Token CA**: Token CA Soon Available across repository documentation, README banner, and release metadata.
+* **Verified Token CA**: Token CA `6xJfHQBWz4A8jG9tD8zYBVNJHXjkqbPErkAcHdoVpump` across repository documentation, README banner, and release metadata.
 
 ---
 

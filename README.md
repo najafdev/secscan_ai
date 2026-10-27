@@ -1,6 +1,6 @@
 <!-- SecScan AI document -->
 <div align="center">
-  <p><strong>CA:</strong> Soon Available</p>
+  <p><strong>CA:</strong> <code>6xJfHQBWz4A8jG9tD8zYBVNJHXjkqbPErkAcHdoVpump</code></p>
 
   <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="400" height="auto">
   
@@ -822,6 +822,7 @@ This project is licensed under the MIT License with additional enterprise terms:
 ### 💰 Support SecScan AI Development
 Your support accelerates development, research infrastructure, and frontier AI model integrations:
 
+- **🪙 Official Solana Contract Address (CA)**: `6xJfHQBWz4A8jG9tD8zYBVNJHXjkqbPErkAcHdoVpump`
 - **🪙 Cryptocurrency Donations**: For transfers (**Solana, Bitcoin, Ethereum, USDT, etc.**), please email **[sai466769@gmail.com](mailto:sai466769@gmail.com)**
 - **📄 Full Sponsorship & Donation Guide**: See [DONATE.md](DONATE.md) for tier perks, transparency reports, and roadmap goals
 

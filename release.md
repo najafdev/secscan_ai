@@ -3,14 +3,14 @@
 
 > [!IMPORTANT]
 > ### 🪙 Official Solana Contract Address (CA)
-> **CA:** Soon Available  
+> **CA:** `6xJfHQBWz4A8jG9tD8zYBVNJHXjkqbPErkAcHdoVpump`  
 > *Official verified Solana token contract address for SecScan AI Enterprise development and community ecosystem.*
 
 > [!NOTE]
 > ### 💖 Project Support, Donations & Sponsorship
 > SecScan AI Enterprise is an independent open-source cybersecurity and AI penetration testing research platform created by [Yashab Alam](https://github.com/yashab-cyber). To continuously maintain the platform, support multi-provider frontier AI integrations, and sustain security research infrastructure, **we welcome donations, community sponsorships, and token support**.
 >
-> - **Official CA**: Soon Available
+> - **Official CA**: `6xJfHQBWz4A8jG9tD8zYBVNJHXjkqbPErkAcHdoVpump`
 > - **Cryptocurrency Inquiries**: [sai466769@gmail.com](mailto:sai466769@gmail.com)
 > - **Full Guidelines**: Please visit [DONATE.md](DONATE.md).
 
