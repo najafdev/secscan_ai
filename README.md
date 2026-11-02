@@ -31,7 +31,7 @@
 ## 🏢 Enterprise Features
 
 ### 🤖 Advanced AI Engine — Multi-Provider Support & Threat Intelligence
-- **8 AI Providers**: OpenAI, Anthropic (Claude), Google (Gemini), DeepSeek, GLM (Zhipu), Local LLMs (Ollama), OpenRouter, OrcaRouter Cyber Inference
+- **9 AI Providers**: OpenAI, Anthropic (Claude), Google (Gemini), DeepSeek, GLM (Zhipu), Local LLMs (Ollama), OpenRouter, OrcaRouter Cyber Inference, Runcrate
 - **26+ AI Models**: GPT-5, GPT-5.6, o3, o4-mini, Claude Sonnet 5, Opus 4.8, Gemini 3.5 Flash, 3.1 Pro, DeepSeek R1, and more
 - **Runtime Model Switching**: Change AI models on-the-fly with automatic provider fallback
 - **Automated Attack Graph Chaining**: Multi-stage exploit sequence synthesis, MITRE ATT&CK mapping, critical defensive chokepoints, and Mermaid diagram generation
@@ -297,6 +297,7 @@ DEEPSEEK_API_KEY=your_deepseek_api_key
 GLM_API_KEY=your_glm_api_key
 OPENROUTER_API_KEY=your_openrouter_api_key
 ORCAROUTER_API_KEY=your_orcarouter_api_key
+RUNCRATE_API_KEY=your_runcrate_api_key
 LOCAL_LLM_ENDPOINT=http://localhost:11434
 
 # Security
@@ -569,6 +570,19 @@ the gateway's blue-team controls on the same endpoint. Select the `orcarouter` p
 
 The dashboard's **AI Providers** view accepts the key and loads models from the live
 `GET https://api.orcarouter.ai/v1/models?capability=chat` catalog.
+
+### Runcrate
+[Runcrate](https://runcrate.ai) serves open-weight models through an OpenAI-compatible
+API at `https://api.runcrate.ai/v1`. Set `RUNCRATE_API_KEY` (and optionally
+`RUNCRATE_BASE_URL`), then pick a registered model such as
+`deepseek-ai/DeepSeek-V4.1-Flash`, `zai-org/GLM-5.3`, `moonshotai/Kimi-K3`,
+`Qwen/Qwen3.5-397B-A17B` or `openai/gpt-oss-120b`, or route any other Runcrate model
+with the `runcrate/<model>` prefix:
+
+```bash
+export RUNCRATE_API_KEY=your_runcrate_api_key
+python advance_secscan_ai.py --model deepseek-ai/DeepSeek-V4.1-Flash
+```
 
 ### Custom Compliance Frameworks
 ```python

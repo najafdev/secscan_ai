@@ -46,6 +46,7 @@ class ModelProvider(Enum):
     NINEBROUTER = "9brouter"
     CUSTOM_ROUTER = "custom_router"
     ORCAROUTER = "orcarouter"
+    RUNCRATE = "runcrate"
 
 
 # ---------------------------------------------------------------------------
@@ -593,6 +594,56 @@ MODEL_CATALOG: Dict[str, ModelInfo] = {
         description="DeepSeek V4 Pro reasoning model routed through the OrcaRouter gateway.",
         reasoning_efforts=("low", "high"),
     ),
+
+    # ----- Runcrate (open-weight models, OpenAI-compatible) --------------
+    "deepseek-ai/DeepSeek-V4.1-Flash": ModelInfo(
+        model_id="deepseek-ai/DeepSeek-V4.1-Flash",
+        provider=ModelProvider.RUNCRATE,
+        display_name="DeepSeek V4.1 Flash (via Runcrate)",
+        max_tokens=8_192,
+        supports_tools=True,
+        context_window=1_048_576,
+        description="Open-weight DeepSeek V4.1 Flash reasoning model served by Runcrate.",
+        input_modalities=("text", "image"),
+    ),
+    "zai-org/GLM-5.3": ModelInfo(
+        model_id="zai-org/GLM-5.3",
+        provider=ModelProvider.RUNCRATE,
+        display_name="GLM 5.3 (via Runcrate)",
+        max_tokens=8_192,
+        supports_tools=True,
+        context_window=1_048_576,
+        description="Open-weight GLM 5.3 model served by Runcrate.",
+    ),
+    "moonshotai/Kimi-K3": ModelInfo(
+        model_id="moonshotai/Kimi-K3",
+        provider=ModelProvider.RUNCRATE,
+        display_name="Kimi K3 (via Runcrate)",
+        max_tokens=8_192,
+        supports_tools=True,
+        context_window=1_048_576,
+        description="Open-weight Kimi K3 model served by Runcrate.",
+        input_modalities=("text", "image"),
+    ),
+    "Qwen/Qwen3.5-397B-A17B": ModelInfo(
+        model_id="Qwen/Qwen3.5-397B-A17B",
+        provider=ModelProvider.RUNCRATE,
+        display_name="Qwen3.5 397B A17B (via Runcrate)",
+        max_tokens=8_192,
+        supports_tools=True,
+        context_window=262_144,
+        description="Open-weight Qwen3.5 397B mixture-of-experts model served by Runcrate.",
+        input_modalities=("text", "image"),
+    ),
+    "openai/gpt-oss-120b": ModelInfo(
+        model_id="openai/gpt-oss-120b",
+        provider=ModelProvider.RUNCRATE,
+        display_name="gpt-oss 120B (via Runcrate)",
+        max_tokens=8_192,
+        supports_tools=True,
+        context_window=131_072,
+        description="Open-weight gpt-oss 120B model served by Runcrate.",
+    ),
 }
 
 
@@ -660,6 +711,11 @@ _PROVIDER_META: Dict[ModelProvider, Dict[str, Any]] = {
         ),
         "required_env_vars": ["ORCAROUTER_API_KEY"],
     },
+    ModelProvider.RUNCRATE: {
+        "name": "Runcrate",
+        "description": "Open-weight models (DeepSeek, GLM, Kimi, Qwen, gpt-oss) through an OpenAI-compatible API.",
+        "required_env_vars": ["RUNCRATE_API_KEY"],
+    },
 }
 
 
@@ -697,6 +753,7 @@ def normalize_provider(val: Any) -> Optional[ModelProvider]:
         "orcarouter": ModelProvider.ORCAROUTER,
         "orca": ModelProvider.ORCAROUTER,
         "orca_router": ModelProvider.ORCAROUTER,
+        "runcrate": ModelProvider.RUNCRATE,
     }
     return alias_map.get(val_clean)
 
@@ -781,7 +838,20 @@ def get_model_info(model_id: str) -> Optional[ModelInfo]:
             description=f"Dynamically routed OpenRouter model: {sub_id}",
         )
 
-    # Dynamic 9B Router routing prefix (e.g. 9brouter/specialist-9b)
+    # Dynamic Runcrate routing prefix (e.g. runcrate/Qwen/Qwen3.6-35B-A3B)
+    if model_id.startswith("runcrate/"):
+        sub_id = model_id[len("runcrate/") :]
+        return ModelInfo(
+            model_id=sub_id,
+            provider=ModelProvider.RUNCRATE,
+            display_name=f"{sub_id} (via Runcrate)",
+            max_tokens=8_192,
+            supports_streaming=True,
+            supports_tools=True,
+            context_window=128_000,
+            description=f"Dynamically routed Runcrate model: {sub_id}",
+        )
+
     if model_id.startswith("9brouter/"):
         sub_id = model_id[len("9brouter/") :]
         return ModelInfo(
