@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-SecScan AI - Enterprise AI-Powered Penetration Testing Platform
-Author: SecScan AI Team
+HACKNOVA - Enterprise AI-Powered Penetration Testing Platform
+Author: HACKNOVA Team
 Version: 2.0.0 (Production-Ready)
 Description: Enterprise-grade pentesting automation platform with advanced AI, microservices architecture,
             and cloud-native capabilities for professional security assessments.
@@ -92,7 +92,7 @@ try:
     from cloud import DockerManager, KubernetesManager, ServiceRegistry
     from performance import get_cache_manager, get_parallel_processor
 except ImportError as e:
-    print(f"Missing SecScan AI modules: {e}")
+    print(f"Missing HACKNOVA modules: {e}")
     print("Please ensure all modules are properly installed")
     sys.exit(1)
 
@@ -115,7 +115,7 @@ class Config:
             self.config.get(
                 "database",
                 "url",
-                fallback="postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai",
+                fallback="postgresql://hacknova:hacknova123@localhost:5432/hacknova",
             ),
         )
         self.REDIS_URL = os.getenv(
@@ -183,7 +183,7 @@ class Config:
 
         self.config.add_section("database")
         self.config.set(
-            "database", "url", "postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai"
+            "database", "url", "postgresql://hacknova:hacknova123@localhost:5432/hacknova"
         )
 
         self.config.add_section("cache")
@@ -230,9 +230,9 @@ log_dir.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
     level=getattr(logging, config.LOG_LEVEL),
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler(log_dir / "secscan_ai.log"), logging.StreamHandler()],
+    handlers=[logging.FileHandler(log_dir / "hacknova.log"), logging.StreamHandler()],
 )
-logger = logging.getLogger("secscan_ai")
+logger = logging.getLogger("hacknova")
 
 # ASCII Banner
 BANNER = """
@@ -295,7 +295,7 @@ class AIEngine:
     def _create_prompt(self, context, data, phase):
         """Create appropriate prompt based on phase"""
         base_prompt = f"""
-        You are SecScanAI, an expert penetration testing AI assistant. 
+        You are HackNova, an expert penetration testing AI assistant. 
         
         Context: {context}
         Phase: {phase}
@@ -860,9 +860,9 @@ class VoiceInterface:
 class WebDashboard:
     """Flask web dashboard"""
 
-    def __init__(self, secscan_ai_instance):
+    def __init__(self, hacknova_instance):
         self.app = Flask(__name__)
-        self.secscan_ai = secscan_ai_instance
+        self.hacknova = hacknova_instance
         self.setup_routes()
 
     def setup_routes(self):
@@ -881,7 +881,7 @@ class WebDashboard:
             data = request.json
             # Run pentest in background thread
             thread = threading.Thread(
-                target=self.secscan_ai.run_full_pentest,
+                target=self.hacknova.run_full_pentest,
                 args=(data["target"], data["scope"], data["auth_key"]),
             )
             thread.start()
@@ -892,8 +892,8 @@ class WebDashboard:
         self.app.run(host=host, port=port, debug=False)
 
 
-class SecScanAI:
-    """Main SecScan AI application"""
+class HackNova:
+    """Main HACKNOVA application"""
 
     def __init__(self):
         self.ai_engine = AIEngine()
@@ -903,12 +903,12 @@ class SecScanAI:
         self.web_dashboard = None
 
     def show_banner(self):
-        """Display the SecScan AI banner"""
+        """Display the HACKNOVA banner"""
         self.console.print(BANNER)
 
     def show_menu(self):
         """Display main menu"""
-        table = Table(title="SecScan AI Main Menu")
+        table = Table(title="HACKNOVA Main Menu")
         table.add_column("Option", style="cyan")
         table.add_column("Description", style="magenta")
 
@@ -1066,7 +1066,7 @@ class SecScanAI:
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SecScan AI Dashboard</title>
+    <title>HACKNOVA Dashboard</title>
     <style>
         body { background: #000; color: #0f0; font-family: monospace; }
         .container { margin: 20px; }
@@ -1077,7 +1077,7 @@ class SecScanAI:
 </head>
 <body>
     <div class="container">
-        <h1>SecScan AI - AI-Powered Penetration Testing</h1>
+        <h1>HACKNOVA - AI-Powered Penetration Testing</h1>
         
         <div class="panel">
             <h2>Start Pentest</h2>
@@ -1180,7 +1180,7 @@ class SecScanAI:
 def main():
     """Entry point"""
     parser = argparse.ArgumentParser(
-        description="SecScan AI - AI-Powered Penetration Testing Tool"
+        description="HACKNOVA - AI-Powered Penetration Testing Tool"
     )
     parser.add_argument("--target", help="Target IP or domain")
     parser.add_argument("--scope", help="Scope description")
@@ -1193,23 +1193,25 @@ def main():
 
     args = parser.parse_args()
 
-    secscan_ai = SecScanAI()
-    secscan_ai = secscan_ai
+    hacknova = HackNova()
+    hacknova = hacknova
 
     if args.web:
-        secscan_ai.start_web_dashboard()
+        hacknova.start_web_dashboard()
     elif args.voice:
-        secscan_ai.show_banner()
-        secscan_ai.voice_command_mode()
+        hacknova.show_banner()
+        hacknova.voice_command_mode()
     elif args.target and args.scope and args.auth_key:
-        secscan_ai.show_banner()
-        secscan_ai.run_full_pentest(args.target, args.scope, args.auth_key)
+        hacknova.show_banner()
+        hacknova.run_full_pentest(args.target, args.scope, args.auth_key)
     else:
-        secscan_ai.run()
+        hacknova.run()
 
 
 if __name__ == "__main__":
     main()
 
 # Backward compatibility alias
-SecScanAI = SecScanAI
+HackNova = HackNova
+HACKNOVA = HackNova
+SecScanAI = HackNova

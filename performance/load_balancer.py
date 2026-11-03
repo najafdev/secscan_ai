@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Performance Load Balancer for SecScan AI Enterprise
+Performance Load Balancer for HACKNOVA Enterprise
 Distributes workload across multiple workers/processes
 """
 

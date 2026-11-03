@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Microservice Base Class for SecScan AI
+Microservice Base Class for HACKNOVA
 Provides common functionality for all microservices
 """
 
@@ -59,7 +59,7 @@ class ServiceConfig:
 
 
 class MicroserviceBase(ABC):
-    """Base class for all SecScan AI microservices"""
+    """Base class for all HACKNOVA microservices"""
 
     def __init__(self, config: ServiceConfig):
         self.config = config
@@ -127,8 +127,8 @@ class MicroserviceBase(ABC):
     def _setup_fastapi(self):
         """Setup FastAPI application"""
         self.app = FastAPI(
-            title=f"SecScan AI {self.config.service_name.title()} Service",
-            description=f"SecScan AI {self.config.service_type} microservice",
+            title=f"HACKNOVA {self.config.service_name.title()} Service",
+            description=f"HACKNOVA {self.config.service_type} microservice",
             version="1.0.0",
         )
 
@@ -257,7 +257,7 @@ class MicroserviceBase(ABC):
                         "version": "1.0.0",
                         "start_time": self.start_time.isoformat(),
                     },
-                    tags=[self.config.service_type, "secscan_ai"],
+                    tags=[self.config.service_type, "hacknova"],
                 )
 
                 self.registry.register_service(service_instance)

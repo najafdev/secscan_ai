@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Parallel Processing Engine for SecScan AI
+Parallel Processing Engine for HACKNOVA
 Handles parallel execution, task queuing, and distributed processing
 """
 
@@ -300,7 +300,7 @@ class ParallelProcessor:
     def _setup_celery(self, redis_url: str):
         """Setup Celery for distributed task processing"""
         self.celery_app = Celery(
-            'secscan_ai-tasks',
+            'hacknova-tasks',
             broker=redis_url,
             backend=redis_url
         )
@@ -415,7 +415,7 @@ class ParallelProcessor:
         # Start thread pool executor
         self.thread_executor = ThreadPoolExecutor(
             max_workers=self.max_workers,
-            thread_name_prefix="secscan_ai-thread"
+            thread_name_prefix="hacknova-thread"
         )
         
         # Start process pool executor
@@ -431,7 +431,7 @@ class ParallelProcessor:
                 
                 worker_thread = threading.Thread(
                     target=worker.start,
-                    name=f"secscan_ai-{worker_id}"
+                    name=f"hacknova-{worker_id}"
                 )
                 worker_thread.daemon = True
                 worker_thread.start()

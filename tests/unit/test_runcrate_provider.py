@@ -1,4 +1,4 @@
-# SecScan AI core module
+# HACKNOVA core module
 """Unit tests for the Runcrate provider."""
 
 from unittest import mock

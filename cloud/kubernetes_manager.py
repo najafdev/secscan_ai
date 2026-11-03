@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Kubernetes Management for SecScan AI
+Kubernetes Management for HACKNOVA
 Handles Kubernetes deployment, scaling, and orchestration
 """
 
@@ -60,7 +60,7 @@ class ServiceConfig:
 
 
 class KubernetesManager:
-    """Manages Kubernetes resources for SecScan AI microservices"""
+    """Manages Kubernetes resources for HACKNOVA microservices"""
 
     def __init__(self, kubeconfig_path: Optional[str] = None):
         self.logger = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class KubernetesManager:
         self.v1 = None
         self.apps_v1 = None
         self.networking_v1 = None
-        self.namespace = "secscan_ai"
+        self.namespace = "hacknova"
 
         if KUBERNETES_AVAILABLE:
             try:
@@ -712,8 +712,8 @@ class KubernetesManager:
             self.logger.error(f"Error applying resource with kubectl: {e}")
             raise
 
-    def generate_secscan_ai_manifests(self) -> Dict[str, str]:
-        """Generate Kubernetes manifests for SecScan AI microservices"""
+    def generate_hacknova_manifests(self) -> Dict[str, str]:
+        """Generate Kubernetes manifests for HACKNOVA microservices"""
 
         manifests = {}
 
@@ -722,9 +722,9 @@ class KubernetesManager:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: secscan_ai
+  name: hacknova
   labels:
-    name: secscan_ai
+    name: hacknova
 """
 
         # API Service
@@ -732,35 +732,35 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: secscan_ai-api
-  namespace: secscan_ai
+  name: hacknova-api
+  namespace: hacknova
   labels:
-    app: secscan_ai-api
+    app: hacknova-api
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: secscan_ai-api
+      app: hacknova-api
   template:
     metadata:
       labels:
-        app: secscan_ai-api
+        app: hacknova-api
     spec:
       containers:
       - name: api
-        image: secscan_ai/api:latest
+        image: hacknova/api:latest
         ports:
         - containerPort: 8000
         env:
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: secscan_ai-secrets
+              name: hacknova-secrets
               key: database-url
         - name: REDIS_URL
           valueFrom:
             secretKeyRef:
-              name: secscan_ai-secrets
+              name: hacknova-secrets
               key: redis-url
         resources:
           requests:
@@ -785,11 +785,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: secscan_ai-api
-  namespace: secscan_ai
+  name: hacknova-api
+  namespace: hacknova
 spec:
   selector:
-    app: secscan_ai-api
+    app: hacknova-api
   ports:
   - port: 80
     targetPort: 8000
@@ -801,33 +801,33 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: secscan_ai-worker
-  namespace: secscan_ai
+  name: hacknova-worker
+  namespace: hacknova
   labels:
-    app: secscan_ai-worker
+    app: hacknova-worker
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: secscan_ai-worker
+      app: hacknova-worker
   template:
     metadata:
       labels:
-        app: secscan_ai-worker
+        app: hacknova-worker
     spec:
       containers:
       - name: worker
-        image: secscan_ai/worker:latest
+        image: hacknova/worker:latest
         env:
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: secscan_ai-secrets
+              name: hacknova-secrets
               key: database-url
         - name: REDIS_URL
           valueFrom:
             secretKeyRef:
-              name: secscan_ai-secrets
+              name: hacknova-secrets
               key: redis-url
         resources:
           requests:
@@ -845,32 +845,32 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: secscan_ai-database
-  namespace: secscan_ai
+  name: hacknova-database
+  namespace: hacknova
   labels:
-    app: secscan_ai-database
+    app: hacknova-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: secscan_ai-database
+      app: hacknova-database
   template:
     metadata:
       labels:
-        app: secscan_ai-database
+        app: hacknova-database
     spec:
       containers:
       - name: postgres
         image: postgres:15-alpine
         env:
         - name: POSTGRES_DB
-          value: secscan_ai
+          value: hacknova
         - name: POSTGRES_USER
-          value: secscan_ai
+          value: hacknova
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: secscan_ai-secrets
+              name: hacknova-secrets
               key: database-password
         ports:
         - containerPort: 5432
@@ -887,16 +887,16 @@ spec:
       volumes:
       - name: postgres-storage
         persistentVolumeClaim:
-          claimName: secscan_ai-database-pvc
+          claimName: hacknova-database-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: secscan_ai-database
-  namespace: secscan_ai
+  name: hacknova-database
+  namespace: hacknova
 spec:
   selector:
-    app: secscan_ai-database
+    app: hacknova-database
   ports:
   - port: 5432
     targetPort: 5432
@@ -905,8 +905,8 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: secscan_ai-database-pvc
-  namespace: secscan_ai
+  name: hacknova-database-pvc
+  namespace: hacknova
 spec:
   accessModes:
   - ReadWriteOnce
@@ -920,19 +920,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: secscan_ai-redis
-  namespace: secscan_ai
+  name: hacknova-redis
+  namespace: hacknova
   labels:
-    app: secscan_ai-redis
+    app: hacknova-redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: secscan_ai-redis
+      app: hacknova-redis
   template:
     metadata:
       labels:
-        app: secscan_ai-redis
+        app: hacknova-redis
     spec:
       containers:
       - name: redis
@@ -950,11 +950,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: secscan_ai-redis
-  namespace: secscan_ai
+  name: hacknova-redis
+  namespace: hacknova
 spec:
   selector:
-    app: secscan_ai-redis
+    app: hacknova-redis
   ports:
   - port: 6379
     targetPort: 6379
@@ -966,23 +966,23 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: secscan_ai-web
-  namespace: secscan_ai
+  name: hacknova-web
+  namespace: hacknova
   labels:
-    app: secscan_ai-web
+    app: hacknova-web
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: secscan_ai-web
+      app: hacknova-web
   template:
     metadata:
       labels:
-        app: secscan_ai-web
+        app: hacknova-web
     spec:
       containers:
       - name: web
-        image: secscan_ai/web:latest
+        image: hacknova/web:latest
         ports:
         - containerPort: 80
         resources:
@@ -996,11 +996,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: secscan_ai-web
-  namespace: secscan_ai
+  name: hacknova-web
+  namespace: hacknova
 spec:
   selector:
-    app: secscan_ai-web
+    app: hacknova-web
   ports:
   - port: 80
     targetPort: 80
@@ -1012,32 +1012,32 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: secscan_ai-ingress
-  namespace: secscan_ai
+  name: hacknova-ingress
+  namespace: hacknova
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
   - hosts:
-    - secscan_ai.example.com
-    secretName: secscan_ai-tls
+    - hacknova.example.com
+    secretName: hacknova-tls
   rules:
-  - host: secscan_ai.example.com
+  - host: hacknova.example.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: secscan_ai-web
+            name: hacknova-web
             port:
               number: 80
       - path: /api
         pathType: Prefix
         backend:
           service:
-            name: secscan_ai-api
+            name: hacknova-api
             port:
               number: 80
 """

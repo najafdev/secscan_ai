@@ -1,4 +1,4 @@
-# SecScan AI unit test
+# HACKNOVA unit test
 """Unit tests for CVE Intelligence and Threat Scoring Engine."""
 
 import pytest

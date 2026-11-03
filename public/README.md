@@ -1,12 +1,12 @@
-<!-- SecScan AI document -->
-# 🎨 SecScan AI Enterprise Brand Assets
+<!-- HACKNOVA document -->
+# 🎨 HACKNOVA Enterprise Brand Assets
 
-This folder contains the official brand assets for SecScan AI Enterprise.
+This folder contains the official brand assets for HACKNOVA Enterprise.
 
 ## 📁 Files
 
 ### 🖼️ Logo Files
-- **`secscan_ai-logo.png`** - Official logo (high resolution)
+- **`hacknova-logo.png`** - Official logo (high resolution)
 
 ## 📏 Usage Guidelines
 
@@ -41,25 +41,25 @@ This folder contains the official brand assets for SecScan AI Enterprise.
 ### README Headers
 ```markdown
 <div align="center">
-  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="300" height="auto">
+  <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise Logo" width="300" height="auto">
 </div>
 ```
 
 ### Social Media
 ```markdown
-![SecScan AI Enterprise](public/secscan_ai-logo.png)
+![HACKNOVA Enterprise](public/hacknova-logo.png)
 ```
 
 ### Documentation
 ```markdown
-<img src="../public/secscan_ai-logo.png" alt="SecScan AI Enterprise" width="200">
+<img src="../public/hacknova-logo.png" alt="HACKNOVA Enterprise" width="200">
 ```
 
 ## 📞 Contact for Brand Guidelines
 
 **For brand usage questions or permissions:**
 - **Email**: yashabalam707@gmail.com
-- **Subject**: "SecScan AI Brand Usage Request"
+- **Subject**: "HACKNOVA Brand Usage Request"
 
 ## ⚖️ Legal Information
 
@@ -67,7 +67,7 @@ This folder contains the official brand assets for SecScan AI Enterprise.
 © 2025 Yashab Alam. All rights reserved.
 
 ### License
-The SecScan AI Enterprise logo is proprietary. Usage is permitted for:
+The HACKNOVA Enterprise logo is proprietary. Usage is permitted for:
 - Open source contributions to this project
 - Educational and non-commercial purposes
 - Social media sharing with proper attribution
@@ -76,7 +76,7 @@ The SecScan AI Enterprise logo is proprietary. Usage is permitted for:
 
 ### Attribution
 When using the logo, please include:
-"SecScan AI Enterprise logo © Yashab Alam"
+"HACKNOVA Enterprise logo © Yashab Alam"
 
 ## 🔗 Brand Resources
 
@@ -87,7 +87,7 @@ When using the logo, please include:
 ### Style Guide
 For complete brand guidelines and additional assets:
 - Contact: yashabalam707@gmail.com
-- Subject: "SecScan AI Brand Guidelines Request"
+- Subject: "HACKNOVA Brand Guidelines Request"
 
 ---
 

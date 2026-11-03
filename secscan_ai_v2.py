@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-SecScan AI - Enterprise AI-Powered Penetration Testing Platform
-Author: SecScan AI Team
+HACKNOVA - Enterprise AI-Powered Penetration Testing Platform
+Author: HACKNOVA Team
 Version: 2.0.0 (Production-Ready)
 Description: Enterprise-grade pentesting automation platform with advanced AI, microservices architecture,
             and cloud-native capabilities for professional security assessments.
@@ -105,7 +105,7 @@ class Config:
             self.config.get(
                 "database",
                 "url",
-                fallback="postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai",
+                fallback="postgresql://hacknova:hacknova123@localhost:5432/hacknova",
             ),
         )
         self.REDIS_URL = os.getenv(
@@ -167,7 +167,7 @@ class Config:
         sections = {
             "app": {"debug": "false", "log_level": "INFO"},
             "database": {
-                "url": "postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai"
+                "url": "postgresql://hacknova:hacknova123@localhost:5432/hacknova"
             },
             "cache": {"redis_url": "redis://localhost:6379/0"},
             "ai": {"openai_api_key": "", "local_model": "llama2:7b"},
@@ -209,9 +209,9 @@ if not log_dir.exists() or not os.access(log_dir, os.W_OK):
 logging.basicConfig(
     level=getattr(logging, config.LOG_LEVEL),
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler(log_dir / "secscan_ai.log"), logging.StreamHandler()],
+    handlers=[logging.FileHandler(log_dir / "hacknova.log"), logging.StreamHandler()],
 )
-logger = logging.getLogger("secscan_ai")
+logger = logging.getLogger("hacknova")
 
 BANNER = """
 [bold red]
@@ -228,13 +228,13 @@ BANNER = """
 """
 
 
-class EnterpriseSecScanAI:
-    """Main SecScan AI Enterprise Application"""
+class EnterpriseHackNova:
+    """Main HACKNOVA Enterprise Application"""
 
     def __init__(self):
         self.config = config
         self.console = Console()
-        self.logger = logging.getLogger("secscan_ai.main")
+        self.logger = logging.getLogger("hacknova.main")
 
         self.initialize_components()
 
@@ -442,7 +442,7 @@ class EnterpriseSecScanAI:
         signal.signal(signal.SIGTERM, signal_handler)
 
     def show_banner(self):
-        """Display the SecScan AI banner with system status"""
+        """Display the HACKNOVA banner with system status"""
         self.console.print(BANNER)
 
         status_table = Table(title="System Status", show_header=True)
@@ -488,7 +488,7 @@ class EnterpriseSecScanAI:
 
     def show_main_menu(self):
         """Display enhanced main menu"""
-        menu_table = Table(title="SecScan AI Enterprise Main Menu", show_header=True)
+        menu_table = Table(title="HACKNOVA Enterprise Main Menu", show_header=True)
         menu_table.add_column("Option", style="cyan", width=8)
         menu_table.add_column("Category", style="magenta", width=20)
         menu_table.add_column("Description", style="white")
@@ -700,7 +700,7 @@ class EnterpriseSecScanAI:
 
         cloud_options = [
             ("1", "View Docker Containers"),
-            ("2", "Deploy SecScan AI Stack"),
+            ("2", "Deploy HACKNOVA Stack"),
             ("3", "Kubernetes Management"),
             ("4", "Service Registry Status"),
             ("5", "Scale Services"),
@@ -719,7 +719,7 @@ class EnterpriseSecScanAI:
         if choice == "1":
             self.show_docker_status()
         elif choice == "2":
-            self.deploy_secscan_ai_stack()
+            self.deploy_hacknova_stack()
         elif choice == "3":
             self.manage_kubernetes()
         elif choice == "4":
@@ -774,27 +774,27 @@ class EnterpriseSecScanAI:
         except Exception as e:
             self.console.print(f"[red]Error accessing Docker: {e}[/red]")
 
-    def deploy_secscan_ai_stack(self):
-        """Deploy SecScan AI microservices stack"""
+    def deploy_hacknova_stack(self):
+        """Deploy HACKNOVA microservices stack"""
         if not self.docker_manager:
             return
 
-        self.console.print("[cyan]Deploying SecScan AI Enterprise Stack...[/cyan]")
+        self.console.print("[cyan]Deploying HACKNOVA Enterprise Stack...[/cyan]")
 
         from cloud.docker_manager import ServiceDefinition, ContainerConfig
 
         services = [
             ServiceDefinition(
-                service_name="secscan_ai-api",
+                service_name="hacknova-api",
                 container_config=ContainerConfig(
-                    name="secscan_ai-api",
-                    image="secscan_ai/api:latest",
+                    name="hacknova-api",
+                    image="hacknova/api:latest",
                     ports={"8000": 8000},
                     environment={
                         "DATABASE_URL": config.DATABASE_URL,
                         "REDIS_URL": config.REDIS_URL,
                     },
-                    volumes={"/app/logs": "/var/log/secscan_ai"},
+                    volumes={"/app/logs": "/var/log/hacknova"},
                 ),
                 dependencies=[],
                 health_check={
@@ -803,16 +803,16 @@ class EnterpriseSecScanAI:
                 scaling={"min_replicas": 1, "max_replicas": 5},
             ),
             ServiceDefinition(
-                service_name="secscan_ai-worker",
+                service_name="hacknova-worker",
                 container_config=ContainerConfig(
-                    name="secscan_ai-worker",
-                    image="secscan_ai/worker:latest",
+                    name="hacknova-worker",
+                    image="hacknova/worker:latest",
                     environment={
                         "DATABASE_URL": config.DATABASE_URL,
                         "REDIS_URL": config.REDIS_URL,
                     },
                 ),
-                dependencies=["secscan_ai-database", "secscan_ai-redis"],
+                dependencies=["hacknova-database", "hacknova-redis"],
                 health_check={
                     "test": ["CMD", "python", "-c", "import sys; sys.exit(0)"]
                 },
@@ -823,18 +823,18 @@ class EnterpriseSecScanAI:
         compose_content = self.docker_manager.generate_docker_compose(services)
 
         success = self.docker_manager.deploy_stack(
-            compose_content, "secscan_ai-enterprise"
+            compose_content, "hacknova-enterprise"
         )
 
         if success:
             self.console.print(
-                "[green]✓ SecScan AI Enterprise Stack deployed successfully[/green]"
+                "[green]✓ HACKNOVA Enterprise Stack deployed successfully[/green]"
             )
         else:
-            self.console.print("[red]✗ Failed to deploy SecScan AI Enterprise Stack[/red]")
+            self.console.print("[red]✗ Failed to deploy HACKNOVA Enterprise Stack[/red]")
 
     def start_api_server(self):
-        """Start SecScan AI API server"""
+        """Start HACKNOVA API server"""
         if not flask:
             self.console.print("[red]Flask not available for API server[/red]")
             return
@@ -903,7 +903,7 @@ class EnterpriseSecScanAI:
             )
 
         self.console.print(
-            "[cyan]Starting SecScan AI API Server on http://0.0.0.0:8000[/cyan]"
+            "[cyan]Starting HACKNOVA API Server on http://0.0.0.0:8000[/cyan]"
         )
         app.run(host="0.0.0.0", port=8000, debug=config.DEBUG)
 
@@ -920,7 +920,7 @@ class EnterpriseSecScanAI:
 
                 if choice == "0":
                     self.console.print(
-                        "[green]Shutting down SecScan AI Enterprise...[/green]"
+                        "[green]Shutting down HACKNOVA Enterprise...[/green]"
                     )
                     self.shutdown()
                     break
@@ -1112,8 +1112,8 @@ class EnterpriseVoiceInterface:
 class EnterpriseWebDashboard:
     """Enterprise web dashboard"""
 
-    def __init__(self, secscan_ai_instance):
-        self.secscan_ai = secscan_ai_instance
+    def __init__(self, hacknova_instance):
+        self.hacknova = hacknova_instance
 
     def run(self):
         pass
@@ -1130,9 +1130,9 @@ class BasicReportGenerator:
 
 
 def main():
-    """Entry point for SecScan AI Enterprise"""
+    """Entry point for HACKNOVA Enterprise"""
     parser = argparse.ArgumentParser(
-        description="SecScan AI Enterprise - AI-Powered Penetration Testing Platform"
+        description="HACKNOVA Enterprise - AI-Powered Penetration Testing Platform"
     )
     parser.add_argument("--target", help="Target IP or domain")
     parser.add_argument("--scope", help="Scope description")
@@ -1160,15 +1160,15 @@ def main():
         global config
         config = Config(args.config)
 
-    secscan_ai = EnterpriseSecScanAI()
-    secscan_ai = secscan_ai
+    hacknova = EnterpriseHackNova()
+    hacknova = hacknova
 
     if args.api:
-        secscan_ai.start_api_server()
+        hacknova.start_api_server()
     elif args.web:
-        secscan_ai.launch_web_dashboard()
+        hacknova.launch_web_dashboard()
     elif args.realtime:
-        secscan_ai.start_realtime_dashboard()
+        hacknova.start_realtime_dashboard()
     elif all([args.target, args.scope, args.auth_key]):
         target_info = {
             "target": args.target,
@@ -1179,16 +1179,19 @@ def main():
             "parallel_execution": True,
             "ai_enhanced": True,
         }
-        secscan_ai.show_banner()
-        secscan_ai.run_full_enterprise_pentest(target_info)
+        hacknova.show_banner()
+        hacknova.run_full_enterprise_pentest(target_info)
     else:
-        secscan_ai.run()
+        hacknova.run()
 
 
 if __name__ == "__main__":
     main()
 
 # Backward compatibility aliases
-EnterpriseSecScanAI = EnterpriseSecScanAI
-SecScanAI = EnterpriseSecScanAI
-SecScanAI = EnterpriseSecScanAI
+EnterpriseHackNova = EnterpriseHackNova
+EnterpriseSecScanAI = EnterpriseHackNova
+EnterpriseHACKNOVA = EnterpriseHackNova
+HackNova = EnterpriseHackNova
+HACKNOVA = EnterpriseHackNova
+SecScanAI = EnterpriseHackNova

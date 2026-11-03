@@ -1,4 +1,4 @@
-# SecScan AI core module
+# HACKNOVA core module
 from .models import *
 from .manager import DatabaseManager, get_db_manager, init_database
 

@@ -154,9 +154,9 @@ class ReviewDocumentationTests(unittest.TestCase):
 
         for command in (
             "python test_installation.py",
-            "from secscan_ai import SecScanAI, AIEngine, ToolManager",
-            "flake8 secscan_ai.py --count --select=E9,F63,F7,F82",
-            "docker run --rm secscan_ai:test --help",
+            "from hacknova import HackNova, AIEngine, ToolManager",
+            "flake8 hacknova.py --count --select=E9,F63,F7,F82",
+            "docker run --rm hacknova:test --help",
         ):
             self.assertIn(command, basic)
         self.assert_black_check_targets_repository(enterprise)

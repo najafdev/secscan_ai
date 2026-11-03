@@ -1,7 +1,7 @@
 #!/bin/bash
-# SecScan AI shell script
+# HACKNOVA shell script
 
-# SecScan AI Enterprise Installation Script
+# HACKNOVA Enterprise Installation Script
 # Installs all dependencies for enterprise penetration testing platform
 # Version: 2.0.0 (Production-Ready)
 
@@ -37,7 +37,7 @@ info() {
     echo -e "${BLUE}[$(date +'%Y-%m-%d %H:%M:%S')] INFO:${NC} $1"
 }
 
-INSTALL_CONTEXT="${SECSCAN_AI_INSTALL_CONTEXT:-host}"
+INSTALL_CONTEXT="${HACKNOVA_INSTALL_CONTEXT:-host}"
 case "$INSTALL_CONTEXT" in
     host)
         if [ "$(id -u)" -eq 0 ]; then
@@ -54,7 +54,7 @@ case "$INSTALL_CONTEXT" in
         ROOT=()
         ;;
     *)
-        error "Unsupported SECSCAN_AI_INSTALL_CONTEXT: $INSTALL_CONTEXT (expected host or container)"
+        error "Unsupported HACKNOVA_INSTALL_CONTEXT: $INSTALL_CONTEXT (expected host or container)"
         exit 2
         ;;
 esac
@@ -79,7 +79,7 @@ echo
 # Update package metadata. A full host upgrade remains an explicit host-install action;
 # container images should be reproducible from their declared base image instead.
 if ! command -v apt-get >/dev/null 2>&1; then
-    error "'apt-get' package manager not found. SecScan AI installation requires a Debian/Ubuntu/Kali-based system."
+    error "'apt-get' package manager not found. HACKNOVA installation requires a Debian/Ubuntu/Kali-based system."
     exit 1
 fi
 
@@ -214,7 +214,7 @@ debug = false
 log_level = INFO
 
 [database]
-url = postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai
+url = postgresql://hacknova:hacknova123@localhost:5432/hacknova
 
 [cache]
 redis_url = redis://localhost:6379/0
@@ -239,9 +239,9 @@ fi
 # Create .env template if it doesn't exist
 if [ ! -f ".env.example" ]; then
     cat > .env.example << 'EOF'
-# SecScan AI Enterprise Environment Variables
+# HACKNOVA Enterprise Environment Variables
 OPENAI_API_KEY=your_openai_api_key_here
-DATABASE_URL=postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai
+DATABASE_URL=postgresql://hacknova:hacknova123@localhost:5432/hacknova
 REDIS_URL=redis://localhost:6379/0
 SECRET_KEY=your_secret_key_here
 JWT_SECRET_KEY=your_jwt_secret_key_here
@@ -253,7 +253,7 @@ EOF
 fi
 
 # Make scripts executable
-for script in secscan_ai.py secscan_ai_v2.py advance_secscan_ai.py demo.py install.sh usage_examples.sh test_installation.py; do
+for script in hacknova.py hacknova_v2.py advance_hacknova.py demo.py install.sh usage_examples.sh test_installation.py; do
     [ -f "$script" ] && chmod +x "$script" || true
 done
 
@@ -261,7 +261,7 @@ done
 # by the image itself and do not need a host-style symlink.
 if [ "$INSTALL_CONTEXT" = "host" ]; then
     echo "[+] Creating global command..."
-    run_root ln -sf "$(pwd)/secscan_ai.py" /usr/local/bin/secscan_ai || warn "Failed to create global symlink"
+    run_root ln -sf "$(pwd)/hacknova.py" /usr/local/bin/hacknova || warn "Failed to create global symlink"
 else
     info "Container install: using the Docker entrypoint instead of a global symlink"
 fi
@@ -276,13 +276,13 @@ echo ""
 echo -e "${CYAN}Next steps:${NC}"
 echo -e "  1. Copy ${YELLOW}.env.example${NC} to ${YELLOW}.env${NC} and configure your API keys"
 echo -e "  2. Edit ${YELLOW}config.ini${NC} to customize settings"
-echo -e "  3. Run SecScan AI: ${YELLOW}python3 advance_secscan_ai.py${NC}"
+echo -e "  3. Run HACKNOVA: ${YELLOW}python3 advance_hacknova.py${NC}"
 echo ""
 echo "Usage:"
-echo "  ./advance_secscan_ai.py           # Interactive mode"
-echo "  ./advance_secscan_ai.py --web     # Web dashboard"
-echo "  ./advance_secscan_ai.py --voice   # Voice command mode"
-echo "  secscan_ai                        # Global command (if symlink created)"
+echo "  ./advance_hacknova.py           # Interactive mode"
+echo "  ./advance_hacknova.py --web     # Web dashboard"
+echo "  ./advance_hacknova.py --voice   # Voice command mode"
+echo "  hacknova                        # Global command (if symlink created)"
 echo ""
 echo "Set OpenAI API key (optional):"
 echo "  export OPENAI_API_KEY='your-api-key-here'"

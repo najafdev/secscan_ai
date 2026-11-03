@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Service Registry for SecScan AI Microservices
+Service Registry for HACKNOVA Microservices
 Handles service discovery, registration, and health checking
 """
 

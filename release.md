@@ -1,22 +1,22 @@
-<!-- SecScan AI document -->
-# 🚀 SecScan AI Enterprise Release Notes — Version 2026.10.23
+<!-- HACKNOVA document -->
+# 🚀 HACKNOVA Enterprise Release Notes — Version 2026.10.23
 
 > [!IMPORTANT]
 > ### 🪙 Official Solana Contract Address (CA)
-> **CA:** `7iymoWrLNFFmMSAKSNfSMCp7UmXfd3ZRL1t7W6c3pump`  
-> *Official verified Solana token contract address for SecScan AI Enterprise development and community ecosystem.*
+> **CA:** Soon Available  
+> *Official verified Solana token contract address for HACKNOVA Enterprise development and community ecosystem.*
 
 > [!NOTE]
 > ### 💖 Project Support, Donations & Sponsorship
-> SecScan AI Enterprise is an independent open-source cybersecurity and AI penetration testing research platform created by [Yashab Alam](https://github.com/yashab-cyber). To continuously maintain the platform, support multi-provider frontier AI integrations, and sustain security research infrastructure, **we welcome donations, community sponsorships, and token support**.
+> HACKNOVA Enterprise is an independent open-source cybersecurity and AI penetration testing research platform created by [Yashab Alam](https://github.com/yashab-cyber). To continuously maintain the platform, support multi-provider frontier AI integrations, and sustain security research infrastructure, **we welcome donations, community sponsorships, and token support**.
 >
-> - **Official CA**: `7iymoWrLNFFmMSAKSNfSMCp7UmXfd3ZRL1t7W6c3pump`
+> - **Official CA**: Soon Available
 > - **Cryptocurrency Inquiries**: [sai466769@gmail.com](mailto:sai466769@gmail.com)
 > - **Full Guidelines**: Please visit [DONATE.md](DONATE.md).
 
 ---
 
-We are proud to announce the major release of **SecScan AI Enterprise Version 2026.10.23**! This milestone update delivers **OrcaRouter Cyber Inference** integration contributed by community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** (PR #26), enterprise-grade **Cloud Security Posture Management (CSPM)**, **Kubernetes Security Posture Management (KSPM)**, **Infrastructure-as-Code (IaC) Security Auditing**, **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, and **Automated Ansible & Bash Hardening Playbooks**.
+We are proud to announce the major release of **HACKNOVA Enterprise Version 2026.10.23**! This milestone update delivers **OrcaRouter Cyber Inference** integration contributed by community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** (PR #26), enterprise-grade **Cloud Security Posture Management (CSPM)**, **Kubernetes Security Posture Management (KSPM)**, **Infrastructure-as-Code (IaC) Security Auditing**, **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, and **Automated Ansible & Bash Hardening Playbooks**.
 
 ---
 
@@ -112,51 +112,51 @@ We are proud to announce the major release of **SecScan AI Enterprise Version 20
 ### 1. Run Cloud Security Posture & K8s Assessment (CSPM/KSPM)
 ```bash
 # Execute benchmark multi-cloud CSPM & KSPM assessment
-python3 advance_secscan_ai.py --cspm-scan
+python3 advance_hacknova.py --cspm-scan
 
 # Audit specific Terraform IaC directory or Kubernetes manifest path
-python3 advance_secscan_ai.py --cspm-scan /path/to/terraform/
+python3 advance_hacknova.py --cspm-scan /path/to/terraform/
 
 # Run targeted Kubernetes security posture audit
-python3 advance_secscan_ai.py --k8s-audit
+python3 advance_hacknova.py --k8s-audit
 
 # Export automated CLI and IaC hardening remediation script
-python3 advance_secscan_ai.py --cspm-scan --export-cloud-fix cloud_hardening.sh
+python3 advance_hacknova.py --cspm-scan --export-cloud-fix cloud_hardening.sh
 ```
 
 ### 2. Run AI Red Teaming Assessment
 ```bash
-python3 advance_secscan_ai.py --llm-redteam mock-gpt4o
+python3 advance_hacknova.py --llm-redteam mock-gpt4o
 ```
 
 ### 3. Scan API for OWASP API Top 10 Vulnerabilities
 ```bash
-python3 advance_secscan_ai.py --api-scan /path/to/openapi.yaml
+python3 advance_hacknova.py --api-scan /path/to/openapi.yaml
 ```
 
 ### 4. Generate MITRE D3FEND Countermeasure Defense Matrix
 ```bash
-python3 advance_secscan_ai.py --d3fend-matrix
+python3 advance_hacknova.py --d3fend-matrix
 ```
 
 ### 5. Export Detection-as-Code Sigma Rules
 ```bash
-python3 advance_secscan_ai.py --export-sigma
+python3 advance_hacknova.py --export-sigma
 ```
 
 ### 6. Generate Automated Ansible Remediation Playbook
 ```bash
-python3 advance_secscan_ai.py --export-ansible
+python3 advance_hacknova.py --export-ansible
 ```
 
 ### 7. Query CVE Threat Intelligence & EPSS Scores
 ```bash
-python3 advance_secscan_ai.py --cve-lookup CVE-2021-44228
+python3 advance_hacknova.py --cve-lookup CVE-2021-44228
 ```
 
 ### 8. Launch Interactive Enterprise Console
 ```bash
-python3 advance_secscan_ai.py
+python3 advance_hacknova.py
 ```
 *(Options 18, 19, and 20 for AI Red Teaming, API Security Scanning, and Cloud Posture / K8s Auditing)*
 

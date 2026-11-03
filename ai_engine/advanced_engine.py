@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Advanced AI Engine for SecScan AI
+Advanced AI Engine for HACKNOVA
 Context-aware analysis with memory and pattern recognition
 """
 
@@ -479,9 +479,9 @@ class AdvancedAIEngine:
         self.api_key = os.getenv('OPENAI_API_KEY')
         
         # Multi-provider model selection
-        self.model_id = model_id or os.getenv('SECSCAN_AI_MODEL', os.getenv('OPENAI_MODEL', 'gpt-4o'))
-        self.provider_name = provider or os.getenv('SECSCAN_AI_PROVIDER', None)
-        self.custom_route = custom_route or os.getenv('SECSCAN_AI_CUSTOM_ROUTE') or os.getenv('CUSTOM_ROUTER_BASE_URL')
+        self.model_id = model_id or os.getenv('HACKNOVA_MODEL', os.getenv('OPENAI_MODEL', 'gpt-4o'))
+        self.provider_name = provider or os.getenv('HACKNOVA_PROVIDER', None)
+        self.custom_route = custom_route or os.getenv('HACKNOVA_CUSTOM_ROUTE') or os.getenv('CUSTOM_ROUTER_BASE_URL')
         self.active_provider = None
         self.active_model_info = None
         
@@ -618,7 +618,7 @@ class AdvancedAIEngine:
                 pattern_summary += f"- {pattern.pattern_type}: {pattern.pattern_id} (confidence: {confidence:.2f})\n"
         
         prompt = f"""
-You are SecScanAI, an expert penetration testing AI assistant with advanced pattern recognition.
+You are HackNova, an expert penetration testing AI assistant with advanced pattern recognition.
 
 Current Phase: {phase}
 Data to Analyze: {data}

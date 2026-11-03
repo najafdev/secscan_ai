@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Enterprise API Security Scanner & OpenAPI / Swagger Auditor for SecScan AI.
+Enterprise API Security Scanner & OpenAPI / Swagger Auditor for HACKNOVA.
 Evaluates REST and microservice APIs against the OWASP API Security Top 10 (2023-2026),
 detecting BOLA, Broken Auth, Mass Assignment, BFLA, SSRF, and Security Misconfigurations.
 """
@@ -131,7 +131,7 @@ class APISecurityScanner:
             return self._build_empty_report("Unknown API", "0.0.0")
 
         info = spec.get("info", {})
-        api_title = info.get("title", "SecScan AI Target API")
+        api_title = info.get("title", "HACKNOVA Target API")
         api_version = str(info.get("version", "1.0.0"))
 
         global_security = spec.get("security", [])
@@ -382,7 +382,7 @@ class APISecurityScanner:
         """
         mock_spec = {
             "openapi": "3.0.0",
-            "info": {"title": "SecScan AI Enterprise Sample Microservice", "version": "2.4.0"},
+            "info": {"title": "HACKNOVA Enterprise Sample Microservice", "version": "2.4.0"},
             "security": [],
             "paths": {
                 "/api/v1/users/{userId}": {

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Provider client implementations for SecScan AI multi-model AI support.
+Provider client implementations for HACKNOVA multi-model AI support.
 
 Implements a unified interface to call different AI providers through a
 common abstract base class. Supports OpenAI, Anthropic, Google Gemini,
@@ -918,8 +918,8 @@ class OpenRouterProvider(BaseProvider):
                 api_key=self.api_key,
                 base_url=self.base_url,
                 default_headers={
-                    "HTTP-Referer": "https://secscan.ai",
-                    "X-Title": "SecScan AI",
+                    "HTTP-Referer": "https://hacknova.ai",
+                    "X-Title": "HACKNOVA",
                 },
             )
         return self._client  # type: ignore[return-value]
@@ -1022,7 +1022,7 @@ class OrcaRouterProvider(BaseProvider):
             self._client = openai.OpenAI(
                 api_key=self.api_key,
                 base_url=self.base_url,
-                default_headers={"X-Title": "SecScan AI"},
+                default_headers={"X-Title": "HACKNOVA"},
             )
         return self._client  # type: ignore[return-value]
 
@@ -1068,7 +1068,7 @@ class OrcaRouterProvider(BaseProvider):
             headers={
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
-                "X-Title": "SecScan AI",
+                "X-Title": "HACKNOVA",
             },
             payload=payload,
         )
@@ -1362,7 +1362,7 @@ class NineBRouterProvider(BaseProvider):
                 base_url=self.base_url,
                 default_headers={
                     "X-Router-Type": "9B-Dispatcher",
-                    "X-Title": "SecScan AI-9B-Router",
+                    "X-Title": "HACKNOVA-9B-Router",
                 },
             )
         return self._client  # type: ignore[return-value]
@@ -1500,7 +1500,7 @@ class CustomRouterProvider(BaseProvider):
     LiteLLM proxy, Portkey, Cloudflare AI Gateway, vLLM, or custom internal route).
 
     Configured via:
-        - ``CUSTOM_ROUTER_BASE_URL`` or ``SECSCAN_AI_CUSTOM_ROUTE``
+        - ``CUSTOM_ROUTER_BASE_URL`` or ``HACKNOVA_CUSTOM_ROUTE``
         - ``CUSTOM_ROUTER_API_KEY``
     """
 
@@ -1517,7 +1517,7 @@ class CustomRouterProvider(BaseProvider):
         resolved_url = (
             base_url
             or os.getenv("CUSTOM_ROUTER_BASE_URL")
-            or os.getenv("SECSCAN_AI_CUSTOM_ROUTE")
+            or os.getenv("HACKNOVA_CUSTOM_ROUTE")
             or os.getenv("CUSTOM_ROUTE_URL")
             or self._DEFAULT_BASE_URL
         )
@@ -1535,7 +1535,7 @@ class CustomRouterProvider(BaseProvider):
                 api_key=self.api_key,
                 base_url=self.base_url,
                 default_headers={
-                    "X-Title": "SecScan AI-Custom-Router",
+                    "X-Title": "HACKNOVA-Custom-Router",
                 },
             )
         return self._client  # type: ignore[return-value]
@@ -1600,7 +1600,7 @@ class CustomRouterProvider(BaseProvider):
         """Available when custom route URL or API key is set."""
         return bool(
             os.getenv("CUSTOM_ROUTER_BASE_URL")
-            or os.getenv("SECSCAN_AI_CUSTOM_ROUTE")
+            or os.getenv("HACKNOVA_CUSTOM_ROUTE")
             or os.getenv("CUSTOM_ROUTER_API_KEY")
             or (self.base_url and self.base_url != self._DEFAULT_BASE_URL)
         )
@@ -1725,10 +1725,14 @@ class ProviderFactory:
         """
         model_info = get_model_info(model_id)
         if model_info is None:
-            # Check for custom route or SECSCAN_AI_PROVIDER setting
-            custom_provider_name = os.getenv("SECSCAN_AI_PROVIDER", "").lower()
+            # Check for custom route or HACKNOVA_PROVIDER setting
+            custom_provider_name = (
+                os.getenv("HACKNOVA_PROVIDER")
+                or os.getenv("SECSCAN_AI_PROVIDER", "")
+            ).lower()
             resolved_route = (
                 custom_route
+                or os.getenv("HACKNOVA_CUSTOM_ROUTE")
                 or os.getenv("SECSCAN_AI_CUSTOM_ROUTE")
                 or os.getenv("CUSTOM_ROUTER_BASE_URL")
             )
@@ -1795,7 +1799,7 @@ class ProviderFactory:
         base_url_override = custom_route
         if model_info.provider == ModelProvider.CUSTOM_ROUTER and not base_url_override:
             base_url_override = (
-                os.getenv("SECSCAN_AI_CUSTOM_ROUTE")
+                os.getenv("HACKNOVA_CUSTOM_ROUTE")
                 or os.getenv("CUSTOM_ROUTER_BASE_URL")
             )
         provider = cls.get_provider(

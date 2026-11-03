@@ -1,5 +1,5 @@
-# SecScan AI configuration file
-# SecScan AI Enterprise Requirements
+# HACKNOVA configuration file
+# HACKNOVA Enterprise Requirements
 # Production-ready dependencies for enterprise penetration testing platform
 
 # Core Dependencies

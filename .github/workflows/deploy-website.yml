@@ -1,5 +1,5 @@
-# SecScan AI YAML configuration
-name: Deploy SecScan AI Website to Pages
+# HACKNOVA YAML configuration
+name: Deploy HACKNOVA Website to Pages
 
 on:
   push:

@@ -1,5 +1,5 @@
-# SecScan AI YAML configuration
-# GitHub Sponsors & Funding Configuration for SecScan AI Enterprise
+# HACKNOVA YAML configuration
+# GitHub Sponsors & Funding Configuration for HACKNOVA Enterprise
 # This file enables the funding/sponsor button on the GitHub repository
 
 # Primary funding platforms
@@ -15,7 +15,7 @@ otechie: # Add Otechie username if available
 
 # Custom funding methods
 custom: [
-  "mailto:sai466769@gmail.com?subject=SecScan%20AI%20Enterprise%20Sponsorship%20Inquiry"
+  "mailto:sai466769@gmail.com?subject=HACKNOVA%20AI%20Enterprise%20Sponsorship%20Inquiry"
 ]
 
 # For cryptocurrency donations and sponsorship, please see DONATE.md

@@ -36,7 +36,7 @@ def test_legacy_entrypoints_import_without_network_calls():
         [
             sys.executable,
             "-c",
-            "from secscan_ai import SecScanAI, AIEngine, ToolManager; print('ok')",
+            "from hacknova import HackNova, AIEngine, ToolManager; print('ok')",
         ],
         cwd=str(REPO_ROOT),
         env=_offline_env(),

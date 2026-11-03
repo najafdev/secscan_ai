@@ -1,18 +1,18 @@
-<!-- SecScan AI document -->
+<!-- HACKNOVA document -->
 <div align="center">
-  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="250" height="auto">
+  <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise Logo" width="250" height="auto">
 </div>
 
-# 🤝 Contributors to SecScan AI Enterprise
+# 🤝 Contributors to HACKNOVA Enterprise
 
-Thank you to all the amazing people who have contributed to making SecScan AI Enterprise the leading AI-powered penetration testing platform!
+Thank you to all the amazing people who have contributed to making HACKNOVA Enterprise the leading AI-powered penetration testing platform!
 
 ## 🏆 Core Development Team
 
 ### 👨‍💼 Founder & Lead Developer
 **Yashab Alam** - [@yashab-cyber](https://github.com/yashab-cyber)
 - 🏢 **Role**: Founder, CEO & Lead Developer
-- 🏛️ **Company**: SecScan AI
+- 🏛️ **Company**: HACKNOVA
 - 💡 **Contributions**: Project architecture, AI integration, security frameworks, enterprise features
 - 🌐 **Connect**: [LinkedIn](https://linkedin.com/in/yashab-alam) | [Instagram](https://instagram.com/yashabcyber) | [X (Twitter)](https://x.com/_gh0st0fs0l) | [Threads](https://www.threads.com/@yashabcyber) | [Email](mailto:yashabalam9@gmail.com)
 - 🎯 **Specialties**: AI/ML, Cybersecurity, Penetration Testing, Enterprise Architecture
@@ -22,7 +22,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 ## 💰 Financial Contributors & Sponsors
 
 ### 💎 Platinum Sponsors ($500+ monthly)
-*Thank you to our platinum sponsors who make significant contributions to SecScan AI development!*
+*Thank you to our platinum sponsors who make significant contributions to HACKNOVA development!*
 
 *🚀 Be the first Platinum Sponsor! [Learn more about sponsorship](DONATE.md)*
 
@@ -32,9 +32,9 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 *🌟 Become a Gold Sponsor! [Sponsorship Information](DONATE.md)*
 
 ### 🥈 Silver Sponsors ($25-99 monthly)
-*Silver sponsors who help accelerate SecScan AI development.*
+*Silver sponsors who help accelerate HACKNOVA development.*
 
-*💫 Join as a Silver Sponsor! [Support SecScan AI](DONATE.md)*
+*💫 Join as a Silver Sponsor! [Support HACKNOVA](DONATE.md)*
 
 ### 🥉 Bronze Supporters ($5-24 monthly)
 *Bronze supporters who contribute to the community and project sustainability.*
@@ -47,13 +47,13 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 *Developers who have made significant code contributions to the project.*
 
 - **Abdulazeez A. Noaman** - [@HostX0](https://github.com/HostX0)
-  - 💡 **Contributions**: Author of PR [#21](https://github.com/najafdev/secscan_ai/pull/21) — introduced the Evidence Workbench, deterministic adapter lifecycle & execution receipts (Semgrep, Nuclei, Trivy), cross-platform reliability contracts, and hardened CI test matrices.
+  - 💡 **Contributions**: Author of PR [#21](https://github.com/najafdev/hacknova/pull/21) — introduced the Evidence Workbench, deterministic adapter lifecycle & execution receipts (Semgrep, Nuclei, Trivy), cross-platform reliability contracts, and hardened CI test matrices.
 
 
 ### 🐛 Bug Hunters
 *Contributors who have helped identify and fix bugs.*
 
-*🔍 Help us improve! Report bugs through [GitHub Issues](https://github.com/najafdev/secscan_ai/issues)*
+*🔍 Help us improve! Report bugs through [GitHub Issues](https://github.com/najafdev/hacknova/issues)*
 
 ### 📚 Documentation Contributors
 *People who have improved documentation, tutorials, and guides.*
@@ -61,7 +61,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 *📝 Contribute to documentation! See [CONTRIBUTING.md](.github/CONTRIBUTING.md)*
 
 ### 🌍 Translation Contributors
-*Contributors who help make SecScan AI available in multiple languages.*
+*Contributors who help make HACKNOVA available in multiple languages.*
 
 **Currently Seeking Translators For:**
 - 🇪🇸 Spanish (Español)
@@ -73,7 +73,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 - 🇵🇹 Portuguese (Português)
 - 🇮🇹 Italian (Italiano)
 
-*🌐 Help translate SecScan AI! Contact: yashabalam707@gmail.com*
+*🌐 Help translate HACKNOVA! Contact: yashabalam707@gmail.com*
 
 ## 🔒 Security Contributors
 
@@ -92,7 +92,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 ### 🎨 UI/UX Designers
 *Designers who have contributed to the user interface and experience.*
 
-*🎨 Help improve SecScan AI's design! Contact us to contribute.*
+*🎨 Help improve HACKNOVA's design! Contact us to contribute.*
 
 ### 📸 Media Contributors
 *Contributors of logos, graphics, screenshots, and promotional materials.*
@@ -114,19 +114,19 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 ## 📢 Community Contributors
 
 ### 🎤 Evangelists & Advocates
-*Community members who promote SecScan AI through talks, blogs, and social media.*
+*Community members who promote HACKNOVA through talks, blogs, and social media.*
 
-*📣 Become a SecScan AI advocate! Share your experience and help grow the community.*
+*📣 Become a HACKNOVA advocate! Share your experience and help grow the community.*
 
 ### 📝 Content Creators
-*Bloggers, YouTubers, and content creators featuring SecScan AI.*
+*Bloggers, YouTubers, and content creators featuring HACKNOVA.*
 
-*🎬 Create SecScan AI content! We'd love to feature your work.*
+*🎬 Create HACKNOVA content! We'd love to feature your work.*
 
 ### 🎓 Educational Contributors
-*Educators and trainers incorporating SecScan AI into curricula and training programs.*
+*Educators and trainers incorporating HACKNOVA into curricula and training programs.*
 
-*🏫 Use SecScan AI for education! Contact us for educational partnerships.*
+*🏫 Use HACKNOVA for education! Contact us for educational partnerships.*
 
 ## 🤝 Corporate Partners
 
@@ -141,7 +141,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 *🌩️ Support our infrastructure! See partnership opportunities in [CONTRIBUTING.md](.github/CONTRIBUTING.md)*
 
 ### 🎯 Training Partners
-*Organizations offering SecScan AI training and certification programs.*
+*Organizations offering HACKNOVA training and certification programs.*
 
 *📚 Become a training partner! Educational partnerships available.*
 
@@ -160,7 +160,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 ### 💡 Innovation Awards
 *Recognition for innovative features, ideas, and implementations.*
 
-*🚀 Contribute innovative features! Your creativity drives SecScan AI forward.*
+*🚀 Contribute innovative features! Your creativity drives HACKNOVA forward.*
 
 ## 📊 Contribution Statistics
 
@@ -186,7 +186,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 
 #### 🌟 All Contributors Receive:
 - Name listed in CONTRIBUTORS.md
-- SecScan AI contributor badge
+- HACKNOVA contributor badge
 - Access to private contributor channels
 - Early access to new features
 - Direct line to development team
@@ -238,8 +238,8 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 ## 📞 Community Channels
 
 ### 💬 Communication Platforms
-- **GitHub Issues**: [Bug reports and feature requests](https://github.com/najafdev/secscan_ai/issues)
-- **GitHub Discussions**: [Community discussions](https://github.com/najafdev/secscan_ai/discussions)
+- **GitHub Issues**: [Bug reports and feature requests](https://github.com/najafdev/hacknova/issues)
+- **GitHub Discussions**: [Community discussions](https://github.com/najafdev/hacknova/discussions)
 - **Email**: yashabalam9@gmail.com | yashabalam707@gmail.com
 - **WhatsApp**: [Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 - **Discord**: [Discussion Server](https://discord.gg/eXPjM3Hxwb)
@@ -265,7 +265,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 ### 🎯 Contribution Goals
 - **Stability**: Maintain high code quality and reliability
 - **Security**: Prioritize security in all contributions
-- **Accessibility**: Make SecScan AI accessible to all users
+- **Accessibility**: Make HACKNOVA accessible to all users
 - **Performance**: Optimize for speed and efficiency
 - **Documentation**: Keep documentation current and comprehensive
 - **Community**: Build an inclusive and welcoming community
@@ -273,7 +273,7 @@ Thank you to all the amazing people who have contributed to making SecScan AI En
 
 ## 🙏 Thank You!
 
-Every contribution, no matter how small, helps make SecScan AI Enterprise better for everyone. Whether you've:
+Every contribution, no matter how small, helps make HACKNOVA Enterprise better for everyone. Whether you've:
 
 - 🐛 Fixed a bug
 - ✨ Added a feature
@@ -291,11 +291,11 @@ Every contribution, no matter how small, helps make SecScan AI Enterprise better
 
 ## 📄 License
 
-By contributing to SecScan AI Enterprise, you agree that your contributions will be licensed under the same license as the project (MIT License with additional enterprise terms).
+By contributing to HACKNOVA Enterprise, you agree that your contributions will be licensed under the same license as the project (MIT License with additional enterprise terms).
 
 ## 🔗 Links
 
-- **Main Repository**: [github.com/najafdev/secscan_ai](https://github.com/najafdev/secscan_ai)
+- **Main Repository**: [github.com/najafdev/hacknova](https://github.com/najafdev/hacknova)
 - **Documentation**: [README.md](../README.md)
 - **Contributing Guide**: [CONTRIBUTING.md](.github/CONTRIBUTING.md)
 - **Code of Conduct**: [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md)
@@ -306,6 +306,6 @@ By contributing to SecScan AI Enterprise, you agree that your contributions will
 
 *This contributors list is updated regularly. If you believe you should be listed here, please contact us at yashabalam707@gmail.com*
 
-**Made with ❤️ by the SecScan AI Enterprise community**
+**Made with ❤️ by the HACKNOVA Enterprise community**
 
 *Last Updated: August 18, 2025*

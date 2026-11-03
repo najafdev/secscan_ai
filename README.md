@@ -1,10 +1,10 @@
-<!-- SecScan AI document -->
+<!-- HACKNOVA document -->
 <div align="center">
-  <p><strong>CA:</strong> <code>7iymoWrLNFFmMSAKSNfSMCp7UmXfd3ZRL1t7W6c3pump</code></p>
+  <p><strong>CA:</strong> Soon Available</p>
 
-  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="400" height="auto">
+  <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise Logo" width="400" height="auto">
   
-  <h1>🚀 SecScan AI Enterprise</h1>
+  <h1>🚀 HACKNOVA Enterprise</h1>
   <h3>AI-Powered Penetration Testing Platform</h3>
   
   <p>
@@ -22,11 +22,11 @@
   </p>
 </div>
 
-**SecScan AI Enterprise** is a production-ready, cloud-native AI-powered penetration testing platform designed for enterprise security teams. It combines advanced AI, machine learning, microservices architecture, and comprehensive security frameworks to deliver professional-grade cybersecurity assessments.
+**HACKNOVA Enterprise** is a production-ready, cloud-native AI-powered penetration testing platform designed for enterprise security teams. It combines advanced AI, machine learning, microservices architecture, and comprehensive security frameworks to deliver professional-grade cybersecurity assessments.
 
 **Created by [Yashab Alam](https://github.com/yashab-cyber)**
 
-> 💰 **Support the Project**: [Donate to SecScan AI Development](DONATE.md) | Help us build the future of AI-powered penetration testing!
+> 💰 **Support the Project**: [Donate to HACKNOVA Development](DONATE.md) | Help us build the future of AI-powered penetration testing!
 
 ## 🏢 Enterprise Features
 
@@ -110,8 +110,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/najafdev/secscan_ai.git
-cd secscan_ai
+git clone https://github.com/najafdev/hacknova.git
+cd hacknova
 
 # Run enterprise installer (sets up all services)
 chmod +x install.sh
@@ -134,13 +134,13 @@ python3 test_installation.py
 source venv/bin/activate
 
 # Run enterprise application
-python3 advance_secscan_ai.py
+python3 advance_hacknova.py
 ```
 
 #### 2. API Server Mode
 ```bash
 # Start REST API server
-python3 advance_secscan_ai.py --api
+python3 advance_hacknova.py --api
 
 # API available at: http://localhost:8000
 # Health check: http://localhost:8000/api/health
@@ -149,7 +149,7 @@ python3 advance_secscan_ai.py --api
 #### 3. Web Dashboard Mode
 ```bash
 # Start web dashboard
-python3 advance_secscan_ai.py --web
+python3 advance_hacknova.py --web
 
 # Dashboard available at: http://localhost:8080
 ```
@@ -170,7 +170,7 @@ docker-compose up -d
 #### 5. Direct Assessment Mode
 ```bash
 # Run immediate assessment
-python3 advance_secscan_ai.py \
+python3 advance_hacknova.py \
   --target example.com \
   --scope "Web application and API" \
   --auth-key "ENTERPRISE-2025-AUTH" \
@@ -184,7 +184,7 @@ python3 advance_secscan_ai.py \
 
 ```mermaid
 graph TD
-    A[Load Balancer/Nginx] --> B[SecScan AI API Gateway]
+    A[Load Balancer/Nginx] --> B[HACKNOVA API Gateway]
     B --> C[Authentication Service]
     B --> D[AI Engine Service] 
     B --> E[Exploitation Service]
@@ -223,11 +223,11 @@ graph TD
 
 | Service | Purpose | Port | Technology |
 |---------|---------|------|------------|
-| **secscan_ai-app** | Main application | 8000, 8080 | Python/Flask |
-| **secscan_ai-soc** | SOC & SIEM Correlation Engine | - | Python / Log Normalizer |
-| **secscan_ai-worker** | Background tasks | - | Celery |
-| **secscan_ai-database** | Data persistence | 5432 | PostgreSQL 15 |
-| **secscan_ai-redis** | Cache & queues | 6379 | Redis 7 |
+| **hacknova-app** | Main application | 8000, 8080 | Python/Flask |
+| **hacknova-soc** | SOC & SIEM Correlation Engine | - | Python / Log Normalizer |
+| **hacknova-worker** | Background tasks | - | Celery |
+| **hacknova-database** | Data persistence | 5432 | PostgreSQL 15 |
+| **hacknova-redis** | Cache & queues | 6379 | Redis 7 |
 | **prometheus** | Metrics collection | 9090 | Prometheus |
 | **grafana** | Monitoring dashboard | 3000 | Grafana |
 | **elasticsearch** | Log aggregation | 9200 | Elasticsearch |
@@ -248,7 +248,7 @@ environment = production
 max_sessions = 100
 
 [database]
-url = postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai
+url = postgresql://hacknova:hacknova123@localhost:5432/hacknova
 pool_size = 20
 backup_enabled = true
 
@@ -285,11 +285,11 @@ Over 100 environment variables for enterprise deployment:
 
 ```bash
 # Core Services
-DATABASE_URL=postgresql://secscan_ai:secscan_ai123@localhost:5432/secscan_ai
+DATABASE_URL=postgresql://hacknova:hacknova123@localhost:5432/hacknova
 REDIS_URL=redis://localhost:6379/0
 
 # AI Configuration — Multi-Provider
-SECSCAN_AI_MODEL=gpt-5              # (SECSCAN_AI_MODEL also supported)               # Any model from ai_engine/model_registry.py
+HACKNOVA_MODEL=gpt-5              # (HACKNOVA_MODEL also supported)               # Any model from ai_engine/model_registry.py
 OPENAI_API_KEY=your_openai_api_key
 ANTHROPIC_API_KEY=your_anthropic_api_key
 GOOGLE_API_KEY=your_google_api_key
@@ -373,7 +373,7 @@ ELASTICSEARCH_ENDPOINT=http://localhost:9200
 ### 1. Command Line Interface (CLI)
 ```bash
 # Interactive enterprise mode
-python3 advance_secscan_ai.py
+python3 advance_hacknova.py
 
 # Available options:
 # 1. Full Enterprise Pentest (All 6 Phases)
@@ -391,7 +391,7 @@ python3 advance_secscan_ai.py
 ### 2. REST API Server
 ```bash
 # Start API server
-python3 advance_secscan_ai.py --api
+python3 advance_hacknova.py --api
 
 # Available endpoints:
 # GET  /api/health - Health check
@@ -405,7 +405,7 @@ python3 advance_secscan_ai.py --api
 ### 3. Web Dashboard
 ```bash
 # Start web dashboard
-python3 advance_secscan_ai.py --web
+python3 advance_hacknova.py --web
 
 # Features:
 # - Real-time assessment monitoring
@@ -419,7 +419,7 @@ python3 advance_secscan_ai.py --web
 ### 4. Voice Commands (Enterprise)
 ```bash
 # Voice command mode
-python3 advance_secscan_ai.py --voice
+python3 advance_hacknova.py --voice
 
 # Supported commands:
 # "Start enterprise assessment of example.com"
@@ -431,55 +431,55 @@ python3 advance_secscan_ai.py --voice
 ### 5. Threat Intelligence & Automated Attack Graph Chaining
 ```bash
 # Look up CVE threat intelligence & EPSS exploit probability
-python3 advance_secscan_ai.py --cve-lookup CVE-2021-44228
+python3 advance_hacknova.py --cve-lookup CVE-2021-44228
 
 # Synthesize automated multi-stage attack graph and identify defensive chokepoints
-python3 advance_secscan_ai.py --attack-chain
+python3 advance_hacknova.py --attack-chain
 
 # Export Mermaid flowchart syntax for visualization in documentation & PRs
-python3 advance_secscan_ai.py --mermaid
+python3 advance_hacknova.py --mermaid
 
 # Display MITRE D3FEND defensive countermeasure matrix
-python3 advance_secscan_ai.py --d3fend-matrix
+python3 advance_hacknova.py --d3fend-matrix
 
 # Export Detection-as-Code (Sigma Rules YAML & Splunk SPL queries)
-python3 advance_secscan_ai.py --export-sigma
+python3 advance_hacknova.py --export-sigma
 
 # Generate automated Ansible & Bash hardening playbooks
-python3 advance_secscan_ai.py --export-ansible
+python3 advance_hacknova.py --export-ansible
 ```
 
 ### 6. AI Red Teaming & LLM Security Assessment (OWASP LLM Top 10)
 ```bash
 # Execute automated adversarial red team probes against configured LLM model
-python3 advance_secscan_ai.py --llm-redteam
+python3 advance_hacknova.py --llm-redteam
 
 # Test specific model endpoint with custom route
-python3 advance_secscan_ai.py --llm-redteam --model gpt-4o --custom-route http://localhost:8080/v1
+python3 advance_hacknova.py --llm-redteam --model gpt-4o --custom-route http://localhost:8080/v1
 ```
 
 ### 7. API Security Assessment & OpenAPI Audit (OWASP API Top 10)
 ```bash
 # Execute API Security scan using benchmark microservice spec
-python3 advance_secscan_ai.py --api-scan
+python3 advance_hacknova.py --api-scan
 
 # Audit custom OpenAPI / Swagger spec file (JSON or YAML)
-python3 advance_secscan_ai.py --api-scan path/to/openapi.yaml
+python3 advance_hacknova.py --api-scan path/to/openapi.yaml
 ```
 
 ### 8. Cloud & Kubernetes Security Posture Management (CSPM / KSPM / IaC Audit)
 ```bash
 # Execute benchmark multi-cloud CSPM & KSPM assessment (AWS, Azure, GCP, Kubernetes)
-python3 advance_secscan_ai.py --cspm-scan
+python3 advance_hacknova.py --cspm-scan
 
 # Audit specific Terraform IaC directory or Kubernetes manifest path
-python3 advance_secscan_ai.py --cspm-scan path/to/terraform/
+python3 advance_hacknova.py --cspm-scan path/to/terraform/
 
 # Execute dedicated Kubernetes Security Posture Management (KSPM) audit
-python3 advance_secscan_ai.py --k8s-audit
+python3 advance_hacknova.py --k8s-audit
 
 # Export automated CLI and IaC hardening remediation script
-python3 advance_secscan_ai.py --cspm-scan --export-cloud-fix cloud_hardening.sh
+python3 advance_hacknova.py --cspm-scan --export-cloud-fix cloud_hardening.sh
 ```
 
 ## 🔐 Enterprise Security
@@ -523,10 +523,10 @@ python3 advance_secscan_ai.py --cspm-scan --export-cloud-fix cloud_hardening.sh
 ```bash
 # Access Grafana dashboard
 http://localhost:3000
-# Login: admin / secscan_ai123
+# Login: admin / hacknova123
 
 # Pre-configured dashboards:
-# - SecScan AI System Overview
+# - HACKNOVA System Overview
 # - Assessment Performance Metrics  
 # - Vulnerability Trend Analysis
 # - User Activity Dashboard
@@ -606,13 +606,13 @@ kubectl apply -f k8s/
 ### Multi-Cloud Deployment
 ```bash
 # Deploy to AWS
-python3 advance_secscan_ai.py --deploy aws
+python3 advance_hacknova.py --deploy aws
 
 # Deploy to Azure  
-python3 advance_secscan_ai.py --deploy azure
+python3 advance_hacknova.py --deploy azure
 
 # Deploy to GCP
-python3 advance_secscan_ai.py --deploy gcp
+python3 advance_hacknova.py --deploy gcp
 ```
 
 ## 🧪 Testing & Development
@@ -655,19 +655,19 @@ mypy .
 docker swarm init
 
 # Deploy stack
-docker stack deploy -c docker-compose.yml secscan_ai
+docker stack deploy -c docker-compose.yml hacknova
 ```
 
 ### Kubernetes
 ```bash
 # Create namespace
-kubectl create namespace secscan_ai
+kubectl create namespace hacknova
 
 # Deploy applications
 kubectl apply -f k8s/
 
 # Scale workers
-kubectl scale deployment secscan_ai-worker --replicas=10
+kubectl scale deployment hacknova-worker --replicas=10
 ```
 
 ### Cloud Platforms
@@ -675,20 +675,20 @@ kubectl scale deployment secscan_ai-worker --replicas=10
 #### AWS Deployment
 ```bash
 # ECS deployment
-aws ecs create-cluster --cluster-name secscan_ai
-aws ecs create-service --service-name secscan_ai-api
+aws ecs create-cluster --cluster-name hacknova
+aws ecs create-service --service-name hacknova-api
 ```
 
 #### Azure Deployment  
 ```bash
 # ACI deployment
-az container create --resource-group secscan_ai --name secscan_ai-api
+az container create --resource-group hacknova --name hacknova-api
 ```
 
 #### GCP Deployment
 ```bash
 # GKE deployment
-gcloud container clusters create secscan_ai-cluster
+gcloud container clusters create hacknova-cluster
 kubectl apply -f k8s/
 ```
 
@@ -700,7 +700,7 @@ kubectl apply -f k8s/
 ```bash
 # Check PostgreSQL status
 systemctl status postgresql
-docker logs secscan_ai-database
+docker logs hacknova-database
 
 # Test connection
 python3 -c "from database import get_db_manager; print(get_db_manager().test_connection())"
@@ -710,7 +710,7 @@ python3 -c "from database import get_db_manager; print(get_db_manager().test_con
 ```bash
 # Check Redis status
 redis-cli ping
-docker logs secscan_ai-redis
+docker logs hacknova-redis
 
 # Clear cache
 redis-cli FLUSHALL
@@ -735,7 +735,7 @@ ollama run llama3.3:70b
 celery -A performance.parallel_processor inspect active
 
 # Restart workers
-docker-compose restart secscan_ai-worker
+docker-compose restart hacknova-worker
 ```
 
 ### Performance Optimization
@@ -747,7 +747,7 @@ python3 -c "from database import optimize_database; optimize_database()"
 python3 -c "from performance.cache_manager import warm_cache; warm_cache()"
 
 # Worker scaling
-docker-compose up --scale secscan_ai-worker=10
+docker-compose up --scale hacknova-worker=10
 ```
 
 ## 📄 Enterprise License
@@ -763,8 +763,8 @@ This project is licensed under the MIT License with additional enterprise terms:
 
 ### Support Channels
 - **Enterprise Support**: yashabalam707@gmail.com
-- **Technical Issues**: https://github.com/najafdev/secscan_ai/issues
-- **Feature Requests**: https://github.com/najafdev/secscan_ai/discussions
+- **Technical Issues**: https://github.com/najafdev/hacknova/issues
+- **Feature Requests**: https://github.com/najafdev/hacknova/discussions
 - **Security Issues**: yashabalam707@gmail.com
 - **WhatsApp Business**: [Join Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 
@@ -833,10 +833,10 @@ This project is licensed under the MIT License with additional enterprise terms:
 - Security research community
 - Open source tool developers
 
-### 💰 Support SecScan AI Development
+### 💰 Support HACKNOVA Development
 Your support accelerates development, research infrastructure, and frontier AI model integrations:
 
-- **🪙 Official Solana Contract Address (CA)**: `7iymoWrLNFFmMSAKSNfSMCp7UmXfd3ZRL1t7W6c3pump`
+- **🪙 Official Solana Contract Address (CA)**: Soon Available
 - **🪙 Cryptocurrency Donations**: For transfers (**Solana, Bitcoin, Ethereum, USDT, etc.**), please email **[sai466769@gmail.com](mailto:sai466769@gmail.com)**
 - **📄 Full Sponsorship & Donation Guide**: See [DONATE.md](DONATE.md) for tier perks, transparency reports, and roadmap goals
 
@@ -844,7 +844,7 @@ Your support accelerates development, research infrastructure, and frontier AI m
 
 **⚠️ IMPORTANT LEGAL NOTICE**
 
-SecScan AI Enterprise is designed for authorized security testing only:
+HACKNOVA Enterprise is designed for authorized security testing only:
 
 - ✅ **Authorized Use**: Only use against systems you own or have explicit written permission
 - ✅ **Compliance**: Follow all applicable laws, regulations, and industry standards
@@ -860,13 +860,13 @@ SecScan AI Enterprise is designed for authorized security testing only:
 ---
 
 <div align="center">
-  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise" width="150" height="auto">
+  <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise" width="150" height="auto">
   
-  <h3>🚀 SecScan AI Enterprise - Transforming Cybersecurity Through AI 🚀</h3>
+  <h3>🚀 HACKNOVA Enterprise - Transforming Cybersecurity Through AI 🚀</h3>
   <p><em>Made with ❤️ by Yashab Alam for enterprise security teams worldwide</em></p>
   
   <p>
-    <a href="https://github.com/najafdev/secscan_ai">⭐ Star us on GitHub</a> |
+    <a href="https://github.com/najafdev/hacknova">⭐ Star us on GitHub</a> |
     <a href="DONATE.md">💰 Support Development</a> |
     <a href="#-enterprise-support">📞 Get Support</a> |
     <a href="#-contributors">🤝 Contribute</a> |

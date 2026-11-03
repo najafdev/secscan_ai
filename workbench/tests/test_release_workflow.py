@@ -19,8 +19,8 @@ WORKFLOW = (
     / "workbench-release-package.yml"
 )
 REVISION = "a" * 40
-BASENAME = "secscan_ai-evidence-workbench-" + REVISION
-REPOSITORY = "HostX0/SecScan AI"
+BASENAME = "hacknova-evidence-workbench-" + REVISION
+REPOSITORY = "HostX0/HACKNOVA"
 PROVENANCE = "https://slsa.dev/provenance/v1"
 SBOM = "https://cyclonedx.org/bom"
 
@@ -232,7 +232,7 @@ class ReleaseWorkflowTests(unittest.TestCase):
         self.assertEqual(calls, [])
 
     def test_wrong_revision_fails_before_verifier(self):
-        result, calls = self.replay(package="secscan_ai-evidence-workbench-" + "b" * 40)
+        result, calls = self.replay(package="hacknova-evidence-workbench-" + "b" * 40)
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(calls, [])
 

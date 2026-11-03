@@ -1,1 +1,1 @@
-# SecScan AI core module
+# HACKNOVA core module

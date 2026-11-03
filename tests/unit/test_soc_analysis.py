@@ -1,4 +1,4 @@
-# SecScan AI core module
+# HACKNOVA core module
 """
 Unit tests for Advanced SOC Analysis Engine
 """

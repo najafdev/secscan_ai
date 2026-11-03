@@ -3,7 +3,7 @@ import unittest
 from workbench.execution_receipts import normalize_execution_receipt
 
 DECL = {
-    "schema": "secscan_ai.execution-declaration/v1",
+    "schema": "hacknova.execution-declaration/v1",
     "adapter": {"id": "fake-safe", "version": "1"},
     "launcher": "native_python",
     "effect_level": "read_only",
@@ -19,7 +19,7 @@ DECL = {
 
 def payload(summary):
     return {
-        "schema": "secscan_ai.execution-receipt/v1",
+        "schema": "hacknova.execution-receipt/v1",
         "declaration": DECL,
         "request_summary": summary,
         "usage": {"objects_tested": 1, "network_requests": 0, "elapsed_ms": 1},

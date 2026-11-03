@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Database models for SecScan AI
+Database models for HACKNOVA
 SQLAlchemy ORM models for data persistence
 """
 

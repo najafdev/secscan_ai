@@ -1,13 +1,13 @@
-<!-- SecScan AI document -->
-# SecScan AI Project Summary
+<!-- HACKNOVA document -->
+# HACKNOVA Project Summary
 
 ## 🎯 Project Overview
-SecScan AI is a production-ready AI-powered penetration testing automation tool designed for Kali Linux. It implements the complete 6-phase penetration testing methodology with intelligent AI decision-making.
+HACKNOVA is a production-ready AI-powered penetration testing automation tool designed for Kali Linux. It implements the complete 6-phase penetration testing methodology with intelligent AI decision-making.
 
 ## 📁 Project Structure
 ```
-SecScan AI/
-├── advance_secscan_ai.py              # Main application (2,000+ lines)
+HACKNOVA/
+├── advance_hacknova.py              # Main application (2,000+ lines)
 ├── requirements.txt        # Python dependencies
 ├── install.sh             # Automated installation script
 ├── test_installation.py   # Installation validation
@@ -71,7 +71,7 @@ SecScan AI/
 3. **PentestingPhases**: Implements 6-phase methodology
 4. **VoiceInterface**: Speech recognition and TTS
 5. **WebDashboard**: Flask web interface
-6. **SecScan AI**: Main orchestrator class
+6. **HACKNOVA**: Main orchestrator class
 
 ### Key Technologies
 - **Python 3.8+**: Core language
@@ -91,23 +91,23 @@ SecScan AI/
 ### Quick Setup
 ```bash
 git clone <repository-url>
-cd SecScan AI
+cd HACKNOVA
 chmod +x install.sh
 ./install.sh
 ```
 
 ### Usage Modes
 ```bash
-./advance_secscan_ai.py                              # Interactive CLI
-./advance_secscan_ai.py --target example.com --scope "Web app" --auth-key "AUTH123"
-./advance_secscan_ai.py --web                        # Web dashboard
-./advance_secscan_ai.py --voice                      # Voice commands
+./advance_hacknova.py                              # Interactive CLI
+./advance_hacknova.py --target example.com --scope "Web app" --auth-key "AUTH123"
+./advance_hacknova.py --web                        # Web dashboard
+./advance_hacknova.py --voice                      # Voice commands
 ```
 
 ### Docker Deployment
 ```bash
-docker-compose up secscan_ai                 # Web dashboard
-docker-compose run secscan_ai-cli            # CLI mode
+docker-compose up hacknova                 # Web dashboard
+docker-compose run hacknova-cli            # CLI mode
 ```
 
 ## 🧪 Testing & Quality Assurance
@@ -232,7 +232,7 @@ docker-compose run secscan_ai-cli            # CLI mode
 
 ## 🎉 Conclusion
 
-SecScan AI represents a complete, production-ready AI-powered penetration testing solution that successfully combines:
+HACKNOVA represents a complete, production-ready AI-powered penetration testing solution that successfully combines:
 
 - **Advanced AI Integration** for intelligent decision-making
 - **Complete Pentesting Framework** following industry standards

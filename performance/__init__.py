@@ -1,8 +1,8 @@
-# SecScan AI core module
+# HACKNOVA core module
 """
 Performance and Scalability Module
 
-This module provides performance optimization and scalability features for SecScan AI,
+This module provides performance optimization and scalability features for HACKNOVA,
 including caching, parallel processing, load balancing, and performance monitoring.
 """
 

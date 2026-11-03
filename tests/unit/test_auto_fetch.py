@@ -1,4 +1,4 @@
-# SecScan AI core module
+# HACKNOVA core module
 """Unit tests for auto-fetching models across different AI providers."""
 
 from unittest.mock import MagicMock, patch

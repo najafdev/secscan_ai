@@ -1,4 +1,4 @@
-# SecScan AI core module
+# HACKNOVA core module
 """ToolManager command execution (no shell=True)."""
 
 import sys
@@ -8,7 +8,7 @@ import pytest
 
 @pytest.fixture
 def tool_manager():
-    from advance_secscan_ai import ToolManager
+    from advance_hacknova import ToolManager
 
     return ToolManager()
 

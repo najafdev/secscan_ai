@@ -1,4 +1,4 @@
-<!-- SecScan AI document -->
+<!-- HACKNOVA document -->
 # Pull Request
 
 ## 📝 Description
@@ -35,7 +35,7 @@
 **Test Configuration:**
 - OS: 
 - Python version: 
-- SecScan AI version: 
+- HACKNOVA version: 
 
 ## 📋 Checklist
 **Before submitting this PR, please check all applicable boxes:**

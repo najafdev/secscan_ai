@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Enterprise Reporting System for SecScan AI
+Enterprise Reporting System for HACKNOVA
 Dynamic report generation with analytics and trend analysis
 """
 

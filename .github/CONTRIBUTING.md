@@ -1,11 +1,11 @@
-<!-- SecScan AI document -->
+<!-- HACKNOVA document -->
 <div align="center">
-  <img src="../public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="250" height="auto">
+  <img src="../public/hacknova-logo.png" alt="HACKNOVA Enterprise Logo" width="250" height="auto">
 </div>
 
-# 🤝 Contributing to SecScan AI Enterprise
+# 🤝 Contributing to HACKNOVA Enterprise
 
-Thank you for your interest in contributing to **SecScan AI Enterprise**! This document provides guidelines for contributing to our AI-powered penetration testing platform.
+Thank you for your interest in contributing to **HACKNOVA Enterprise**! This document provides guidelines for contributing to our AI-powered penetration testing platform.
 
 ## 🚀 Quick Start for Contributors
 
@@ -18,8 +18,8 @@ Thank you for your interest in contributing to **SecScan AI Enterprise**! This d
 ### Development Setup
 ```bash
 # Fork and clone the repository
-git clone https://github.com/yourusername/secscan_ai.git
-cd SecScan AI
+git clone https://github.com/yourusername/hacknova.git
+cd HACKNOVA
 
 # Set up development environment
 chmod +x install.sh
@@ -33,8 +33,8 @@ git checkout -b feature/your-feature-name
 
 ### 1. 🐛 Bug Reports
 **Before submitting a bug report:**
-- Check existing [issues](https://github.com/najafdev/secscan_ai/issues)
-- Use the latest version of SecScan AI
+- Check existing [issues](https://github.com/najafdev/hacknova/issues)
+- Use the latest version of HACKNOVA
 - Test in a clean environment
 
 **When submitting:**
@@ -45,7 +45,7 @@ git checkout -b feature/your-feature-name
 
 ### 2. 💡 Feature Requests
 **For new features:**
-- Check [discussions](https://github.com/najafdev/secscan_ai/discussions)
+- Check [discussions](https://github.com/najafdev/hacknova/discussions)
 - Use the feature request template
 - Explain the use case and benefits
 - Consider security implications
@@ -76,7 +76,7 @@ git checkout -b feature/your-feature-name
 ### Vulnerability Reporting
 **For security issues:**
 - Email: yashabalam707@gmail.com
-- Subject: "[SECURITY] SecScan AI Vulnerability Report"
+- Subject: "[SECURITY] HACKNOVA Vulnerability Report"
 - Include detailed technical information
 - Allow time for responsible disclosure
 
@@ -90,13 +90,13 @@ git checkout -b feature/your-feature-name
 ## 💰 Financial Contributions
 
 ### Individual Supporters
-Support SecScan AI development through:
+Support HACKNOVA development through:
 - **Cryptocurrency**: See [DONATE.md](../DONATE.md) for details
 
 ### Corporate Sponsorship
 **For companies interested in sponsoring:**
 - **Email**: yashabalam707@gmail.com
-- **Subject**: "SecScan AI Enterprise Sponsorship Inquiry"
+- **Subject**: "HACKNOVA Enterprise Sponsorship Inquiry"
 - **Include**: Company info, sponsorship goals, budget range
 
 **Sponsorship Benefits:**
@@ -140,7 +140,7 @@ If applicable, add screenshots to help explain your problem.
 **Environment:**
  - OS: [e.g. Ubuntu 20.04]
  - Python Version: [e.g. 3.9]
- - SecScan AI Version: [e.g. 2.0.0]
+ - HACKNOVA Version: [e.g. 2.0.0]
 
 **Additional Context**
 Add any other context about the problem here.
@@ -273,7 +273,7 @@ Currently seeking translators for:
 ## 📞 Getting Help
 
 ### For Contributors
-- **Technical Questions**: [GitHub Discussions](https://github.com/najafdev/secscan_ai/discussions)
+- **Technical Questions**: [GitHub Discussions](https://github.com/najafdev/hacknova/discussions)
 - **Development Help**: yashabalam707@gmail.com
 - **Real-time Chat**: [WhatsApp Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 
@@ -287,6 +287,6 @@ Currently seeking translators for:
 
 ---
 
-**Thank you for contributing to SecScan AI Enterprise! Together, we're building the future of AI-powered cybersecurity.**
+**Thank you for contributing to HACKNOVA Enterprise! Together, we're building the future of AI-powered cybersecurity.**
 
-*Made with ❤️ by the SecScan AI Enterprise community*
+*Made with ❤️ by the HACKNOVA Enterprise community*

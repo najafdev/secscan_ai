@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Database manager for SecScan AI
+Database manager for HACKNOVA
 Handles database connections, migrations, and operations
 """
 
@@ -23,7 +23,7 @@ class DatabaseManager:
     def __init__(self, database_url: str = None):
         if database_url is None:
             # Default to PostgreSQL, fallback to SQLite for development
-            database_url = os.getenv('DATABASE_URL', 'sqlite:///secscan_ai.db')
+            database_url = os.getenv('DATABASE_URL', 'sqlite:///hacknova.db')
         
         self.database_url = database_url
         self.engine = create_engine(database_url, echo=False)

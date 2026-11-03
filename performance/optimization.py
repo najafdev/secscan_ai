@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Optimization Module for SecScan AI Enterprise
+Optimization Module for HACKNOVA Enterprise
 Query optimization and resource optimization utilities
 """
 

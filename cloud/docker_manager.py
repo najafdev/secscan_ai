@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Docker Container Management for SecScan AI
+Docker Container Management for HACKNOVA
 Handles containerization, image building, and container orchestration
 """
 
@@ -52,7 +52,7 @@ class ServiceDefinition:
 
 
 class DockerManager:
-    """Manages Docker containers and images for SecScan AI services"""
+    """Manages Docker containers and images for HACKNOVA services"""
 
     def __init__(self):
         self.logger = logging.getLogger(__name__)
@@ -477,7 +477,7 @@ class DockerManager:
         """Generate Dockerfile for API service"""
         return f"""FROM python:3.11-slim
 
-LABEL maintainer="SecScan AI Team"
+LABEL maintainer="HACKNOVA Team"
 LABEL service_type="api"
 
 # Set working directory
@@ -499,9 +499,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create non-root user
-RUN useradd --create-home --shell /bin/bash secscan_ai && \\
-    chown -R secscan_ai:secscan_ai /app
-USER secscan_ai
+RUN useradd --create-home --shell /bin/bash hacknova && \\
+    chown -R hacknova:hacknova /app
+USER hacknova
 
 # Expose port
 EXPOSE {config.get('port', 8000)}
@@ -518,7 +518,7 @@ CMD ["python", "api_server.py"]
         """Generate Dockerfile for worker service"""
         return f"""FROM python:3.11-slim
 
-LABEL maintainer="SecScan AI Team"
+LABEL maintainer="HACKNOVA Team"
 LABEL service_type="worker"
 
 # Set working directory
@@ -550,10 +550,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create non-root user (but allow sudo for tools)
-RUN useradd --create-home --shell /bin/bash --groups sudo secscan_ai && \\
-    echo "secscan_ai ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \\
-    chown -R secscan_ai:secscan_ai /app
-USER secscan_ai
+RUN useradd --create-home --shell /bin/bash --groups sudo hacknova && \\
+    echo "hacknova ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \\
+    chown -R hacknova:hacknova /app
+USER hacknova
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \\
@@ -570,13 +570,13 @@ CMD ["python", "worker.py"]
         if db_type == "postgresql":
             return f"""FROM postgres:15-alpine
 
-LABEL maintainer="SecScan AI Team"
+LABEL maintainer="HACKNOVA Team"
 LABEL service_type="database"
 
 # Set environment variables
-ENV POSTGRES_DB={config.get('db_name', 'secscan_ai')}
-ENV POSTGRES_USER={config.get('db_user', 'secscan_ai')}
-ENV POSTGRES_PASSWORD={config.get('db_password', 'secscan_ai123')}
+ENV POSTGRES_DB={config.get('db_name', 'hacknova')}
+ENV POSTGRES_USER={config.get('db_user', 'hacknova')}
+ENV POSTGRES_PASSWORD={config.get('db_password', 'hacknova123')}
 
 # Copy initialization scripts
 COPY init.sql /docker-entrypoint-initdb.d/
@@ -610,7 +610,7 @@ RUN npm run build
 # Production stage
 FROM nginx:alpine
 
-LABEL maintainer="SecScan AI Team"
+LABEL maintainer="HACKNOVA Team"
 LABEL service_type="web"
 
 # Copy built application
@@ -634,7 +634,7 @@ CMD ["nginx", "-g", "daemon off;"]
         """Generate base Dockerfile"""
         return f"""FROM python:3.11-slim
 
-LABEL maintainer="SecScan AI Team"
+LABEL maintainer="HACKNOVA Team"
 
 # Set working directory
 WORKDIR /app
@@ -655,9 +655,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create non-root user
-RUN useradd --create-home --shell /bin/bash secscan_ai && \\
-    chown -R secscan_ai:secscan_ai /app
-USER secscan_ai
+RUN useradd --create-home --shell /bin/bash hacknova && \\
+    chown -R hacknova:hacknova /app
+USER hacknova
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \\
@@ -673,7 +673,7 @@ CMD ["python", "main.py"]
         compose_config = {
             "version": "3.8",
             "services": {},
-            "networks": {"secscan_ai-network": {"driver": "bridge"}},
+            "networks": {"hacknova-network": {"driver": "bridge"}},
             "volumes": {},
         }
 
@@ -684,7 +684,7 @@ CMD ["python", "main.py"]
                 "image": config.image,
                 "container_name": config.name,
                 "restart": config.restart_policy,
-                "networks": ["secscan_ai-network"],
+                "networks": ["hacknova-network"],
             }
 
             # Add ports
@@ -744,7 +744,7 @@ CMD ["python", "main.py"]
 
         return yaml.dump(compose_config, default_flow_style=False, sort_keys=False)
 
-    def deploy_stack(self, compose_file: str, stack_name: str = "secscan_ai") -> bool:
+    def deploy_stack(self, compose_file: str, stack_name: str = "hacknova") -> bool:
         """Deploy a Docker stack using docker-compose"""
         try:
             # Write compose file to temporary location

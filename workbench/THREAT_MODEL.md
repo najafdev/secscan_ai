@@ -1,6 +1,6 @@
 # Evidence Workbench threat model
 
-Status: review-preview threat model for the isolated `workbench/` package. This is not a security certification of the legacy SecScan AI application.
+Status: review-preview threat model for the isolated `workbench/` package. This is not a security certification of the legacy HACKNOVA application.
 
 ## Security objectives
 

@@ -1,4 +1,4 @@
-# SecScan AI configuration file
+# HACKNOVA configuration file
 FROM kalilinux/kali-rolling
 
 # Set environment variables
@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Create working directory
-WORKDIR /secscan_ai
+WORKDIR /hacknova
 
 # Copy requirements first for better caching
 COPY requirements.txt .
@@ -35,14 +35,14 @@ COPY . .
 # Preserve the full host installer while using its deterministic container mode here.
 # Container builds must not upgrade the base distribution, run a background model
 # daemon, fetch a model, or create host-style global command links.
-RUN chmod +x install.sh && SECSCAN_AI_INSTALL_CONTEXT=container ./install.sh
+RUN chmod +x install.sh && HACKNOVA_INSTALL_CONTEXT=container ./install.sh
 
 # Keep both the historical external report path and the application-local runtime dirs.
-RUN mkdir -p /reports /secscan_ai/reports /secscan_ai/logs /secscan_ai/templates /secscan_ai/database/migrations \
-    && chmod 755 /reports /secscan_ai/reports /secscan_ai/logs /secscan_ai/templates /secscan_ai/database/migrations
+RUN mkdir -p /reports /hacknova/reports /hacknova/logs /hacknova/templates /hacknova/database/migrations \
+    && chmod 755 /reports /hacknova/reports /hacknova/logs /hacknova/templates /hacknova/database/migrations
 
 # Expose web dashboard port
 EXPOSE 5000
 
 # Set entry point
-ENTRYPOINT ["python3", "advance_secscan_ai.py"]
+ENTRYPOINT ["python3", "advance_hacknova.py"]

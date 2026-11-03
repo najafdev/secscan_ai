@@ -1,5 +1,5 @@
-# SecScan AI core module
-"""Model registry and provider abstraction layer for SecScan AI.
+# HACKNOVA core module
+"""Model registry and provider abstraction layer for HACKNOVA.
 
 Provides a centralized catalog of supported AI models across multiple
 providers, along with helper functions for querying model metadata,

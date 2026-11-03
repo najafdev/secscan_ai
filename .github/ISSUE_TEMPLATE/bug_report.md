@@ -1,7 +1,7 @@
-<!-- SecScan AI document -->
+<!-- HACKNOVA document -->
 ---
 name: 🐛 Bug Report
-about: Create a report to help us improve SecScan AI Enterprise
+about: Create a report to help us improve HACKNOVA Enterprise
 title: '[BUG] Brief description of the issue'
 labels: 'bug, needs-triage'
 assignees: 'yashab-cyber'
@@ -34,7 +34,7 @@ Paste error logs here
 **Please complete the following information:**
 - **OS**: [e.g. Ubuntu 20.04, Windows 10, macOS 12.0]
 - **Python Version**: [e.g. 3.9.7]
-- **SecScan AI Version**: [e.g. 2.0.0]
+- **HACKNOVA Version**: [e.g. 2.0.0]
 - **Installation Method**: [e.g. Docker, pip, source]
 - **Browser** (if web interface): [e.g. Chrome 91, Firefox 89]
 

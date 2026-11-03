@@ -1,5 +1,5 @@
-# SecScan AI YAML configuration
-# SecScan AI Prometheus scrape configuration
+# HACKNOVA YAML configuration
+# HACKNOVA Prometheus scrape configuration
 global:
   scrape_interval: 15s
   evaluation_interval: 15s
@@ -10,7 +10,7 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  # SecScan AI application metrics
-  - job_name: 'secscan_ai-app'
+  # HACKNOVA application metrics
+  - job_name: 'hacknova-app'
     static_configs:
-      - targets: ['secscan_ai-app:8000']
+      - targets: ['hacknova-app:8000']

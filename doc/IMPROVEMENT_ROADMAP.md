@@ -1,5 +1,5 @@
-<!-- SecScan AI document -->
-# 🔧 SecScan AI Improvement Roadmap
+<!-- HACKNOVA document -->
+# 🔧 HACKNOVA Improvement Roadmap
 
 ## 1. 🗄️ Database Integration & Data Persistence
 
@@ -270,33 +270,33 @@ class RealTimeDashboard:
 version: '3.8'
 services:
   api-gateway:
-    image: secscan_ai/api-gateway
+    image: hacknova/api-gateway
     ports: ["8080:8080"]
     
   ai-service:
-    image: secscan_ai/ai-service
+    image: hacknova/ai-service
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - MODEL_PATH=/models/custom-pentest-model
     
   scanning-service:
-    image: secscan_ai/scanning-service
+    image: hacknova/scanning-service
     privileged: true
     volumes:
       - /usr/share/wordlists:/wordlists
     
   exploitation-service:
-    image: secscan_ai/exploitation-service
+    image: hacknova/exploitation-service
     privileged: true
     
   reporting-service:
-    image: secscan_ai/reporting-service
+    image: hacknova/reporting-service
     
   database:
     image: postgres:14
     environment:
-      - POSTGRES_DB=secscan_ai
-      - POSTGRES_USER=secscan_ai
+      - POSTGRES_DB=hacknova
+      - POSTGRES_USER=hacknova
       - POSTGRES_PASSWORD=${DB_PASSWORD}
 ```
 
@@ -520,4 +520,4 @@ const Dashboard: React.FC<DashboardProps> = ({ sessionId }) => {
 - 📈 **Predictive vulnerability management**
 - 🌍 **Global threat intelligence** integration
 
-This roadmap transforms SecScan AI from a standalone tool into an enterprise-grade platform capable of supporting large-scale penetration testing operations.
+This roadmap transforms HACKNOVA from a standalone tool into an enterprise-grade platform capable of supporting large-scale penetration testing operations.

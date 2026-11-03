@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Compliance Framework for SecScan AI
+Compliance Framework for HACKNOVA
 Maps findings to various compliance frameworks and generates reports
 """
 

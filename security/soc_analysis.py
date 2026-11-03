@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Advanced SOC (Security Operations Center) Analysis Engine for SecScan AI
+Advanced SOC (Security Operations Center) Analysis Engine for HACKNOVA
 
 Provides enterprise-grade SOC capabilities:
 - Multi-format log ingestion & normalization (syslog, JSON, CEF, CSV, Windows Event)
@@ -2255,7 +2255,7 @@ class SIEMConnector:
         raise NotImplementedError
 
     def forward_alert(self, alert: SOCAlert) -> Tuple[bool, str]:
-        """Send a correlated SecScan AI SOC alert to the SIEM index/receiver."""
+        """Send a correlated HACKNOVA SOC alert to the SIEM index/receiver."""
         raise NotImplementedError
 
 
@@ -2364,7 +2364,7 @@ class SplunkConnector(SIEMConnector):
                     "description": alert.description,
                     "recommended_actions": alert.recommended_actions
                 },
-                "sourcetype": "secscan_ai:soc:alert"
+                "sourcetype": "hacknova:soc:alert"
             }
             response = requests.post(
                 f"{self.url}/services/collector/event",
@@ -2476,14 +2476,14 @@ class QRadarConnector(SIEMConnector):
             }
             payload = {
                 "alert_id": alert.alert_id,
-                "title": f"SecScan AI-SOC: {alert.title}",
+                "title": f"HACKNOVA-SOC: {alert.title}",
                 "severity": alert.severity.value,
                 "category": alert.category,
                 "score": alert.score,
                 "description": alert.description,
                 "mitre_techniques": [m.technique_id for m in alert.mitre_mappings],
                 "recommended_actions": alert.recommended_actions,
-                "generator": "SecScan AI"
+                "generator": "HACKNOVA"
             }
             # Custom HTTP receiver endpoint for QRadar
             response = requests.post(
@@ -2591,14 +2591,14 @@ class ElasticsearchConnector(SIEMConnector):
                 "@timestamp": alert.timestamp.isoformat() if alert.timestamp else None
             }
             response = requests.post(
-                f"{self.url}/secscan_ai-soc-alerts/_doc",
+                f"{self.url}/hacknova-soc-alerts/_doc",
                 headers={k: v for k, v in headers.items() if v is not None},
                 json=payload,
                 verify=self.verify_ssl,
                 timeout=5
             )
             if response.status_code in (200, 201):
-                return True, "Alert posted to Elasticsearch index 'secscan_ai-soc-alerts'."
+                return True, "Alert posted to Elasticsearch index 'hacknova-soc-alerts'."
             return False, f"Elasticsearch rejected alert: Status {response.status_code}"
         except Exception as e:
             return False, f"Elasticsearch forward failed: {str(e)}"
@@ -2631,7 +2631,7 @@ class WebhookConnector(SIEMConnector):
         try:
             # Format custom payload based on webhook endpoint target (detect Slack/Teams)
             payload = {
-                "text": f"🚨 *SecScan AI SOC Alert: {alert.title}* ({alert.severity.value.upper()})\n"
+                "text": f"🚨 *HACKNOVA SOC Alert: {alert.title}* ({alert.severity.value.upper()})\n"
                         f"Score: {alert.score:.1f}/100 | Category: {alert.category}\n"
                         f"Description: {alert.description}\n"
                         f"Recommended Actions:\n" + "\n".join(f"- {a}" for a in alert.recommended_actions[:3])

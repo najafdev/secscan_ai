@@ -1,4 +1,4 @@
-# SecScan AI core module
+# HACKNOVA core module
 """Shared pytest fixtures."""
 
 import sys

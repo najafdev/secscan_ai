@@ -1,9 +1,9 @@
-<!-- SecScan AI document -->
+<!-- HACKNOVA document -->
 <div align="center">
-  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise Logo" width="250" height="auto">
+  <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise Logo" width="250" height="auto">
 </div>
 
-# 💰 Support SecScan AI Enterprise Development
+# 💰 Support HACKNOVA Enterprise Development
 
 ![Version](https://img.shields.io/badge/version-2026.10.22.1-green.svg)
 ![Donations](https://img.shields.io/badge/donations-welcome-brightgreen.svg)
@@ -13,11 +13,11 @@
 
 ## 🙏 Why Your Support Matters
 
-**SecScan AI Enterprise** is an advanced open-source cybersecurity platform created by **Yashab Alam**, dedicated to revolutionizing penetration testing with AI-powered automation, intelligent exploit generation, and enterprise-grade security assessments. Your donations help us:
+**HACKNOVA Enterprise** is an advanced open-source cybersecurity platform created by **Yashab Alam**, dedicated to revolutionizing penetration testing with AI-powered automation, intelligent exploit generation, and enterprise-grade security assessments. Your donations help us:
 
 - 🚀 **Accelerate Development** - AI-powered vulnerability assessment, intelligent exploitation automation, and advanced enterprise penetration testing
 - 🔒 **Enhanced Security** - Machine learning-driven threat detection, automated payload generation, and advanced evasion techniques
-- 📚 **Educational Resources** - SecScan AI tutorials, AI penetration testing guides, and ethical hacking training materials
+- 📚 **Educational Resources** - HACKNOVA tutorials, AI penetration testing guides, and ethical hacking training materials
 - 🌍 **Community Growth** - Supporting contributors and maintaining cybersecurity research infrastructure
 - 🛠️ **Cross-Platform Support** - Ensuring compatibility across Linux, Windows, and macOS for comprehensive testing
 - 💻 **Professional Tools** - Advanced web interface, CLI automation, and AI-driven exploitation frameworks
@@ -26,7 +26,7 @@
 ## 💳 How to Donate & Sponsor
 
 ### 🪙 Official Solana Contract Address (CA)
-- **Verified Solana CA:** `7iymoWrLNFFmMSAKSNfSMCp7UmXfd3ZRL1t7W6c3pump`
+- **Verified Solana CA:** Soon Available
 
 ### 🪙 Cryptocurrency Transfer
 *Secure, direct, and borderless support for cybersecurity & AI research*
@@ -34,7 +34,7 @@
 To make a cryptocurrency donation (**Solana, Bitcoin, Ethereum, USDT, USDC, or any other cryptocurrency**), please send an email to:
 
 📧 **Email:** [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com)  
-📌 **Subject:** `SecScan AI Crypto Donation Request`
+📌 **Subject:** `HACKNOVA Crypto Donation Request`
 
 > **🔒 Security Notice:**
 > Specific cryptocurrency wallet addresses are provided strictly via email inquiry (**yashabalam707@gmail.com**) to prevent address tampering, phishing, and spoofing, and to provide you with the correct verified network address for your transfer.
@@ -168,7 +168,7 @@ All payment methods are verified and legitimate. For security concerns:
 
 ### 💬 **Donation Questions**
 - **Email:** yashabalam707@gmail.com
-- **GitHub Issues:** [SecScan AI Repository](https://github.com/najafdev/secscan_ai)
+- **GitHub Issues:** [HACKNOVA Repository](https://github.com/najafdev/hacknova)
 - **WhatsApp:** [Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 - **Discord:** [Discussion Server](https://discord.gg/eXPjM3Hxwb)
 
@@ -214,7 +214,7 @@ All payment methods are verified and legitimate. For security concerns:
 
 ### 📋 **Terms & Conditions**
 - Donations are voluntary and non-refundable (except within 30-day period)
-- SecScan AI Enterprise project reserves the right to allocate funds as needed for project development
+- HACKNOVA Enterprise project reserves the right to allocate funds as needed for project development
 - Contributors may be recognized publicly unless anonymity is requested
 - Tax implications vary by jurisdiction - consult your tax advisor
 
@@ -226,15 +226,15 @@ All payment methods are verified and legitimate. For security concerns:
 
 ## 🎉 **Thank You!**
 
-Every contribution, no matter the size, helps make SecScan AI Enterprise better for everyone. Your support directly impacts:
+Every contribution, no matter the size, helps make HACKNOVA Enterprise better for everyone. Your support directly impacts:
 
-- 🔒 **Security professionals** conducting advanced penetration testing with SecScan AI Enterprise
-- 🎓 **Students** learning AI and cybersecurity through SecScan AI platform
+- 🔒 **Security professionals** conducting advanced penetration testing with HACKNOVA Enterprise
+- 🎓 **Students** learning AI and cybersecurity through HACKNOVA platform
 - 🏢 **Organizations** improving their security testing capabilities with enterprise features
 - 🌍 **The global open-source security community**
-- 🧠 **AI researchers** advancing exploitation automation through SecScan AI
+- 🧠 **AI researchers** advancing exploitation automation through HACKNOVA
 
-**Together, we're building the future of AI-powered penetration testing with SecScan AI!**
+**Together, we're building the future of AI-powered penetration testing with HACKNOVA!**
 
 ---
 
@@ -247,15 +247,15 @@ Every contribution, no matter the size, helps make SecScan AI Enterprise better 
 | **Total Raised** | $0 (Starting Goal) |
 | **Active Supporters** | 0 |
 | **Countries Represented** | 0 |
-| **GitHub Stars** | ⭐ [Check Live Count](https://github.com/najafdev/secscan_ai) |
+| **GitHub Stars** | ⭐ [Check Live Count](https://github.com/najafdev/hacknova) |
 
 ---
 
 <div align="center">
-  <img src="public/secscan_ai-logo.png" alt="SecScan AI Enterprise" width="150" height="auto">
+  <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise" width="150" height="auto">
   
-  <h3>**Made with ❤️ by Yashab Alam and the SecScan AI development team**</h3>
-  <p><strong>Repository:</strong> <a href="https://github.com/najafdev/secscan_ai">github.com/najafdev/secscan_ai</a></p>
+  <h3>**Made with ❤️ by Yashab Alam and the HACKNOVA development team**</h3>
+  <p><strong>Repository:</strong> <a href="https://github.com/najafdev/hacknova">github.com/najafdev/hacknova</a></p>
   
   <p><em>Last updated: September 2026</em></p>
 </div>

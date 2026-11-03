@@ -10,7 +10,7 @@ import hashlib
 import json
 from typing import Any
 
-_SYNTHETIC_PREFIX = "SECSCAN_AI-SYNTHETIC-"
+_SYNTHETIC_PREFIX = "HACKNOVA-SYNTHETIC-"
 
 
 def _canonical(value: Any) -> bytes:

@@ -71,7 +71,7 @@ jobs:
     timeout-minutes: 12
     env:
       SEMGREP_IMAGE: semgrep/semgrep@sha256:d1825c2c72110b5bfbf0602ff68f7f117322597a7c33037a79dba9f897f5f1f0
-      SECSCAN_AI_RUN_REAL_SEMGREP: '1'
+      HACKNOVA_RUN_REAL_SEMGREP: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -95,7 +95,7 @@ jobs:
           python - <<'PY'
           import json, os
           document = {
-              "schema": "secscan_ai.scanner-validation/v1",
+              "schema": "hacknova.scanner-validation/v1",
               "checked_out_revision": os.environ["GITHUB_SHA"],
               "adapter": "semgrep-project-local",
               "tool": "semgrep-ce",
@@ -129,10 +129,10 @@ jobs:
     timeout-minutes: 15
     env:
       OLLAMA_IMAGE: ollama/ollama:0.34.2
-      SECSCAN_AI_LIVE_OLLAMA_MODEL: smollm2:135m-instruct-q5_K_M
-      SECSCAN_AI_LIVE_OLLAMA_DIGEST_PREFIX: a703ae7fccb0
-      SECSCAN_AI_LIVE_OLLAMA_DEADLINE_SECONDS: '60'
-      SECSCAN_AI_LIVE_OLLAMA_EVIDENCE: _live_model_review/live-model-validation.json
+      HACKNOVA_LIVE_OLLAMA_MODEL: smollm2:135m-instruct-q5_K_M
+      HACKNOVA_LIVE_OLLAMA_DIGEST_PREFIX: a703ae7fccb0
+      HACKNOVA_LIVE_OLLAMA_DEADLINE_SECONDS: '60'
+      HACKNOVA_LIVE_OLLAMA_EVIDENCE: _live_model_review/live-model-validation.json
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -145,46 +145,46 @@ jobs:
           mkdir -p _live_model_review
           docker pull "$OLLAMA_IMAGE"
           docker image inspect "$OLLAMA_IMAGE" --format '{{index .RepoDigests 0}}' | tee _live_model_review/ollama-runtime-image.txt
-          docker volume create secscan_ai-ollama-models >/dev/null
-          docker run -d --name secscan_ai-ollama-seed \
+          docker volume create hacknova-ollama-models >/dev/null
+          docker run -d --name hacknova-ollama-seed \
             -e OLLAMA_HOST=0.0.0.0:11434 \
-            -v secscan_ai-ollama-models:/root/.ollama \
+            -v hacknova-ollama-models:/root/.ollama \
             "$OLLAMA_IMAGE" serve >/dev/null
           for attempt in $(seq 1 60); do
-            if docker exec secscan_ai-ollama-seed ollama list >/dev/null 2>&1; then break; fi
-            if [ "$attempt" = 60 ]; then docker logs secscan_ai-ollama-seed; exit 1; fi
+            if docker exec hacknova-ollama-seed ollama list >/dev/null 2>&1; then break; fi
+            if [ "$attempt" = 60 ]; then docker logs hacknova-ollama-seed; exit 1; fi
             sleep 1
           done
-          docker exec secscan_ai-ollama-seed ollama pull "$SECSCAN_AI_LIVE_OLLAMA_MODEL"
-          docker exec secscan_ai-ollama-seed ollama list | tee _live_model_review/preloaded-models.txt
-          docker rm -f secscan_ai-ollama-seed >/dev/null
+          docker exec hacknova-ollama-seed ollama pull "$HACKNOVA_LIVE_OLLAMA_MODEL"
+          docker exec hacknova-ollama-seed ollama list | tee _live_model_review/preloaded-models.txt
+          docker rm -f hacknova-ollama-seed >/dev/null
       - name: Restart preloaded daemon on an internal-only Docker network
         shell: bash
         run: |
           set -euo pipefail
-          docker network create --internal secscan_ai-ollama-internal >/dev/null
-          docker run -d --name secscan_ai-ollama-live \
-            --network secscan_ai-ollama-internal \
+          docker network create --internal hacknova-ollama-internal >/dev/null
+          docker run -d --name hacknova-ollama-live \
+            --network hacknova-ollama-internal \
             -e OLLAMA_HOST=0.0.0.0:11434 \
             -e OLLAMA_NO_CLOUD=1 \
-            -v secscan_ai-ollama-models:/root/.ollama \
+            -v hacknova-ollama-models:/root/.ollama \
             "$OLLAMA_IMAGE" serve >/dev/null
-          docker network inspect secscan_ai-ollama-internal --format '{{.Internal}}' | grep -qx true
+          docker network inspect hacknova-ollama-internal --format '{{.Internal}}' | grep -qx true
           for attempt in $(seq 1 60); do
-            if docker exec secscan_ai-ollama-live ollama list >/dev/null 2>&1; then break; fi
-            if [ "$attempt" = 60 ]; then docker logs secscan_ai-ollama-live; exit 1; fi
+            if docker exec hacknova-ollama-live ollama list >/dev/null 2>&1; then break; fi
+            if [ "$attempt" = 60 ]; then docker logs hacknova-ollama-live; exit 1; fi
             sleep 1
           done
-          docker exec secscan_ai-ollama-live ollama list | tee _live_model_review/isolated-models.txt
-          SECSCAN_AI_LIVE_OLLAMA_UPSTREAM="$(docker inspect secscan_ai-ollama-live --format '{{with index .NetworkSettings.Networks "secscan_ai-ollama-internal"}}{{.IPAddress}}{{end}}')"
-          export SECSCAN_AI_LIVE_OLLAMA_UPSTREAM
+          docker exec hacknova-ollama-live ollama list | tee _live_model_review/isolated-models.txt
+          HACKNOVA_LIVE_OLLAMA_UPSTREAM="$(docker inspect hacknova-ollama-live --format '{{with index .NetworkSettings.Networks "hacknova-ollama-internal"}}{{.IPAddress}}{{end}}')"
+          export HACKNOVA_LIVE_OLLAMA_UPSTREAM
           python - <<'PY'
           import ipaddress, os
-          address = ipaddress.ip_address(os.environ['SECSCAN_AI_LIVE_OLLAMA_UPSTREAM'])
+          address = ipaddress.ip_address(os.environ['HACKNOVA_LIVE_OLLAMA_UPSTREAM'])
           assert address.version == 4 and address.is_private and not address.is_multicast and not address.is_unspecified
           PY
-          echo "SECSCAN_AI_LIVE_OLLAMA_UPSTREAM=$SECSCAN_AI_LIVE_OLLAMA_UPSTREAM" >> "$GITHUB_ENV"
-          docker inspect secscan_ai-ollama-live --format '{{json .NetworkSettings.Networks}}' > _live_model_review/container-networks.json
+          echo "HACKNOVA_LIVE_OLLAMA_UPSTREAM=$HACKNOVA_LIVE_OLLAMA_UPSTREAM" >> "$GITHUB_ENV"
+          docker inspect hacknova-ollama-live --format '{{json .NetworkSettings.Networks}}' > _live_model_review/container-networks.json
       - name: Run real assessment-data-free workbench inference compatibility probe
         shell: bash
         run: |
@@ -203,9 +203,9 @@ jobs:
         if: always()
         shell: bash
         run: |
-          docker rm -f secscan_ai-ollama-live secscan_ai-ollama-seed >/dev/null 2>&1 || true
-          docker network rm secscan_ai-ollama-internal >/dev/null 2>&1 || true
-          docker volume rm secscan_ai-ollama-models >/dev/null 2>&1 || true
+          docker rm -f hacknova-ollama-live hacknova-ollama-seed >/dev/null 2>&1 || true
+          docker network rm hacknova-ollama-internal >/dev/null 2>&1 || true
+          docker volume rm hacknova-ollama-models >/dev/null 2>&1 || true
 
   browser-e2e:
     runs-on: ubuntu-latest
@@ -285,7 +285,7 @@ jobs:
           }
           passed = all(value == "success" for value in results.values())
           document = {
-              "schema": "secscan_ai.ci-validation/v1",
+              "schema": "hacknova.ci-validation/v1",
               "checked_out_revision": os.environ["GITHUB_SHA"],
               "workflow": "Evidence Workbench",
               "event": os.environ["GITHUB_EVENT_NAME"],

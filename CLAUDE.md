@@ -1,24 +1,24 @@
-<!-- SecScan AI document -->
+<!-- HACKNOVA document -->
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## What this is
 
-SecScan AI is an AI-powered penetration-testing automation platform (Python). It is **authorized-use security tooling**: it orchestrates real offensive tools (nmap, sqlmap, hydra, metasploit, etc.) driven by an LLM through a structured 6-phase pentest methodology. Treat changes here as security-sensitive.
+HACKNOVA is an AI-powered penetration-testing automation platform (Python). It is **authorized-use security tooling**: it orchestrates real offensive tools (nmap, sqlmap, hydra, metasploit, etc.) driven by an LLM through a structured 6-phase pentest methodology. Treat changes here as security-sensitive.
 
 ## Two entry points — they are separate, not layered
 
 There are **two independent CLI applications** that do not import each other:
 
-- **`secscan_ai.py`** / **`secscan_ai.py`** (v1) — self-contained single file. Classes: `SecScan AI` / `SecScan AI`, `AIEngine`, `ToolManager`, `PentestingPhases`, `VoiceInterface`, `WebDashboard`. This is what the `ci.yml` workflow imports/tests and what `install.sh` symlinks to `/usr/local/bin/secscan_ai`.
-- **`advance_secscan_ai.py`** / **`advance_secscan_ai.py`** (v2, "Enterprise") — the actively-developed version. Classes: `EnterpriseSecScanAI` / `EnterpriseSecScanAI`, `EnterpriseToolManager`, `EnterprisePentestingPhases`, etc. Unlike v1, it depends on the seven internal packages (below). `docker-compose`, the README deployment instructions, and `enterprise-ci.yml` target v2.
+- **`hacknova.py`** / **`hacknova.py`** (v1) — self-contained single file. Classes: `HACKNOVA` / `HACKNOVA`, `AIEngine`, `ToolManager`, `PentestingPhases`, `VoiceInterface`, `WebDashboard`. This is what the `ci.yml` workflow imports/tests and what `install.sh` symlinks to `/usr/local/bin/hacknova`.
+- **`advance_hacknova.py`** / **`advance_hacknova.py`** (v2, "Enterprise") — the actively-developed version. Classes: `EnterpriseHackNova` / `EnterpriseHackNova`, `EnterpriseToolManager`, `EnterprisePentestingPhases`, etc. Unlike v1, it depends on the seven internal packages (below). `docker-compose`, the README deployment instructions, and `enterprise-ci.yml` target v2.
 
 When fixing a bug, determine which entry point the user means — logic is often duplicated across both files (each is ~44 KB). A change in one does **not** propagate to the other.
 
 ## Architecture (v2)
 
-`advance_secscan_ai.py` wires together seven internal packages, each exposing a factory getter via its `__init__.py`. Use the getters rather than constructing classes directly:
+`advance_hacknova.py` wires together seven internal packages, each exposing a factory getter via its `__init__.py`. Use the getters rather than constructing classes directly:
 
 | Package | Getter / key exports | Responsibility |
 |---|---|---|
@@ -40,17 +40,17 @@ The Celery app lives in `performance/parallel_processor.py` (referenced as `-A p
 ## Running it
 
 ```bash
-python3 advance_secscan_ai.py                       # interactive enterprise menu (default)
-python3 advance_secscan_ai.py --api                 # REST API only, :8000
-python3 advance_secscan_ai.py --web                 # web dashboard only, :8080
-python3 advance_secscan_ai.py --realtime            # real-time dashboard only
-python3 advance_secscan_ai.py --config myconfig.ini # override config file
+python3 advance_hacknova.py                       # interactive enterprise menu (default)
+python3 advance_hacknova.py --api                 # REST API only, :8000
+python3 advance_hacknova.py --web                 # web dashboard only, :8080
+python3 advance_hacknova.py --realtime            # real-time dashboard only
+python3 advance_hacknova.py --config myconfig.ini # override config file
 # Direct (non-interactive) assessment — requires all three:
-python3 advance_secscan_ai.py --target example.com --scope "Web app" --auth-key KEY \
+python3 advance_hacknova.py --target example.com --scope "Web app" --auth-key KEY \
   --assessment-type black-box --compliance OWASP
 ```
 
-Configuration precedence: **environment variables (`.env`) override `config.ini`** (see the `Config` class in `advance_secscan_ai.py`). Copy `.env.example` → `.env` before running with external services.
+Configuration precedence: **environment variables (`.env`) override `config.ini`** (see the `Config` class in `advance_hacknova.py`). Copy `.env.example` → `.env` before running with external services.
 
 ## Build, test, lint
 

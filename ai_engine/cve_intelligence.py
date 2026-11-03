@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-CVE Intelligence and Threat Scoring Engine for SecScan AI.
+CVE Intelligence and Threat Scoring Engine for HACKNOVA.
 Enriches vulnerability findings with CVE metadata, CVSS v3.1 metrics,
 EPSS (Exploit Prediction Scoring System) probabilities, and CISA KEV status.
 """

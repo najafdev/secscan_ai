@@ -1,4 +1,4 @@
-# SecScan AI unit test
+# HACKNOVA unit test
 """Unit tests for Automated Attack Graph and Attack Chaining Engine."""
 
 import pytest

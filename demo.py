@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-SecScan AI Demo Script
-Demonstrates SecScan AI capabilities against a test target
+HACKNOVA Demo Script
+Demonstrates HACKNOVA capabilities against a test target
 """
 
 import os
@@ -15,14 +15,14 @@ sys.path.insert(0, ".")
 
 try:
     try:
-        from advance_secscan_ai import SecScanAI as SecScanAI, AIEngine, ToolManager, PentestingPhases
+        from advance_hacknova import HackNova as HackNova, AIEngine, ToolManager, PentestingPhases
     except ImportError:
-        from advance_secscan_ai import SecScanAI, AIEngine, ToolManager, PentestingPhases
+        from advance_hacknova import HackNova, AIEngine, ToolManager, PentestingPhases
     from rich.console import Console
     from rich.panel import Panel
     from rich.progress import Progress, SpinnerColumn, TextColumn
 except ImportError as e:
-    print(f"Error importing SecScan AI: {e}")
+    print(f"Error importing HACKNOVA: {e}")
     print("Please run: pip install -r requirements.txt")
     sys.exit(1)
 
@@ -40,7 +40,7 @@ def demo_banner():
  ██████╔╝███████╗██║ ╚═╝ ██║╚██████╔╝
  ╚═════╝ ╚══════╝╚═╝     ╚═╝ ╚═════╝ 
 [/bold red]
-[bold cyan]    SecScan AI Demonstration[/bold cyan]
+[bold cyan]    HACKNOVA Demonstration[/bold cyan]
 [dim]Safe Testing Against Test Targets[/dim]
 """
     console.print(banner)
@@ -94,7 +94,7 @@ def demo_tool_manager():
 
     # Test safe command execution
     console.print("\n[yellow]Testing safe command execution:[/yellow]")
-    result = tools.run_command("echo 'SecScan AI Demo Test'")
+    result = tools.run_command("echo 'HACKNOVA Demo Test'")
 
     if result["success"]:
         console.print(f"  ✅ Command output: {result['stdout'].strip()}")
@@ -166,7 +166,7 @@ def demo_web_dashboard():
     console.print("  ⚙️  Configuration management")
 
     console.print("\n[cyan]To start web dashboard:[/cyan]")
-    console.print("  ./advance_secscan_ai.py --web")
+    console.print("  ./advance_hacknova.py --web")
     console.print("  Then open: http://localhost:5000")
     console.print()
 
@@ -183,7 +183,7 @@ def demo_voice_interface():
     console.print("  🎤 'Exit'")
 
     console.print("\n[cyan]To start voice mode:[/cyan]")
-    console.print("  ./advance_secscan_ai.py --voice")
+    console.print("  ./advance_hacknova.py --voice")
     console.print()
 
 
@@ -238,8 +238,8 @@ def main():
     """Main demo function"""
     demo_banner()
 
-    console.print("[bold yellow]Welcome to the SecScan AI demonstration![/bold yellow]")
-    console.print("This demo showcases SecScan AI's capabilities in a safe environment.\n")
+    console.print("[bold yellow]Welcome to the HACKNOVA demonstration![/bold yellow]")
+    console.print("This demo showcases HACKNOVA's capabilities in a safe environment.\n")
 
     demos = [
         ("AI Engine", demo_ai_engine),
@@ -262,11 +262,11 @@ def main():
             console.print(f"[red]Error in {demo_name} demo: {e}[/red]")
 
     console.print("[bold green]Demo completed![/bold green]")
-    console.print("\n[cyan]Ready to use SecScan AI? Run:[/cyan]")
-    console.print("  ./advance_secscan_ai.py                  # Interactive mode")
-    console.print("  ./advance_secscan_ai.py --web            # Web dashboard")
-    console.print("  ./advance_secscan_ai.py --voice          # Voice commands")
-    console.print("  ./advance_secscan_ai.py --help           # Show all options")
+    console.print("\n[cyan]Ready to use HACKNOVA? Run:[/cyan]")
+    console.print("  ./advance_hacknova.py                  # Interactive mode")
+    console.print("  ./advance_hacknova.py --web            # Web dashboard")
+    console.print("  ./advance_hacknova.py --voice          # Voice commands")
+    console.print("  ./advance_hacknova.py --help           # Show all options")
 
 
 if __name__ == "__main__":

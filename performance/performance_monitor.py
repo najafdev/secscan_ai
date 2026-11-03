@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Performance Monitor for SecScan AI Enterprise
+Performance Monitor for HACKNOVA Enterprise
 Monitors system and application performance metrics
 """
 

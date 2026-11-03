@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Automated Attack Graph & Multi-Stage Attack Chaining Engine for SecScan AI.
+Automated Attack Graph & Multi-Stage Attack Chaining Engine for HACKNOVA.
 Synthesizes end-to-end exploit chains from discrete vulnerability findings,
 maps tactics to MITRE ATT&CK, computes defensive chokepoints, and generates
 visual Mermaid execution graphs.
@@ -201,7 +201,7 @@ class AttackGraph:
         chokepoints.sort(key=lambda x: (x["coverage_percentage"], x["mitigation_roi"]), reverse=True)
         return chokepoints
 
-    def to_mermaid(self, title: str = "SecScan AI Automated Attack Graph") -> str:
+    def to_mermaid(self, title: str = "HACKNOVA Automated Attack Graph") -> str:
         """
         Export attack graph into Mermaid flowchart syntax (flowchart TD).
         Generates readable, visually distinct nodes grouped with MITRE stages.
@@ -512,15 +512,15 @@ class AttackGraph:
                     "splunk": f'index=* (CommandLine="*{node.label[:25]}*") | table _time, host, user, command'
                 }
 
-            rule_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"secscan_ai.{node.node_id}.{tech}"))
+            rule_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"hacknova.{node.node_id}.{tech}"))
             sigma_yaml = (
-                f"title: SecScan AI Detection - {node.label}\n"
+                f"title: HACKNOVA Detection - {node.label}\n"
                 f"id: {rule_id}\n"
                 f"status: experimental\n"
                 f"description: Detects adversarial activity corresponding to {node.label} ({tech})\n"
                 f"references:\n"
                 f"  - https://attack.mitre.org/techniques/{tech}/\n"
-                f"author: SecScan AI Enterprise Threat Intel\n"
+                f"author: HACKNOVA Enterprise Threat Intel\n"
                 f"date: {today_str}\n"
                 f"logsource:\n"
                 f"  category: {rule_info['category']}\n"
@@ -592,7 +592,7 @@ class AttackGraph:
       path: /etc/sudoers
       state: present
       regexp: '.*NOPASSWD.*'
-      line: '# NOPASSWD disabled by SecScan AI Enterprise Hardening'
+      line: '# NOPASSWD disabled by HACKNOVA Enterprise Hardening'
       validate: 'visudo -cf %s'""")
 
         # Add tailored chokepoint remediations
@@ -621,7 +621,7 @@ class AttackGraph:
       line: 'PermitRootLogin no'
     notify: Restart sshd""")
 
-        playbook = "---\n- name: SecScan AI Enterprise Automated Attack Graph Remediation\n"
+        playbook = "---\n- name: HACKNOVA Enterprise Automated Attack Graph Remediation\n"
         playbook += "  hosts: all\n"
         playbook += "  become: yes\n"
         playbook += "  tasks:\n"
@@ -643,16 +643,16 @@ class AttackGraph:
         lines = [
             "#!/usr/bin/env bash",
             "# ===================================================================",
-            "# SecScan AI Enterprise - Automated Security Hardening Script",
+            "# HACKNOVA Enterprise - Automated Security Hardening Script",
             "# Generated automatically from synthesized Attack Graph chokepoints",
             "# ===================================================================",
             "set -euo pipefail",
             "",
-            "echo '[+] Initiating SecScan AI defensive hardening...'",
+            "echo '[+] Initiating HACKNOVA defensive hardening...'",
             "",
             "# 1. Kernel sysctl parameter hardening",
             "echo '[+] Applying kernel sysctl parameters...'",
-            "cat << 'EOF' > /etc/sysctl.d/99-secscan_ai-hardening.conf",
+            "cat << 'EOF' > /etc/sysctl.d/99-hacknova-hardening.conf",
             "fs.protected_hardlinks = 1",
             "fs.protected_symlinks = 1",
             "fs.suid_dumpable = 0",
@@ -667,7 +667,7 @@ class AttackGraph:
             "# 2. Disable passwordless sudo and audit sudoers",
             "echo '[+] Hardening sudoers configuration...'",
             "if [ -f /etc/sudoers ]; then",
-            "    sed -i -E 's/(.*NOPASSWD.*)/# \\1 # Disabled by SecScan AI/' /etc/sudoers || true",
+            "    sed -i -E 's/(.*NOPASSWD.*)/# \\1 # Disabled by HACKNOVA/' /etc/sudoers || true",
             "fi",
             "",
             "# 3. Umask & permissions hardening",
@@ -696,7 +696,7 @@ class AttackGraph:
                 lines.append("fi")
             lines.append("")
 
-        lines.append("echo '[✓] SecScan AI Enterprise defensive hardening completed successfully.'")
+        lines.append("echo '[✓] HACKNOVA Enterprise defensive hardening completed successfully.'")
         return "\n".join(lines)
 
     def to_dict(self) -> Dict[str, Any]:

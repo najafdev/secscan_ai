@@ -1,4 +1,4 @@
-# SecScan AI core module
+# HACKNOVA core module
 """Unit tests for the LiteLLM AI gateway provider."""
 
 import sys

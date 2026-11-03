@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-SecScan AI - Enterprise AI-Powered Penetration Testing Platform
-Author: SecScan AI Team
+HACKNOVA - Enterprise AI-Powered Penetration Testing Platform
+Author: HACKNOVA Team
 Version: 2026.10.23 (Production-Ready)
 Description: Enterprise-grade pentesting automation platform with advanced AI, microservices architecture,
             and cloud-native capabilities for professional security assessments.
@@ -119,18 +119,18 @@ class Config:
         self.DATABASE_URL = os.getenv("DATABASE_URL", self.config.get("database", "url", fallback=""))
         self.REDIS_URL = os.getenv("REDIS_URL", self.config.get("cache", "redis_url", fallback="redis://localhost:6379/0"))
         self.OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", self.config.get("ai", "openai_api_key", fallback=""))
-        self.SECSCAN_AI_MODEL = os.getenv("SECSCAN_AI_MODEL", os.getenv("SECSCAN_AI_MODEL", self.config.get("ai", "model", fallback="gpt-4o")))
-        self.SECSCAN_AI_MODEL = self.SECSCAN_AI_MODEL
-        self.SECSCAN_AI_PROVIDER = os.getenv("SECSCAN_AI_PROVIDER", os.getenv("SECSCAN_AI_PROVIDER", self.config.get("ai", "provider", fallback="")))
-        self.SECSCAN_AI_PROVIDER = self.SECSCAN_AI_PROVIDER
-        self.SECSCAN_AI_CUSTOM_ROUTE = os.getenv(
-            "SECSCAN_AI_CUSTOM_ROUTE",
+        self.HACKNOVA_MODEL = os.getenv("HACKNOVA_MODEL", os.getenv("HACKNOVA_MODEL", self.config.get("ai", "model", fallback="gpt-4o")))
+        self.HACKNOVA_MODEL = self.HACKNOVA_MODEL
+        self.HACKNOVA_PROVIDER = os.getenv("HACKNOVA_PROVIDER", os.getenv("HACKNOVA_PROVIDER", self.config.get("ai", "provider", fallback="")))
+        self.HACKNOVA_PROVIDER = self.HACKNOVA_PROVIDER
+        self.HACKNOVA_CUSTOM_ROUTE = os.getenv(
+            "HACKNOVA_CUSTOM_ROUTE",
             os.getenv(
-                "SECSCAN_AI_CUSTOM_ROUTE",
+                "HACKNOVA_CUSTOM_ROUTE",
                 os.getenv("CUSTOM_ROUTER_BASE_URL", self.config.get("ai", "custom_route", fallback="")),
             ),
         )
-        self.SECSCAN_AI_CUSTOM_ROUTE = self.SECSCAN_AI_CUSTOM_ROUTE
+        self.HACKNOVA_CUSTOM_ROUTE = self.HACKNOVA_CUSTOM_ROUTE
         self.OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", self.config.get("ai", "openrouter_base_url", fallback="https://openrouter.ai/api/v1"))
         self.OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", self.config.get("ai", "openrouter_api_key", fallback=""))
         self.ORCAROUTER_BASE_URL = os.getenv("ORCAROUTER_BASE_URL", self.config.get("ai", "orcarouter_base_url", fallback="https://api.orcarouter.ai/v1"))
@@ -210,11 +210,11 @@ logging.basicConfig(
     level=getattr(logging, config.LOG_LEVEL),
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler(log_dir / 'secscan_ai.log'),
+        logging.FileHandler(log_dir / 'hacknova.log'),
         logging.StreamHandler()
     ]
 )
-logger = logging.getLogger('secscan_ai')
+logger = logging.getLogger('hacknova')
 
 # ASCII Banner
 BANNER = """
@@ -231,16 +231,16 @@ BANNER = """
 [dim]                    Advanced Security Assessment Platform[/dim]
 """
 
-class EnterpriseSecScanAI:
-    """Main SecScan AI Enterprise Application"""
+class EnterpriseHackNova:
+    """Main HACKNOVA Enterprise Application"""
     
     def __init__(self, model: str = None, provider: str = None, custom_route: str = None):
         self.config = config
-        self.model_id = model or config.SECSCAN_AI_MODEL
-        self.provider_name = provider or config.SECSCAN_AI_PROVIDER
-        self.custom_route = custom_route or config.SECSCAN_AI_CUSTOM_ROUTE
+        self.model_id = model or config.HACKNOVA_MODEL
+        self.provider_name = provider or config.HACKNOVA_PROVIDER
+        self.custom_route = custom_route or config.HACKNOVA_CUSTOM_ROUTE
         self.console = Console()
-        self.logger = logging.getLogger('secscan_ai.main')
+        self.logger = logging.getLogger('hacknova.main')
         
         # Initialize components
         self.initialize_components()
@@ -282,7 +282,7 @@ class EnterpriseSecScanAI:
                 or os.getenv("RUNCRATE_API_KEY")
                 or os.getenv("NINEBROUTER_BASE_URL")
                 or os.getenv("CUSTOM_ROUTER_BASE_URL")
-                or os.getenv("SECSCAN_AI_CUSTOM_ROUTE")
+                or os.getenv("HACKNOVA_CUSTOM_ROUTE")
                 or os.getenv("ANTHROPIC_API_KEY")
                 or os.getenv("GOOGLE_API_KEY")
                 or os.getenv("DEEPSEEK_API_KEY")
@@ -504,7 +504,7 @@ class EnterpriseSecScanAI:
         signal.signal(signal.SIGTERM, signal_handler)
     
     def show_banner(self):
-        """Display the SecScan AI banner with system status"""
+        """Display the HACKNOVA banner with system status"""
         self.console.print(BANNER)
         
         # System status
@@ -535,7 +535,7 @@ class EnterpriseSecScanAI:
     
     def show_main_menu(self):
         """Display enhanced main menu"""
-        menu_table = Table(title="SecScan AI Enterprise Main Menu", show_header=True)
+        menu_table = Table(title="HACKNOVA Enterprise Main Menu", show_header=True)
         menu_table.add_column("Option", style="cyan", width=8)
         menu_table.add_column("Category", style="magenta", width=20)
         menu_table.add_column("Description", style="white")
@@ -731,7 +731,7 @@ class EnterpriseSecScanAI:
         
         cloud_options = [
             ("1", "View Docker Containers"),
-            ("2", "Deploy SecScan AI Stack"),
+            ("2", "Deploy HACKNOVA Stack"),
             ("3", "Kubernetes Management"),
             ("4", "Service Registry Status"),
             ("5", "Scale Services"),
@@ -749,7 +749,7 @@ class EnterpriseSecScanAI:
         if choice == "1":
             self.show_docker_status()
         elif choice == "2":
-            self.deploy_secscan_ai_stack()
+            self.deploy_hacknova_stack()
         elif choice == "3":
             self.manage_kubernetes()
         elif choice == "4":
@@ -790,39 +790,39 @@ class EnterpriseSecScanAI:
         except Exception as e:
             self.console.print(f"[red]Error accessing Docker: {e}[/red]")
     
-    def deploy_secscan_ai_stack(self):
-        """Deploy SecScan AI microservices stack"""
-        """Deploy SecScan AI microservices stack"""
+    def deploy_hacknova_stack(self):
+        """Deploy HACKNOVA microservices stack"""
+        """Deploy HACKNOVA microservices stack"""
         if not self.docker_manager:
             return
         
-        self.console.print("[cyan]Deploying SecScan AI Enterprise Stack...[/cyan]")
+        self.console.print("[cyan]Deploying HACKNOVA Enterprise Stack...[/cyan]")
         
         # Create services configuration
         from cloud.docker_manager import ServiceDefinition, ContainerConfig
         
         services = [
             ServiceDefinition(
-                service_name="secscan_ai-api",
+                service_name="hacknova-api",
                 container_config=ContainerConfig(
-                    name="secscan_ai-api",
-                    image="secscan_ai/api:latest",
+                    name="hacknova-api",
+                    image="hacknova/api:latest",
                     ports={"8000": 8000},
                     environment={"DATABASE_URL": config.DATABASE_URL, "REDIS_URL": config.REDIS_URL},
-                    volumes={"/app/logs": "/var/log/secscan_ai"}
+                    volumes={"/app/logs": "/var/log/hacknova"}
                 ),
                 dependencies=[],
                 health_check={"test": ["CMD", "curl", "-f", "http://localhost:8000/health"]},
                 scaling={"min_replicas": 1, "max_replicas": 5}
             ),
             ServiceDefinition(
-                service_name="secscan_ai-worker",
+                service_name="hacknova-worker",
                 container_config=ContainerConfig(
-                    name="secscan_ai-worker",
-                    image="secscan_ai/worker:latest",
+                    name="hacknova-worker",
+                    image="hacknova/worker:latest",
                     environment={"DATABASE_URL": config.DATABASE_URL, "REDIS_URL": config.REDIS_URL}
                 ),
-                dependencies=["secscan_ai-database", "secscan_ai-redis"],
+                dependencies=["hacknova-database", "hacknova-redis"],
                 health_check={"test": ["CMD", "python", "-c", "import sys; sys.exit(0)"]},
                 scaling={"min_replicas": 2, "max_replicas": 10}
             )
@@ -832,15 +832,15 @@ class EnterpriseSecScanAI:
         compose_content = self.docker_manager.generate_docker_compose(services)
         
         # Deploy stack
-        success = self.docker_manager.deploy_stack(compose_content, "secscan_ai-enterprise")
+        success = self.docker_manager.deploy_stack(compose_content, "hacknova-enterprise")
         
         if success:
-            self.console.print("[green]✓ SecScan AI Enterprise Stack deployed successfully[/green]")
+            self.console.print("[green]✓ HACKNOVA Enterprise Stack deployed successfully[/green]")
         else:
-            self.console.print("[red]✗ Failed to deploy SecScan AI Enterprise Stack[/red]")
+            self.console.print("[red]✗ Failed to deploy HACKNOVA Enterprise Stack[/red]")
     
     def start_api_server(self):
-        """Start SecScan AI API server"""
+        """Start HACKNOVA API server"""
         if not flask:
             self.console.print("[red]Flask not available for API server[/red]")
             return
@@ -854,9 +854,9 @@ class EnterpriseSecScanAI:
 
             def generate_latest():
                 return (
-                    b"# HELP secscan_ai_app_up SecScan AI API metrics endpoint status\n"
-                    b"# TYPE secscan_ai_app_up gauge\n"
-                    b"secscan_ai_app_up 1\n"
+                    b"# HELP hacknova_app_up HACKNOVA API metrics endpoint status\n"
+                    b"# TYPE hacknova_app_up gauge\n"
+                    b"hacknova_app_up 1\n"
                 )
         
         app = Flask(__name__)
@@ -920,16 +920,16 @@ class EnterpriseSecScanAI:
                 "completed_at": s.completed_at.isoformat() if s.completed_at else None
             } for s in sessions])
         
-        self.console.print("[cyan]Starting SecScan AI API Server on http://0.0.0.0:8000[/cyan]")
+        self.console.print("[cyan]Starting HACKNOVA API Server on http://0.0.0.0:8000[/cyan]")
         app.run(host='0.0.0.0', port=8000, debug=config.DEBUG)
     
     def launch_web_dashboard(self):
-        """Start SecScan AI Web Dashboard server"""
+        """Start HACKNOVA Web Dashboard server"""
         if not self.web_dashboard:
             self.console.print("[red]Web Dashboard is not initialized (enable in config or missing flask)[/red]")
             return
         
-        self.console.print("[cyan]Starting SecScan AI Web Dashboard on http://0.0.0.0:8080[/cyan]")
+        self.console.print("[cyan]Starting HACKNOVA Web Dashboard on http://0.0.0.0:8080[/cyan]")
         self.web_dashboard.run()
     
     def run_soc_analysis(self):
@@ -1198,7 +1198,7 @@ class EnterpriseSecScanAI:
         """SIEM Configuration Menu"""
         while True:
             self.console.print(Panel("[bold cyan]Configure External SIEM Connections[/bold cyan]\n"
-                                     "Connect SecScan AI SOC to Splunk, QRadar, Elasticsearch, or Generic Webhooks."))
+                                     "Connect HACKNOVA SOC to Splunk, QRadar, Elasticsearch, or Generic Webhooks."))
 
             siem_menu = Table(title="Registered Connections & Actions")
             siem_menu.add_column("Connection ID", style="cyan")
@@ -1477,7 +1477,7 @@ class EnterpriseSecScanAI:
 
     def view_reports_analytics(self):
         """View reports and assessment analytics"""
-        self.console.print(Panel("[bold cyan]SecScan AI Assessment Reports & Analytics[/bold cyan]"))
+        self.console.print(Panel("[bold cyan]HACKNOVA Assessment Reports & Analytics[/bold cyan]"))
         
         if self.db:
             sessions = self.db.get_recent_sessions(limit=10)
@@ -1678,7 +1678,7 @@ class EnterpriseSecScanAI:
 
     def list_and_show_models(self):
         """Display all available AI models across all registered and dynamic catalogs."""
-        self.console.print(Panel("[bold cyan]All Available SecScan AI AI Models[/bold cyan]"))
+        self.console.print(Panel("[bold cyan]All Available HACKNOVA AI Models[/bold cyan]"))
         try:
             from ai_engine.model_registry import list_all_models
             all_models = list_all_models()
@@ -1911,7 +1911,7 @@ class EnterpriseSecScanAI:
             progress.update(task, completed=100)
 
         if mermaid_only:
-            mermaid_syntax = graph.to_mermaid("SecScan AI Attack Chain Graph")
+            mermaid_syntax = graph.to_mermaid("HACKNOVA Attack Chain Graph")
             self.console.print(Panel(mermaid_syntax, title="[bold green]Mermaid Attack Graph Flowchart[/bold green]"))
             return
 
@@ -1959,7 +1959,7 @@ class EnterpriseSecScanAI:
             self.console.print(road_table)
 
         # Mermaid Diagram
-        mermaid_syntax = graph.to_mermaid("SecScan AI Synthesized Attack Graph")
+        mermaid_syntax = graph.to_mermaid("HACKNOVA Synthesized Attack Graph")
         self.console.print(Panel(mermaid_syntax, title="[bold green]Mermaid Attack Graph Syntax[/bold green]"))
 
     def cisa_kev_triage(self):
@@ -2373,7 +2373,7 @@ class EnterpriseSecScanAI:
                                   choices=[str(i) for i in range(21)])
                 
                 if choice == "0":
-                    self.console.print("[green]Shutting down SecScan AI Enterprise...[/green]")
+                    self.console.print("[green]Shutting down HACKNOVA Enterprise...[/green]")
                     self.shutdown()
                     break
                 elif choice == "1":
@@ -2621,10 +2621,13 @@ class EnterpriseToolManager:
         return segments
 
 # Alias for backward compatibility
-EnterpriseSecScanAI = EnterpriseSecScanAI
+EnterpriseHackNova = EnterpriseHackNova
 ToolManager = EnterpriseToolManager
-SecScanAI = EnterpriseSecScanAI
-SecScanAI = EnterpriseSecScanAI
+HackNova = EnterpriseHackNova
+EnterpriseHACKNOVA = EnterpriseHackNova
+EnterpriseSecScanAI = EnterpriseHackNova
+SecScanAI = EnterpriseHackNova
+HACKNOVA = EnterpriseHackNova
 EnterpriseToolManager = EnterpriseToolManager
 
 class AIEngine:
@@ -2963,8 +2966,9 @@ class EnterpriseVoiceInterface:
 class EnterpriseWebDashboard:
     """Enterprise web dashboard"""
     
-    def __init__(self, secscan_ai_instance):
-        self.secscan_ai = secscan_ai_instance
+    def __init__(self, hacknova_instance):
+        self.hacknova = hacknova_instance
+        self.secscan_ai = hacknova_instance
         self.app = None
         self.setup_app()
         
@@ -2986,10 +2990,10 @@ class EnterpriseWebDashboard:
             
         @app.route('/api/sessions', methods=['GET'])
         def get_sessions():
-            if not self.secscan_ai.db:
+            if not self.hacknova.db:
                 return jsonify([])
             try:
-                sessions = self.secscan_ai.db.get_recent_sessions(limit=50)
+                sessions = self.hacknova.db.get_recent_sessions(limit=50)
                 return jsonify([{
                     "session_id": s.id,
                     "target": s.target,
@@ -3005,16 +3009,16 @@ class EnterpriseWebDashboard:
 
         @app.route('/api/session/<session_id>', methods=['GET'])
         def get_session_detail(session_id):
-            if not self.secscan_ai.db:
+            if not self.hacknova.db:
                 return jsonify({"error": "Database not initialized"}), 500
             
             try:
-                session_obj = self.secscan_ai.db.get_pentest_session(session_id)
+                session_obj = self.hacknova.db.get_pentest_session(session_id)
                 if not session_obj:
                     return jsonify({"error": "Session not found"}), 404
                     
-                vulns = self.secscan_ai.db.get_vulnerabilities_by_session(session_id)
-                phases = self.secscan_ai.db.get_phase_results(session_id)
+                vulns = self.hacknova.db.get_vulnerabilities_by_session(session_id)
+                phases = self.hacknova.db.get_phase_results(session_id)
                 
                 # Fetch assessment type stored in created_by (or default)
                 ast_type = session_obj.created_by if session_obj.created_by in ['black-box', 'white-box', 'gray-box'] else 'black-box'
@@ -3072,7 +3076,7 @@ class EnterpriseWebDashboard:
                 
                 # Start pentest in background thread
                 thread = threading.Thread(
-                    target=self.secscan_ai.run_full_enterprise_pentest,
+                    target=self.hacknova.run_full_enterprise_pentest,
                     args=(target_info,)
                 )
                 thread.daemon = True
@@ -3090,11 +3094,11 @@ class EnterpriseWebDashboard:
 
         @app.route('/api/session/<session_id>/cancel', methods=['POST'])
         def cancel_pentest(session_id):
-            if not self.secscan_ai.db:
+            if not self.hacknova.db:
                 return jsonify({"error": "Database not initialized"}), 500
 
             try:
-                self.secscan_ai.db.update_session_status(session_id, 'cancelled', 'system')
+                self.hacknova.db.update_session_status(session_id, 'cancelled', 'system')
                 return jsonify({"status": "cancelled", "session_id": session_id})
             except Exception as e:
                 return jsonify({"error": str(e)}), 500
@@ -3284,8 +3288,8 @@ class BasicReportGenerator:
         return {"report": "Basic report generated"}
 
 def main():
-    """Entry point for SecScan AI Enterprise"""
-    parser = argparse.ArgumentParser(description="SecScan AI Enterprise - AI-Powered Penetration Testing Platform")
+    """Entry point for HACKNOVA Enterprise"""
+    parser = argparse.ArgumentParser(description="HACKNOVA Enterprise - AI-Powered Penetration Testing Platform")
     parser.add_argument('--target', help='Target IP or domain')
     parser.add_argument('--scope', help='Scope description')
     parser.add_argument('--auth-key', help='Authorization key')
@@ -3320,70 +3324,70 @@ def main():
         global config
         config = Config(args.config)
     
-    # Initialize SecScan AI Enterprise with CLI overrides
-    secscan_ai = EnterpriseSecScanAI(
+    # Initialize HACKNOVA Enterprise with CLI overrides
+    hacknova = EnterpriseHackNova(
         model=args.model,
         provider=args.provider,
         custom_route=args.custom_route,
     )
-    secscan_ai = secscan_ai
+    hacknova = hacknova
     
     if args.fetch_models:
-        secscan_ai.show_banner()
-        secscan_ai.fetch_and_show_models()
+        hacknova.show_banner()
+        hacknova.fetch_and_show_models()
         return
     elif args.list_models:
-        secscan_ai.show_banner()
-        secscan_ai.list_and_show_models()
+        hacknova.show_banner()
+        hacknova.list_and_show_models()
         return
     elif args.cve_lookup:
-        secscan_ai.show_banner()
-        secscan_ai.cve_intelligence_lookup(args.cve_lookup)
+        hacknova.show_banner()
+        hacknova.cve_intelligence_lookup(args.cve_lookup)
         return
     elif args.attack_chain or args.mermaid:
-        secscan_ai.show_banner()
-        secscan_ai.attack_chain_analysis(sample_mode=True, mermaid_only=args.mermaid)
+        hacknova.show_banner()
+        hacknova.attack_chain_analysis(sample_mode=True, mermaid_only=args.mermaid)
         return
     elif args.llm_redteam:
-        secscan_ai.show_banner()
-        secscan_ai.run_llm_red_team(mock=(not bool(config.OPENAI_API_KEY)))
+        hacknova.show_banner()
+        hacknova.run_llm_red_team(mock=(not bool(config.OPENAI_API_KEY)))
         return
     elif args.api_scan:
-        secscan_ai.show_banner()
+        hacknova.show_banner()
         spec_content = None
         if args.api_scan != 'mock' and os.path.exists(args.api_scan):
             with open(args.api_scan, 'r', encoding='utf-8') as f:
                 spec_content = f.read()
-        secscan_ai.run_api_security_scan(spec_input=spec_content)
+        hacknova.run_api_security_scan(spec_input=spec_content)
         return
     elif args.export_sigma:
-        secscan_ai.show_banner()
-        secscan_ai.export_sigma_detection_rules()
+        hacknova.show_banner()
+        hacknova.export_sigma_detection_rules()
         return
     elif args.export_ansible:
-        secscan_ai.show_banner()
-        secscan_ai.generate_remediation_playbooks()
+        hacknova.show_banner()
+        hacknova.generate_remediation_playbooks()
         return
     elif args.d3fend_matrix:
-        secscan_ai.show_banner()
-        secscan_ai.show_d3fend_matrix()
+        hacknova.show_banner()
+        hacknova.show_d3fend_matrix()
         return
     elif args.cspm_scan is not None:
-        secscan_ai.show_banner()
-        secscan_ai.run_cspm_scan(target_input=args.cspm_scan, export_fixes=args.export_cloud_fix)
+        hacknova.show_banner()
+        hacknova.run_cspm_scan(target_input=args.cspm_scan, export_fixes=args.export_cloud_fix)
         return
     elif args.k8s_audit is not None:
-        secscan_ai.show_banner()
-        secscan_ai.run_cspm_scan(target_input=args.k8s_audit, export_fixes=args.export_cloud_fix)
+        hacknova.show_banner()
+        hacknova.run_cspm_scan(target_input=args.k8s_audit, export_fixes=args.export_cloud_fix)
         return
     elif args.api:
-        secscan_ai.start_api_server()
+        hacknova.start_api_server()
     elif args.web:
-        secscan_ai.launch_web_dashboard()
+        hacknova.launch_web_dashboard()
     elif args.realtime:
-        secscan_ai.start_realtime_dashboard()
+        hacknova.start_realtime_dashboard()
     elif args.voice:
-        secscan_ai.voice_command_mode()
+        hacknova.voice_command_mode()
     elif all([args.target, args.scope, args.auth_key]):
         # Direct execution mode
         target_info = {
@@ -3395,11 +3399,11 @@ def main():
             "parallel_execution": True,
             "ai_enhanced": True
         }
-        secscan_ai.show_banner()
-        secscan_ai.run_full_enterprise_pentest(target_info)
+        hacknova.show_banner()
+        hacknova.run_full_enterprise_pentest(target_info)
     else:
         # Interactive mode
-        secscan_ai.run()
+        hacknova.run()
 
 if __name__ == "__main__":
     main()

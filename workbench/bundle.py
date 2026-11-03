@@ -38,7 +38,7 @@ def build_bundle(
         ).encode()
 
     manifest = {
-        "schema": "secscan_ai.evidence-bundle/v1",
+        "schema": "hacknova.evidence-bundle/v1",
         "run_id": report["id"],
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "signed": False,

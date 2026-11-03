@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# SecScan AI core module
+# HACKNOVA core module
 """
-Cache Management System for SecScan AI
+Cache Management System for HACKNOVA
 Provides multi-layer caching with Redis and memory backends
 """
 
@@ -248,7 +248,7 @@ class RedisCache(CacheBackend):
         port: int = 6379,
         db: int = 0,
         password: Optional[str] = None,
-        prefix: str = "secscan_ai:",
+        prefix: str = "hacknova:",
         default_ttl: int = 3600,
         sentinel_hosts: Optional[List[tuple]] = None,
         sentinel_service: str = "mymaster",
@@ -600,7 +600,7 @@ def get_cache_manager() -> CacheManager:
                     host=redis_host,
                     port=redis_port,
                     password=redis_password,
-                    prefix="secscan_ai:cache:",
+                    prefix="hacknova:cache:",
                 )
             except Exception:
                 pass  # Fall back to L1 only
