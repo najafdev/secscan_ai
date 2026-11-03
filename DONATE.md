@@ -26,7 +26,7 @@
 ## 💳 How to Donate & Sponsor
 
 ### 🪙 Official Solana Contract Address (CA)
-- **Verified Solana CA:** Soon Available
+- **Verified Solana CA:** `7iymoWrLNFFmMSAKSNfSMCp7UmXfd3ZRL1t7W6c3pump`
 
 ### 🪙 Cryptocurrency Transfer
 *Secure, direct, and borderless support for cybersecurity & AI research*
