@@ -279,6 +279,7 @@ class EnterpriseSecScanAI:
                 config.OPENAI_API_KEY
                 or os.getenv("OPENROUTER_API_KEY")
                 or os.getenv("ORCAROUTER_API_KEY")
+                or os.getenv("RUNCRATE_API_KEY")
                 or os.getenv("NINEBROUTER_BASE_URL")
                 or os.getenv("CUSTOM_ROUTER_BASE_URL")
                 or os.getenv("SECSCAN_AI_CUSTOM_ROUTE")

@@ -5,7 +5,7 @@ Provider client implementations for SecScan AI multi-model AI support.
 
 Implements a unified interface to call different AI providers through a
 common abstract base class. Supports OpenAI, Anthropic, Google Gemini,
-DeepSeek, GLM (Zhipu), Ollama (local), and OpenRouter.
+DeepSeek, GLM (Zhipu), Ollama (local), OpenRouter, and Runcrate.
 """
 
 import logging
@@ -53,6 +53,7 @@ __all__ = [
     "OllamaProvider",
     "OpenRouterProvider",
     "OrcaRouterProvider",
+    "RuncrateProvider",
     "LiteLLMProvider",
     "NineBRouterProvider",
     "CustomRouterProvider",
@@ -1124,6 +1125,97 @@ class OrcaRouterProvider(BaseProvider):
 
 
 # ---------------------------------------------------------------------------
+# Runcrate (OpenAI-compatible open-weight models)
+# ---------------------------------------------------------------------------
+
+
+class RuncrateProvider(BaseProvider):
+    """Provider client for the Runcrate API (OpenAI-compatible).
+
+    Serves open-weight models such as ``deepseek-ai/DeepSeek-V4.1-Flash``.
+    Falls back to the ``RUNCRATE_API_KEY`` and ``RUNCRATE_BASE_URL``
+    environment variables.
+    """
+
+    _DEFAULT_BASE_URL = "https://api.runcrate.ai/v1"
+    _ROUTE_PREFIX = "runcrate/"
+
+    def __init__(self, api_key: str = None, base_url: str = None):
+        resolved_key = api_key or os.getenv("RUNCRATE_API_KEY")
+        resolved_url = (
+            base_url or os.getenv("RUNCRATE_BASE_URL") or self._DEFAULT_BASE_URL
+        )
+        super().__init__(api_key=resolved_key, base_url=resolved_url)
+        self._client: Optional[object] = None
+
+    def _get_client(self) -> "openai.OpenAI":
+        """Lazily create and cache the OpenAI-compatible client."""
+        if self._client is None:
+            if not _HAS_OPENAI:
+                raise ImportError(
+                    "The 'openai' package is required for RuncrateProvider. "
+                    "Install it with: pip install openai"
+                )
+            self._client = openai.OpenAI(api_key=self.api_key, base_url=self.base_url)
+        return self._client  # type: ignore[return-value]
+
+    def chat_completion(
+        self,
+        model_id: str,
+        messages: List[Dict[str, str]],
+        max_tokens: int = 4096,
+        temperature: float = 0.7,
+    ) -> str:
+        """Call Runcrate chat completions via the OpenAI-compatible API."""
+        if model_id.startswith(self._ROUTE_PREFIX):
+            model_id = model_id[len(self._ROUTE_PREFIX) :]
+        client = self._get_client()
+        try:
+            response = client.chat.completions.create(
+                model=model_id,
+                messages=messages,
+                max_tokens=max_tokens,
+                temperature=temperature,
+            )
+            return response.choices[0].message.content
+        except Exception as exc:
+            logger.error("Runcrate chat completion failed: %s", exc)
+            raise
+
+    def is_available(self) -> bool:
+        return bool(self.api_key)
+
+    @property
+    def provider_name(self) -> str:
+        return "Runcrate"
+
+    def fetch_remote_models(self) -> List[ModelInfo]:
+        """Fetch available models from the Runcrate /models endpoint."""
+        models: List[ModelInfo] = []
+        if not self.api_key:
+            return models
+        url = f"{self.base_url.rstrip('/')}/models"
+        data = _safe_http_get(url, headers={"Authorization": f"Bearer {self.api_key}"})
+        if data and "data" in data and isinstance(data["data"], list):
+            for item in data["data"]:
+                mid = item.get("id")
+                if mid:
+                    models.append(
+                        ModelInfo(
+                            model_id=mid,
+                            provider=ModelProvider.RUNCRATE,
+                            display_name=f"Runcrate: {item.get('name', mid)}",
+                            max_tokens=8192,
+                            supports_streaming=True,
+                            supports_tools=True,
+                            context_window=item.get("context_length", 128000),
+                            description=f"Runcrate model: {mid}",
+                        )
+                    )
+        return models
+
+
+# ---------------------------------------------------------------------------
 # LiteLLM (unified AI gateway)
 # ---------------------------------------------------------------------------
 
@@ -1556,6 +1648,7 @@ _PROVIDER_CLASS_MAP: Dict[ModelProvider, type] = {
     ModelProvider.LOCAL: OllamaProvider,
     ModelProvider.OPENROUTER: OpenRouterProvider,
     ModelProvider.ORCAROUTER: OrcaRouterProvider,
+    ModelProvider.RUNCRATE: RuncrateProvider,
     ModelProvider.LITELLM: LiteLLMProvider,
     ModelProvider.NINEBROUTER: NineBRouterProvider,
     ModelProvider.CUSTOM_ROUTER: CustomRouterProvider,
@@ -1614,8 +1707,9 @@ class ProviderFactory:
     ) -> Tuple[BaseProvider, ModelInfo]:
         """Look up a model in the catalog and return its provider instance.
 
-        Supports dynamic routing prefixes ('openrouter/...', '9brouter/...',
-        'custom_router/...', 'custom/...') as well as custom route endpoints.
+        Supports dynamic routing prefixes ('openrouter/...', 'runcrate/...',
+        '9brouter/...', 'custom_router/...', 'custom/...') as well as custom
+        route endpoints.
 
         Args:
             model_id: The model identifier as registered in
@@ -1670,6 +1764,17 @@ class ProviderFactory:
                     supports_tools=True,
                     context_window=128_000,
                     description=f"Model '{model_id}' dispatched via OpenRouter.",
+                )
+            elif custom_provider_name == "runcrate":
+                model_info = ModelInfo(
+                    model_id=model_id,
+                    provider=ModelProvider.RUNCRATE,
+                    display_name=f"{model_id} (via Runcrate)",
+                    max_tokens=8192,
+                    supports_streaming=True,
+                    supports_tools=True,
+                    context_window=128_000,
+                    description=f"Model '{model_id}' dispatched via Runcrate.",
                 )
             elif custom_provider_name in ("orcarouter", "orca", "orca_router"):
                 model_info = ModelInfo(
