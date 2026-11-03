@@ -1,32 +1,85 @@
 <!-- HACKNOVA document -->
 <div align="center">
-  <p><strong>CA:</strong> Soon Available</p>
+  <p><strong>🪙 Official Solana CA:</strong> <code>Soon Available</code></p>
 
-  <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise Logo" width="400" height="auto">
+  <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise Logo" width="380" height="auto">
   
-  <h1>🚀 HACKNOVA Enterprise</h1>
-  <h3>AI-Powered Penetration Testing Platform</h3>
+  <h1>⚡ HACKNOVA Enterprise</h1>
+  <h3>Autonomous Cyber Defense, Frontier AI Red Teaming & Multi-Stage Attack Graph Synthesis</h3>
   
   <p>
-    <img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python 3.8+">
-    <img src="https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-orange.svg" alt="Multi-Platform">
-    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
-    <img src="https://img.shields.io/badge/AI-Multi--Provider%20(7%20Providers%20%7C%2026%2B%20Models)-purple.svg" alt="AI Multi-Provider">
+    <a href="https://github.com/najafdev/hacknova"><img src="https://img.shields.io/badge/Version-2026.10.23-00ffc4.svg?style=for-the-badge&logo=git&logoColor=black" alt="Version 2026.10.23"></a>
+    <a href="https://github.com/najafdev/hacknova"><img src="https://img.shields.io/badge/Status-Production%20Ready-success.svg?style=for-the-badge" alt="Production Ready"></a>
+    <a href="https://github.com/najafdev/hacknova/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
+    <a href="https://discord.gg/eXPjM3Hxwb"><img src="https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Server"></a>
   </p>
   <p>
-    <img src="https://img.shields.io/badge/Architecture-Microservices-red.svg" alt="Microservices">
-    <img src="https://img.shields.io/badge/Cloud-Docker%20%7C%20Kubernetes-lightblue.svg" alt="Cloud Native">
-    <img src="https://img.shields.io/badge/Version-2026.10.23-success.svg" alt="Version 2026.10.23">
-    <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg" alt="Production Ready">
-    <a href="https://discord.gg/eXPjM3Hxwb"><img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord Server"></a>
+    <img src="https://img.shields.io/badge/AI%20Engine-9%20Providers%20%7C%2030%2B%20Models-8A2BE2.svg" alt="AI Multi-Provider">
+    <img src="https://img.shields.io/badge/Frameworks-OWASP%20%7C%20NIST%20%7C%20MITRE%20D3FEND-FF4500.svg" alt="Frameworks">
+    <img src="https://img.shields.io/badge/Architecture-Cloud--Native%20Microservices-00BFFF.svg" alt="Architecture">
+    <img src="https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-FFA500.svg" alt="Platforms">
+  </p>
+
+  <p>
+    <a href="#-about-hacknova">About</a> •
+    <a href="#-why-hacknova">Why HACKNOVA</a> •
+    <a href="#-core-pillars">Core Pillars</a> •
+    <a href="#-enterprise-features">Features</a> •
+    <a href="#-quick-start">Quick Start</a> •
+    <a href="#-architecture">Architecture</a> •
+    <a href="#-community--support">Community</a>
   </p>
 </div>
 
-**HACKNOVA Enterprise** is a production-ready, cloud-native AI-powered penetration testing platform designed for enterprise security teams. It combines advanced AI, machine learning, microservices architecture, and comprehensive security frameworks to deliver professional-grade cybersecurity assessments.
+---
 
-**Created by [Yashab Alam](https://github.com/yashab-cyber)**
+## 🌐 About HACKNOVA
 
-> 💰 **Support the Project**: [Donate to HACKNOVA Development](DONATE.md) | Help us build the future of AI-powered penetration testing!
+**HACKNOVA Enterprise** is the next-generation autonomous cybersecurity operations and AI penetration testing ecosystem built for modern enterprises, DevSecOps teams, and frontier AI infrastructures.
+
+In an era where adversarial threats evolve in real time, traditional static vulnerability scanners deliver disconnected lists of low-priority noise without actionable context. **HACKNOVA revolutionizes proactive cyber defense** by fusing frontier multi-model artificial intelligence, autonomous multi-stage attack chaining, cloud-native posture auditing (CSPM/KSPM), and OWASP LLM Red Teaming into a unified, high-velocity platform.
+
+Whether evaluating Kubernetes clusters across AWS, Azure, and GCP, auditing enterprise REST/OpenAPI surfaces against zero-day exploit techniques, or stress-testing mission-critical Large Language Models against prompt injections and jailbreaks, **HACKNOVA thinks like an elite adversary to defend like an automated SOC army.**
+
+**Architected & Created by [Yashab Alam](https://github.com/yashab-cyber)**
+
+> 💡 **Community & Mission**: HACKNOVA empowers developers and ethical hackers with transparent, auditable, and automated security tools. Help accelerate research infrastructure and open-weight model integrations: [Support HACKNOVA Development](DONATE.md).
+
+---
+
+## 💎 Why HACKNOVA?
+
+| Traditional Security Scanners ❌ | HACKNOVA Autonomous Defense Matrix ⚡ |
+|:---|:---|
+| **Isolated Findings:** Dumps hundreds of unlinked CVEs with zero exploit context | **Multi-Stage Attack Graph Chaining:** Synthesizes realistic adversary kill-chains mapped to MITRE ATT&CK & D3FEND |
+| **No LLM Awareness:** Zero visibility into prompt injections, delimiter attacks, or agentic jailbreaks | **OWASP LLM Top 10 Red Teaming:** 25+ automated probe suites evaluating jailbreaks, roleplay bypasses, and data leaks |
+| **Static Rules:** Fragile signature checks obsolete upon zero-day emergence | **Frontier AI Brain (9 Providers):** Dynamically switches between GPT-5, Claude Sonnet 5, Gemini 3.5, DeepSeek R1, OrcaRouter & Runcrate |
+| **Manual Cloud Audits:** Disconnected spreadsheets and fragmented AWS/K8s scripts | **Unified CSPM & KSPM:** Automated IaC linting (Terraform & K8s YAML), blast radius calculation, and instant bash/HCL remediation |
+| **Slow Remediation:** Days spent translating alerts into tickets and firewall rules | **Detection & Hardening as Code:** Instant one-click generation of Sigma rules, Splunk SPL, and Ansible playbooks |
+
+---
+
+## 🛡️ Core Pillars
+
+```mermaid
+graph TD
+    A[⚡ HACKNOVA Core] --> B[🧠 Multi-Provider AI Engine<br/>9 Providers & 30+ Frontier Models]
+    A --> C[🕸️ Automated Attack Chaining<br/>Multi-Stage Kill Chains & Chokepoints]
+    A --> D[🎯 AI Red Teaming<br/>OWASP LLM Top 10 Probes]
+    A --> E[☁️ Cloud & K8s Posture<br/>CSPM, KSPM & IaC Audit]
+    A --> F[🛡️ API Zero-Day Defense<br/>OWASP API Security Top 10]
+    A --> G[🚀 Detection-as-Code & Healing<br/>Sigma, Splunk & Ansible Playbooks]
+    
+    style A fill:#00ffc4,stroke:#000,stroke-width:2px,color:#000
+    style B fill:#1e1e2f,stroke:#8A2BE2,stroke-width:2px,color:#fff
+    style C fill:#1e1e2f,stroke:#FF4500,stroke-width:2px,color:#fff
+    style D fill:#1e1e2f,stroke:#00BFFF,stroke-width:2px,color:#fff
+    style E fill:#1e1e2f,stroke:#FFA500,stroke-width:2px,color:#fff
+    style F fill:#1e1e2f,stroke:#32CD32,stroke-width:2px,color:#fff
+    style G fill:#1e1e2f,stroke:#FF1493,stroke-width:2px,color:#fff
+```
+
+---
 
 ## 🏢 Enterprise Features
 
