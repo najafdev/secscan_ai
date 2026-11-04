@@ -1,12 +1,16 @@
 /**
- * HACKNOVA — Web Platform Interactive Controller
+ * HACKNOVA — Premium Web Platform Interactive Controller
  * Version: v2026.10.23
- * Core: Vanilla JS, Zero External Runtime Dependencies, Ultra-Smooth Interactivity
+ * Core: Vanilla JS, Zero External Runtime Dependencies, 60fps Native Interactivity
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initClipboard();
   initMobileMenu();
+  initHeroInstallerTabs();
+  initHeroConsoleTabs();
+  initBentoProviderSwitcher();
+  initRadarTooltips();
   initCodeTabs();
   initSimulator();
   initSpotlightEffect();
@@ -42,7 +46,6 @@ function initClipboard() {
           if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(textToCopy);
           } else {
-            // Fallback for non-https/local dev contexts
             const textArea = document.createElement('textarea');
             textArea.value = textToCopy;
             textArea.style.position = 'fixed';
@@ -54,14 +57,14 @@ function initClipboard() {
             document.body.removeChild(textArea);
           }
 
-          // UI feedback on button
+          // Visual tactile feedback on button
           const originalHTML = btn.innerHTML;
           btn.classList.add('copied');
           btn.innerHTML = `
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            <span class="copy-label">Copied!</span>
+            <span class="copy-label">Copied</span>
           `;
 
           showToast('Copied to clipboard');
@@ -83,10 +86,10 @@ function initClipboard() {
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="${isError ? '#ef4444' : '#10b981'}" stroke-width="2">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="${isError ? '#ef4444' : '#10b981'}" stroke-width="2.5">
         ${isError 
           ? '<circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line>' 
-          : '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>'
+          : '<polyline points="20 6 9 17 4 12"></polyline>'
         }
       </svg>
       <span>${message}</span>
@@ -95,11 +98,11 @@ function initClipboard() {
     toastContainer.appendChild(toast);
 
     setTimeout(() => {
-      toast.style.transition = 'all 0.3s ease';
+      toast.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
       toast.style.opacity = '0';
       toast.style.transform = 'translateY(10px)';
       setTimeout(() => toast.remove(), 300);
-    }, 2500);
+    }, 2400);
   }
 }
 
@@ -124,10 +127,113 @@ function initMobileMenu() {
       menuBtn.setAttribute('aria-expanded', 'false');
     });
   });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      drawer.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
 /* ==========================================================================
-   3. DEVELOPER CODE TABS
+   3. HERO QUICK-INSTALL TABS (bash / docker / pip)
+   ========================================================================== */
+function initHeroInstallerTabs() {
+  const tabs = document.querySelectorAll('.term-tab');
+  const codeEl = document.getElementById('heroInstallCmd');
+  if (!tabs.length || !codeEl) return;
+
+  const commands = {
+    bash: 'git clone https://github.com/najafdev/hacknova.git && bash install.sh',
+    docker: 'docker run -d -p 8080:8080 najafdev/hacknova:latest',
+    pip: 'pip install hacknova && hacknova --init'
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cmdKey = tab.getAttribute('data-tab-cmd');
+      if (commands[cmdKey]) {
+        codeEl.textContent = commands[cmdKey];
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   4. HERO INTERACTIVE CONSOLE TABS (Stream / Diff / MITRE)
+   ========================================================================== */
+function initHeroConsoleTabs() {
+  const tabs = document.querySelectorAll('.c-tab');
+  const panels = {
+    stream: document.getElementById('cViewStream'),
+    diff: document.getElementById('cViewDiff'),
+    mitre: document.getElementById('cViewMitre')
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      Object.values(panels).forEach(p => p && p.classList.remove('active'));
+
+      tab.classList.add('active');
+      const viewKey = tab.getAttribute('data-console-view');
+      if (panels[viewKey]) {
+        panels[viewKey].classList.add('active');
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   5. BENTO PROVIDER SWITCHER (OrcaRouter Upstream Hub)
+   ========================================================================== */
+function initBentoProviderSwitcher() {
+  const chips = document.querySelectorAll('#providerSwitcher .provider-chip');
+  if (!chips.length) return;
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+}
+
+/* ==========================================================================
+   6. RADAR TOOLTIPS
+   ========================================================================== */
+function initRadarTooltips() {
+  const pings = document.querySelectorAll('.radar-ping');
+  const toastContainer = document.getElementById('toastContainer');
+
+  pings.forEach(ping => {
+    ping.addEventListener('click', () => {
+      const info = ping.getAttribute('data-tooltip') || 'Target vulnerability anomaly';
+      if (!toastContainer) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <span class="badge-dot red"></span>
+        <span>${info}</span>
+      `;
+      toastContainer.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.transition = 'all 0.3s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    });
+  });
+}
+
+/* ==========================================================================
+   7. DEVELOPER CODE TABS
    ========================================================================== */
 function initCodeTabs() {
   const tabs = document.querySelectorAll('.code-tab');
@@ -150,7 +256,7 @@ function initCodeTabs() {
 }
 
 /* ==========================================================================
-   4. INTERACTIVE THREAT PLAYGROUND / SIMULATOR
+   8. INTERACTIVE THREAT PLAYGROUND / SIMULATOR
    ========================================================================== */
 function initSimulator() {
   const simButtons = document.querySelectorAll('.sim-btn');
@@ -160,12 +266,14 @@ function initSimulator() {
 
   const targetTag = document.getElementById('simTargetTag');
   const scoreNum = document.getElementById('simScore');
+  const scoreCircle = document.getElementById('simScoreCircle');
   const critVal = document.getElementById('simCrit');
   const highVal = document.getElementById('simHigh');
   const passVal = document.getElementById('simPass');
   const findingsList = document.getElementById('simFindingsList');
   const remedFileLabel = document.getElementById('remedFileLabel');
   const remedCodeContent = document.getElementById('remedCodeContent');
+  const applyBtn = document.getElementById('applyRemedyBtn');
 
   let activePreset = 'k8s';
 
@@ -191,7 +299,7 @@ function initSimulator() {
           mitre: 'D3-LPA (Least Privilege Access)'
         }
       ],
-      code: `# Autonomous Remediation generated by HACKNOVA
+      code: `# Autonomous Remediation generated by HACKNOVA via OrcaRouter
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -227,7 +335,7 @@ spec:
           mitre: 'D3-NIA (Network Ingress Authorization)'
         }
       ],
-      code: `# Terraform Autonomous Fix synthesized by HACKNOVA
+      code: `# Terraform Autonomous Fix synthesized by HACKNOVA via OrcaRouter
 resource "aws_s3_bucket_public_access_block" "vault_block" {
   bucket                  = "prod-customer-vault"
   block_public_acls       = true
@@ -249,7 +357,7 @@ resource "aws_security_group_rule" "restrict_ssh" {
       target: 'llm://enterprise-rag-assistant:v3',
       score: 95,
       crit: 0,
-      high: 1,
+      high: 2,
       pass: 36,
       fileName: 'llm_guardrail_rules.json',
       findings: [
@@ -290,7 +398,7 @@ resource "aws_security_group_rule" "restrict_ssh" {
       crit: 1,
       high: 2,
       pass: 62,
-      fileName: 'api_gateway_policy.py',
+      fileName: 'api_gateway_defense.py',
       findings: [
         {
           sev: 'crit',
@@ -312,9 +420,38 @@ from security.auth import verify_bearer_jwt
 async def validate_object_ownership(request: Request, user = Depends(verify_bearer_jwt)):
     account_id = request.path_params.get("account_id")
     if not user.has_explicit_access(account_id):
-        # Prevent BOLA / IDOR traversal
+        # Neutralize BOLA / IDOR traversal attempt
         raise HTTPException(status_code=403, detail="Access to resource forbidden")
     return True`
+    },
+    kernel: {
+      target: 'host://k8s-worker-node-04 (Kernel 6.1)',
+      score: 96,
+      crit: 0,
+      high: 1,
+      pass: 78,
+      fileName: 'ebpf_trace_filter.c',
+      findings: [
+        {
+          sev: 'high',
+          code: 'KERNEL-CVE-2026-PRIV',
+          title: 'Potential Unprivileged eBPF Map Escalation Vector',
+          mitre: 'D3-PSA (Process Segment Authorization)'
+        }
+      ],
+      code: `// eBPF Proactive Kernel Defense synthesized by HACKNOVA
+#include <linux/bpf.h>
+#include <bpf/bpf_helpers.h>
+
+SEC("lsm/bpf")
+int BPF_PROG(restrict_unprivileged_bpf, int cmd, union bpf_attr *attr, unsigned int size) {
+    if (!bpf_capable(CAP_SYS_ADMIN)) {
+        // Enforce strict kernel security isolation
+        return -EPERM;
+    }
+    return 0;
+}
+char LICENSE[] SEC("license") = "GPL";`
     }
   };
 
@@ -331,10 +468,24 @@ async def validate_object_ownership(request: Request, user = Depends(verify_bear
     if (remedFileLabel) remedFileLabel.textContent = data.fileName;
     if (remedCodeContent) remedCodeContent.textContent = data.code;
 
+    // Update circular score gauge
+    if (scoreCircle) {
+      const circumference = 264;
+      const offset = circumference * (1 - data.score / 100);
+      scoreCircle.style.strokeDashoffset = offset;
+      if (data.score >= 90) {
+        scoreCircle.style.stroke = 'var(--accent-emerald)';
+      } else if (data.score >= 75) {
+        scoreCircle.style.stroke = 'var(--accent-amber)';
+      } else {
+        scoreCircle.style.stroke = 'var(--accent-red)';
+      }
+    }
+
     // Render findings
     if (findingsList) {
-      findingsList.innerHTML = data.findings.map(f => `
-        <div class="finding-item ${f.sev}">
+      findingsList.innerHTML = data.findings.map((f, idx) => `
+        <div class="finding-item ${f.sev} ${idx === 0 ? 'active' : ''}" data-finding-id="${idx}">
           <div class="finding-header">
             <span class="vuln-pill ${f.sev === 'crit' ? 'red' : 'amber'}">${f.sev === 'crit' ? 'CRITICAL' : 'HIGH'}</span>
             <span class="vuln-code">${f.code}</span>
@@ -343,6 +494,15 @@ async def validate_object_ownership(request: Request, user = Depends(verify_bear
           <div class="finding-mitre">MITRE D3FEND: <code>${f.mitre}</code></div>
         </div>
       `).join('');
+
+      // Add click listeners to findings
+      const items = findingsList.querySelectorAll('.finding-item');
+      items.forEach(item => {
+        item.addEventListener('click', () => {
+          items.forEach(it => it.classList.remove('active'));
+          item.classList.add('active');
+        });
+      });
     }
   }
 
@@ -363,29 +523,60 @@ async def validate_object_ownership(request: Request, user = Depends(verify_bear
     runBtn.addEventListener('click', () => {
       runBtn.disabled = true;
       let progress = 0;
-      if (progressText) progressText.textContent = 'Executing multi-layer autonomous security scan...';
+      if (progressText) progressText.textContent = 'Initiating autonomous reconnaissance & surface mapping...';
 
       const interval = setInterval(() => {
-        progress += 20;
+        progress += 25;
         if (progressBar) progressBar.style.width = `${progress}%`;
 
-        if (progress === 40 && progressText) {
-          progressText.textContent = 'Fuzzing authorization bounds & cloud policies...';
-        } else if (progress === 80 && progressText) {
-          progressText.textContent = 'Synthesizing MITRE D3FEND patches via OrcaRouter...';
+        if (progress === 25 && progressText) {
+          progressText.textContent = 'Auditing CIS benchmarks & cloud IAM policies...';
+        } else if (progress === 50 && progressText) {
+          progressText.textContent = 'Engaging OrcaRouter Cyber Inference & D3FEND mapping...';
+        } else if (progress === 75 && progressText) {
+          progressText.textContent = 'Synthesizing zero-downtime remediation script...';
         } else if (progress >= 100) {
           clearInterval(interval);
-          if (progressText) progressText.textContent = 'Scan completed. All 1-click remedies generated.';
+          if (progressText) progressText.textContent = 'Audit complete. Zero-downtime remediation verified.';
           runBtn.disabled = false;
           updatePresetView(activePreset);
         }
-      }, 150);
+      }, 180);
     });
   }
+
+  if (applyBtn) {
+    applyBtn.addEventListener('click', () => {
+      const originalText = applyBtn.innerHTML;
+      applyBtn.innerHTML = '<span>Verifying...</span>';
+      applyBtn.disabled = true;
+
+      setTimeout(() => {
+        applyBtn.innerHTML = '<span>Applied ✓</span>';
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `
+          <span class="badge-dot emerald"></span>
+          <span>Remediation patch verified &amp; staged successfully.</span>
+        `;
+        const tc = document.getElementById('toastContainer');
+        if (tc) tc.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+          applyBtn.innerHTML = originalText;
+          applyBtn.disabled = false;
+        }, 2200);
+      }, 700);
+    });
+  }
+
+  // Initialize first preset
+  updatePresetView('k8s');
 }
 
 /* ==========================================================================
-   5. MOUSE SPOTLIGHT EFFECT ON BENTO CARDS
+   9. MOUSE SPOTLIGHT EFFECT ON DATA-SPOTLIGHT CARDS
    ========================================================================== */
 function initSpotlightEffect() {
   const cards = document.querySelectorAll('[data-spotlight]');
@@ -398,17 +589,12 @@ function initSpotlightEffect() {
 
       card.style.setProperty('--mouse-x', `${x}px`);
       card.style.setProperty('--mouse-y', `${y}px`);
-      card.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(0, 240, 255, 0.08), rgba(13, 19, 31, 0.72) 70%)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.background = '';
     });
   });
 }
 
 /* ==========================================================================
-   6. CONSOLE SIMULATION TYPEWRITER
+   10. CONSOLE SIMULATION TYPEWRITER
    ========================================================================== */
 function initConsoleTypewriter() {
   const typewriter = document.querySelector('.term-typewriter');
@@ -417,7 +603,8 @@ function initConsoleTypewriter() {
   const commands = [
     'hacknova posture-audit --target cloud://production --remediate auto',
     'hacknova llm-redteam --model enterprise-rag --owasp-top10',
-    'hacknova api-scan --spec openapi.json --fuzz-bola'
+    'hacknova api-scan --spec openapi.json --fuzz-bola',
+    'hacknova mitre-d3fend --compile-rules sigma'
   ];
 
   let cmdIndex = 0;
@@ -437,7 +624,7 @@ function initConsoleTypewriter() {
     let delay = isDeleting ? 25 : 55;
 
     if (!isDeleting && charIndex === currentCmd.length) {
-      delay = 2500; // Pause at end of command
+      delay = 2500;
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
