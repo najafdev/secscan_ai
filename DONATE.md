@@ -168,7 +168,7 @@ All payment methods are verified and legitimate. For security concerns:
 
 ### 💬 **Donation Questions**
 - **Email:** yashabalam707@gmail.com
-- **GitHub Issues:** [HACKNOVA Repository](https://github.com/najafdev/hacknova)
+- **GitHub Issues:** [HACKNOVA Repository](https://github.com/alaika-cyber/hacknova)
 - **WhatsApp:** [Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 - **Discord:** [Discussion Server](https://discord.gg/eXPjM3Hxwb)
 
@@ -247,7 +247,7 @@ Every contribution, no matter the size, helps make HACKNOVA Enterprise better fo
 | **Total Raised** | $0 (Starting Goal) |
 | **Active Supporters** | 0 |
 | **Countries Represented** | 0 |
-| **GitHub Stars** | ⭐ [Check Live Count](https://github.com/najafdev/hacknova) |
+| **GitHub Stars** | ⭐ [Check Live Count](https://github.com/alaika-cyber/hacknova) |
 
 ---
 
@@ -255,7 +255,7 @@ Every contribution, no matter the size, helps make HACKNOVA Enterprise better fo
   <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise" width="150" height="auto">
   
   <h3>**Made with ❤️ by Yashab Alam and the HACKNOVA development team**</h3>
-  <p><strong>Repository:</strong> <a href="https://github.com/najafdev/hacknova">github.com/najafdev/hacknova</a></p>
+  <p><strong>Repository:</strong> <a href="https://github.com/alaika-cyber/hacknova">github.com/alaika-cyber/hacknova</a></p>
   
   <p><em>Last updated: September 2026</em></p>
 </div>

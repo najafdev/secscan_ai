@@ -191,7 +191,7 @@ We are proud to present **HACKNOVA Enterprise Version 2026.10.22**! This release
 
 *Release Date: September 26, 2026*
 
-We are proud to present **HACKNOVA Enterprise Version 2026.09.26**! This release marks a significant milestone with the integration of the **Evidence Workbench**, cross-platform reliability hardening, reviewable AI and adapter execution lifecycles, and hardened CI test matrices contributed by **Abdulazeez A. Noaman** ([@HostX0](https://github.com/HostX0)) via Pull Request [#21](https://github.com/najafdev/hacknova/pull/21).
+We are proud to present **HACKNOVA Enterprise Version 2026.09.26**! This release marks a significant milestone with the integration of the **Evidence Workbench**, cross-platform reliability hardening, reviewable AI and adapter execution lifecycles, and hardened CI test matrices contributed by **Abdulazeez A. Noaman** ([@HostX0](https://github.com/HostX0)) via Pull Request [#21](https://github.com/alaika-cyber/hacknova/pull/21).
 
 ### 🌟 What's New in Version 2026.09.26
 
@@ -218,7 +218,7 @@ We are proud to present **HACKNOVA Enterprise Version 2026.09.26**! This release
 * **Expanded Verification**: 90+ core unit tests, comprehensive contract suites (`test_docker_contract.py`, `test_enterprise_ci_contract.py`, `test_requirements_compat.py`), and workbench E2E tests.
 
 #### 5. Community & Contributor Recognition
-* **Special Thanks**: Full credit and gratitude to **Abdulazeez A. Noaman** ([@HostX0](https://github.com/HostX0)) for designing, implementing, and contributing Pull Request [#21](https://github.com/najafdev/hacknova/pull/21).
+* **Special Thanks**: Full credit and gratitude to **Abdulazeez A. Noaman** ([@HostX0](https://github.com/HostX0)) for designing, implementing, and contributing Pull Request [#21](https://github.com/alaika-cyber/hacknova/pull/21).
 
 ---
 

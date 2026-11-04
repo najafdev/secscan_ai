@@ -47,13 +47,13 @@ Thank you to all the amazing people who have contributed to making HACKNOVA Ente
 *Developers who have made significant code contributions to the project.*
 
 - **Abdulazeez A. Noaman** - [@HostX0](https://github.com/HostX0)
-  - 💡 **Contributions**: Author of PR [#21](https://github.com/najafdev/hacknova/pull/21) — introduced the Evidence Workbench, deterministic adapter lifecycle & execution receipts (Semgrep, Nuclei, Trivy), cross-platform reliability contracts, and hardened CI test matrices.
+  - 💡 **Contributions**: Author of PR [#21](https://github.com/alaika-cyber/hacknova/pull/21) — introduced the Evidence Workbench, deterministic adapter lifecycle & execution receipts (Semgrep, Nuclei, Trivy), cross-platform reliability contracts, and hardened CI test matrices.
 
 
 ### 🐛 Bug Hunters
 *Contributors who have helped identify and fix bugs.*
 
-*🔍 Help us improve! Report bugs through [GitHub Issues](https://github.com/najafdev/hacknova/issues)*
+*🔍 Help us improve! Report bugs through [GitHub Issues](https://github.com/alaika-cyber/hacknova/issues)*
 
 ### 📚 Documentation Contributors
 *People who have improved documentation, tutorials, and guides.*
@@ -238,8 +238,8 @@ Thank you to all the amazing people who have contributed to making HACKNOVA Ente
 ## 📞 Community Channels
 
 ### 💬 Communication Platforms
-- **GitHub Issues**: [Bug reports and feature requests](https://github.com/najafdev/hacknova/issues)
-- **GitHub Discussions**: [Community discussions](https://github.com/najafdev/hacknova/discussions)
+- **GitHub Issues**: [Bug reports and feature requests](https://github.com/alaika-cyber/hacknova/issues)
+- **GitHub Discussions**: [Community discussions](https://github.com/alaika-cyber/hacknova/discussions)
 - **Email**: yashabalam9@gmail.com | yashabalam707@gmail.com
 - **WhatsApp**: [Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 - **Discord**: [Discussion Server](https://discord.gg/eXPjM3Hxwb)
@@ -295,7 +295,7 @@ By contributing to HACKNOVA Enterprise, you agree that your contributions will b
 
 ## 🔗 Links
 
-- **Main Repository**: [github.com/najafdev/hacknova](https://github.com/najafdev/hacknova)
+- **Main Repository**: [github.com/alaika-cyber/hacknova](https://github.com/alaika-cyber/hacknova)
 - **Documentation**: [README.md](../README.md)
 - **Contributing Guide**: [CONTRIBUTING.md](.github/CONTRIBUTING.md)
 - **Code of Conduct**: [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md)

@@ -145,8 +145,8 @@ function initHeroInstallerTabs() {
   if (!tabs.length || !codeEl) return;
 
   const commands = {
-    bash: 'git clone https://github.com/najafdev/hacknova.git && bash install.sh',
-    docker: 'docker run -d -p 8080:8080 najafdev/hacknova:latest',
+    bash: 'git clone https://github.com/alaika-cyber/hacknova.git && bash install.sh',
+    docker: 'docker run -d -p 8080:8080 alaika-cyber/hacknova:latest',
     pip: 'pip install hacknova && hacknova --init'
   };
 

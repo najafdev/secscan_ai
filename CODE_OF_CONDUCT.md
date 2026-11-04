@@ -89,7 +89,7 @@ If you experience or witness unacceptable behavior, including violations of cybe
 - **Subject**: "[HACKNOVA Code of Conduct] - Brief Description"
 
 **Alternative Contacts:**
-- **GitHub Issues**: [Security-related reports](https://github.com/najafdev/hacknova/issues) (for non-sensitive matters)
+- **GitHub Issues**: [Security-related reports](https://github.com/alaika-cyber/hacknova/issues) (for non-sensitive matters)
 - **WhatsApp Business**: [Secure Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 
 ### What to Include

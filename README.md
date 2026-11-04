@@ -8,9 +8,9 @@
   <h3>Autonomous Cyber Defense, Frontier AI Red Teaming & Multi-Stage Attack Graph Synthesis</h3>
   
   <p>
-    <a href="https://github.com/najafdev/hacknova"><img src="https://img.shields.io/badge/Version-2026.10.23-00ffc4.svg?style=for-the-badge&logo=git&logoColor=black" alt="Version 2026.10.23"></a>
-    <a href="https://github.com/najafdev/hacknova"><img src="https://img.shields.io/badge/Status-Production%20Ready-success.svg?style=for-the-badge" alt="Production Ready"></a>
-    <a href="https://github.com/najafdev/hacknova/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
+    <a href="https://github.com/alaika-cyber/hacknova"><img src="https://img.shields.io/badge/Version-2026.10.23-00ffc4.svg?style=for-the-badge&logo=git&logoColor=black" alt="Version 2026.10.23"></a>
+    <a href="https://github.com/alaika-cyber/hacknova"><img src="https://img.shields.io/badge/Status-Production%20Ready-success.svg?style=for-the-badge" alt="Production Ready"></a>
+    <a href="https://github.com/alaika-cyber/hacknova/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
     <a href="https://discord.gg/eXPjM3Hxwb"><img src="https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Server"></a>
   </p>
   <p>
@@ -163,7 +163,7 @@ graph TD
 
 ```bash
 # Clone the repository
-git clone https://github.com/najafdev/hacknova.git
+git clone https://github.com/alaika-cyber/hacknova.git
 cd hacknova
 
 # Run enterprise installer (sets up all services)
@@ -816,8 +816,8 @@ This project is licensed under the MIT License with additional enterprise terms:
 
 ### Support Channels
 - **Enterprise Support**: yashabalam707@gmail.com
-- **Technical Issues**: https://github.com/najafdev/hacknova/issues
-- **Feature Requests**: https://github.com/najafdev/hacknova/discussions
+- **Technical Issues**: https://github.com/alaika-cyber/hacknova/issues
+- **Feature Requests**: https://github.com/alaika-cyber/hacknova/discussions
 - **Security Issues**: yashabalam707@gmail.com
 - **WhatsApp Business**: [Join Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 
@@ -919,7 +919,7 @@ HACKNOVA Enterprise is designed for authorized security testing only:
   <p><em>Made with ❤️ by Yashab Alam for enterprise security teams worldwide</em></p>
   
   <p>
-    <a href="https://github.com/najafdev/hacknova">⭐ Star us on GitHub</a> |
+    <a href="https://github.com/alaika-cyber/hacknova">⭐ Star us on GitHub</a> |
     <a href="DONATE.md">💰 Support Development</a> |
     <a href="#-enterprise-support">📞 Get Support</a> |
     <a href="#-contributors">🤝 Contribute</a> |

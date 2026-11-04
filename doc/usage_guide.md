@@ -29,7 +29,7 @@ Welcome to the official user manual for **HACKNOVA Enterprise**, the state-of-th
 #### Option A: Local Virtual Environment (Recommended for Development)
 ```bash
 # Clone the repository
-git clone https://github.com/najafdev/hacknova.git
+git clone https://github.com/alaika-cyber/hacknova.git
 cd HACKNOVA
 
 # Create and activate a virtual environment

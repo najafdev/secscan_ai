@@ -33,7 +33,7 @@ git checkout -b feature/your-feature-name
 
 ### 1. 🐛 Bug Reports
 **Before submitting a bug report:**
-- Check existing [issues](https://github.com/najafdev/hacknova/issues)
+- Check existing [issues](https://github.com/alaika-cyber/hacknova/issues)
 - Use the latest version of HACKNOVA
 - Test in a clean environment
 
@@ -45,7 +45,7 @@ git checkout -b feature/your-feature-name
 
 ### 2. 💡 Feature Requests
 **For new features:**
-- Check [discussions](https://github.com/najafdev/hacknova/discussions)
+- Check [discussions](https://github.com/alaika-cyber/hacknova/discussions)
 - Use the feature request template
 - Explain the use case and benefits
 - Consider security implications
@@ -273,7 +273,7 @@ Currently seeking translators for:
 ## 📞 Getting Help
 
 ### For Contributors
-- **Technical Questions**: [GitHub Discussions](https://github.com/najafdev/hacknova/discussions)
+- **Technical Questions**: [GitHub Discussions](https://github.com/alaika-cyber/hacknova/discussions)
 - **Development Help**: yashabalam707@gmail.com
 - **Real-time Chat**: [WhatsApp Business Channel](https://whatsapp.com/channel/0029Vaoa1GfKLaHlL0Kc8k1q)
 
