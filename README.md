@@ -1,6 +1,6 @@
 <!-- HACKNOVA document -->
 <div align="center">
-  <p><strong>🪙 Official Solana CA:</strong> <code>Soon Available</code></p>
+  <p><strong>🪙 Official Solana CA:</strong> <code>8Lm7w98K3TVoEwVmy28N6HJ1G97YNDQUgWWokWsipump</code></p>
 
   <img src="public/hacknova-logo.png" alt="HACKNOVA Enterprise Logo" width="380" height="auto">
   
@@ -889,7 +889,7 @@ This project is licensed under the MIT License with additional enterprise terms:
 ### 💰 Support HACKNOVA Development
 Your support accelerates development, research infrastructure, and frontier AI model integrations:
 
-- **🪙 Official Solana Contract Address (CA)**: Soon Available
+- **🪙 Official Solana Contract Address (CA)**: `8Lm7w98K3TVoEwVmy28N6HJ1G97YNDQUgWWokWsipump`
 - **🪙 Cryptocurrency Donations**: For transfers (**Solana, Bitcoin, Ethereum, USDT, etc.**), please email **[sai466769@gmail.com](mailto:sai466769@gmail.com)**
 - **📄 Full Sponsorship & Donation Guide**: See [DONATE.md](DONATE.md) for tier perks, transparency reports, and roadmap goals
 

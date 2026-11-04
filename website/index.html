@@ -20,7 +20,7 @@
   <div class="light-beacon beacon-mid-cyan" aria-hidden="true"></div>
   <div class="technical-grid-bg" aria-hidden="true"></div>
 
-  <!-- Announcement Bar with prominent CA: Soon Available -->
+  <!-- Announcement Bar with verified Solana CA -->
   <aside class="announcement-bar" role="banner">
     <div class="container announcement-content">
       <div class="announcement-tag">
@@ -29,7 +29,7 @@
       </div>
       <p class="announcement-text">
         <strong>OrcaRouter AI</strong> integrated.
-        <span class="ca-pill"><span class="ca-dot"></span>CA: Soon Available</span>
+        <span class="ca-pill"><span class="ca-dot"></span>CA: <code id="topBarCa">8Lm7w98K3TVoEwVmy28N6HJ1G97YNDQUgWWokWsipump</code></span>
       </p>
       <a href="https://github.com/alaika-cyber/hacknova/releases/tag/v2026.10.23" target="_blank" rel="noopener noreferrer" class="announcement-link">
         <span>Release Notes</span>
@@ -95,7 +95,7 @@
     <div class="mobile-drawer-inner">
       <div class="mobile-ca-banner">
         <span class="ca-dot"></span>
-        <span>Solana CA: <strong>Soon Available</strong></span>
+        <span>Solana CA: <code id="mobileCaVal">8Lm7w98K3TVoEwVmy28N6HJ1G97YNDQUgWWokWsipump</code></span>
       </div>
       <a href="#features" class="mobile-nav-link">Defense Matrix</a>
       <a href="#bento" class="mobile-nav-link">Architecture</a>
@@ -864,24 +864,26 @@ docker-compose logs -f hacknova</code></pre>
             </div>
           </div>
 
-          <h2 class="token-title">Official Contract Address (CA)</h2>
+          <h2 class="token-title">Official Solana Contract Address (CA)</h2>
           <p class="token-desc">
-            To prevent scams and impersonators, verify official contract addresses only through verified channels.
+            The official HACKNOVA token contract address on Solana Mainnet. Always verify before interacting.
           </p>
           
           <div class="token-ca-box">
             <div class="ca-address-row">
-              <span class="ca-key-label">CONTRACT ADDRESS:</span>
+              <span class="ca-key-label">CONTRACT ADDRESS (CA):</span>
               <div class="ca-val-pill">
-                <span class="ca-val-text font-mono">Soon Available</span>
-                <span class="ca-stage-indicator">Audit in Progress</span>
+                <code class="ca-val-text font-mono" id="officialCaAddress">8Lm7w98K3TVoEwVmy28N6HJ1G97YNDQUgWWokWsipump</code>
+                <button class="copy-btn copy-btn-sm" data-target="officialCaAddress" aria-label="Copy Contract Address">
+                  <span class="copy-label">Copy CA</span>
+                </button>
               </div>
             </div>
 
             <div class="ca-security-notice">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
               <p class="ca-warning-note">
-                <strong>Advisory:</strong> The official CA is currently listed as <strong>Soon Available</strong>. It will only be announced on this website and official GitHub release tags. Never send funds to unverified contracts.
+                <strong>Verified Contract:</strong> <code>8Lm7w98K3TVoEwVmy28N6HJ1G97YNDQUgWWokWsipump</code> is the official and verified HACKNOVA token on Solana Mainnet. Beware of duplicate or imitation contracts.
               </p>
             </div>
           </div>
@@ -971,11 +973,11 @@ docker-compose logs -f hacknova</code></pre>
 
           <details class="faq-item">
             <summary class="faq-question">
-              <span>Where will the official CA be announced?</span>
+              <span>What is the official Solana contract address (CA)?</span>
               <svg class="faq-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </summary>
             <div class="faq-answer">
-              <p>The contract address is currently <strong>Soon Available</strong>. It will be published exclusively on this official website and verified GitHub release tags.</p>
+              <p>The official verified Solana CA is <code>8Lm7w98K3TVoEwVmy28N6HJ1G97YNDQUgWWokWsipump</code>. Always verify this address matches our official repository.</p>
             </div>
           </details>
         </div>
@@ -1059,7 +1061,7 @@ docker-compose logs -f hacknova</code></pre>
       <div class="footer-bottom-badges">
         <span class="badge-subtle">CIS Benchmark</span>
         <span class="badge-subtle">MITRE D3FEND</span>
-        <span class="badge-subtle">CA: Soon Available</span>
+        <span class="badge-subtle">CA: 8Lm7w9...pump</span>
       </div>
     </div>
   </footer>

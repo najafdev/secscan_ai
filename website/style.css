@@ -530,9 +530,15 @@ body {
   padding: 0.6rem 0.85rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--accent-amber);
   margin-bottom: 0.5rem;
+  word-break: break-all;
+}
+
+.mobile-ca-banner code {
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 .mobile-nav-link {
@@ -1963,10 +1969,11 @@ body {
 }
 
 .ca-val-text {
-  font-size: 0.95rem;
-  font-weight: 800;
+  font-size: clamp(0.72rem, 2.4vw, 0.9rem);
+  font-weight: 700;
   color: var(--accent-amber);
   letter-spacing: 0.02em;
+  word-break: break-all;
 }
 
 .ca-stage-indicator {
