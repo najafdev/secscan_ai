@@ -1,161 +1,371 @@
 /**
- * AgentDroid Official Website Interactions
+ * AgentDroid — Professional System Runtime & Interactive Explorer
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Menu Toggle
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navLinks = document.getElementById('navLinks');
+  // 1. Mobile Drawer Navigation
+  const menuBtn = document.getElementById('mobileMenuBtn');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerLinks = document.querySelectorAll('.mobile-drawer-link');
 
-  if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('mobile-open');
+  if (menuBtn && mobileDrawer) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileDrawer.classList.toggle('active');
+      menuBtn.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('active')) {
+        mobileDrawer.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      }
     });
   }
 
-  // 2. Agent Fleet Filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const agentCards = document.querySelectorAll('.agent-card');
+  // 2. Interactive Fleet Inspector Data & Controller
+  const agentDatabase = {
+    master: {
+      name: 'Master Agent',
+      category: 'core',
+      role: 'DAG Task Decomposition & Dynamic Dependency Resolver',
+      model: 'GPT-4o / Claude 3.5 Sonnet',
+      permissions: 'System Orchestration, IPC Binder',
+      latency: '< 45ms (Resolution)',
+      code: `class MasterAgent @Inject constructor(
+    private val dagScheduler: DAGScheduler,
+    private val memoryManager: AgentMemoryManager
+) : BaseAgent() {
+    suspend fun planGoal(goalPrompt: String): TaskGraph {
+        val decomposedNodes = llmProvider.decomposeIntoDAG(goalPrompt)
+        return dagScheduler.buildTopologicalExecutionTree(decomposedNodes)
+    }
+}`
+    },
+    phone: {
+      name: 'Phone Control Agent',
+      category: 'automation',
+      role: 'Native Android Accessibility UI Automation & Node Dispatcher',
+      model: 'Local Ollama Llama 3 / Gemini Flash',
+      permissions: 'android.permission.BIND_ACCESSIBILITY_SERVICE',
+      latency: '~120ms (Gesture Dispatch)',
+      code: `class PhoneControlAgent @Inject constructor(
+    private val accessibilityService: AgentDroidAccessibilityService,
+    private val stateVerifier: StateVerifier
+) : BaseAgent() {
+    suspend fun executeTap(nodeTarget: AccessibilityNodeInfo): Boolean {
+        requireHumanApprovalIfHighRisk(nodeTarget)
+        return accessibilityService.dispatchGestureClick(nodeTarget.boundsInScreen)
+    }
+}`
+    },
+    research: {
+      name: 'Research Agent',
+      category: 'intelligence',
+      role: 'Real-Time Web Intelligence Extraction & Semantic Parsing',
+      model: 'Perplexity Sonar / Llama 3 70B',
+      permissions: 'android.permission.INTERNET',
+      latency: '~650ms (Streamed)',
+      code: `class ResearchAgent @Inject constructor(
+    private val webEngine: HeadlessWebEngine,
+    private val memory: WorkingMemory
+) : BaseAgent() {
+    suspend fun conductQuery(topic: String): SynthesizedReport {
+        val rawCrawl = webEngine.fetchVerifiedSources(topic)
+        return llmProvider.extractKeyClaimsAndEvidence(rawCrawl)
+    }
+}`
+    },
+    content: {
+      name: 'Content Creation Agent',
+      category: 'intelligence',
+      role: 'Cross-Modal Document Drafting, Copywriting & Media Structuring',
+      model: 'Claude 3.5 Sonnet / GPT-4o',
+      permissions: 'Internal Shared Memory',
+      latency: '~480ms (Streamed)',
+      code: `class ContentCreationAgent @Inject constructor(
+    private val contextBus: SharedTaskContext
+) : BaseAgent() {
+    suspend fun draftBrief(context: TaskContext): GeneratedDocument {
+        val upstreamFindings = contextBus.getCompletedPayload("ResearchAgent")
+        return llmProvider.generateFormattedMarkdown(upstreamFindings)
+    }
+}`
+    },
+    social: {
+      name: 'Social Media Agent',
+      category: 'automation',
+      role: 'Multi-Platform Engagement Monitoring & Scheduled Dispatching',
+      model: 'Groq Llama 3.1 70B / Mistral',
+      permissions: 'Social App Intent Broadcasts',
+      latency: '~180ms',
+      code: `class SocialMediaAgent @Inject constructor(
+    private val intentDispatcher: ActionDispatcher
+) : BaseAgent() {
+    suspend fun preparePost(platform: Platform, payload: PostPayload) {
+        val intent = buildPlatformIntent(platform, payload)
+        intentDispatcher.dispatchNativeIntent(intent)
+    }
+}`
+    },
+    productivity: {
+      name: 'Productivity Agent',
+      category: 'automation',
+      role: 'Android Calendar, Reminder, Alarm & Content Provider Manager',
+      model: 'Local Ollama Phi-3 Mini',
+      permissions: 'READ_CALENDAR, WRITE_CALENDAR, SET_ALARM',
+      latency: '< 60ms',
+      code: `class ProductivityAgent @Inject constructor(
+    private val calendarResolver: CalendarContentResolver
+) : BaseAgent() {
+    suspend fun detectConflicts(requestedTime: Instant): List<CalendarEvent> {
+        return calendarResolver.queryOverlappingEvents(requestedTime)
+    }
+}`
+    },
+    communication: {
+      name: 'Communication Agent',
+      category: 'automation',
+      role: 'Telephony Intent Triggering & Structured Message Drafting',
+      model: 'Local Ollama Mistral 7B',
+      permissions: 'SEND_SMS, READ_CONTACTS',
+      latency: '< 80ms',
+      code: `class CommunicationAgent @Inject constructor(
+    private val telephonyManager: TelephonyIntentManager
+) : BaseAgent() {
+    suspend fun queueDraft(recipient: Contact, message: String) {
+        verifySafetyPolicy(recipient)
+        telephonyManager.createDraftIntent(recipient, message)
+    }
+}`
+    },
+    file: {
+      name: 'File Management Agent',
+      category: 'automation',
+      role: 'Scoped Storage Organization, SQLite Archiving & Encryption',
+      model: 'Local Ollama Embedded',
+      permissions: 'Scoped Storage (MANAGE_MEDIA)',
+      latency: '< 30ms (Local I/O)',
+      code: `class FileManagementAgent @Inject constructor(
+    private val database: AgentDroidDatabase
+) : BaseAgent() {
+    suspend fun archiveTaskArtifacts(taskId: String, data: ByteArray) {
+        database.artifactDao().insertEncryptedBlob(taskId, data)
+    }
+}`
+    },
+    browser: {
+      name: 'Browser Agent',
+      category: 'intelligence',
+      role: 'Automated Web Navigation, DOM Hierarchy Traversal & Forms',
+      model: 'Gemini 1.5 Pro',
+      permissions: 'Custom Tabs, android.permission.INTERNET',
+      latency: '~320ms',
+      code: `class BrowserAgent @Inject constructor(
+    private val chromeCustomTabs: ChromeCustomTabsController
+) : BaseAgent() {
+    suspend fun navigateAndExtract(url: String): ParsedDOMSnapshot {
+        return chromeCustomTabs.executeSession(url)
+    }
+}`
+    },
+    security: {
+      name: 'Security & Policy Agent',
+      category: 'security',
+      role: 'Zero-Trust Gatekeeper, Prompt Injection Interceptor & Killswitch',
+      model: 'Local FastBERT + Deterministic Rules',
+      permissions: 'Hardware Keystore AES-256 GCM',
+      latency: '< 15ms (Deterministic)',
+      code: `class SecurityPolicyAgent @Inject constructor(
+    private val killswitch: EmergencyKillswitch,
+    private val keystore: SecurePreferencesManager
+) : BaseAgent() {
+    fun evaluateActionRisk(action: AgentAction): RiskVerdict {
+        if (killswitch.isEngaged()) throw KillswitchActiveException()
+        return if (action.isDestructive) RiskVerdict.REQUIRE_BIOMETRIC else RiskVerdict.ALLOW
+    }
+}`
+    }
+  };
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  const agentItems = document.querySelectorAll('.fleet-agent-item');
+  const filterTabs = document.querySelectorAll('.fleet-filter-tab');
+  const panelTitle = document.getElementById('panelTitle');
+  const panelDesc = document.getElementById('panelDesc');
+  const specRole = document.getElementById('specRole');
+  const specModel = document.getElementById('specModel');
+  const specPerm = document.getElementById('specPerm');
+  const panelCode = document.getElementById('panelCode');
 
-      const filter = btn.getAttribute('data-filter');
+  function updateFleetPanel(agentId) {
+    const data = agentDatabase[agentId];
+    if (!data) return;
 
-      agentCards.forEach(card => {
-        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-          card.style.display = 'block';
+    if (panelTitle) panelTitle.textContent = data.name;
+    if (panelDesc) panelDesc.textContent = data.role;
+    if (specRole) specRole.textContent = data.latency;
+    if (specModel) specModel.textContent = data.model;
+    if (specPerm) specPerm.textContent = data.permissions;
+    if (panelCode) panelCode.textContent = data.code;
+
+    agentItems.forEach(item => {
+      item.classList.toggle('active', item.getAttribute('data-agent') === agentId);
+    });
+  }
+
+  agentItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const agentId = item.getAttribute('data-agent');
+      updateFleetPanel(agentId);
+    });
+  });
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filter = tab.getAttribute('data-filter');
+      agentItems.forEach(item => {
+        const agentId = item.getAttribute('data-agent');
+        const data = agentDatabase[agentId];
+        if (filter === 'all' || (data && data.category === filter)) {
+          item.style.display = 'flex';
         } else {
-          card.style.display = 'none';
+          item.style.display = 'none';
         }
       });
     });
   });
 
-  // 3. FAQ Accordion
-  const faqItems = document.querySelectorAll('.faq-item');
-
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      faqItems.forEach(i => i.classList.remove('open'));
-      if (!isOpen) {
-        item.classList.add('open');
-      }
-    });
-  });
-
-  // 4. Copy-to-Clipboard Utility
-  window.copyText = function(text, btnElement) {
-    navigator.clipboard.writeText(text).then(() => {
-      const originalText = btnElement.innerText;
-      btnElement.innerText = 'Copied!';
-      btnElement.classList.add('btn-copied');
-      setTimeout(() => {
-        btnElement.innerText = originalText;
-        btnElement.classList.remove('btn-copied');
-      }, 2000);
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
-  };
-
-  // 5. Interactive DAG Simulator
-  const runDagBtn = document.getElementById('runDagBtn');
-  const resetDagBtn = document.getElementById('resetDagBtn');
+  // 3. Interactive DAG Simulation Engine
+  const startSimBtn = document.getElementById('startSimBtn');
+  const resetSimBtn = document.getElementById('resetSimBtn');
   const simConsole = document.getElementById('simConsole');
   const scenarioSelect = document.getElementById('scenarioSelect');
-  const dagNodes = document.querySelectorAll('.dag-node');
+  const simNodes = document.querySelectorAll('.dag-step-node');
 
-  const scenarios = {
-    social: {
-      steps: [
-        { nodeIndex: 0, title: 'Plan & Decompose', agent: 'MasterAgent', log: '[MasterAgent] Decomposing natural language command into 4 parallel tasks...', duration: 800 },
-        { nodeIndex: 1, title: 'Competitor Intelligence', agent: 'ResearchAgent', log: '[ResearchAgent] Scraping X/Threads engagement metrics. Synthesized 4 trends.', duration: 1100 },
-        { nodeIndex: 2, title: 'Content Generation', agent: 'ContentAgent', log: '[ContentAgent] Drafted 3 carousel tweets & 1 markdown summary via Ollama Llama 3.', duration: 900 },
-        { nodeIndex: 3, title: 'Human Approval', agent: 'SecurityEngine', log: '[SecurityEngine] Zero-trust checkpoint: Policy approved automatically.', duration: 700 },
-        { nodeIndex: 4, title: 'Accessibility Post', agent: 'PhoneControlAgent', log: '[PhoneControlAgent] Dispatched Accessibility Node tap on Compose -> Posted.', duration: 1000 }
-      ]
-    },
-    calendar: {
-      steps: [
-        { nodeIndex: 0, title: 'Intent Parsing', agent: 'MasterAgent', log: '[MasterAgent] Parsing calendar conflict resolution request...', duration: 700 },
-        { nodeIndex: 1, title: 'Read Calendar DB', agent: 'ProductivityAgent', log: '[ProductivityAgent] Read native calendar content provider: Found conflict at 3:00 PM.', duration: 900 },
-        { nodeIndex: 2, title: 'Draft Reschedule', agent: 'ContentAgent', log: '[ContentAgent] Formulated polite reschedule proposal email.', duration: 800 },
-        { nodeIndex: 3, title: 'Permission Check', agent: 'SecurityEngine', log: '[SecurityEngine] Verified external SMS/Email dispatch signature with Keystore.', duration: 700 },
-        { nodeIndex: 4, title: 'Dispatch Message', agent: 'CommunicationAgent', log: '[CommunicationAgent] Sent SMS notification via Android telephony intent.', duration: 950 }
-      ]
-    }
+  const simScenarios = {
+    social: [
+      { step: 0, badge: 'PLANNING', title: 'Intent Decomposition', agent: 'MasterAgent', log: '[DAGScheduler] Parsed goal: "Analyze market trends and draft update". Building DAG.' },
+      { step: 1, badge: 'RETRIEVAL', title: 'Web Analysis', agent: 'ResearchAgent', log: '[ResearchAgent] Executing web intelligence crawl. Ingested 5 data sources.' },
+      { step: 2, badge: 'SYNTHESIS', title: 'Document Drafting', agent: 'ContentAgent', log: '[ContentAgent] Synthesizing brief via Ollama Llama 3 GGUF (8-bit quantization).' },
+      { step: 3, badge: 'GOVERNANCE', title: 'Zero-Trust Gate', agent: 'SecurityAgent', log: '[SecurityAgent] Verifying prompt safety and verifying Keystore integrity.' },
+      { step: 4, badge: 'AUTOMATION', title: 'Intent Execution', agent: 'PhoneControlAgent', log: '[PhoneControlAgent] Accessibility action verified. Target state achieved.' }
+    ],
+    productivity: [
+      { step: 0, badge: 'PLANNING', title: 'Goal Parsing', agent: 'MasterAgent', log: '[DAGScheduler] Parsed goal: "Resolve calendar overlap and notify team".' },
+      { step: 1, badge: 'RETRIEVAL', title: 'Provider Query', agent: 'ProductivityAgent', log: '[ProductivityAgent] Read Calendar ContentProvider. Found 1 conflict.' },
+      { step: 2, badge: 'SYNTHESIS', title: 'Message Prep', agent: 'ContentAgent', log: '[ContentAgent] Drafted concise rescheduling note in volatile memory.' },
+      { step: 3, badge: 'GOVERNANCE', title: 'Permission Check', agent: 'SecurityAgent', log: '[SecurityAgent] Keystore signature check passed. Dispatch allowed.' },
+      { step: 4, badge: 'AUTOMATION', title: 'Intent Broadcast', agent: 'CommunicationAgent', log: '[CommunicationAgent] Telephony intent emitted via native Android OS.' }
+    ]
   };
 
-  let isSimRunning = false;
+  let simInterval = null;
 
-  function appendLog(message, className = '') {
+  function appendSimLog(text, colorClass = '') {
     if (!simConsole) return;
     const line = document.createElement('div');
-    line.className = className;
-    line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+    if (colorClass) line.className = colorClass;
+    line.textContent = `[${new Date().toISOString().substring(11, 19)}] ${text}`;
     simConsole.appendChild(line);
     simConsole.scrollTop = simConsole.scrollHeight;
   }
 
-  function resetDag() {
-    isSimRunning = false;
-    dagNodes.forEach(node => {
-      node.classList.remove('active-node', 'completed-node');
-      const status = node.querySelector('.node-status');
-      if (status) status.textContent = 'READY';
+  function resetSim() {
+    if (simInterval) clearInterval(simInterval);
+    simNodes.forEach(node => {
+      node.classList.remove('active', 'done');
+      const badge = node.querySelector('.step-badge');
+      if (badge) badge.textContent = 'READY';
     });
     if (simConsole) {
-      simConsole.innerHTML = '<div class="t-dim">DAG Engine idle. Select scenario and click "Run Simulation".</div>';
+      simConsole.innerHTML = '<div style="color: var(--text-tertiary);">Simulation runtime idle. Choose workflow and click "Execute DAG".</div>';
     }
   }
 
-  if (resetDagBtn) {
-    resetDagBtn.addEventListener('click', resetDag);
+  if (resetSimBtn) {
+    resetSimBtn.addEventListener('click', resetSim);
   }
 
-  if (runDagBtn) {
-    runDagBtn.addEventListener('click', async () => {
-      if (isSimRunning) return;
-      isSimRunning = true;
-      resetDag();
+  if (startSimBtn) {
+    startSimBtn.addEventListener('click', () => {
+      resetSim();
+      const scenarioKey = scenarioSelect ? scenarioSelect.value : 'social';
+      const steps = simScenarios[scenarioKey] || simScenarios.social;
 
-      const selectedScenario = scenarioSelect ? scenarioSelect.value : 'social';
-      const scenario = scenarios[selectedScenario] || scenarios.social;
+      appendSimLog(`Initializing Directed Acyclic Graph: [${scenarioKey.toUpperCase()}]`, 'log-cyan');
 
-      appendLog(`Starting DAG Topological Execution for [${selectedScenario.toUpperCase()}]`, 't-cyan');
+      let currentStepIdx = 0;
 
-      for (let i = 0; i < scenario.steps.length; i++) {
-        if (!isSimRunning) break;
-        const step = scenario.steps[i];
-        const node = dagNodes[step.nodeIndex];
-
-        if (node) {
-          node.classList.add('active-node');
-          const status = node.querySelector('.node-status');
-          if (status) status.textContent = 'EXECUTING...';
+      function runNextStep() {
+        if (currentStepIdx >= steps.length) {
+          appendSimLog('DAG completed successfully. 0 fake mocks. Output synced to Room SQLite.', 'log-green');
+          return;
         }
 
-        appendLog(step.log, 't-prompt');
-
-        await new Promise(r => setTimeout(r, step.duration));
+        const stepData = steps[currentStepIdx];
+        const node = simNodes[stepData.step];
 
         if (node) {
-          node.classList.remove('active-node');
-          node.classList.add('completed-node');
-          const status = node.querySelector('.node-status');
-          if (status) status.textContent = 'COMPLETED ✓';
+          node.classList.add('active');
+          const badge = node.querySelector('.step-badge');
+          if (badge) badge.textContent = 'RUNNING...';
         }
+
+        appendSimLog(stepData.log, 'log-purple');
+
+        setTimeout(() => {
+          if (node) {
+            node.classList.remove('active');
+            node.classList.add('done');
+            const badge = node.querySelector('.step-badge');
+            if (badge) badge.textContent = 'RESOLVED ✓';
+          }
+          currentStepIdx++;
+          runNextStep();
+        }, 850);
       }
 
-      if (isSimRunning) {
-        appendLog('DAG execution finished successfully. All tasks committed to SQLite.', 't-success');
-        isSimRunning = false;
-      }
+      runNextStep();
     });
   }
+
+  // 4. Accordion Component
+  const accordionItems = document.querySelectorAll('.accordion-item');
+  accordionItems.forEach(item => {
+    const btn = item.querySelector('.accordion-btn');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        accordionItems.forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    }
+  });
+
+  // 5. Copy Text Utility
+  window.copyText = function(text, btnElement) {
+    navigator.clipboard.writeText(text).then(() => {
+      const origText = btnElement.innerText;
+      btnElement.innerText = 'Copied';
+      btnElement.style.borderColor = 'var(--color-success)';
+      setTimeout(() => {
+        btnElement.innerText = origText;
+        btnElement.style.borderColor = '';
+      }, 2000);
+    }).catch(err => {
+      console.error('Copy failed', err);
+    });
+  };
 });

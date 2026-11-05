@@ -2,54 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Terms and Conditions — AgentDroid</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Ambient Glow -->
-  <div class="bg-ambient">
-    <div class="ambient-blob-1"></div>
-    <div class="ambient-blob-2"></div>
-  </div>
-
-  <header class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="brand">
-        <img src="assets/logo.png" alt="Logo" class="brand-icon">
+  <header class="nav-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/logo.png" alt="AgentDroid Logo" class="brand-mark">
         <span>AgentDroid</span>
       </a>
-      <div class="nav-actions">
-        <a href="index.html" class="btn btn-secondary btn-sm">&larr; Back to Home</a>
+      <div class="nav-cta-group">
+        <a href="index.html" class="btn btn-outline btn-sm">&larr; Back to Home</a>
       </div>
     </div>
   </header>
 
-  <main class="container" style="max-width: 800px; padding-top: 3rem;">
-    <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem; color: #fff;">Terms &amp; Conditions</h1>
-    <p style="color: var(--text-dim); margin-bottom: 2rem;">Last Updated: November 2026</p>
+  <main class="container" style="max-width: 820px; padding: 4rem 1rem;">
+    <h1 style="font-size: 2.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Terms &amp; Conditions</h1>
+    <p style="color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.8rem; margin-bottom: 2.5rem;">REVISION: NOVEMBER 2026</p>
 
-    <div class="feature-card" style="padding: 2.5rem; line-height: 1.8;">
-      <h3 style="color: var(--accent-purple-light); margin-bottom: 1rem;">1. License &amp; Usage</h3>
-      <p style="margin-bottom: 1.5rem;">AgentDroid is open source software provided under the Apache License, Version 2.0. You are free to use, modify, distribute, and build upon this software in compliance with the terms of the Apache 2.0 license.</p>
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.8;">
+      <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.75rem;">1. Software License</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1.75rem; font-size: 0.92rem;">AgentDroid is licensed under the Apache License, Version 2.0. You may reproduce and distribute copies of the work in source or object form in accordance with the terms of the Apache 2.0 license.</p>
 
-      <h3 style="color: var(--accent-purple-light); margin-bottom: 1rem;">2. Autonomous Actions Disclaimer</h3>
-      <p style="margin-bottom: 1.5rem;">AgentDroid executes actions on your device based on natural language commands and LLM interpretations. While zero-trust safeguards and emergency killswitches are built-in, users retain ultimate responsibility for approving high-risk actions and monitoring automation.</p>
+      <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.75rem;">2. Autonomous Automation Safeguards</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1.75rem; font-size: 0.92rem;">Users configure AgentDroid to perform automated device tasks. While emergency killswitches and prompt safety filters are implemented, users retain responsibility for monitoring autonomous agent execution.</p>
 
-      <h3 style="color: var(--accent-purple-light); margin-bottom: 1rem;">3. Token &amp; CA Notice</h3>
-      <p style="margin-bottom: 1.5rem;">Any official token or contract address (CA) related to the AgentDroid ecosystem will strictly be announced on the official repository at <a href="https://github.com/agentsdroid/agentsdroid" target="_blank" rel="noopener" style="color: var(--accent-cyan);">github.com/agentsdroid/agentsdroid</a> and the official website. No other communication channel represents the core team.</p>
+      <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.75rem;">3. Token &amp; Contract Address (CA) Notice</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1.75rem; font-size: 0.92rem;">Any official smart contract address (CA) associated with AgentDroid will be published exclusively on the official GitHub repository at <a href="https://github.com/agentsdroid/agentsdroid" target="_blank" rel="noopener" style="color: var(--accent-primary);">github.com/agentsdroid/agentsdroid</a> and this website. Any other third-party announcements are unverified.</p>
 
-      <h3 style="color: var(--accent-purple-light); margin-bottom: 1rem;">4. Limitation of Liability</h3>
-      <p style="margin-bottom: 1.5rem;">In no event shall the authors or copyright holders be liable for any claim, damages, or other liability arising from the use of or inability to use this software.</p>
+      <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.75rem;">4. Limitation of Warranty</h3>
+      <p style="color: var(--text-secondary); font-size: 0.92rem;">The software is provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</p>
     </div>
   </main>
 
-  <footer class="footer" style="margin-top: 4rem;">
-    <div class="footer-bottom" style="border: none; padding: 0;">
-      <div>&copy; 2026 AgentDroid Open Source Project.</div>
-      <div><a href="index.html" style="color: var(--accent-purple-light);">Home</a></div>
+  <footer class="site-footer" style="padding: 2rem 0;">
+    <div class="container footer-baseline">
+      <span>&copy; 2026 AgentDroid Open Source Project.</span>
+      <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">&larr; Home</a>
     </div>
   </footer>
 
