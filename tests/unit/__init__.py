@@ -1,1 +1,0 @@
-# HACKNOVA core module
