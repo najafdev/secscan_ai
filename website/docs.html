@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentDroid Documentation — Multi-Agent AI OS for Android</title>
+  <meta name="description" content="Technical documentation, API references, DAG scheduler architecture, and setup guides for AgentDroid.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    .docs-sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .docs-sidebar h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-purple-light);
+      margin-bottom: 0.75rem;
+    }
+    .docs-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .docs-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color var(--transition-fast);
+    }
+    .docs-nav a:hover {
+      color: #fff;
+    }
+    .docs-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 3rem;
+    }
+    .docs-content h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .docs-content h2 {
+      font-size: 1.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent-purple-light);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+    .docs-content h3 {
+      font-size: 1.15rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .docs-content p, .docs-content li {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .docs-content pre {
+      background: #08090d;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 1.5rem;
+    }
+    .docs-content code {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    @media (max-width: 850px) {
+      .docs-layout {
+        grid-template-columns: 1fr;
+      }
+      .docs-sidebar {
+        display: none;
+      }
+      .docs-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow -->
+  <div class="bg-ambient">
+    <div class="ambient-blob-1"></div>
+    <div class="ambient-blob-2"></div>
+  </div>
+
+  <!-- Announcement Bar -->
+  <aside class="announcement-bar">
+    <div class="announcement-content">
+      <span class="pulse-dot"></span>
+      <span class="announcement-badge">TOKEN LAUNCH</span>
+      <span class="announcement-text">
+        <strong>CA SOON AVAILABLE:</strong> Verified smart contract address releasing soon.
+      </span>
+      <a href="index.html#token" class="btn btn-sm btn-secondary" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">CA Status &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="AgentDroid Logo" class="brand-icon">
+        <span>AgentDroid Docs</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#fleet">Agent Fleet</a></li>
+          <li><a href="index.html#token">Token CA</a></li>
+          <li><a href="https://github.com/agentsdroid/agentsdroid" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/agentsdroid/agentsdroid" target="_blank" rel="noopener" class="btn btn-primary btn-sm">GitHub Repo</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="docs-layout">
+    <aside class="docs-sidebar">
+      <h4>Getting Started</h4>
+      <ul class="docs-nav">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+
+      <h4>Architecture</h4>
+      <ul class="docs-nav">
+        <li><a href="#dag-scheduler">DAG Task Scheduler</a></li>
+        <li><a href="#accessibility">Accessibility Service</a></li>
+        <li><a href="#memory-system">5-Tier Memory</a></li>
+        <li><a href="#keystore-security">Keystore Security</a></li>
+      </ul>
+
+      <h4>Integration</h4>
+      <ul class="docs-nav">
+        <li><a href="#ollama-setup">Local Ollama</a></li>
+        <li><a href="#cloud-providers">Cloud Providers</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <h1 id="overview">AgentDroid Technical Documentation</h1>
+      <p>
+        AgentDroid is an Android-native multi-agent system designed to bring autonomous agent orchestration, DAG task resolution, and native UI automation to modern mobile devices.
+      </p>
+
+      <h2 id="prerequisites">Prerequisites</h2>
+      <ul>
+        <li>Android 10.0+ (API level 29 or higher; target API 34)</li>
+        <li>JDK 17 or JDK 21 installed</li>
+        <li>Android Accessibility Service permission (for PhoneControlAgent UI automation)</li>
+        <li>Optional: Local Ollama running on Wi-Fi or Cloud API keys (Gemini, Anthropic, OpenAI, Groq)</li>
+      </ul>
+
+      <h2 id="installation">Building from Source</h2>
+      <p>Clone the repository and build the project using Gradle:</p>
+      <pre><code>git clone https://github.com/agentsdroid/agentsdroid.git
+cd agentsdroid
+
+# Run test suite
+./gradlew testDebugUnitTest
+
+# Build debug APK
+./gradlew assembleDebug</code></pre>
+
+      <h2 id="dag-scheduler">DAG Task Scheduler Engine</h2>
+      <p>
+        The core of AgentDroid is the Directed Acyclic Graph (DAG) Scheduler (<code>DAGScheduler.kt</code>). When a user submits an instruction, the Master Agent decomposes it into discrete nodes with dependencies:
+      </p>
+      <pre><code>// Example DAG Definition
+val taskGraph = TaskGraph(
+    root = TaskNode("Decompose Goal", agent = MasterAgent),
+    nodes = listOf(
+        TaskNode("Research Trends", agent = ResearchAgent, dependencies = listOf("root")),
+        TaskNode("Draft Summary", agent = ContentAgent, dependencies = listOf("Research Trends")),
+        TaskNode("Approve Action", agent = SecurityEngine, dependencies = listOf("Draft Summary")),
+        TaskNode("Post Update", agent = PhoneControlAgent, dependencies = listOf("Approve Action"))
+    )
+)</code></pre>
+
+      <h2 id="accessibility">Accessibility Service Integration</h2>
+      <p>
+        AgentDroid uses <code>AgentDroidAccessibilityService.kt</code> to inspect node hierarchies and execute accessibility actions (click, scroll, long press, set text).
+        Zero root access is required. All actions pass through the <code>EmergencyKillswitch</code> before dispatch.
+      </p>
+
+      <h2 id="memory-system">5-Tier Memory Architecture</h2>
+      <p>Agent context is managed across five tiers to optimize mobile RAM usage:</p>
+      <ul>
+        <li><strong>Sensory Memory:</strong> Screen snapshots, incoming notifications, and active UI tree nodes.</li>
+        <li><strong>Working Memory:</strong> Ephemeral variables active within a single DAG session.</li>
+        <li><strong>Episodic Memory:</strong> Historical task logs stored in Room SQLite with a 30-day retention window.</li>
+        <li><strong>Semantic Memory:</strong> Knowledge graphs and user preferences.</li>
+        <li><strong>Procedural Memory:</strong> Learned automation macros and UI coordinate templates.</li>
+      </ul>
+
+      <h2 id="keystore-security">Security & Keystore AES-256 GCM</h2>
+      <p>
+        API keys are protected by <code>SecurePreferencesManager.kt</code> using hardware-backed Android Keystore keys with AES-256 GCM encryption. Plaintext keys are never written to disk.
+      </p>
+
+      <h2 id="ollama-setup">Configuring Local Ollama</h2>
+      <p>
+        To run sovereign offline agents, connect your device to the same Wi-Fi network as your workstation running Ollama:
+      </p>
+      <pre><code># On your local computer:
+OLLAMA_HOST=0.0.0.0:11434 ollama serve
+
+# In AgentDroid app:
+Set Endpoint: http://192.168.1.X:11434
+Select Model: llama3:8b</code></pre>
+
+      <h2>Community & Contributions</h2>
+      <p>
+        AgentDroid is licensed under the Apache 2.0 License. Contributions, pull requests, and feedback are welcomed on our
+        <a href="https://github.com/agentsdroid/agentsdroid" target="_blank" rel="noopener" style="color: var(--accent-purple-light);">official GitHub repository</a>.
+      </p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="border: none; padding: 0;">
+      <div>&copy; 2026 AgentDroid Open Source Project. All rights reserved.</div>
+      <div><a href="https://github.com/agentsdroid/agentsdroid" style="color: var(--accent-purple-light); text-decoration: none;">GitHub Repo</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,11 +1,19 @@
 <div align="center">
+
+> ### 📢 Official Contract Address (CA): **Soon Available**
+> *The official smart contract address will be published here upon launch. Please beware of unauthorized contracts or impersonation accounts.*
+
+</div>
+
+<div align="center">
   <img src="public/logo.png" alt="AgentDroid Logo" width="140" style="border-radius: 28px;" />
   <h1>AgentDroid 🤖📱</h1>
   <p><strong>Production-Ready Multi-Agent AI Operating System for Android</strong></p>
   <p>
-    <a href="https://github.com/alaika-cyber/agentdroid/releases/tag/v1.0.0"><img src="https://img.shields.io/badge/Release-v1.0.0-8B5CF6?style=flat-square" alt="Version" /></a>
-    <a href="https://github.com/alaika-cyber/agentdroid/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-34D399?style=flat-square" alt="License" /></a>
-    <a href="https://github.com/alaika-cyber/agentdroid/actions"><img src="https://img.shields.io/badge/Tests-53%20Passing-60A5FA?style=flat-square" alt="Tests" /></a>
+    <a href="https://github.com/agentsdroid/agentsdroid/releases"><img src="https://img.shields.io/badge/Release-v1.0.0-8B5CF6?style=flat-square" alt="Version" /></a>
+    <a href="https://github.com/agentsdroid/agentsdroid/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-34D399?style=flat-square" alt="License" /></a>
+    <a href="https://github.com/agentsdroid/agentsdroid/actions"><img src="https://img.shields.io/badge/Tests-53%20Passing-60A5FA?style=flat-square" alt="Tests" /></a>
+    <a href="website/index.html"><img src="https://img.shields.io/badge/Website-Live_Showcase-38BDF8?style=flat-square" alt="Website" /></a>
   </p>
 </div>
 
