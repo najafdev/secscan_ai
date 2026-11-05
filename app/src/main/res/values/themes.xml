@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AgentDroid" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">#090A0F</item>
+        <item name="android:navigationBarColor">#090A0F</item>
+        <item name="android:windowBackground">#090A0F</item>
+    </style>
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AgentDroid</string>
+    <string name="accessibility_service_description">AgentDroid Accessibility Service enables the Phone Control Agent to safely interact with applications, automate approved workflows, navigate screens, and inspect UI elements under user supervision.</string>
+</resources>

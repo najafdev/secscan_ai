@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentDroid — Sovereign Multi-Agent AI Operating System for Android</title>
+  <meta name="description" content="Production-ready multi-agent AI operating platform for Android. Coordinate specialized AI agents, automate workflows, and connect cloud/local LLMs with zero mock data.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta property="og:title" content="AgentDroid — Sovereign Multi-Agent AI OS for Android">
+  <meta property="og:description" content="Production-ready multi-agent AI operating platform for Android.">
+  <meta property="og:image" content="logo.png">
+  <style>
+    :root {
+      --bg-dark: #08090B;
+      --bg-secondary: #0D0F12;
+      --card-bg: #12151A;
+      --border-dark: #252A33;
+      --primary-accent: #A78BFA;
+      --secondary-accent: #8B5CF6;
+      --electric-blue: #60A5FA;
+      --success-green: #34D399;
+      --warning-amber: #FBBF24;
+      --text-primary: #F5F5F7;
+      --text-secondary: #9CA3AF;
+      --text-muted: #626B78;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+    header {
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-dark) 100%);
+      border-bottom: 1px solid var(--border-dark);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    .brand-logo {
+      width: 128px;
+      height: 128px;
+      border-radius: 28px;
+      box-shadow: 0 12px 36px rgba(167, 139, 250, 0.25);
+      border: 1px solid rgba(167, 139, 250, 0.35);
+      margin-bottom: 1.25rem;
+      object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .brand-logo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 16px 48px rgba(167, 139, 250, 0.4);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.75rem;
+      font-family: monospace;
+      font-weight: 700;
+      border-radius: 9999px;
+      background: rgba(167, 139, 250, 0.15);
+      color: var(--primary-accent);
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #FFF 0%, var(--primary-accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.lead {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto 2rem;
+    }
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--primary-accent);
+      color: #08090B;
+    }
+    .btn-primary:hover {
+      background: #C4B5FD;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--border-dark);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-secondary);
+      border-color: var(--primary-accent);
+    }
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.2s ease;
+    }
+    .card:hover {
+      border-color: rgba(167, 139, 250, 0.4);
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    .card p {
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-family: monospace;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(96, 165, 250, 0.15);
+      color: var(--electric-blue);
+      display: inline-block;
+      margin-top: 0.75rem;
+    }
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-dark);
+    }
+    th { color: var(--text-secondary); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; }
+    td code { font-family: monospace; font-size: 0.8rem; color: var(--electric-blue); }
+    footer {
+      border-top: 1px solid var(--border-dark);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+    footer a:hover {
+      color: var(--primary-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <img src="logo.png" alt="AgentDroid Logo" class="brand-logo">
+    </div>
+    <div class="badge">v1.0.0 Production Release</div>
+    <h1>AgentDroid AI Operating System</h1>
+    <p class="lead">A modular, sovereign multi-agent platform for Android. Orchestrate micro-agents, automate native apps via Accessibility, and run local Ollama or cloud models under strict real-AI policies.</p>
+    <div class="cta-group">
+      <a href="https://github.com/alaika-cyber/agentdroid-/releases/download/v1.0.0/app-release-unsigned.apk" class="btn btn-primary">Download Release APK (12.1 MB)</a>
+      <a href="https://github.com/alaika-cyber/agentdroid-/releases/download/v1.0.0/app-debug.apk" class="btn btn-secondary">Download Debug APK (19.4 MB)</a>
+      <a href="https://github.com/alaika-cyber/agentdroid-" class="btn btn-secondary">GitHub Repository</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid">
+      <div class="card">
+        <h3>Autonomous Multi-Agent Fleet</h3>
+        <p>Master Agent plans complex goals as Directed Acyclic Graphs (DAGs) and delegates tasks across 10 specialized execution micro-agents.</p>
+        <div class="tag">DAG SCHEDULER</div>
+      </div>
+
+      <div class="card">
+        <h3>Strict Real AI Mode</h3>
+        <p>Zero fake data policy. Eliminates placeholder AI messages and simulated completions. Emits actionable, typed errors when offline.</p>
+        <div class="tag">ZERO MOCK DATA</div>
+      </div>
+
+      <div class="card">
+        <h3>Dynamic Local & Cloud Models</h3>
+        <p>Dynamic discovery for local Ollama and LM Studio endpoints over Wi-Fi, alongside cloud adapters for OpenAI, Gemini, Claude, and Groq.</p>
+        <div class="tag">OLLAMA & CLOUD</div>
+      </div>
+
+      <div class="card">
+        <h3>Native Phone UI Automation</h3>
+        <p>Simulates physical taps, scrolls, and text input using the Android Accessibility Framework, governed by human approval queues and emergency stop triggers.</p>
+        <div class="tag">ACCESSIBILITY ENGINE</div>
+      </div>
+
+      <div class="card">
+        <h3>Hardware-Backed Security</h3>
+        <p>API credentials encrypted via Android Keystore AES-256 GCM. On-device persistence with 17 Room SQLite tables and rolling 30-day retention.</p>
+        <div class="tag">KEYSTORE AES-256</div>
+      </div>
+
+      <div class="card">
+        <h3>Obsidian Dark UI</h3>
+        <p>Minimalist futuristic dark interface inspired by Nothing OS and Linear. Smooth Compose animations and real-time telemetry.</p>
+        <div class="tag">JETPACK COMPOSE</div>
+      </div>
+    </section>
+
+    <h2 style="margin-bottom: 1rem; font-size: 1.5rem;">Verified Release Artifacts (v1.0.0)</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Package</th>
+            <th>Target ABI</th>
+            <th>Size</th>
+            <th>SHA-256 Checksum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>app-release-unsigned.apk</strong></td>
+            <td>Universal</td>
+            <td>12.1 MB</td>
+            <td><code>3f734200c78b575bd4b4892cf3e23f95fa945d64f0e3c9463bbd5b657e679e06</code></td>
+          </tr>
+          <tr>
+            <td><strong>app-debug.apk</strong></td>
+            <td>Universal</td>
+            <td>19.4 MB</td>
+            <td><code>c45b13a943637a68540d38354aafce097f774bcac968019d771ab6100b8d8fb3</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 AgentDroid Open Source Contributors. Licensed under the Apache License, Version 2.0.</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="privacy-policy.html">Privacy Policy</a> &bull;
+      <a href="terms-and-conditions.html">Terms &amp; Conditions</a> &bull;
+      <a href="https://github.com/alaika-cyber/agentdroid-/releases/tag/v1.0.0">GitHub Release</a> &bull;
+      <a href="https://github.com/alaika-cyber/agentdroid-">Source Code</a>
+    </p>
+  </footer>
+
+</body>
+</html>
