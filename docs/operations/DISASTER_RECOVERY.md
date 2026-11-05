@@ -57,6 +57,6 @@ To return the entire app to a pristine state:
 ---
 
 ## Related Documentation
-* [Backup and Restore](file:///workspaces/agentdroid-/docs/operations/BACKUP_AND_RESTORE.md)
-* [Tool Execution Security](file:///workspaces/agentdroid-/docs/security/TOOL_EXECUTION_SECURITY.md)
-* [Troubleshooting Guide](file:///workspaces/agentdroid-/docs/user-guide/TROUBLESHOOTING.md)
+* [Backup and Restore](file:///workspaces/hacknova/docs/operations/BACKUP_AND_RESTORE.md)
+* [Tool Execution Security](file:///workspaces/hacknova/docs/security/TOOL_EXECUTION_SECURITY.md)
+* [Troubleshooting Guide](file:///workspaces/hacknova/docs/user-guide/TROUBLESHOOTING.md)

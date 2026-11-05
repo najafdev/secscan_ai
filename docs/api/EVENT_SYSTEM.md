@@ -68,6 +68,6 @@ val executionState: StateFlow<OrchestrationState> = orchestrator.activeContext.s
 ---
 
 ## Related Documentation
-* [Task Orchestration](file:///workspaces/agentdroid-/docs/architecture/TASK_ORCHESTRATION.md)
-* [Memory Architecture](file:///workspaces/agentdroid-/docs/architecture/MEMORY_ARCHITECTURE.md)
-* [Agent Interfaces](file:///workspaces/agentdroid-/docs/api/AGENT_INTERFACES.md)
+* [Task Orchestration](file:///workspaces/hacknova/docs/architecture/TASK_ORCHESTRATION.md)
+* [Memory Architecture](file:///workspaces/hacknova/docs/architecture/MEMORY_ARCHITECTURE.md)
+* [Agent Interfaces](file:///workspaces/hacknova/docs/api/AGENT_INTERFACES.md)

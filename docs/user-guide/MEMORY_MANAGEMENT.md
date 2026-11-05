@@ -65,6 +65,6 @@ flowchart TD
 ---
 
 ## Related Documentation
-* [Memory Architecture Specification](file:///workspaces/agentdroid-/docs/architecture/MEMORY_ARCHITECTURE.md)
-* [Data Retention Policies](file:///workspaces/agentdroid-/docs/privacy/DATA_RETENTION.md)
-* [Privacy & Security Settings](file:///workspaces/agentdroid-/docs/user-guide/PRIVACY_SETTINGS.md)
+* [Memory Architecture Specification](file:///workspaces/hacknova/docs/architecture/MEMORY_ARCHITECTURE.md)
+* [Data Retention Policies](file:///workspaces/hacknova/docs/privacy/DATA_RETENTION.md)
+* [Privacy & Security Settings](file:///workspaces/hacknova/docs/user-guide/PRIVACY_SETTINGS.md)

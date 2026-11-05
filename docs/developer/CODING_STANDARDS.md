@@ -53,5 +53,5 @@ All contributions to AgentDroid must adhere to the following architectural, styl
 ---
 
 ## Related Documentation
-* [Developer Guide](file:///workspaces/agentdroid-/docs/developer/DEVELOPER_GUIDE.md)
-* [Testing Guide](file:///workspaces/agentdroid-/docs/developer/TESTING_GUIDE.md)
+* [Developer Guide](file:///workspaces/hacknova/docs/developer/DEVELOPER_GUIDE.md)
+* [Testing Guide](file:///workspaces/hacknova/docs/developer/TESTING_GUIDE.md)

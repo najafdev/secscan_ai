@@ -67,5 +67,5 @@ fun `unconfigured provider emits ProviderNotConfigured error`() = runTest {
 ---
 
 ## Related Documentation
-* [Coding Standards](file:///workspaces/agentdroid-/docs/developer/CODING_STANDARDS.md)
-* [Debugging Guide](file:///workspaces/agentdroid-/docs/developer/DEBUGGING.md)
+* [Coding Standards](file:///workspaces/hacknova/docs/developer/CODING_STANDARDS.md)
+* [Debugging Guide](file:///workspaces/hacknova/docs/developer/DEBUGGING.md)

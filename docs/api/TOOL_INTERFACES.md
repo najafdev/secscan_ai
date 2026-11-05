@@ -90,6 +90,6 @@ interface StateVerifier {
 ---
 
 ## Related Documentation
-* [Tool Development Guide](file:///workspaces/agentdroid-/docs/developer/TOOL_DEVELOPMENT.md)
-* [Tool Execution Security](file:///workspaces/agentdroid-/docs/security/TOOL_EXECUTION_SECURITY.md)
-* [Android Integration](file:///workspaces/agentdroid-/docs/architecture/ANDROID_INTEGRATION.md)
+* [Tool Development Guide](file:///workspaces/hacknova/docs/developer/TOOL_DEVELOPMENT.md)
+* [Tool Execution Security](file:///workspaces/hacknova/docs/security/TOOL_EXECUTION_SECURITY.md)
+* [Android Integration](file:///workspaces/hacknova/docs/architecture/ANDROID_INTEGRATION.md)

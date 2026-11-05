@@ -47,5 +47,5 @@ Use this standardized markdown template when drafting release notes for GitHub R
 ---
 
 ## Related Documentation
-* [System Changelog](file:///workspaces/agentdroid-/docs/release/CHANGELOG.md)
-* [Software Versioning Policy](file:///workspaces/agentdroid-/docs/release/VERSIONING.md)
+* [System Changelog](file:///workspaces/hacknova/docs/release/CHANGELOG.md)
+* [Software Versioning Policy](file:///workspaces/hacknova/docs/release/VERSIONING.md)

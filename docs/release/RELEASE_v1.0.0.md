@@ -106,6 +106,6 @@ adb install -r app-release-signed.apk
 ---
 
 ## Related Documentation
-* [System Changelog](file:///workspaces/agentdroid-/docs/release/CHANGELOG.md)
-* [Installation Guide](file:///workspaces/agentdroid-/docs/user-guide/INSTALLATION.md)
-* [Master Documentation Hub](file:///workspaces/agentdroid-/docs/README.md)
+* [System Changelog](file:///workspaces/hacknova/docs/release/CHANGELOG.md)
+* [Installation Guide](file:///workspaces/hacknova/docs/user-guide/INSTALLATION.md)
+* [Master Documentation Hub](file:///workspaces/hacknova/docs/README.md)

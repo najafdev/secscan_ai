@@ -57,6 +57,6 @@ To prevent uncontrolled SQLite database growth on user devices:
 ---
 
 ## Related Documentation
-* [Performance Tuning](file:///workspaces/agentdroid-/docs/operations/PERFORMANCE.md)
-* [Database Schema](file:///workspaces/agentdroid-/docs/architecture/DATABASE_SCHEMA.md)
-* [Data Protection](file:///workspaces/agentdroid-/docs/security/DATA_PROTECTION.md)
+* [Performance Tuning](file:///workspaces/hacknova/docs/operations/PERFORMANCE.md)
+* [Database Schema](file:///workspaces/hacknova/docs/architecture/DATABASE_SCHEMA.md)
+* [Data Protection](file:///workspaces/hacknova/docs/security/DATA_PROTECTION.md)

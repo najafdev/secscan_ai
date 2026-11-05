@@ -61,6 +61,6 @@ To revoke system permissions granted to AgentDroid:
 ---
 
 ## Related Documentation
-* [Privacy Overview](file:///workspaces/agentdroid-/docs/privacy/PRIVACY_OVERVIEW.md)
-* [Credential Management Architecture](file:///workspaces/agentdroid-/docs/security/CREDENTIAL_MANAGEMENT.md)
-* [Memory Management Guide](file:///workspaces/agentdroid-/docs/user-guide/MEMORY_MANAGEMENT.md)
+* [Privacy Overview](file:///workspaces/hacknova/docs/privacy/PRIVACY_OVERVIEW.md)
+* [Credential Management Architecture](file:///workspaces/hacknova/docs/security/CREDENTIAL_MANAGEMENT.md)
+* [Memory Management Guide](file:///workspaces/hacknova/docs/user-guide/MEMORY_MANAGEMENT.md)

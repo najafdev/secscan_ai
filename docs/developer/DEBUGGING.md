@@ -65,5 +65,5 @@ When running debug builds (`app-debug.apk`), OkHttp's `HttpLoggingInterceptor` i
 ---
 
 ## Related Documentation
-* [Testing Guide](file:///workspaces/agentdroid-/docs/developer/TESTING_GUIDE.md)
-* [Android Integration](file:///workspaces/agentdroid-/docs/architecture/ANDROID_INTEGRATION.md)
+* [Testing Guide](file:///workspaces/hacknova/docs/developer/TESTING_GUIDE.md)
+* [Android Integration](file:///workspaces/hacknova/docs/architecture/ANDROID_INTEGRATION.md)

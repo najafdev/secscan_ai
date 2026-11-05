@@ -76,6 +76,6 @@ export OLLAMA_HOST="http://localhost:11434"
 ---
 
 ## Related Documentation
-* [Developer Guide](file:///workspaces/agentdroid-/docs/developer/DEVELOPER_GUIDE.md)
-* [Build and Release](file:///workspaces/agentdroid-/docs/developer/BUILD_AND_RELEASE.md)
-* [Ollama Setup](file:///workspaces/agentdroid-/docs/user-guide/OLLAMA_SETUP.md)
+* [Developer Guide](file:///workspaces/hacknova/docs/developer/DEVELOPER_GUIDE.md)
+* [Build and Release](file:///workspaces/hacknova/docs/developer/BUILD_AND_RELEASE.md)
+* [Ollama Setup](file:///workspaces/hacknova/docs/user-guide/OLLAMA_SETUP.md)

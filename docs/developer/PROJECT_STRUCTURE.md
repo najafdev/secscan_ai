@@ -81,6 +81,6 @@ com.agentdroid.app/
 ---
 
 ## Related Documentation
-* [Developer Guide](file:///workspaces/agentdroid-/docs/developer/DEVELOPER_GUIDE.md)
-* [Software Architecture](file:///workspaces/agentdroid-/docs/architecture/SOFTWARE_ARCHITECTURE.md)
-* [Database Schema](file:///workspaces/agentdroid-/docs/architecture/DATABASE_SCHEMA.md)
+* [Developer Guide](file:///workspaces/hacknova/docs/developer/DEVELOPER_GUIDE.md)
+* [Software Architecture](file:///workspaces/hacknova/docs/architecture/SOFTWARE_ARCHITECTURE.md)
+* [Database Schema](file:///workspaces/hacknova/docs/architecture/DATABASE_SCHEMA.md)

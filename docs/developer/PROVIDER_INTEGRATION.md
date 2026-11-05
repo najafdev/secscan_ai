@@ -85,6 +85,6 @@ After creating your provider class:
 ---
 
 ## Related Documentation
-* [AI Provider Architecture](file:///workspaces/agentdroid-/docs/architecture/AI_PROVIDER_ARCHITECTURE.md)
-* [AI Provider Interfaces](file:///workspaces/agentdroid-/docs/api/AI_PROVIDER_INTERFACES.md)
-* [Debugging Guide](file:///workspaces/agentdroid-/docs/developer/DEBUGGING.md)
+* [AI Provider Architecture](file:///workspaces/hacknova/docs/architecture/AI_PROVIDER_ARCHITECTURE.md)
+* [AI Provider Interfaces](file:///workspaces/hacknova/docs/api/AI_PROVIDER_INTERFACES.md)
+* [Debugging Guide](file:///workspaces/hacknova/docs/developer/DEBUGGING.md)

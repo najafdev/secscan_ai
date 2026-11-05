@@ -54,6 +54,6 @@ adb backup -f agentdroid_backup.ab -noapk com.agentdroid.app
 ---
 
 ## Related Documentation
-* [Disaster Recovery](file:///workspaces/agentdroid-/docs/operations/DISASTER_RECOVERY.md)
-* [Database Schema](file:///workspaces/agentdroid-/docs/architecture/DATABASE_SCHEMA.md)
-* [Secure Storage](file:///workspaces/agentdroid-/docs/security/SECURE_STORAGE.md)
+* [Disaster Recovery](file:///workspaces/hacknova/docs/operations/DISASTER_RECOVERY.md)
+* [Database Schema](file:///workspaces/hacknova/docs/architecture/DATABASE_SCHEMA.md)
+* [Secure Storage](file:///workspaces/hacknova/docs/security/SECURE_STORAGE.md)

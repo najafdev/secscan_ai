@@ -65,5 +65,5 @@ Environment variables for automated CI/CD signing:
 ---
 
 ## Related Documentation
-* [Development Setup](file:///workspaces/agentdroid-/docs/developer/DEVELOPMENT_SETUP.md)
-* [Versioning Policy](file:///workspaces/agentdroid-/docs/release/VERSIONING.md)
+* [Development Setup](file:///workspaces/hacknova/docs/developer/DEVELOPMENT_SETUP.md)
+* [Versioning Policy](file:///workspaces/hacknova/docs/release/VERSIONING.md)

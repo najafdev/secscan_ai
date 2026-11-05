@@ -99,6 +99,6 @@ interface ModelDiscoveryService {
 ---
 
 ## Related Documentation
-* [AI Provider Architecture](file:///workspaces/agentdroid-/docs/architecture/AI_PROVIDER_ARCHITECTURE.md)
-* [Provider Integration Guide](file:///workspaces/agentdroid-/docs/developer/PROVIDER_INTEGRATION.md)
-* [Error Codes Catalog](file:///workspaces/agentdroid-/docs/api/ERROR_CODES.md)
+* [AI Provider Architecture](file:///workspaces/hacknova/docs/architecture/AI_PROVIDER_ARCHITECTURE.md)
+* [Provider Integration Guide](file:///workspaces/hacknova/docs/developer/PROVIDER_INTEGRATION.md)
+* [Error Codes Catalog](file:///workspaces/hacknova/docs/api/ERROR_CODES.md)

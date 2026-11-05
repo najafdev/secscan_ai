@@ -49,6 +49,6 @@ Users can trigger maintenance actions directly from the **Settings** screen:
 ---
 
 ## Related Documentation
-* [Performance Tuning](file:///workspaces/agentdroid-/docs/operations/PERFORMANCE.md)
-* [Logging and Monitoring](file:///workspaces/agentdroid-/docs/operations/LOGGING_AND_MONITORING.md)
-* [Database Schema](file:///workspaces/agentdroid-/docs/architecture/DATABASE_SCHEMA.md)
+* [Performance Tuning](file:///workspaces/hacknova/docs/operations/PERFORMANCE.md)
+* [Logging and Monitoring](file:///workspaces/hacknova/docs/operations/LOGGING_AND_MONITORING.md)
+* [Database Schema](file:///workspaces/hacknova/docs/architecture/DATABASE_SCHEMA.md)

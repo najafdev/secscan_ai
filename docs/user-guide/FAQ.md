@@ -47,6 +47,6 @@ Android's hardware security prevents background services from inspecting UI elem
 ---
 
 ## Related Documentation
-* [Getting Started](file:///workspaces/agentdroid-/docs/user-guide/GETTING_STARTED.md)
-* [Security Overview](file:///workspaces/agentdroid-/docs/security/SECURITY_OVERVIEW.md)
-* [Device Compatibility](file:///workspaces/agentdroid-/docs/release/COMPATIBILITY.md)
+* [Getting Started](file:///workspaces/hacknova/docs/user-guide/GETTING_STARTED.md)
+* [Security Overview](file:///workspaces/hacknova/docs/security/SECURITY_OVERVIEW.md)
+* [Device Compatibility](file:///workspaces/hacknova/docs/release/COMPATIBILITY.md)

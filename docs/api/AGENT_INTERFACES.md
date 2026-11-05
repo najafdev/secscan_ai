@@ -103,6 +103,6 @@ data class AgentTask(
 ---
 
 ## Related Documentation
-* [Multi-Agent Architecture](file:///workspaces/agentdroid-/docs/architecture/MULTI_AGENT_ARCHITECTURE.md)
-* [Agent Lifecycle](file:///workspaces/agentdroid-/docs/architecture/AGENT_LIFECYCLE.md)
-* [Agent Development Guide](file:///workspaces/agentdroid-/docs/developer/AGENT_DEVELOPMENT.md)
+* [Multi-Agent Architecture](file:///workspaces/hacknova/docs/architecture/MULTI_AGENT_ARCHITECTURE.md)
+* [Agent Lifecycle](file:///workspaces/hacknova/docs/architecture/AGENT_LIFECYCLE.md)
+* [Agent Development Guide](file:///workspaces/hacknova/docs/developer/AGENT_DEVELOPMENT.md)

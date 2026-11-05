@@ -43,5 +43,5 @@ AgentDroid is designed to operate seamlessly on mobile hardware with strict batt
 ---
 
 ## Related Documentation
-* [Logging and Monitoring](file:///workspaces/agentdroid-/docs/operations/LOGGING_AND_MONITORING.md)
-* [System Architecture](file:///workspaces/agentdroid-/docs/architecture/SYSTEM_ARCHITECTURE.md)
+* [Logging and Monitoring](file:///workspaces/hacknova/docs/operations/LOGGING_AND_MONITORING.md)
+* [System Architecture](file:///workspaces/hacknova/docs/architecture/SYSTEM_ARCHITECTURE.md)

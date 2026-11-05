@@ -72,6 +72,6 @@ AgentDroid provides an immediate safety stop mechanism for automation:
 ---
 
 ## Related Documentation
-* [Accessibility Service Setup](file:///workspaces/agentdroid-/docs/user-guide/ACCESSIBILITY_SETUP.md)
-* [Android Integration Architecture](file:///workspaces/agentdroid-/docs/architecture/ANDROID_INTEGRATION.md)
-* [Security & Tool Execution](file:///workspaces/agentdroid-/docs/security/TOOL_EXECUTION_SECURITY.md)
+* [Accessibility Service Setup](file:///workspaces/hacknova/docs/user-guide/ACCESSIBILITY_SETUP.md)
+* [Android Integration Architecture](file:///workspaces/hacknova/docs/architecture/ANDROID_INTEGRATION.md)
+* [Security & Tool Execution](file:///workspaces/hacknova/docs/security/TOOL_EXECUTION_SECURITY.md)

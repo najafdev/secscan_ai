@@ -101,6 +101,6 @@ stateDiagram-v2
 ---
 
 ## Related Documentation
-* [Multi-Agent Architecture](file:///workspaces/agentdroid-/docs/architecture/MULTI_AGENT_ARCHITECTURE.md)
-* [Agent Lifecycle Specification](file:///workspaces/agentdroid-/docs/architecture/AGENT_LIFECYCLE.md)
-* [Custom Agent Guide](file:///workspaces/agentdroid-/docs/developer/CUSTOM_AGENT_GUIDE.md)
+* [Multi-Agent Architecture](file:///workspaces/hacknova/docs/architecture/MULTI_AGENT_ARCHITECTURE.md)
+* [Agent Lifecycle Specification](file:///workspaces/hacknova/docs/architecture/AGENT_LIFECYCLE.md)
+* [Custom Agent Guide](file:///workspaces/hacknova/docs/developer/CUSTOM_AGENT_GUIDE.md)

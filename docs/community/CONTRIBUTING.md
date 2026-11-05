@@ -30,7 +30,7 @@ Thank you for your interest in contributing to **AgentDroid**! AgentDroid is an 
 ## 2. Pull Request Process
 
 1. **Open an Issue First**: Before embarking on large feature work, open an issue to discuss the proposal with maintainers.
-2. **Follow Coding Standards**: Ensure code conforms to [Coding Standards](file:///workspaces/agentdroid-/docs/developer/CODING_STANDARDS.md) and maintains the **Strict Real AI** mandate.
+2. **Follow Coding Standards**: Ensure code conforms to [Coding Standards](file:///workspaces/hacknova/docs/developer/CODING_STANDARDS.md) and maintains the **Strict Real AI** mandate.
 3. **Automated Verification**:
    * All unit tests must pass: `./gradlew testDebugUnitTest`
    * Build must complete cleanly: `./gradlew assembleDebug`
@@ -40,6 +40,6 @@ Thank you for your interest in contributing to **AgentDroid**! AgentDroid is an 
 ---
 
 ## Related Documentation
-* [Code of Conduct](file:///workspaces/agentdroid-/docs/community/CODE_OF_CONDUCT.md)
-* [Developer Guide](file:///workspaces/agentdroid-/docs/developer/DEVELOPER_GUIDE.md)
-* [Coding Standards](file:///workspaces/agentdroid-/docs/developer/CODING_STANDARDS.md)
+* [Code of Conduct](file:///workspaces/hacknova/docs/community/CODE_OF_CONDUCT.md)
+* [Developer Guide](file:///workspaces/hacknova/docs/developer/DEVELOPER_GUIDE.md)
+* [Coding Standards](file:///workspaces/hacknova/docs/developer/CODING_STANDARDS.md)

@@ -72,6 +72,6 @@ agentDao.insertAgent(customAgent)
 ---
 
 ## Related Documentation
-* [Agent Development Guide](file:///workspaces/agentdroid-/docs/developer/AGENT_DEVELOPMENT.md)
-* [Database Schema](file:///workspaces/agentdroid-/docs/architecture/DATABASE_SCHEMA.md)
-* [Agent Fleet Management](file:///workspaces/agentdroid-/docs/user-guide/AGENT_MANAGEMENT.md)
+* [Agent Development Guide](file:///workspaces/hacknova/docs/developer/AGENT_DEVELOPMENT.md)
+* [Database Schema](file:///workspaces/hacknova/docs/architecture/DATABASE_SCHEMA.md)
+* [Agent Fleet Management](file:///workspaces/hacknova/docs/user-guide/AGENT_MANAGEMENT.md)

@@ -42,5 +42,5 @@ This document defines the supported operating systems, hardware platforms, and d
 ---
 
 ## Related Documentation
-* [Installation Guide](file:///workspaces/agentdroid-/docs/user-guide/INSTALLATION.md)
-* [System Changelog](file:///workspaces/agentdroid-/docs/release/CHANGELOG.md)
+* [Installation Guide](file:///workspaces/hacknova/docs/user-guide/INSTALLATION.md)
+* [System Changelog](file:///workspaces/hacknova/docs/release/CHANGELOG.md)

@@ -42,5 +42,5 @@ Releases are tagged on the `main` branch:
 ---
 
 ## Related Documentation
-* [System Changelog](file:///workspaces/agentdroid-/docs/release/CHANGELOG.md)
-* [Deprecation Policy](file:///workspaces/agentdroid-/docs/release/DEPRECATION_POLICY.md)
+* [System Changelog](file:///workspaces/hacknova/docs/release/CHANGELOG.md)
+* [Deprecation Policy](file:///workspaces/hacknova/docs/release/DEPRECATION_POLICY.md)

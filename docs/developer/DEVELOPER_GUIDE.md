@@ -61,6 +61,6 @@ flowchart TD
 ---
 
 ## Related Documentation
-* [Development Setup](file:///workspaces/agentdroid-/docs/developer/DEVELOPMENT_SETUP.md)
-* [Project Structure](file:///workspaces/agentdroid-/docs/developer/PROJECT_STRUCTURE.md)
-* [System Architecture](file:///workspaces/agentdroid-/docs/architecture/SYSTEM_ARCHITECTURE.md)
+* [Development Setup](file:///workspaces/hacknova/docs/developer/DEVELOPMENT_SETUP.md)
+* [Project Structure](file:///workspaces/hacknova/docs/developer/PROJECT_STRUCTURE.md)
+* [System Architecture](file:///workspaces/hacknova/docs/architecture/SYSTEM_ARCHITECTURE.md)

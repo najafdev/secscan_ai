@@ -46,5 +46,5 @@ timeline
 ---
 
 ## Related Documentation
-* [Product Roadmap](file:///workspaces/agentdroid-/docs/product/PRODUCT_ROADMAP.md)
-* [Feature Requests](file:///workspaces/agentdroid-/docs/community/FEATURE_REQUESTS.md)
+* [Product Roadmap](file:///workspaces/hacknova/docs/product/PRODUCT_ROADMAP.md)
+* [Feature Requests](file:///workspaces/hacknova/docs/community/FEATURE_REQUESTS.md)

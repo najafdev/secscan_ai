@@ -71,6 +71,6 @@ To unlock this setting:
 ---
 
 ## Related Documentation
-* [Phone Automation Guide](file:///workspaces/agentdroid-/docs/user-guide/PHONE_AUTOMATION.md)
-* [Android Permission Model](file:///workspaces/agentdroid-/docs/security/PERMISSION_MODEL.md)
-* [Privacy & Data Collection](file:///workspaces/agentdroid-/docs/privacy/DATA_COLLECTION.md)
+* [Phone Automation Guide](file:///workspaces/hacknova/docs/user-guide/PHONE_AUTOMATION.md)
+* [Android Permission Model](file:///workspaces/hacknova/docs/security/PERMISSION_MODEL.md)
+* [Privacy & Data Collection](file:///workspaces/hacknova/docs/privacy/DATA_COLLECTION.md)

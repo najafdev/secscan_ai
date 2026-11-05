@@ -41,5 +41,5 @@ All notable changes to AgentDroid will be documented in this file. The format is
 ---
 
 ## Related Documentation
-* [Semantic Versioning Policy](file:///workspaces/agentdroid-/docs/release/VERSIONING.md)
-* [Device Compatibility](file:///workspaces/agentdroid-/docs/release/COMPATIBILITY.md)
+* [Semantic Versioning Policy](file:///workspaces/hacknova/docs/release/VERSIONING.md)
+* [Device Compatibility](file:///workspaces/hacknova/docs/release/COMPATIBILITY.md)

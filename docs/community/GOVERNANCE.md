@@ -49,5 +49,5 @@ flowchart TD
 ---
 
 ## Related Documentation
-* [Contributor Guidelines](file:///workspaces/agentdroid-/docs/community/CONTRIBUTING.md)
-* [Community Roadmap](file:///workspaces/agentdroid-/docs/community/ROADMAP.md)
+* [Contributor Guidelines](file:///workspaces/hacknova/docs/community/CONTRIBUTING.md)
+* [Community Roadmap](file:///workspaces/hacknova/docs/community/ROADMAP.md)

@@ -60,6 +60,6 @@ AgentDroid enforces **Strict Real AI Mode**. Fake responses are never emitted. W
 ---
 
 ## Related Documentation
-* [Troubleshooting Guide](file:///workspaces/agentdroid-/docs/user-guide/TROUBLESHOOTING.md)
-* [API Overview](file:///workspaces/agentdroid-/docs/api/API_OVERVIEW.md)
-* [AI Provider Architecture](file:///workspaces/agentdroid-/docs/architecture/AI_PROVIDER_ARCHITECTURE.md)
+* [Troubleshooting Guide](file:///workspaces/hacknova/docs/user-guide/TROUBLESHOOTING.md)
+* [API Overview](file:///workspaces/hacknova/docs/api/API_OVERVIEW.md)
+* [AI Provider Architecture](file:///workspaces/hacknova/docs/architecture/AI_PROVIDER_ARCHITECTURE.md)

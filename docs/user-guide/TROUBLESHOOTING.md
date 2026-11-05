@@ -65,6 +65,6 @@ If the application displays persistent database sync errors:
 ---
 
 ## Related Documentation
-* [Error Codes Catalog](file:///workspaces/agentdroid-/docs/api/ERROR_CODES.md)
-* [Ollama Setup Guide](file:///workspaces/agentdroid-/docs/user-guide/OLLAMA_SETUP.md)
-* [Accessibility Setup Guide](file:///workspaces/agentdroid-/docs/user-guide/ACCESSIBILITY_SETUP.md)
+* [Error Codes Catalog](file:///workspaces/hacknova/docs/api/ERROR_CODES.md)
+* [Ollama Setup Guide](file:///workspaces/hacknova/docs/user-guide/OLLAMA_SETUP.md)
+* [Accessibility Setup Guide](file:///workspaces/hacknova/docs/user-guide/ACCESSIBILITY_SETUP.md)

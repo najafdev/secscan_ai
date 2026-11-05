@@ -77,6 +77,6 @@ During workflow execution:
 ---
 
 ## Related Documentation
-* [Task Orchestration Architecture](file:///workspaces/agentdroid-/docs/architecture/TASK_ORCHESTRATION.md)
-* [Database Schema](file:///workspaces/agentdroid-/docs/architecture/DATABASE_SCHEMA.md)
-* [Dashboard & Navigation Guide](file:///workspaces/agentdroid-/docs/user-guide/DASHBOARD_GUIDE.md)
+* [Task Orchestration Architecture](file:///workspaces/hacknova/docs/architecture/TASK_ORCHESTRATION.md)
+* [Database Schema](file:///workspaces/hacknova/docs/architecture/DATABASE_SCHEMA.md)
+* [Dashboard & Navigation Guide](file:///workspaces/hacknova/docs/user-guide/DASHBOARD_GUIDE.md)

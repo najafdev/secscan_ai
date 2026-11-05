@@ -35,6 +35,6 @@ flowchart LR
 ## Next Steps
 
 To get your system up and running, follow our step-by-step guides:
-* [Installation Guide](file:///workspaces/agentdroid-/docs/user-guide/INSTALLATION.md)
-* [First Time Setup & Permissions](file:///workspaces/agentdroid-/docs/user-guide/FIRST_TIME_SETUP.md)
-* [AI Provider Setup (Cloud & Local)](file:///workspaces/agentdroid-/docs/user-guide/AI_PROVIDER_SETUP.md)
+* [Installation Guide](file:///workspaces/hacknova/docs/user-guide/INSTALLATION.md)
+* [First Time Setup & Permissions](file:///workspaces/hacknova/docs/user-guide/FIRST_TIME_SETUP.md)
+* [AI Provider Setup (Cloud & Local)](file:///workspaces/hacknova/docs/user-guide/AI_PROVIDER_SETUP.md)

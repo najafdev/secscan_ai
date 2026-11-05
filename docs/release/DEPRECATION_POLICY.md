@@ -39,5 +39,5 @@ flowchart LR
 ---
 
 ## Related Documentation
-* [Software Versioning Policy](file:///workspaces/agentdroid-/docs/release/VERSIONING.md)
-* [Coding Standards](file:///workspaces/agentdroid-/docs/developer/CODING_STANDARDS.md)
+* [Software Versioning Policy](file:///workspaces/hacknova/docs/release/VERSIONING.md)
+* [Coding Standards](file:///workspaces/hacknova/docs/developer/CODING_STANDARDS.md)

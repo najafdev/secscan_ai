@@ -80,6 +80,6 @@ When applicable, register verification logic in `StateVerifier` to ensure the to
 ---
 
 ## Related Documentation
-* [Tool Execution Security](file:///workspaces/agentdroid-/docs/security/TOOL_EXECUTION_SECURITY.md)
-* [Tool Interfaces](file:///workspaces/agentdroid-/docs/api/TOOL_INTERFACES.md)
-* [Android Integration](file:///workspaces/agentdroid-/docs/architecture/ANDROID_INTEGRATION.md)
+* [Tool Execution Security](file:///workspaces/hacknova/docs/security/TOOL_EXECUTION_SECURITY.md)
+* [Tool Interfaces](file:///workspaces/hacknova/docs/api/TOOL_INTERFACES.md)
+* [Android Integration](file:///workspaces/hacknova/docs/architecture/ANDROID_INTEGRATION.md)

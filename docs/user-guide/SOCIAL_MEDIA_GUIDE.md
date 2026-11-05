@@ -56,6 +56,6 @@ AgentDroid enforces human oversight for all outward communications:
 ---
 
 ## Related Documentation
-* [Master Agent Guide](file:///workspaces/agentdroid-/docs/user-guide/MASTER_AGENT_GUIDE.md)
-* [Multi-Agent Architecture](file:///workspaces/agentdroid-/docs/architecture/MULTI_AGENT_ARCHITECTURE.md)
-* [Feature Specification](file:///workspaces/agentdroid-/docs/product/FEATURE_SPECIFICATION.md)
+* [Master Agent Guide](file:///workspaces/hacknova/docs/user-guide/MASTER_AGENT_GUIDE.md)
+* [Multi-Agent Architecture](file:///workspaces/hacknova/docs/architecture/MULTI_AGENT_ARCHITECTURE.md)
+* [Feature Specification](file:///workspaces/hacknova/docs/product/FEATURE_SPECIFICATION.md)

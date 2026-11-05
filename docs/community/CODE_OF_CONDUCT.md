@@ -47,5 +47,5 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be repor
 ---
 
 ## Related Documentation
-* [Contributing Guide](file:///workspaces/agentdroid-/docs/community/CONTRIBUTING.md)
-* [Project Governance](file:///workspaces/agentdroid-/docs/community/GOVERNANCE.md)
+* [Contributing Guide](file:///workspaces/hacknova/docs/community/CONTRIBUTING.md)
+* [Project Governance](file:///workspaces/hacknova/docs/community/GOVERNANCE.md)

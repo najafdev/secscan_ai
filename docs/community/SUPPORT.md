@@ -19,12 +19,12 @@ Need assistance configuring an AI provider, running Ollama on your local network
 ## 1. Where to Get Help
 
 * **Self-Service Documentation**:
-  * [Troubleshooting Guide](file:///workspaces/agentdroid-/docs/user-guide/TROUBLESHOOTING.md)
-  * [Frequently Asked Questions (FAQ)](file:///workspaces/agentdroid-/docs/user-guide/FAQ.md)
-  * [Ollama & Local LLM Setup](file:///workspaces/agentdroid-/docs/user-guide/OLLAMA_SETUP.md)
+  * [Troubleshooting Guide](file:///workspaces/hacknova/docs/user-guide/TROUBLESHOOTING.md)
+  * [Frequently Asked Questions (FAQ)](file:///workspaces/hacknova/docs/user-guide/FAQ.md)
+  * [Ollama & Local LLM Setup](file:///workspaces/hacknova/docs/user-guide/OLLAMA_SETUP.md)
 * **GitHub Discussions**: Best for general questions, setup discussions, sharing custom workflow templates, and agent prompts.
 * **GitHub Issues**: Reserved strictly for reproducible bug reports and structured feature proposals.
-* **Security Vulnerabilities**: Do NOT submit security issues to public trackers. Follow our [Vulnerability Reporting Protocol](file:///workspaces/agentdroid-/docs/security/VULNERABILITY_REPORTING.md).
+* **Security Vulnerabilities**: Do NOT submit security issues to public trackers. Follow our [Vulnerability Reporting Protocol](file:///workspaces/hacknova/docs/security/VULNERABILITY_REPORTING.md).
 
 ---
 
@@ -40,5 +40,5 @@ When reporting an issue, please include:
 ---
 
 ## Related Documentation
-* [Troubleshooting Guide](file:///workspaces/agentdroid-/docs/user-guide/TROUBLESHOOTING.md)
-* [Vulnerability Reporting](file:///workspaces/agentdroid-/docs/security/VULNERABILITY_REPORTING.md)
+* [Troubleshooting Guide](file:///workspaces/hacknova/docs/user-guide/TROUBLESHOOTING.md)
+* [Vulnerability Reporting](file:///workspaces/hacknova/docs/security/VULNERABILITY_REPORTING.md)

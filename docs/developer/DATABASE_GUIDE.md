@@ -58,5 +58,5 @@ interface WorkflowDao {
 ---
 
 ## Related Documentation
-* [Database Schema Specification](file:///workspaces/agentdroid-/docs/architecture/DATABASE_SCHEMA.md)
-* [Testing Guide](file:///workspaces/agentdroid-/docs/developer/TESTING_GUIDE.md)
+* [Database Schema Specification](file:///workspaces/hacknova/docs/architecture/DATABASE_SCHEMA.md)
+* [Testing Guide](file:///workspaces/hacknova/docs/developer/TESTING_GUIDE.md)

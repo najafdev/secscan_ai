@@ -49,5 +49,5 @@ What existing workarounds or tools were evaluated?
 ---
 
 ## Related Documentation
-* [Community Roadmap](file:///workspaces/agentdroid-/docs/community/ROADMAP.md)
-* [Custom Agent Guide](file:///workspaces/agentdroid-/docs/developer/CUSTOM_AGENT_GUIDE.md)
+* [Community Roadmap](file:///workspaces/hacknova/docs/community/ROADMAP.md)
+* [Custom Agent Guide](file:///workspaces/hacknova/docs/developer/CUSTOM_AGENT_GUIDE.md)
