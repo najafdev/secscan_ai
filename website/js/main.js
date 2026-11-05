@@ -1,5 +1,5 @@
 /**
- * AgentDroid — Professional System Runtime & Interactive Explorer
+ * AgentsDroid — Professional System Runtime & Interactive Explorer
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       permissions: 'android.permission.BIND_ACCESSIBILITY_SERVICE',
       latency: '~120ms (Gesture Dispatch)',
       code: `class PhoneControlAgent @Inject constructor(
-    private val accessibilityService: AgentDroidAccessibilityService,
+    private val accessibilityService: AgentsDroidAccessibilityService,
     private val stateVerifier: StateVerifier
 ) : BaseAgent() {
     suspend fun executeTap(nodeTarget: AccessibilityNodeInfo): Boolean {
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       permissions: 'Scoped Storage (MANAGE_MEDIA)',
       latency: '< 30ms (Local I/O)',
       code: `class FileManagementAgent @Inject constructor(
-    private val database: AgentDroidDatabase
+    private val database: AgentsDroidDatabase
 ) : BaseAgent() {
     suspend fun archiveTaskArtifacts(taskId: String, data: ByteArray) {
         database.artifactDao().insertEncryptedBlob(taskId, data)

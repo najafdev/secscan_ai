@@ -6,8 +6,8 @@
 </div>
 
 <div align="center">
-  <img src="public/logo.png" alt="AgentDroid Logo" width="140" style="border-radius: 28px;" />
-  <h1>AgentDroid 🤖📱</h1>
+  <img src="public/logo.png" alt="AgentsDroid Logo" width="140" style="border-radius: 28px;" />
+  <h1>AgentsDroid 🤖📱</h1>
   <p><strong>Production-Ready Multi-Agent AI Operating System for Android</strong></p>
   <p>
     <a href="https://github.com/agentsdroid/agentsdroid/releases"><img src="https://img.shields.io/badge/Release-v1.0.0-8B5CF6?style=flat-square" alt="Version" /></a>
@@ -17,13 +17,13 @@
   </p>
 </div>
 
-AgentDroid transforms Android into an autonomous, intelligent multi-agent environment where a central **Master Agent** decomposes complex natural language goals into Directed Acyclic Graph (DAG) task trees, delegates subtasks across specialized AI agents, executes native Android UI automations via Accessibility Services and Intents, enforces zero-trust human-in-the-loop security, and manages context across 5 distinct memory tiers.
+AgentsDroid transforms Android into an autonomous, intelligent multi-agent environment where a central **Master Agent** decomposes complex natural language goals into Directed Acyclic Graph (DAG) task trees, delegates subtasks across specialized AI agents, executes native Android UI automations via Accessibility Services and Intents, enforces zero-trust human-in-the-loop security, and manages context across 5 distinct memory tiers.
 
 ---
 
 ## 🌟 Core Product Vision
 
-AgentDroid is **not an ordinary AI chatbot**. It is an intelligent multi-agent platform where specialized agents collaborate to perform tasks, interact with Android applications, automate workflows, manage social media, and assist users with everyday digital activities.
+AgentsDroid is **not an ordinary AI chatbot**. It is an intelligent multi-agent platform where specialized agents collaborate to perform tasks, interact with Android applications, automate workflows, manage social media, and assist users with everyday digital activities.
 
 ```
 User: "Manage my social media today. Research competitors, create content, prepare posts, analyze engagement, and organize my replies."
@@ -125,7 +125,7 @@ Every agent implements a standardized contract (`Agent`), managing its own state
 
 ## ⚡ Android Device Automation Engine
 
-AgentDroid features a dedicated, native Android automation layer that **requires zero root access**:
+AgentsDroid features a dedicated, native Android automation layer that **requires zero root access**:
 
 1. **`AgentDroidAccessibilityService`**:
    - Inspects UI hierarchy and node attributes (`text`, `contentDescription`, `viewIdResourceName`, `isClickable`, `isEditable`).

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Documentation — AgentDroid Android Architecture</title>
-  <meta name="description" content="Technical documentation, API references, DAG scheduler architecture, and setup guides for AgentDroid.">
+  <title>Documentation — AgentsDroid Android Architecture</title>
+  <meta name="description" content="Technical documentation, API references, DAG scheduler architecture, and setup guides for AgentsDroid.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -124,8 +124,8 @@
   <header class="nav-header">
     <div class="container nav-inner">
       <a href="index.html" class="nav-brand">
-        <img src="assets/logo.png" alt="AgentDroid Logo" class="brand-mark">
-        <span>AgentDroid Docs</span>
+        <img src="assets/logo.png" alt="AgentsDroid Logo" class="brand-mark">
+        <span>AgentsDroid Docs</span>
       </a>
 
       <div class="nav-cta-group">
@@ -157,8 +157,8 @@
       </aside>
 
       <article class="docs-article">
-        <h1 id="overview">AgentDroid Technical Architecture</h1>
-        <p>AgentDroid is a production-ready, sovereign multi-agent execution environment built specifically for Android. It enables natural language user commands to be transformed into structured graph executions without sending telemetry or requiring root privileges.</p>
+        <h1 id="overview">AgentsDroid Technical Architecture</h1>
+        <p>AgentsDroid is a production-ready, sovereign multi-agent execution environment built specifically for Android. It enables natural language user commands to be transformed into structured graph executions without sending telemetry or requiring root privileges.</p>
 
         <h2 id="dag-engine">1. DAG Task Scheduling Specification</h2>
         <p>The Master Agent orchestrates multi-agent tasks using Directed Acyclic Graphs (DAG). Incoming goals are decomposed into discrete, typed execution nodes governed by topological sort algorithms:</p>
@@ -178,7 +178,7 @@ class DAGScheduler @Inject constructor() {
 }</code></pre>
 
         <h2 id="accessibility">2. Native Accessibility UI Driver</h2>
-        <p>AgentDroid uses Android's Accessibility framework to interact directly with installed third-party applications. By inspecting the active window's node hierarchy, it performs clicks, scrolls, and text input safely:</p>
+        <p>AgentsDroid uses Android's Accessibility framework to interact directly with installed third-party applications. By inspecting the active window's node hierarchy, it performs clicks, scrolls, and text input safely:</p>
         <pre><code>// app/device/automation/action/ActionDispatcher.kt
 suspend fun dispatchClick(nodeInfo: AccessibilityNodeInfo): Boolean {
     val clickAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK
@@ -203,7 +203,7 @@ suspend fun dispatchClick(nodeInfo: AccessibilityNodeInfo): Boolean {
         <pre><code># On your local workstation
 OLLAMA_HOST=0.0.0.0:11434 ollama serve
 
-# In AgentDroid configuration:
+# In AgentsDroid configuration:
 Endpoint: http://192.168.1.X:11434
 Target Model: llama3:8b</code></pre>
       </article>
@@ -212,7 +212,7 @@ Target Model: llama3:8b</code></pre>
 
   <footer class="site-footer" style="padding: 2rem 0;">
     <div class="container footer-baseline">
-      <span>&copy; 2026 AgentDroid Open Source Project.</span>
+      <span>&copy; 2026 AgentsDroid Open Source Project.</span>
       <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">&larr; Back to Home</a>
     </div>
   </footer>
