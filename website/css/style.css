@@ -1,19 +1,27 @@
-/* AgentDroid — Professional System Architecture Stylesheet */
+/* ==========================================================================
+   AgentDroid — Professional Systems Architecture Stylesheet
+   Engineered for maximum legibility, zero layout shift, and full responsiveness
+   ========================================================================== */
+
 :root {
-  --bg-base: #08090b;
-  --bg-surface: #0f1115;
-  --bg-surface-elevated: #15181e;
-  --bg-surface-hover: #1b1f27;
+  /* Surface & Base Palette (Deep Obsidian Matte) */
+  --bg-base: #07080a;
+  --bg-surface: #0e1014;
+  --bg-surface-elevated: #14171e;
+  --bg-surface-hover: #1a1e27;
   
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-medium: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.22);
+  /* Hairline Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.24);
   
+  /* Accent Tokens */
   --accent-primary: #8b5cf6;
   --accent-primary-hover: #7c3aed;
   --accent-muted: rgba(139, 92, 246, 0.12);
-  --accent-border: rgba(139, 92, 246, 0.3);
+  --accent-border: rgba(139, 92, 246, 0.35);
   
+  /* Status Colors */
   --color-success: #10b981;
   --color-success-bg: rgba(16, 185, 129, 0.1);
   --color-warning: #f59e0b;
@@ -21,24 +29,30 @@
   --color-info: #38bdf8;
   --color-info-bg: rgba(56, 189, 248, 0.1);
 
+  /* Typography Colors */
   --text-main: #f8fafc;
   --text-secondary: #94a3b8;
   --text-tertiary: #64748b;
   
+  /* Font Stacks */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", Menlo, Monaco, Consolas, monospace;
 
+  /* Corner Radii */
   --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-full: 9999px;
 
+  /* Layout Constants */
   --header-height: 60px;
   --max-width: 1200px;
 }
 
-/* Reset & Base */
+/* ==========================================================================
+   Reset & Baseline
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -50,6 +64,7 @@ html {
   color-scheme: dark;
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -58,10 +73,20 @@ body {
   background-color: var(--bg-base);
   color: var(--text-main);
   font-family: var(--font-sans);
-  line-height: 1.5;
+  line-height: 1.55;
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  width: 100%;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+code, pre {
+  font-family: var(--font-mono);
 }
 
 /* Subtle Technical Grid Background */
@@ -87,13 +112,15 @@ body {
   max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(1rem, 3vw, 2rem);
-  padding-right: clamp(1rem, 3vw, 2rem);
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
   position: relative;
   z-index: 1;
 }
 
-/* Announcement Ticker (Top Bar) */
+/* ==========================================================================
+   Announcement Ticker (Top Bar)
+   ========================================================================== */
 .ticker-bar {
   background-color: #0c0e12;
   border-bottom: 1px solid var(--border-subtle);
@@ -103,7 +130,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 50;
+  z-index: 45;
 }
 
 .ticker-wrap {
@@ -112,6 +139,7 @@ body {
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: center;
+  text-align: center;
 }
 
 .ticker-tag {
@@ -140,6 +168,7 @@ body {
 
 .ticker-text {
   color: var(--text-secondary);
+  font-size: 0.82rem;
 }
 
 .ticker-text strong {
@@ -162,14 +191,16 @@ body {
   text-decoration: underline;
 }
 
-/* Navigation Bar */
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
 .nav-header {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(8, 9, 11, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(7, 8, 10, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
   height: var(--header-height);
 }
@@ -190,6 +221,7 @@ body {
   font-weight: 600;
   font-size: 1.05rem;
   letter-spacing: -0.01em;
+  flex-shrink: 0;
 }
 
 .brand-mark {
@@ -198,6 +230,7 @@ body {
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-medium);
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .brand-label {
@@ -208,6 +241,7 @@ body {
   padding: 0.1rem 0.35rem;
   border-radius: var(--radius-xs);
   margin-left: 0.35rem;
+  white-space: nowrap;
 }
 
 .nav-menu {
@@ -223,6 +257,7 @@ body {
   font-size: 0.88rem;
   font-weight: 500;
   transition: color 0.15s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -233,6 +268,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .mobile-menu-btn {
@@ -241,13 +277,16 @@ body {
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
   border-radius: var(--radius-sm);
-  padding: 0.4rem;
+  padding: 0.45rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  line-height: 0;
 }
 
-/* Buttons */
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -260,7 +299,7 @@ body {
   padding: 0.55rem 1rem;
   transition: all 0.15s ease;
   cursor: pointer;
-  line-height: 1;
+  line-height: 1.25;
   white-space: nowrap;
 }
 
@@ -310,9 +349,11 @@ body {
   flex-shrink: 0;
 }
 
-/* Hero Section */
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
 .hero-section {
-  padding: clamp(3.5rem, 8vw, 6rem) 0 3.5rem;
+  padding: clamp(3rem, 7vw, 5.5rem) 0 3.5rem;
   text-align: center;
 }
 
@@ -325,6 +366,7 @@ body {
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-full);
   margin-bottom: 1.5rem;
+  max-width: 100%;
 }
 
 .hero-badge-tag {
@@ -333,27 +375,32 @@ body {
   color: var(--accent-primary);
   font-weight: 600;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .hero-badge-desc {
   font-size: 0.82rem;
   color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hero-heading {
-  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-size: clamp(1.85rem, 5vw, 3.6rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.12;
+  line-height: 1.15;
   margin-bottom: 1.25rem;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   color: #fff;
+  overflow-wrap: break-word;
 }
 
 .hero-subheading {
-  font-size: clamp(1rem, 2vw, 1.18rem);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
   color: var(--text-secondary);
   line-height: 1.6;
   max-width: 680px;
@@ -380,7 +427,7 @@ body {
   border-radius: var(--radius-md);
   padding: 1.25rem 1.5rem;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 1.5rem;
   align-items: center;
   text-align: left;
@@ -389,7 +436,8 @@ body {
 .ca-module-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  min-width: 0;
 }
 
 .ca-module-label {
@@ -409,18 +457,21 @@ body {
   font-weight: 600;
   color: var(--text-main);
   letter-spacing: 0.5px;
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 .ca-module-desc {
   font-size: 0.8rem;
   color: var(--text-secondary);
-  margin-top: 0.15rem;
+  line-height: 1.45;
 }
 
 .ca-module-action {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.65rem;
+  flex-shrink: 0;
 }
 
 .status-indicator {
@@ -435,12 +486,13 @@ body {
   background: var(--color-warning-bg);
   color: var(--color-warning);
   border: 1px solid rgba(245, 158, 11, 0.3);
+  white-space: nowrap;
 }
 
 /* System Metrics Bar */
 .metrics-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   background: var(--border-subtle);
   border: 1px solid var(--border-subtle);
@@ -454,11 +506,12 @@ body {
   background: var(--bg-surface);
   padding: 1.5rem 1rem;
   text-align: center;
+  min-width: 0;
 }
 
 .metric-val {
   font-family: var(--font-mono);
-  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 700;
   color: #fff;
   line-height: 1.1;
@@ -466,16 +519,19 @@ body {
 }
 
 .metric-name {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
-/* Section Header */
+/* ==========================================================================
+   Section Common
+   ========================================================================== */
 .section {
-  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  padding: clamp(3rem, 6vw, 5rem) 0;
   border-top: 1px solid var(--border-subtle);
 }
 
@@ -497,23 +553,26 @@ body {
 }
 
 .section-title {
-  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 0.75rem;
+  line-height: 1.25;
 }
 
 .section-caption {
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
-/* Core Technical Grid */
+/* ==========================================================================
+   Core Technical Grid (Architecture Cards)
+   ========================================================================== */
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
@@ -524,6 +583,7 @@ body {
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
+  min-width: 0;
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
@@ -533,8 +593,8 @@ body {
 }
 
 .card-icon-box {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
@@ -543,16 +603,16 @@ body {
   justify-content: center;
   color: var(--text-main);
   margin-bottom: 1.25rem;
+  flex-shrink: 0;
 }
 
 .card-icon-box svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 1.75;
+  width: 20px;
+  height: 20px;
 }
 
 .tech-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   font-weight: 600;
   color: #fff;
   margin-bottom: 0.5rem;
@@ -578,34 +638,39 @@ body {
   color: var(--text-tertiary);
 }
 
-/* Interactive Fleet Inspector (System View) */
+/* ==========================================================================
+   Interactive Fleet Inspector (System View)
+   ========================================================================== */
 .fleet-inspector {
   background: var(--bg-surface);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: 320px minmax(0, 1fr);
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
 }
 
 .fleet-nav {
-  background: #0c0e12;
+  background: #0b0c10;
   border-right: 1px solid var(--border-subtle);
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  max-height: 620px;
+  max-height: 600px;
   overflow-y: auto;
+  min-width: 0;
 }
 
 .fleet-filter-bar {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.35rem;
   padding-bottom: 0.75rem;
   margin-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .fleet-filter-tab {
@@ -614,10 +679,11 @@ body {
   color: var(--text-tertiary);
   font-size: 0.75rem;
   font-weight: 500;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.55rem;
   border-radius: var(--radius-xs);
   cursor: pointer;
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .fleet-filter-tab.active, .fleet-filter-tab:hover {
@@ -657,6 +723,7 @@ body {
   gap: 0.5rem;
   font-size: 0.88rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .fleet-agent-tag {
@@ -674,6 +741,7 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--bg-surface);
+  min-width: 0;
 }
 
 .panel-header {
@@ -684,10 +752,15 @@ body {
   margin-bottom: 1.5rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+
+.panel-title {
+  min-width: 0;
 }
 
 .panel-title h3 {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: #fff;
   letter-spacing: -0.01em;
@@ -695,13 +768,14 @@ body {
 
 .panel-title p {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   margin-top: 0.25rem;
+  line-height: 1.5;
 }
 
 .panel-specs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   margin-bottom: 1.75rem;
 }
@@ -711,14 +785,16 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 0.85rem;
+  min-width: 0;
 }
 
 .spec-key {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
   color: var(--text-tertiary);
   margin-bottom: 0.25rem;
+  white-space: nowrap;
 }
 
 .spec-val {
@@ -726,6 +802,7 @@ body {
   font-size: 0.85rem;
   color: #fff;
   font-weight: 500;
+  word-break: break-word;
 }
 
 .panel-code-title {
@@ -740,7 +817,7 @@ body {
 }
 
 .code-container {
-  background: #060709;
+  background: #050608;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 1.25rem;
@@ -750,9 +827,20 @@ body {
   line-height: 1.6;
   overflow-x: auto;
   flex-grow: 1;
+  min-width: 0;
 }
 
-/* Interactive DAG Engine Simulation */
+.code-container code {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Interactive DAG Simulation Engine
+   ========================================================================== */
 .dag-engine-wrap {
   background: var(--bg-surface);
   border: 1px solid var(--border-medium);
@@ -775,30 +863,32 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .dag-selector-group label {
   font-size: 0.85rem;
   color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 .scenario-select-input {
   background: #090a0d;
   border: 1px solid var(--border-medium);
   color: var(--text-main);
-  padding: 0.45rem 0.85rem;
+  padding: 0.5rem 0.85rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-sans);
   font-size: 0.84rem;
   outline: none;
+  max-width: 100%;
 }
 
 .dag-stepper-track {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-  position: relative;
 }
 
 .dag-step-node {
@@ -810,7 +900,7 @@ body {
   flex-direction: column;
   gap: 0.4rem;
   transition: all 0.2s ease;
-  position: relative;
+  min-width: 0;
 }
 
 .dag-step-node.active {
@@ -829,6 +919,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-tertiary);
+  white-space: nowrap;
 }
 
 .dag-step-node.active .step-badge { color: var(--accent-primary); }
@@ -838,17 +929,21 @@ body {
   font-size: 0.86rem;
   font-weight: 600;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.25;
+  word-break: break-word;
 }
 
 .step-agent-tag {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sim-output-console {
-  background: #060709;
+  background: #050608;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 1rem 1.25rem;
@@ -857,6 +952,8 @@ body {
   line-height: 1.6;
   max-height: 180px;
   overflow-y: auto;
+  overflow-x: hidden;
+  word-break: break-word;
   color: var(--text-secondary);
 }
 
@@ -865,7 +962,9 @@ body {
 .sim-output-console .log-purple { color: #c4b5fd; }
 .sim-output-console .log-amber { color: var(--color-warning); }
 
-/* Technical Architecture Layers */
+/* ==========================================================================
+   Architecture Stack
+   ========================================================================== */
 .arch-stack {
   display: flex;
   flex-direction: column;
@@ -880,7 +979,7 @@ body {
   border-radius: var(--radius-md);
   padding: 1.25rem 1.75rem;
   display: grid;
-  grid-template-columns: 80px 1fr 140px;
+  grid-template-columns: 80px minmax(0, 1fr) 140px;
   align-items: center;
   gap: 1.5rem;
   transition: border-color 0.15s ease;
@@ -895,6 +994,7 @@ body {
   font-size: 0.82rem;
   color: var(--text-tertiary);
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .arch-details h4 {
@@ -907,6 +1007,7 @@ body {
 .arch-details p {
   font-size: 0.86rem;
   color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 .arch-pill {
@@ -918,12 +1019,16 @@ body {
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius-xs);
   text-align: center;
+  white-space: nowrap;
 }
 
-/* Models & Providers Table */
+/* ==========================================================================
+   Model Matrix Table
+   ========================================================================== */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   background: var(--bg-surface);
@@ -931,6 +1036,7 @@ body {
 
 .data-table {
   width: 100%;
+  min-width: 620px;
   border-collapse: collapse;
   text-align: left;
   font-size: 0.88rem;
@@ -946,6 +1052,7 @@ body {
   letter-spacing: 0.75px;
   padding: 0.85rem 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
 }
 
 .data-table td {
@@ -981,6 +1088,7 @@ body {
   font-weight: 600;
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-xs);
+  white-space: nowrap;
 }
 
 .badge-local {
@@ -995,7 +1103,9 @@ body {
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-/* Institutional Contract Address Card */
+/* ==========================================================================
+   Contract Address Institution Card
+   ========================================================================== */
 .ca-institution-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-medium);
@@ -1045,6 +1155,7 @@ body {
   gap: 1rem;
   max-width: 560px;
   margin: 0 auto 1.25rem;
+  flex-wrap: wrap;
 }
 
 .ca-field-mono {
@@ -1052,9 +1163,12 @@ body {
   font-size: 0.95rem;
   color: #fff;
   font-weight: 600;
+  word-break: break-all;
 }
 
-/* Accordion */
+/* ==========================================================================
+   Accordion
+   ========================================================================== */
 .accordion-list {
   max-width: 780px;
   margin: 0 auto;
@@ -1088,12 +1202,15 @@ body {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  gap: 1rem;
 }
 
 .accordion-icon {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: var(--text-tertiary);
   transition: transform 0.2s ease;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
 .accordion-item.open .accordion-icon {
@@ -1112,16 +1229,18 @@ body {
   display: block;
 }
 
-/* Footer */
+/* ==========================================================================
+   Footer
+   ========================================================================== */
 .site-footer {
   border-top: 1px solid var(--border-subtle);
-  background: #060709;
+  background: #050608;
   padding: 4rem 0 2rem;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr repeat(3, 1fr);
+  grid-template-columns: 2fr repeat(3, minmax(0, 1fr));
   gap: 3rem;
   margin-bottom: 3.5rem;
 }
@@ -1173,26 +1292,26 @@ body {
   color: var(--text-tertiary);
 }
 
-/* Mobile Navigation Drawer */
+/* ==========================================================================
+   Full-Screen Mobile Drawer Modal (Native-feeling overlay)
+   ========================================================================== */
 .mobile-drawer {
   position: fixed;
-  top: var(--header-height);
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(8, 9, 11, 0.98);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  z-index: 39;
+  background: rgba(7, 8, 10, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 100;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  border-top: 1px solid var(--border-subtle);
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
 }
 
 .mobile-drawer.active {
@@ -1201,27 +1320,65 @@ body {
   pointer-events: auto;
 }
 
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
 .mobile-drawer-link {
   color: var(--text-main);
   text-decoration: none;
   font-size: 1.15rem;
   font-weight: 500;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* Responsive Rules */
+.mobile-drawer-close {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints & Adjustments
+   ========================================================================== */
+@media (min-width: 769px) {
+  .mobile-drawer {
+    display: none !important;
+  }
+}
+
 @media (max-width: 1024px) {
   .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .fleet-inspector {
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 260px minmax(0, 1fr);
   }
 
   .panel-specs {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .footer-grid {
@@ -1231,7 +1388,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .nav-menu, .nav-cta-group .btn-outline {
+  .nav-menu, .nav-cta-group .btn-outline, .nav-cta-group .btn-primary {
     display: none;
   }
 
@@ -1244,7 +1401,7 @@ body {
   }
 
   .metrics-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .ca-ticker-module {
@@ -1262,7 +1419,7 @@ body {
   }
 
   .fleet-nav {
-    max-height: 240px;
+    max-height: 220px;
     border-right: none;
     border-bottom: 1px solid var(--border-subtle);
   }
@@ -1272,18 +1429,12 @@ body {
   }
 
   .arch-row {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
   }
 
   .arch-idx {
     display: none;
-  }
-
-  .arch-pill {
-    text-align: left;
-    display: inline-block;
-    width: fit-content;
   }
 
   .footer-grid {
@@ -1293,6 +1444,33 @@ body {
   .footer-baseline {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .dag-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dag-selector-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .scenario-select-input {
+    width: 100%;
+  }
+
+  .dag-toolbar > div:last-child {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .dag-toolbar > div:last-child .btn {
+    flex: 1;
   }
 }
 
@@ -1309,5 +1487,9 @@ body {
 
   .panel-specs {
     grid-template-columns: 1fr;
+  }
+
+  .panel-header {
+    flex-direction: column;
   }
 }

@@ -29,7 +29,7 @@
   <div class="bg-grid" aria-hidden="true"></div>
 
   <!-- Institutional Top Announcement Ticker -->
-  <div class="ticker-bar">
+  <aside class="ticker-bar" aria-label="Announcement">
     <div class="ticker-wrap">
       <span class="ticker-tag">
         <span class="ticker-dot"></span>
@@ -40,7 +40,7 @@
       </span>
       <a href="#token" class="ticker-link">Details &rarr;</a>
     </div>
-  </div>
+  </aside>
 
   <!-- Primary Navigation -->
   <header class="nav-header">
@@ -51,7 +51,7 @@
         <span class="brand-label">OS 1.0</span>
       </a>
 
-      <nav>
+      <nav aria-label="Main Navigation">
         <ul class="nav-menu">
           <li><a href="#primitives" class="nav-link">Architecture</a></li>
           <li><a href="#fleet" class="nav-link">Agent Fleet</a></li>
@@ -69,21 +69,34 @@
         </a>
         <a href="#simulator" class="btn btn-primary btn-sm">Try Simulator</a>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
-          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"/></svg>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
+  <!-- Full-Screen Mobile Drawer Modal -->
   <div class="mobile-drawer" id="mobileDrawer">
-    <a href="#primitives" class="mobile-drawer-link">Architecture</a>
-    <a href="#fleet" class="mobile-drawer-link">Agent Fleet</a>
-    <a href="#simulator" class="mobile-drawer-link">DAG Engine</a>
-    <a href="#models" class="mobile-drawer-link">Inference</a>
-    <a href="#token" class="mobile-drawer-link">Token CA</a>
-    <a href="docs.html" class="mobile-drawer-link">Documentation</a>
-    <a href="https://github.com/agentsdroid/agentsdroid" target="_blank" rel="noopener" class="mobile-drawer-link">GitHub Repository &rarr;</a>
+    <div class="mobile-drawer-header">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <img src="assets/logo.png" alt="Logo" style="width: 24px; height: 24px; border-radius: 4px;">
+        <strong style="color: #fff; font-size: 1rem;">AgentDroid</strong>
+      </div>
+      <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="mobile-drawer-links">
+      <a href="#primitives" class="mobile-drawer-link">Architecture <span>&rarr;</span></a>
+      <a href="#fleet" class="mobile-drawer-link">Agent Fleet <span>&rarr;</span></a>
+      <a href="#simulator" class="mobile-drawer-link">DAG Engine <span>&rarr;</span></a>
+      <a href="#models" class="mobile-drawer-link">Inference <span>&rarr;</span></a>
+      <a href="#token" class="mobile-drawer-link">Token CA <span>&rarr;</span></a>
+      <a href="docs.html" class="mobile-drawer-link">Documentation <span>&rarr;</span></a>
+    </div>
+    <div style="margin-top: auto; padding-top: 1.5rem;">
+      <a href="https://github.com/agentsdroid/agentsdroid" target="_blank" rel="noopener" class="btn btn-outline" style="width: 100%;">
+        View GitHub Repository &rarr;
+      </a>
+    </div>
   </div>
 
   <main>
@@ -108,7 +121,7 @@
         <div class="ca-ticker-module">
           <div class="ca-module-meta">
             <span class="ca-module-label">
-              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
               OFFICIAL SMART CONTRACT IDENTIFIER
             </span>
             <div class="ca-module-value">CA SOON AVAILABLE</div>
@@ -162,7 +175,7 @@
         <div class="tech-grid">
           <div class="tech-card">
             <div class="card-icon-box">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h8m-8 6h16"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h8m-8 6h16"/></svg>
             </div>
             <h3>Autonomous DAG Scheduler</h3>
             <p>Converts unstructured voice or text prompts into Directed Acyclic Graphs. Independent nodes run concurrently; dependent nodes wait on upstream state payloads.</p>
@@ -174,7 +187,7 @@
 
           <div class="tech-card">
             <div class="card-icon-box">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
             </div>
             <h3>Native Accessibility Driver</h3>
             <p>Interacts with installed Android apps via standard AccessibilityNodeInfo hierarchies. Simulates clicks, scrolls, and text input without requiring root permissions.</p>
@@ -186,7 +199,7 @@
 
           <div class="tech-card">
             <div class="card-icon-box">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
             </div>
             <h3>Keystore AES-256 GCM</h3>
             <p>Hardware-backed Android Keystore cryptography protects LLM credentials. Keys remain in volatile RAM only during live API invocation sessions.</p>
@@ -198,7 +211,7 @@
 
           <div class="tech-card">
             <div class="card-icon-box">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
             </div>
             <h3>5-Tier Memory Persistence</h3>
             <p>Organizes agent context into Sensory, Working, Episodic, Semantic, and Procedural memory tiers backed by 16 SQLite Room database entities.</p>
@@ -210,7 +223,7 @@
 
           <div class="tech-card">
             <div class="card-icon-box">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
             <h3>Strict Real AI Mode</h3>
             <p>Zero fake completions or simulated mock payloads. If an endpoint is unreachable, explicit typed failure diagnostics are generated for upstream recovery.</p>
@@ -222,7 +235,7 @@
 
           <div class="tech-card">
             <div class="card-icon-box">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
             </div>
             <h3>Jetpack Compose Obsidian UI</h3>
             <p>Declarative reactive user interface built strictly with modern Android Jetpack Compose, delivering fluid 120 FPS DAG graph visualization and system telemetry.</p>
