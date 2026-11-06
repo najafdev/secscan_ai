@@ -1,0 +1,1 @@
+"""OpenOS Desktop Panel widgets."""

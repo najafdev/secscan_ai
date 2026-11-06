@@ -1,0 +1,209 @@
+/*
+ * OpenOS GTK4 Theme — Dark AI-Native Design
+ *
+ * Color Palette:
+ *   Primary Background: #0a0e27 (Deep Navy)
+ *   Surface:            #121633 (Dark Indigo)
+ *   Accent Cyan:        #00d4ff (Electric Blue)
+ *   Accent Purple:      #7c3aed (Vivid Purple)
+ *   Text Primary:       #e8e8e8
+ *   Text Secondary:     #888
+ *   Success:            #22c55e
+ *   Warning:            #f59e0b
+ *   Error:              #ef4444
+ */
+
+/* ── Global ── */
+* {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+    outline-color: rgba(0, 212, 255, 0.5);
+}
+
+window {
+    background-color: #0a0e27;
+    color: #e8e8e8;
+}
+
+/* ── Headerbar ── */
+headerbar {
+    background: linear-gradient(180deg, #121633, #0a0e27);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    color: #e8e8e8;
+    min-height: 38px;
+}
+
+headerbar title {
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+/* ── Buttons ── */
+button {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #e8e8e8;
+    padding: 6px 14px;
+    transition: all 200ms ease;
+}
+
+button:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.4);
+}
+
+button:active {
+    background: rgba(0, 212, 255, 0.25);
+}
+
+button.suggested-action {
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+
+button.suggested-action:hover {
+    background: linear-gradient(135deg, #33ddff, #9b5de5);
+    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+}
+
+button.destructive-action {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+}
+
+/* ── Entries ── */
+entry {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: #e8e8e8;
+    padding: 8px 12px;
+    caret-color: #00d4ff;
+    transition: all 200ms ease;
+}
+
+entry:focus {
+    border-color: #00d4ff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+}
+
+entry placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Labels ── */
+label {
+    color: #e8e8e8;
+}
+
+label.dim-label {
+    color: #888;
+}
+
+/* ── Scrollbars ── */
+scrollbar {
+    background: transparent;
+}
+
+scrollbar slider {
+    background: rgba(0, 212, 255, 0.3);
+    border-radius: 4px;
+    min-width: 6px;
+    min-height: 6px;
+}
+
+scrollbar slider:hover {
+    background: rgba(0, 212, 255, 0.5);
+}
+
+/* ── Lists ── */
+listview, list {
+    background: transparent;
+}
+
+listview > row, list > row {
+    background: transparent;
+    border-radius: 6px;
+    padding: 4px 8px;
+    transition: background 150ms ease;
+}
+
+listview > row:hover, list > row:hover {
+    background: rgba(0, 212, 255, 0.08);
+}
+
+listview > row:selected, list > row:selected {
+    background: rgba(0, 212, 255, 0.2);
+}
+
+/* ── Menus ── */
+popover, popover.menu {
+    background: #121633;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+popover modelbutton {
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+popover modelbutton:hover {
+    background: rgba(0, 212, 255, 0.15);
+}
+
+/* ── Switches ── */
+switch {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+}
+
+switch:checked {
+    background: linear-gradient(90deg, #00d4ff, #7c3aed);
+}
+
+/* ── Progress Bars ── */
+progressbar trough {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    min-height: 6px;
+}
+
+progressbar progress {
+    background: linear-gradient(90deg, #00d4ff, #7c3aed);
+    border-radius: 4px;
+}
+
+/* ── Tooltips ── */
+tooltip {
+    background: #1a1040;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    color: #e8e8e8;
+    padding: 6px 10px;
+}
+
+/* ── Notebook / Tabs ── */
+notebook > header > tabs > tab {
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    color: #888;
+    padding: 8px 16px;
+    transition: all 200ms ease;
+}
+
+notebook > header > tabs > tab:checked {
+    color: #00d4ff;
+    border-bottom-color: #00d4ff;
+}
+
+/* ── Selections ── */
+selection {
+    background-color: rgba(0, 212, 255, 0.3);
+    color: white;
+}

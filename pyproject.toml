@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openos"
+version = "0.3.0"
+description = "OpenOS — A Debian-based AI Operating System with natural language control"
+readme = "README.md"
+license = {text = "GPL-3.0-or-later"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Yashab Alam", email = "yashabalam9@gmail.com"},
+]
+keywords = ["ai", "operating-system", "linux", "debian", "natural-language", "llm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Desktop Environment",
+    "Topic :: System :: Operating System",
+]
+dependencies = [
+    "ollama>=0.4.0",
+    "rich>=13.0",
+    "prompt-toolkit>=3.0",
+    "click>=8.1",
+    "pydantic>=2.0",
+    "psutil>=5.9",
+    "pydbus>=0.6",
+    "toml>=0.10",
+    "watchdog>=3.0",
+    "thefuzz[speedup]>=0.20",
+    "openai>=1.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+voice = [
+    "edge-tts>=6.0",
+    "sounddevice>=0.4",
+    "soundfile>=0.12",
+    "numpy>=1.24",
+    "pvporcupine>=3.0",
+    "faster-whisper>=0.9",
+]
+desktop = [
+    "PyGObject>=3.44",
+]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "mypy>=1.5",
+    "ruff>=0.1",
+]
+
+[project.scripts]
+openos = "openos_core.shell.cli:main"
+openos-voice = "openos_core.voice.engine:main"
+openos-daemon = "openos_core.daemon.openos_daemon:main"
+openos-desktop = "openos_desktop.app:main"
+openos-install = "openos_installer.app:main"
+
+[tool.setuptools.packages.find]
+include = ["openos_core*", "openos_desktop*", "openos_installer*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

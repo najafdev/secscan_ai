@@ -1,0 +1,139 @@
+# OpenOS Default Trigger Rules
+# These are the built-in proactive triggers that ship with OpenOS.
+# Users can override or add rules in ~/.config/openos/triggers.yaml
+#
+# Rule format:
+#   name:           Unique rule identifier
+#   event:          Event type (see openos_core/daemon/events.py EventType enum)
+#   condition:      Safe expression evaluated against event data (optional)
+#                   Supports: <, <=, >, >=, ==, !=, "and", "or", "contains"
+#   cooldown:       Seconds between repeated firings (default: 300)
+#   notify:         Whether to send a desktop notification (default: true)
+#   notification:   Notification message template — use {key} for event data
+#   action:         Natural language prompt sent to the OpenOS Brain (empty = no action)
+#   enabled:        Toggle this rule on/off (default: true)
+#   require_confirmation: If true, notify user instead of auto-executing (default: false)
+
+triggers:
+  # ─── Battery / Power ───────────────────────────────────────────────
+
+  - name: extreme_power_save
+    event: BATTERY_LOW
+    condition: "percentage < 10"
+    cooldown: 600
+    notify: true
+    notification: "🔋 Battery critical at {percentage}%! Enabling extreme power saving."
+    action: >
+      PROACTIVE TRIGGER: Battery is critically low at {percentage}%.
+      Take immediate action to extend battery life:
+      1. Pause any playing music or media
+      2. Set screen brightness to the minimum usable level (around 10%)
+      3. Set the power profile to power-saver mode
+      Report what actions you took.
+
+  - name: low_battery_warning
+    event: BATTERY_LOW
+    condition: "percentage < 20 and percentage >= 10"
+    cooldown: 300
+    notify: true
+    notification: "🔋 Battery at {percentage}%. Consider plugging in soon."
+    action: ""
+
+  - name: battery_charging_notice
+    event: BATTERY_CHARGING
+    cooldown: 60
+    notify: true
+    notification: "⚡ Charging — battery at {percentage}%."
+    action: ""
+
+  - name: battery_full
+    event: BATTERY_FULL
+    cooldown: 3600
+    notify: true
+    notification: "🔋 Battery fully charged! You can unplug now."
+    action: ""
+
+  - name: switched_to_battery
+    event: POWER_BATTERY
+    cooldown: 30
+    notify: true
+    notification: "🔌 Running on battery power."
+    action: >
+      PROACTIVE TRIGGER: The laptop was unplugged and is now running on battery.
+      Set the power profile to balanced mode to conserve energy.
+
+  - name: switched_to_ac
+    event: POWER_AC
+    cooldown: 30
+    notify: true
+    notification: "⚡ Plugged in — AC power connected."
+    action: >
+      PROACTIVE TRIGGER: The laptop was plugged in to AC power.
+      Set the power profile to balanced or performance mode.
+      If brightness was lowered for power saving, restore it to 60%.
+
+  # ─── Applications ──────────────────────────────────────────────────
+
+  - name: dev_environment_setup
+    event: APP_OPENED
+    condition: "app_name contains 'code' or app_name contains 'Code'"
+    cooldown: 120
+    notify: true
+    notification: "🛠️ VS Code detected — dev mode activated."
+    action: ""
+
+  - name: browser_opened
+    event: APP_OPENED
+    condition: "app_name contains 'firefox' or app_name contains 'chrome'"
+    cooldown: 60
+    notify: false
+    action: ""
+
+  # ─── Network ───────────────────────────────────────────────────────
+
+  - name: network_connected
+    event: NETWORK_CONNECTED
+    cooldown: 30
+    notify: true
+    notification: "🌐 Network connected."
+    action: ""
+
+  - name: network_lost
+    event: NETWORK_DISCONNECTED
+    cooldown: 30
+    notify: true
+    notification: "📡 Network disconnected. Some features may be unavailable."
+    action: ""
+
+  # ─── USB Devices ───────────────────────────────────────────────────
+
+  - name: usb_drive_connected
+    event: USB_CONNECTED
+    condition: "device_type == 'filesystem'"
+    cooldown: 10
+    notify: true
+    notification: "🔌 USB drive detected: {label}"
+    action: ""
+
+  - name: usb_drive_removed
+    event: USB_REMOVED
+    cooldown: 10
+    notify: true
+    notification: "🔌 USB device removed."
+    action: ""
+
+  # ─── Lid ───────────────────────────────────────────────────────────
+
+  - name: lid_closed
+    event: LID_CLOSED
+    cooldown: 5
+    notify: false
+    action: >
+      PROACTIVE TRIGGER: The laptop lid was closed.
+      Pause any playing media to prevent audio playing while the laptop is stored.
+
+  - name: lid_opened
+    event: LID_OPENED
+    cooldown: 5
+    notify: false
+    action: ""

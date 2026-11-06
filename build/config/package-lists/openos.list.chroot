@@ -1,0 +1,72 @@
+# OpenOS Core Packages
+# Base system
+linux-image-amd64
+firmware-linux
+firmware-linux-nonfree
+
+# Desktop environment
+wayfire
+xwayland
+wlr-randr
+alacritty
+thunar
+thunar-archive-plugin
+
+# Python stack
+python3
+python3-pip
+python3-venv
+python3-gi
+python3-gi-cairo
+gir1.2-gtk-4.0
+gir1.2-gtk4layershell-1.0
+python3-dbus
+python3-psutil
+python3-yaml
+
+# Networking
+network-manager
+network-manager-gnome
+wpasupplicant
+
+# Audio
+pipewire
+pipewire-pulse
+wireplumber
+playerctl
+
+# System utilities
+sudo
+curl
+wget
+git
+htop
+neofetch
+unzip
+xdg-utils
+dbus-x11
+libnotify-bin
+policykit-1
+upower
+
+# Fonts
+fonts-inter
+fonts-noto
+fonts-noto-color-emoji
+
+# Browser
+firefox-esr
+
+# File manager extras
+file-roller
+gvfs
+gvfs-backends
+
+# Window management helpers
+wmctrl
+
+# Screen capture & OCR (for AI vision)
+grim
+slurp
+scrot
+tesseract-ocr

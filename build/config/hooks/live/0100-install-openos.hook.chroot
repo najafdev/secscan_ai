@@ -1,0 +1,90 @@
+#!/bin/bash
+# OpenOS Live Build Hook — Install OpenOS components into the chroot
+# This runs inside the chroot during ISO build
+#
+# NOTE: Ollama / AI backends are NOT installed here.
+# The user chooses their backend on first boot or via openos-setup-backend.
+
+set -e
+
+echo "========================================="
+echo "  OpenOS Build Hook: Installing OpenOS Core"
+echo "========================================="
+
+# ── Create OpenOS user with sudo ──
+echo "[1/3] Configuring OpenOS user..."
+if ! id -u openos &>/dev/null; then
+    useradd -m -s /bin/bash -G sudo,audio,video,plugdev,netdev openos
+    echo "openos:openos" | chpasswd
+    echo "openos ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/openos
+fi
+
+# ── Install OpenOS Python package ──
+echo "[2/3] Installing OpenOS core..."
+cd /opt
+if [ -d "openos" ]; then
+    cd openos
+    pip3 install --break-system-packages -e "." || pip3 install -e "."
+else
+    echo "WARNING: openos source not found at /opt/openos"
+fi
+
+# ── Configure auto-login and session ──
+echo "[3/3] Configuring desktop session..."
+
+# Create Wayfire session desktop entry
+cat > /usr/share/wayland-sessions/openos-desktop.desktop << 'EOF'
+[Desktop Entry]
+Name=OpenOS Desktop
+Comment=AI-Powered Desktop Environment
+Exec=/usr/local/bin/openos-session
+Type=Application
+DesktopNames=OpenOS
+EOF
+
+# Create session launcher script
+cat > /usr/local/bin/openos-session << 'SCRIPT'
+#!/bin/bash
+# OpenOS Session Launcher
+
+# Set environment
+export XDG_CURRENT_DESKTOP=OpenOS
+export OPENOS_SESSION=1
+export GTK_THEME=openos-dark
+
+# Start OpenOS daemon in background
+openos-daemon &
+
+# Start Ollama only if installed AND configured as the backend
+if command -v ollama &>/dev/null; then
+    OPENOS_BACKEND=$(grep -oP 'backend\s*=\s*"\K[^"]+' ~/.config/openos/config.toml 2>/dev/null || echo "")
+    if [ "$OPENOS_BACKEND" = "ollama" ]; then
+        ollama serve &
+    fi
+fi
+
+# Launch Wayfire with OpenOS config
+exec wayfire
+SCRIPT
+chmod +x /usr/local/bin/openos-session
+
+# Enable auto-login via getty
+mkdir -p /etc/systemd/system/getty@tty1.service.d
+cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << 'EOF'
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin openos --noclear %I $TERM
+EOF
+
+# Auto-start desktop session on login
+cat >> /etc/skel/.bash_profile << 'EOF'
+
+# Auto-start OpenOS Desktop
+if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    exec openos-session
+fi
+EOF
+
+echo "========================================="
+echo "  OpenOS Build Hook: Complete!"
+echo "========================================="

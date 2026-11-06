@@ -1,0 +1,115 @@
+/* OpenOS Installer Custom Styling */
+
+window {
+    background-color: #1a1b26;
+    color: #c0caf5;
+    font-family: 'Inter', 'Roboto', sans-serif;
+}
+
+/* Sidebar styling */
+.sidebar {
+    background-color: rgba(22, 22, 30, 0.8);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 24px;
+}
+
+.sidebar label {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.sidebar .title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #7aa2f7;
+    margin-bottom: 32px;
+}
+
+/* Chat area styling */
+.chat-area {
+    background-color: #1a1b26;
+}
+
+.chat-bubble {
+    padding: 12px 18px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    max-width: 80%;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.chat-bubble.user {
+    background-color: #7aa2f7;
+    color: #15161e;
+    margin-left: 50px;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-bubble.ai {
+    background-color: rgba(41, 46, 66, 0.8);
+    color: #c0caf5;
+    margin-right: 50px;
+    border-bottom-left-radius: 4px;
+}
+
+/* Input area */
+.input-area {
+    padding: 16px 24px;
+    background-color: rgba(22, 22, 30, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+entry {
+    background-color: #24283b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #c0caf5;
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-size: 15px;
+}
+
+entry:focus {
+    border-color: #7aa2f7;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(122, 162, 247, 0.2);
+}
+
+button.send-btn {
+    background-color: #7aa2f7;
+    color: #15161e;
+    border-radius: 50%;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    margin-left: 12px;
+    border: none;
+}
+
+button.send-btn:hover {
+    background-color: #8db0f8;
+}
+
+/* Progress area */
+.progress-container {
+    padding: 24px;
+    background-color: rgba(22, 22, 30, 0.95);
+}
+
+.progress-label {
+    font-size: 16px;
+    color: #7aa2f7;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+progressbar > trough {
+    background-color: #24283b;
+    border-radius: 6px;
+    min-height: 8px;
+}
+
+progressbar > trough > progress {
+    background-color: #7aa2f7;
+    border-radius: 6px;
+}

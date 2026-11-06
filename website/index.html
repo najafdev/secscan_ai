@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenOS — The AI-Native Operating System</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+    <div class="bg-glow-3"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="OpenOS Logo">
+                <span class="logo-text">OpenOS</span>
+            </a>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#connect">Connect</a>
+                <a href="../donate.md">Donate</a>
+            </nav>
+            <a href="#install" class="btn-header">Install Now</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="badge">OpenOS v0.3.0 is live</div>
+            <h1>The AI-Native<br><span>Operating System</span></h1>
+            <p>A Debian-based Linux environment powered by local AI. Talk to your computer in plain English, and let the assistant execute commands, manage files, and orchestrate tasks offline.</p>
+            <div class="hero-btns">
+                <a href="#install" class="btn-primary">Get Started</a>
+                <a href="https://github.com/yashab-cyber/sai-os" class="btn-secondary">GitHub</a>
+            </div>
+
+            <!-- Terminal Simulator -->
+            <div class="terminal-simulator">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <div class="terminal-btn btn-red"></div>
+                        <div class="terminal-btn btn-yellow"></div>
+                        <div class="terminal-btn btn-green"></div>
+                    </div>
+                    <div class="terminal-title">openos@live-system:~</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-input-line">
+                        <span class="prompt">openos&gt;</span>
+                        <span id="terminal-input"></span><span class="cursor"></span>
+                    </div>
+                    <div id="terminal-output" class="terminal-output"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="section-header">
+                <h2>AI Integration Redefined</h2>
+                <p>Features built from the ground up to give you full natural language control over your machine.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Natural Language Interface</h3>
+                    <p>Type or speak commands directly. OpenOS maps your requests into actions—whether you need to open applications, rearrange windows, or retrieve information.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>100% Local Intelligence</h3>
+                    <p>Powered entirely by Ollama. Your data never leaves your machine. Enjoy complete offline capabilities and total control over your personal computing environment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Intelligent Protection</h3>
+                    <p>Built-in security rules ensure that destructive or high-risk actions (like deleting system files or formatting partitions) always prompt you for authorization first.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation Instructions -->
+        <section id="install" class="features" style="border-top: 1px solid var(--border-color); padding: 80px 0;">
+            <div class="section-header">
+                <h2>Simple Installation</h2>
+                <p>Set up OpenOS in your current environment or build a custom live ISO.</p>
+            </div>
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="feature-card" style="padding: 30px;">
+                    <h3>1. Clone Repository</h3>
+                    <p style="font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 13px;">
+                        git clone https://github.com/yashab-cyber/sai-os.git<br>
+                        cd sai-os
+                    </p>
+                </div>
+                <div class="feature-card" style="padding: 30px;">
+                    <h3>2. Install Dependencies</h3>
+                    <p style="font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 13px;">
+                        make install-all<br>
+                        make setup-ollama
+                    </p>
+                </div>
+                <div class="feature-card" style="padding: 30px;">
+                    <h3>3. Run OpenOS Shell</h3>
+                    <p style="font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 13px;">
+                        make run-shell
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connect Section -->
+        <section id="connect" class="connect">
+            <div class="section-header">
+                <h2>Connect with the Creator</h2>
+                <p>Have questions, ideas, or feedback? Get in touch with the lead developer, Yashab Alam.</p>
+            </div>
+            <div class="connect-grid">
+                <a href="https://x.com/Yashab_cyber" class="connect-card" target="_blank">
+                    <div class="connect-icon">🐦</div>
+                    <h3>Twitter / X</h3>
+                    <p>@Yashab_cyber</p>
+                </a>
+                <a href="https://www.linkedin.com/in/yashab-alam" class="connect-card" target="_blank">
+                    <div class="connect-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <p>Yashab Alam</p>
+                </a>
+                <a href="https://www.instagram.com/yashabcyber" class="connect-card" target="_blank">
+                    <div class="connect-icon">📸</div>
+                    <h3>Instagram</h3>
+                    <p>@yashabcyber</p>
+                </a>
+                <a href="https://www.threads.net/@yashabcyber" class="connect-card" target="_blank">
+                    <div class="connect-icon">🧵</div>
+                    <h3>Threads</h3>
+                    <p>@yashabcyber</p>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">For donation or sponsorship inquiries, reach out via email:</p>
+                <a href="mailto:yashabalam9@gmail.com" class="btn-secondary" style="margin-right: 15px;">yashabalam9@gmail.com</a>
+                <a href="mailto:yashabalam707@gmail.com" class="btn-secondary">yashabalam707@gmail.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-left">
+                <span style="font-weight: 700; color: white;">OpenOS</span>
+                <span>Created by Yashab Alam. GPL-3.0 License.</span>
+            </div>
+            <div class="footer-right">
+                <a href="../donate.md">Donate</a>
+                <a href="https://github.com/yashab-cyber/sai-os">GitHub</a>
+                <a href="#features">Features</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Terminal Simulator Script -->
+    <script>
+        const commands = [
+            {
+                input: 'clean my system',
+                output: '🧠 System Maintenance Triggered...\n🔍 Analyzing system...\n🧹 Found 1.2 GB cache in ~/.cache/\n🧹 Found 450 MB logs in /var/log/\n🚀 Cleanup complete! Saved 1.65 GB disk space.'
+            },
+            {
+                input: 'open my project files',
+                output: '🧠 App Launcher Triggered...\n📁 Opening folder: ~/Projects/OpenOS\n💻 Launching text editor: VS Code\n✅ Project workspace ready!'
+            },
+            {
+                input: 'spongebob theme song',
+                output: '🧠 Media Player Triggered...\n🔍 Searching local music library for: spongebob theme song\n🎵 Track found: Spongebob Squarepants Theme\n🔊 Output device: Internal Speakers\n▶️ Playing track...'
+            }
+        ];
+
+        let commandIndex = 0;
+        const inputEl = document.getElementById('terminal-input');
+        const outputEl = document.getElementById('terminal-output');
+
+        function typeCommand() {
+            const cmd = commands[commandIndex];
+            let charIndex = 0;
+            inputEl.textContent = '';
+            outputEl.textContent = '';
+
+            const typingInterval = setInterval(() => {
+                if (charIndex < cmd.input.length) {
+                    inputEl.textContent += cmd.input[charIndex];
+                    charIndex++;
+                } else {
+                    clearInterval(typingInterval);
+                    setTimeout(() => {
+                        outputEl.textContent = cmd.output;
+                        setTimeout(() => {
+                            commandIndex = (commandIndex + 1) % commands.length;
+                            setTimeout(typeCommand, 3000);
+                        }, 2000);
+                    }, 500);
+                }
+            }, 100);
+        }
+
+        // Start typing loop
+        setTimeout(typeCommand, 1000);
+    </script>
+</body>
+</html>
