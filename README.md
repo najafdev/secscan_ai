@@ -2,7 +2,7 @@
 
 # 🧠 OpenOS — The AI Operating System
 
-[![CA Soon Available](https://img.shields.io/badge/CA-Soon%20Available-8b5cf6?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/openos07/openos)
+[![CA](https://img.shields.io/badge/CA-BCfjgpTg...5vpump-8b5cf6?style=for-the-badge&logo=solana&logoColor=white)](https://pump.fun/coin/BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=for-the-badge)](LICENSE)
 
 <br/>
@@ -15,7 +15,8 @@ Talk to your computer. It understands.
 </div>
 
 > [!IMPORTANT]
-> 🚀 **Contract Address (CA):** Soon Available — Stay tuned on our official channels. Official updates will only be announced here!
+> 🚀 **Official Contract Address (CA):** `BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump`  
+> Official verified token on Solana. Trade on [pump.fun](https://pump.fun/coin/BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump) • Always verify the contract address before trading!
 
 ---
 

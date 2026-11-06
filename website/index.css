@@ -122,6 +122,34 @@ header {
     color: #67e8f9;
 }
 
+.ca-text {
+    font-family: var(--font-mono);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: #67e8f9;
+    font-size: 12px;
+    border: 1px solid rgba(103, 232, 249, 0.2);
+    user-select: all;
+}
+
+.ca-copy-btn {
+    background: rgba(139, 92, 246, 0.25);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    color: #e0e7ff;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ca-copy-btn:hover {
+    background: rgba(139, 92, 246, 0.45);
+    color: #ffffff;
+}
+
 .announcement-link {
     color: #c4b5fd;
     text-decoration: none;
@@ -142,17 +170,50 @@ header {
     gap: 8px;
     background: rgba(139, 92, 246, 0.12);
     border: 1px solid rgba(139, 92, 246, 0.35);
-    padding: 6px 18px;
+    padding: 8px 20px;
     border-radius: 9999px;
     font-size: 14px;
     font-weight: 600;
     color: #c4b5fd;
     margin-bottom: 12px;
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.ca-hero-banner:hover {
+    transform: translateY(-1px);
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
 }
 
 .ca-hero-banner strong {
     color: #38bdf8;
+}
+
+.ca-address {
+    font-family: var(--font-mono);
+    color: #38bdf8;
+    word-break: break-all;
+    font-size: 13px;
+}
+
+.ca-copy-tag {
+    background: rgba(139, 92, 246, 0.3);
+    color: #c4b5fd;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-weight: 600;
+    margin-left: 6px;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+}
+
+.ca-hero-banner:hover .ca-copy-tag {
+    background: rgba(139, 92, 246, 0.6);
+    color: #ffffff;
 }
 
 .pulse-dot {
@@ -360,6 +421,26 @@ header {
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 40px var(--primary-glow), 0 0 15px var(--accent-glow);
+}
+
+.btn-ca {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-ca:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.45), 0 0 15px rgba(236, 72, 153, 0.4);
 }
 
 .btn-secondary {
@@ -874,11 +955,30 @@ footer {
         gap: 12px;
     }
 
-    .btn-primary, .btn-secondary {
+    .btn-primary, .btn-secondary, .btn-ca {
         padding: 14px 20px;
         font-size: 15px;
         text-align: center;
         justify-content: center;
+        width: 100%;
+    }
+
+    .ca-text {
+        font-size: 10px;
+        max-width: 240px;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+    }
+
+    .ca-hero-banner {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .ca-address {
+        font-size: 11px;
     }
 
     .email-links {

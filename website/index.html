@@ -15,9 +15,10 @@
     <header>
         <div class="announcement-bar">
             <div class="container announcement-content">
-                <span class="announcement-badge">ANNOUNCEMENT</span>
-                <span class="announcement-text">🚀 <strong>CA:</strong> Soon Available</span>
-                <a href="https://github.com/openos07/openos" class="announcement-link" target="_blank" rel="noopener">Official Repository →</a>
+                <span class="announcement-badge">TOKEN CA</span>
+                <span class="announcement-text">🚀 <strong>CA:</strong> <code class="ca-text">BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump</code></span>
+                <button class="ca-copy-btn" onclick="copyCA('BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump', this)" title="Copy CA">Copy</button>
+                <a href="https://pump.fun/coin/BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump" class="announcement-link" target="_blank" rel="noopener">pump.fun →</a>
             </div>
         </div>
         <div class="container nav-container">
@@ -45,9 +46,10 @@
     <main class="container">
         <!-- Hero Section -->
         <section class="hero">
-            <div class="ca-hero-banner">
+            <div class="ca-hero-banner" onclick="copyCA('BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump', this)" title="Click to copy Contract Address">
                 <span class="pulse-dot"></span>
-                <strong>CA:</strong> Soon Available
+                <strong>CA:</strong> <span class="ca-address">BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump</span>
+                <span class="ca-copy-tag">📋 Copy</span>
             </div>
             <br>
             <div class="badge">OpenOS v0.3.0 is live</div>
@@ -55,6 +57,7 @@
             <p>A Debian-based Linux environment powered by local AI. Talk to your computer in plain English, and let the assistant execute commands, manage files, and orchestrate tasks offline.</p>
             <div class="hero-btns">
                 <a href="#install" class="btn-primary">Get Started</a>
+                <a href="https://pump.fun/coin/BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump" target="_blank" rel="noopener" class="btn-ca">pump.fun</a>
                 <a href="https://github.com/openos07/openos" class="btn-secondary">GitHub</a>
             </div>
 
@@ -235,6 +238,41 @@
                     document.body.classList.remove('menu-open');
                 });
             });
+        }
+
+        // Copy CA to clipboard function
+        function copyCA(text, el) {
+            function showSuccess() {
+                const tag = el.querySelector ? el.querySelector('.ca-copy-tag') : null;
+                const target = tag || el;
+                const prev = target.textContent;
+                target.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    target.textContent = prev;
+                }, 2000);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(showSuccess).catch(() => {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
+
+            function fallbackCopy(val) {
+                const temp = document.createElement('textarea');
+                temp.value = val;
+                temp.style.position = 'fixed';
+                temp.style.opacity = '0';
+                document.body.appendChild(temp);
+                temp.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess();
+                } catch (e) {}
+                document.body.removeChild(temp);
+            }
         }
     </script>
 </body>
