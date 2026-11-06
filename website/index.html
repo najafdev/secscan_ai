@@ -25,12 +25,20 @@
                 <img src="logo.png" alt="OpenOS Logo">
                 <span class="logo-text">OpenOS</span>
             </a>
-            <nav>
+            <nav class="nav-links" id="nav-links">
                 <a href="#features">Features</a>
                 <a href="#connect">Connect</a>
                 <a href="https://github.com/openos07/openos/blob/main/donate.md" target="_blank" rel="noopener">Donate</a>
+                <a href="#install" class="btn-header mobile-nav-btn">Install Now</a>
             </nav>
-            <a href="#install" class="btn-header">Install Now</a>
+            <div class="header-actions">
+                <a href="#install" class="btn-header desktop-nav-btn">Install Now</a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -101,24 +109,24 @@
                 <h2>Simple Installation</h2>
                 <p>Set up OpenOS in your current environment or build a custom live ISO.</p>
             </div>
-            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <div class="feature-card" style="padding: 30px;">
+            <div class="features-grid install-grid">
+                <div class="feature-card install-card">
                     <h3>1. Clone Repository</h3>
-                    <p style="font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 13px;">
+                    <p class="code-snippet">
                         git clone https://github.com/openos07/openos.git<br>
                         cd openos
                     </p>
                 </div>
-                <div class="feature-card" style="padding: 30px;">
+                <div class="feature-card install-card">
                     <h3>2. Install Dependencies</h3>
-                    <p style="font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 13px;">
+                    <p class="code-snippet">
                         make install-all<br>
                         make setup-ollama
                     </p>
                 </div>
-                <div class="feature-card" style="padding: 30px;">
+                <div class="feature-card install-card">
                     <h3>3. Run OpenOS Shell</h3>
-                    <p style="font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 13px;">
+                    <p class="code-snippet">
                         make run-shell
                     </p>
                 </div>
@@ -138,10 +146,12 @@
                     <p>@_gh0st0fs0l</p>
                 </a>
             </div>
-            <div style="text-align: center; margin-top: 50px;">
-                <p style="color: var(--text-secondary); margin-bottom: 20px;">For donation or sponsorship inquiries, reach out via email:</p>
-                <a href="mailto:yashabalam9@gmail.com" class="btn-secondary" style="margin-right: 15px;">yashabalam9@gmail.com</a>
-                <a href="mailto:yashabalam707@gmail.com" class="btn-secondary">yashabalam707@gmail.com</a>
+            <div class="email-section">
+                <p>For donation or sponsorship inquiries, reach out via email:</p>
+                <div class="email-links">
+                    <a href="mailto:yashabalam9@gmail.com" class="btn-secondary">yashabalam9@gmail.com</a>
+                    <a href="mailto:yashabalam707@gmail.com" class="btn-secondary">yashabalam707@gmail.com</a>
+                </div>
             </div>
         </section>
     </main>
@@ -206,6 +216,26 @@
 
         // Start typing loop
         setTimeout(typeCommand, 1000);
+
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', () => {
+                mobileToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+        }
     </script>
 </body>
 </html>
