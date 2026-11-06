@@ -9,9 +9,6 @@ This file lists the contributors who have helped build and maintain **OpenOS**.
 * **Yashab Alam**
   * **GitHub**: [@yashab-cyber](https://github.com/yashab-cyber)
   * **Twitter / X**: [@_gh0st0fs0l](https://x.com/_gh0st0fs0l)
-  * **LinkedIn**: [Yashab Alam](https://www.linkedin.com/in/yashab-alam)
-  * **Instagram**: [@yashabcyber](https://www.instagram.com/yashabcyber)
-  * **Threads**: [@yashabcyber](https://www.threads.net/@yashabcyber)
   * **Emails**: yashabalam9@gmail.com, yashabalam707@gmail.com
 
 ---

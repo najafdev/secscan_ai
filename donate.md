@@ -20,8 +20,5 @@ Please use the subject line `[OpenOS Donation] Your Name/Organization` so we can
 Stay updated and follow the development of OpenOS:
 
 * **Twitter / X**: [@_gh0st0fs0l](https://x.com/_gh0st0fs0l)
-* **LinkedIn**: [Yashab Alam](https://www.linkedin.com/in/yashab-alam)
-* **Instagram**: [@yashabcyber](https://www.instagram.com/yashabcyber)
-* **Threads**: [@yashabcyber](https://www.threads.net/@yashabcyber)
 
 Thank you for helping us shape the future of AI-native computing! 🚀
