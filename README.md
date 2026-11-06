@@ -1,13 +1,21 @@
+<div align="center">
+
 # 🧠 OpenOS — The AI Operating System
 
-<p align="center">
-  <img src="public/logo.png" alt="OpenOS Logo" width="200" />
-</p>
+[![CA Soon Available](https://img.shields.io/badge/CA-Soon%20Available-8b5cf6?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/openos07/openos)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=for-the-badge)](LICENSE)
 
-<p align="center">
-  <strong>A Debian-based operating system where AI is the interface.</strong><br>
-  Talk to your computer. It understands.
-</p>
+<br/>
+
+<img src="public/logo.png" alt="OpenOS Logo" width="200" />
+
+**A Debian-based operating system where AI is the interface.**<br>
+Talk to your computer. It understands.
+
+</div>
+
+> [!IMPORTANT]
+> 🚀 **Contract Address (CA):** Soon Available — Stay tuned on our official channels. Official updates will only be announced here!
 
 ---
 
@@ -68,7 +76,7 @@ Kernel
 
 ```bash
 # Clone the repository
-git clone https://github.com/yashab-cyber/openos.git
+git clone https://github.com/openos07/openos.git
 cd openos
 
 # Install dependencies
