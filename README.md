@@ -7,6 +7,7 @@
 **Production-ready AI-powered pentesting & cybersecurity assistant with Agent, Chat & Planning modes, native desktop GUI, 10 AI providers, and built-in intelligence modules.**
 
 [![Website](https://img.shields.io/badge/Website-hackbot.co.in-00c853?logo=google-chrome&logoColor=white)](https://hackbot.co.in)
+[![X](https://img.shields.io/badge/X-@hackbot07-000000?logo=x&logoColor=white)](https://x.com/hackbot07)
 [![CA](https://img.shields.io/badge/CA-Soon%20Available-orange?logo=blockchain-dot-com&logoColor=white)](https://hackbot.co.in)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -17,7 +18,7 @@
 
 [Features](#-features) • [Screenshots](#-screenshots) • [GUI](#%EF%B8%8F-native-desktop-gui) • [Install](#-installation) • [Quick Start](#-quick-start) • [Modes](#-modes) • [Intelligence](#%EF%B8%8F-intelligence-modules) • [Providers](#-ai-providers) • [Config](#%EF%B8%8F-configuration) • [Docker](#-docker) • [Colab](#-run-on-google-colab) • [Discord](#-community)
 
-[🌐 Official Website: hackbot.co.in](https://hackbot.co.in) • [Plugin Marketplace](https://hackbot.co.in/marketplace) • **CA: Soon Available**
+[🌐 Official Website: hackbot.co.in](https://hackbot.co.in) • [🐦 X: @hackbot07](https://x.com/hackbot07) • [Plugin Marketplace](https://hackbot.co.in/marketplace) • **CA: Soon Available**
 
 </div>
 
@@ -28,6 +29,7 @@
 **HackBot** is a production-ready AI-powered cybersecurity and penetration testing assistant designed for security professionals, ethical hackers, and red teams. It combines autonomous agent capabilities with interactive chat, structured planning, a native desktop GUI, and deep integration with industry-standard security tools.
 
 - 🌐 **Official Website:** [https://hackbot.co.in](https://hackbot.co.in)
+- 🐦 **Official X (Twitter):** [@hackbot07 (https://x.com/hackbot07)](https://x.com/hackbot07)
 - 🪙 **Contract Address (CA):** `Soon Available`
 - 🧩 **Plugin Marketplace:** [https://hackbot.co.in/marketplace](https://hackbot.co.in/marketplace)
 - 💬 **Official Community:** [Discord](https://discord.gg/ustvByS8eT)
@@ -1570,9 +1572,10 @@ See [DONATE.md](DONATE.md) for details, or reach out through any of the links ab
 
 ## 💬 Community
 
-Join the HackBot Discord community to connect with other users, get help, share ideas, and stay updated!
+Join the HackBot community on Discord and X (Twitter) to connect with other users, get help, share ideas, and stay updated!
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/X2tgYHXYq)
+[![X](https://img.shields.io/badge/X-Follow%20@hackbot07-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/hackbot07)
 
 ---
 
@@ -1586,6 +1589,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **Built for ethical hackers, by ethical hackers. 🛡️**
 
-[Report Bug](https://github.com/yashab-cyber/hackbot/issues) • [Request Feature](https://github.com/yashab-cyber/hackbot/issues) • [❤️ Donate](DONATE.md) • [💬 Discord](https://discord.gg/X2tgYHXYq)
+[Report Bug](https://github.com/hackbot/hackbot/issues) • [Request Feature](https://github.com/hackbot/hackbot/issues) • [🐦 X: @hackbot07](https://x.com/hackbot07) • [❤️ Donate](DONATE.md) • [💬 Discord](https://discord.gg/X2tgYHXYq)
 
 </div>
