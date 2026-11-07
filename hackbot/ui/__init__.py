@@ -56,18 +56,17 @@ BANNER = r"""
 [/]
 [bold bright_cyan]  AI Cybersecurity Assistant[/] [dim]v{version}[/]
 [dim]  ─────────────────────────────────────────────[/]
-[dim]  Developed by[/] [bold bright_white]Yashab Alam[/]
-[dim]  GitHub:[/]   [dim underline]https://github.com/yashab-cyber[/]
-[dim]  LinkedIn:[/] [dim underline]https://www.linkedin.com/in/yashab-alam[/]
-[dim]  Email:[/]    [dim]yashabalam707@gmail.com | yashabalam9@gmail.com[/]
+[dim]  Website:[/]  [dim underline]https://hackbot.co.in[/]
+[dim]  X:[/]        [dim underline]https://x.com/hackbot07[/]
+[dim]  GitHub:[/]   [dim underline]https://github.com/hackbot/hackbot[/]
+[dim]  CA:[/]       [bold bright_yellow]Soon Available[/]
 [dim]  ─────────────────────────────────────────────[/]
-[bold bright_red]  ❤️  Support HackBot →[/] [dim underline]https://github.com/yashab-cyber/hackbot/blob/main/DONATE.md[/]
 """.replace("{version}", __version__)
 
 BANNER_SMALL = (
     f"[bold bright_green]⚡ HackBot[/] [dim]v{__version__}[/] "
     "[dim]|[/] [bold bright_cyan]AI Cybersecurity Assistant[/] "
-    "[dim]|[/] [dim]by Yashab Alam[/]"
+    "[dim]|[/] [dim]hackbot.co.in[/]"
 )
 
 

@@ -34,9 +34,9 @@ Welcome to the official HackBot manual. This guide covers every feature, command
 
 ## Quick Links
 
-- **HackBot Repository**: [github.com/yashab-cyber/hackbot](https://github.com/yashab-cyber/hackbot)
-- **Author**: Yashab Alam — [GitHub](https://github.com/yashab-cyber) · [LinkedIn](https://www.linkedin.com/in/yashab-alam) · yashabalam707@gmail.com
-- **Donate**: [DONATE.md](../DONATE.md)
+- **HackBot Repository**: [github.com/hackbot/hackbot](https://github.com/hackbot/hackbot)
+- **Official Website**: [https://hackbot.co.in](https://hackbot.co.in)
+- **Official X (Twitter)**: [@hackbot07](https://x.com/hackbot07)
 
 ---
 

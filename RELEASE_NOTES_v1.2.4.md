@@ -30,4 +30,4 @@
 
 ---
 
-**Full Changelog**: https://github.com/yashab-cyber/hackbot/compare/v1.2.3...v1.2.4
+**Full Changelog**: https://github.com/hackbot/hackbot/compare/v1.2.3...v1.2.4

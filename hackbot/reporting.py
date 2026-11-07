@@ -665,7 +665,7 @@ class ReportGenerator:
                         "driver": {
                             "name": "HackBot",
                             "version": __version__,
-                            "informationUri": "https://github.com/yashab-cyber/hackbot",
+                            "informationUri": "https://github.com/hackbot/hackbot",
                             "rules": rules,
                         }
                     },

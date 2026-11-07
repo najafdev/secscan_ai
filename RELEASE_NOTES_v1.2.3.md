@@ -56,4 +56,4 @@ New tools added to the default allowed list (56 → 76 total):
 
 ---
 
-**Full Changelog**: https://github.com/yashab-cyber/hackbot/compare/v1.2.2...v1.2.3
+**Full Changelog**: https://github.com/hackbot/hackbot/compare/v1.2.2...v1.2.3

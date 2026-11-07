@@ -92,8 +92,7 @@ Instances of abusive, harassing, unethical, or otherwise unacceptable behavior m
 
 | Channel | Contact |
 |---------|---------|
-| 📧 **Email** (preferred) | [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com) |
-| 📧 **Alternate** | [yashabalam9@gmail.com](mailto:yashabalam9@gmail.com) |
+| 📧 **Email** | [hackbot07@yahoo.com](mailto:hackbot07@yahoo.com) |
 | 💬 **Discord** | Contact a moderator via DM |
 
 All reports will be reviewed and investigated promptly and fairly. Community leaders are obligated to respect the privacy and security of the reporter.

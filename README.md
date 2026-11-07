@@ -13,7 +13,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg)]()
 [![Tests](https://img.shields.io/badge/tests-724%20passing-brightgreen.svg)]()
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yashab-cyber/hackbot/blob/main/examples/HackBot_Colab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hackbot/hackbot/blob/main/examples/HackBot_Colab.ipynb)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?logo=discord&logoColor=white)](https://discord.gg/ustvByS8eT)
 
 [Features](#-features) • [Screenshots](#-screenshots) • [GUI](#%EF%B8%8F-native-desktop-gui) • [Install](#-installation) • [Quick Start](#-quick-start) • [Modes](#-modes) • [Intelligence](#%EF%B8%8F-intelligence-modules) • [Providers](#-ai-providers) • [Config](#%EF%B8%8F-configuration) • [Docker](#-docker) • [Colab](#-run-on-google-colab) • [Discord](#-community)
@@ -36,34 +36,6 @@
 
 ---
 
-## 👨‍💻 About the Author
-
-<table>
-  <tr>
-    <td><strong>Developer</strong></td>
-    <td><strong>Yashab Alam</strong></td>
-  </tr>
-  <tr>
-    <td>🐙 GitHub</td>
-    <td><a href="https://github.com/yashab-cyber">github.com/yashab-cyber</a></td>
-  </tr>
-  <tr>
-    <td>💼 LinkedIn</td>
-    <td><a href="https://www.linkedin.com/in/yashab-alam">linkedin.com/in/yashab-alam</a></td>
-  </tr>
-  <tr>
-    <td>📧 Email</td>
-    <td><a href="mailto:yashabalam707@gmail.com">yashabalam707@gmail.com</a> · <a href="mailto:yashabalam9@gmail.com">yashabalam9@gmail.com</a></td>
-  </tr>
-  <tr>
-    <td>❤️ Donate</td>
-    <td><a href="DONATE.md"><strong>Support HackBot → DONATE.md</strong></a></td>
-  </tr>
-</table>
-
-> HackBot is free & open-source. If it has helped you, please consider [supporting its development](DONATE.md) or reaching out for collaboration!
-
----
 
 ## ⚡ Features
 
@@ -218,38 +190,38 @@ python -m pip install --upgrade pip setuptools wheel
 ### One-Line Install (Linux/macOS)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/hackbot/hackbot/main/install.sh | bash
 ```
 
 Full install with security tools:
 ```bash
-curl -sSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh | bash -s full
+curl -sSL https://raw.githubusercontent.com/hackbot/hackbot/main/install.sh | bash -s full
 ```
 
 ### pip (All Platforms)
 
 ```bash
 # Full install (GUI + PDF reports + all features)
-pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pip install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 
 # Minimal install (CLI only, no GUI)
-pip install git+https://github.com/yashab-cyber/hackbot.git
+pip install git+https://github.com/hackbot/hackbot.git
 ```
 
 ### pipx (Isolated Install)
 
 ```bash
 # Full install (GUI + PDF reports + all features)
-pipx install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pipx install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 
 # Minimal install (CLI only, no GUI)
-pipx install git+https://github.com/yashab-cyber/hackbot.git
+pipx install git+https://github.com/hackbot/hackbot.git
 ```
 
 ### From Source (Development)
 
 ```bash
-git clone https://github.com/yashab-cyber/hackbot.git
+git clone https://github.com/hackbot/hackbot.git
 cd hackbot
 pip install -e ".[all,dev]"
 ```
@@ -258,10 +230,10 @@ pip install -e ".[all,dev]"
 
 ```powershell
 # Option 1: pip (full install with GUI + all features)
-pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pip install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 
 # Option 2: Download and run installer
-git clone https://github.com/yashab-cyber/hackbot.git
+git clone https://github.com/hackbot/hackbot.git
 cd hackbot
 install.bat
 ```
@@ -334,7 +306,7 @@ Always uninstall first using the matching method above, then reinstall.
 ```bash
 # If you previously used pip/pipx, uninstall first via the Uninstall section.
 # Then reinstall via the installer script.
-curl -sSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/hackbot/hackbot/main/install.sh | bash
 ```
 
 ### pip
@@ -344,7 +316,7 @@ curl -sSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh
 pip uninstall -y hackbot
 
 # Step 2: reinstall
-pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pip install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 ```
 
 ### pipx
@@ -354,7 +326,7 @@ pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
 pipx uninstall hackbot
 
 # Step 2: reinstall
-pipx install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pipx install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 ```
 
 ### From Source (Development)
@@ -370,7 +342,7 @@ pip install -e ".[all,dev]"
 ```powershell
 # Option 1: pip
 pip uninstall -y hackbot
-pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pip install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 
 # Option 2: From local source
 cd hackbot
@@ -1346,7 +1318,7 @@ HACKBOT_API_KEY=sk-your-key docker-compose run hackbot
 
 No local CPU? Run HackBot entirely on Google Colab with free GPU access.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yashab-cyber/hackbot/blob/main/examples/HackBot_Colab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hackbot/hackbot/blob/main/examples/HackBot_Colab.ipynb)
 
 The notebook includes **all three modes** ready to use:
 
@@ -1362,7 +1334,7 @@ The notebook includes **all three modes** ready to use:
 
 ```python
 # 1. Install
-!pip install "hackbot @ git+https://github.com/yashab-cyber/hackbot.git"
+!pip install "hackbot @ git+https://github.com/hackbot/hackbot.git"
 
 # 2. Configure (use Colab Secrets for API key)
 import os
@@ -1550,26 +1522,6 @@ python -m pytest tests/test_vulndb.py -v   # Vulnerability database tests
 >
 > **Never use this tool against systems you don't own or have authorization to test.**
 
----
-
-## �‍💻 Author
-
-**Yashab Alam** — Creator & Lead Developer
-
-| | |
-|---|---|
-| 🐙 GitHub | [github.com/yashab-cyber](https://github.com/yashab-cyber) |
-| 💼 LinkedIn | [linkedin.com/in/yashab-alam](https://www.linkedin.com/in/yashab-alam) |
-| 📧 Email | [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com) |
-| 📧 Email (alt) | [yashabalam9@gmail.com](mailto:yashabalam9@gmail.com) |
-
-### ❤️ Support HackBot
-
-HackBot is free and open-source. If it has helped you, please consider supporting its development!
-See [DONATE.md](DONATE.md) for details, or reach out through any of the links above.
-
----
-
 ## 💬 Community
 
 Join the HackBot community on Discord and X (Twitter) to connect with other users, get help, share ideas, and stay updated!
@@ -1589,6 +1541,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **Built for ethical hackers, by ethical hackers. 🛡️**
 
-[Report Bug](https://github.com/hackbot/hackbot/issues) • [Request Feature](https://github.com/hackbot/hackbot/issues) • [🐦 X: @hackbot07](https://x.com/hackbot07) • [❤️ Donate](DONATE.md) • [💬 Discord](https://discord.gg/X2tgYHXYq)
+[Report Bug](https://github.com/hackbot/hackbot/issues) • [Request Feature](https://github.com/hackbot/hackbot/issues) • [🐦 X: @hackbot07](https://x.com/hackbot07) • [💬 Discord](https://discord.gg/X2tgYHXYq)
 
 </div>

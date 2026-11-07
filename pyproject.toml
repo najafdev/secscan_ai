@@ -10,7 +10,7 @@ readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.9"
 authors = [
-    {name = "Yashab Alam", email = "yashabalam707@gmail.com"},
+    {name = "HackBot", email = "hackbot07@yahoo.com"},
 ]
 keywords = ["cybersecurity", "pentesting", "ai", "hacking", "security"]
 classifiers = [
@@ -89,11 +89,10 @@ all = [
 hackbot = "hackbot.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/yashab-cyber/hackbot"
-Repository = "https://github.com/yashab-cyber/hackbot"
-Issues = "https://github.com/yashab-cyber/hackbot/issues"
-Donate = "https://github.com/yashab-cyber/hackbot/blob/main/DONATE.md"
-LinkedIn = "https://www.linkedin.com/in/yashab-alam"
+Homepage = "https://hackbot.co.in"
+Repository = "https://github.com/hackbot/hackbot"
+Issues = "https://github.com/hackbot/hackbot/issues"
+X = "https://x.com/hackbot07"
 
 [tool.setuptools.packages.find]
 where = ["."]

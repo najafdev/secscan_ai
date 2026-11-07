@@ -7,7 +7,7 @@ Step-by-step instructions for creating a GitHub release for HackBot.
 ## Prerequisites
 
 - **GitHub CLI** (`gh`) installed and authenticated
-- Push access to `yashab-cyber/hackbot`
+- Push access to `hackbot/hackbot`
 - All changes committed and pushed to `main`
 
 ```bash
@@ -79,7 +79,7 @@ gh release create v1.1.2 \
 - Fix 1 description
 
 ## Full Changelog
-https://github.com/yashab-cyber/hackbot/compare/v1.1.1...v1.1.2"
+https://github.com/hackbot/hackbot/compare/v1.1.1...v1.1.2"
 ```
 
 ### Option B: With Release Notes from a File
@@ -100,7 +100,7 @@ cat > /tmp/release-notes.md << 'EOF'
 - Fixed screenshot labels in README
 
 ## Full Changelog
-https://github.com/yashab-cyber/hackbot/compare/v1.1.1...v1.1.2
+https://github.com/hackbot/hackbot/compare/v1.1.1...v1.1.2
 EOF
 
 gh release create v1.1.2 \
@@ -228,11 +228,11 @@ Use this template when writing manual release notes:
 
 ## 📦 Installation
 \```bash
-pip install "hackbot @ git+https://github.com/yashab-cyber/hackbot.git"
+pip install "hackbot @ git+https://github.com/hackbot/hackbot.git"
 \```
 
 ## Full Changelog
-https://github.com/yashab-cyber/hackbot/compare/vOLD...vNEW
+https://github.com/hackbot/hackbot/compare/vOLD...vNEW
 ```
 
 ---
@@ -275,7 +275,7 @@ gh release create v1.0.0 \
 
 ### Installation
 \`\`\`bash
-pip install \"hackbot @ git+https://github.com/yashab-cyber/hackbot.git\"
+pip install \"hackbot @ git+https://github.com/hackbot/hackbot.git\"
 \`\`\`
 
 ### Local Models (No API Key)
@@ -289,4 +289,4 @@ hackbot --provider ollama --model xploiter/pentester
 ---
 
 **Author:** Yashab Alam  
-**Repository:** [github.com/yashab-cyber/hackbot](https://github.com/yashab-cyber/hackbot)
+**Repository:** [github.com/hackbot/hackbot](https://github.com/hackbot/hackbot)

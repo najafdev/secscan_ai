@@ -29,41 +29,41 @@ python -m pip install --upgrade pip setuptools wheel
 
 **Linux / macOS:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/hackbot/hackbot/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.bat" -OutFile install.bat; .\install.bat
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/hackbot/hackbot/main/install.bat" -OutFile install.bat; .\install.bat
 ```
 
 ### pip Install
 
 ```bash
 # CLI only
-pip install "hackbot @ git+https://github.com/yashab-cyber/hackbot.git"
+pip install "hackbot @ git+https://github.com/hackbot/hackbot.git"
 
 # CLI + GUI
-pip install "hackbot[gui] @ git+https://github.com/yashab-cyber/hackbot.git"
+pip install "hackbot[gui] @ git+https://github.com/hackbot/hackbot.git"
 
 # Everything (CLI + GUI + PDF reports + all optional deps)
-pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pip install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 ```
 
 ### pipx Install (Isolated Global CLI)
 
 ```bash
 # CLI only
-pipx install "hackbot @ git+https://github.com/yashab-cyber/hackbot.git"
+pipx install "hackbot @ git+https://github.com/hackbot/hackbot.git"
 
 # Everything (CLI + GUI + PDF reports + all optional deps)
-pipx install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pipx install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 ```
 
 ### From Source (Developer Mode)
 
 ```bash
-git clone https://github.com/yashab-cyber/hackbot.git
+git clone https://github.com/hackbot/hackbot.git
 cd hackbot
 pip install -e ".[all,dev]"
 ```
@@ -71,8 +71,8 @@ pip install -e ".[all,dev]"
 ### Docker
 
 ```bash
-docker pull ghcr.io/yashab-cyber/hackbot:latest
-docker run -it --rm -e HACKBOT_API_KEY=your-key ghcr.io/yashab-cyber/hackbot
+docker pull ghcr.io/hackbot/hackbot:latest
+docker run -it --rm -e HACKBOT_API_KEY=your-key ghcr.io/hackbot/hackbot
 ```
 
 ---

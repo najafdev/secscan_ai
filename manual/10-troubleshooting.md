@@ -45,10 +45,10 @@ source ~/.bashrc
 python3 -m pip install --upgrade pip
 
 # Try with --user flag
-python3 -m pip install --user "hackbot @ git+https://github.com/yashab-cyber/hackbot.git"
+python3 -m pip install --user "hackbot @ git+https://github.com/hackbot/hackbot.git"
 
 # Or use pipx for isolated install
-pipx install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"
+pipx install "hackbot[all] @ git+https://github.com/hackbot/hackbot.git"
 ```
 
 ### PDF report: "reportlab not installed"
@@ -288,8 +288,8 @@ lsof -ti :8080 | xargs kill
 
 - **In HackBot**: `/help` shows all commands
 - **Manual**: `/manual` opens this documentation
-- **GitHub Issues**: [github.com/yashab-cyber/hackbot/issues](https://github.com/yashab-cyber/hackbot/issues)
-- **Contact**: yashabalam707@gmail.com or yashabalam9@gmail.com
+- **GitHub Issues**: [github.com/hackbot/hackbot/issues](https://github.com/hackbot/hackbot/issues)
+- **Contact**: hackbot07@yahoo.com | X: @hackbot07
 
 ---
 
@@ -304,9 +304,9 @@ Include the following when reporting issues:
 5. Steps to reproduce
 6. Error message or traceback (run with `--verbose` for details)
 
-File issues at: [github.com/yashab-cyber/hackbot/issues](https://github.com/yashab-cyber/hackbot/issues)
+File issues at: [github.com/hackbot/hackbot/issues](https://github.com/hackbot/hackbot/issues)
 
 ---
 
-**Developed by [Yashab Alam](https://github.com/yashab-cyber)**
-[GitHub](https://github.com/yashab-cyber) · [LinkedIn](https://www.linkedin.com/in/yashab-alam) · [Donate](../DONATE.md)
+**HackBot — AI Cybersecurity Assistant**
+[GitHub](https://github.com/hackbot/hackbot) · [X](https://x.com/hackbot07) · [Website](https://hackbot.co.in)

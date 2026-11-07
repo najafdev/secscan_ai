@@ -16,7 +16,7 @@ from urllib.error import URLError
 
 from hackbot import __version__
 
-REPO = "yashab-cyber/hackbot"
+REPO = "hackbot/hackbot"
 GITHUB_API = f"https://api.github.com/repos/{REPO}/releases/latest"
 PIP_INSTALL_URL = f"git+https://github.com/{REPO}.git"
 

@@ -5,7 +5,7 @@
 set -euo pipefail
 
 VERSION="1.2.4"
-REPO="yashab-cyber/hackbot"
+REPO="hackbot/hackbot"
 BOLD='\033[1m'
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
@@ -21,12 +21,10 @@ banner() {
     echo -e "${NC}"
     echo -e "${CYAN}  AI Cybersecurity Assistant — Installer v${VERSION}${NC}"
     echo -e "  ─────────────────────────────────────────────"
-    echo -e "  ${BOLD}Developed by Yashab Alam${NC}"
-    echo -e "  GitHub:   ${CYAN}https://github.com/yashab-cyber${NC}"
-    echo -e "  LinkedIn: ${CYAN}https://www.linkedin.com/in/yashab-alam${NC}"
-    echo -e "  Email:    yashabalam707@gmail.com | yashabalam9@gmail.com"
+    echo -e "  Website:  ${CYAN}https://hackbot.co.in${NC}"
+    echo -e "  X:        ${CYAN}https://x.com/hackbot07${NC}"
+    echo -e "  GitHub:   ${CYAN}https://github.com/hackbot/hackbot${NC}"
     echo -e "  ─────────────────────────────────────────────"
-    echo -e "  ${RED}❤️  Support HackBot → https://github.com/yashab-cyber/hackbot/blob/main/DONATE.md${NC}"
     echo ""
 }
 
@@ -282,11 +280,9 @@ post_install() {
     echo ""
     echo -e "  ${YELLOW}⚠️  Only test systems you have explicit authorization to test!${NC}"
     echo ""
-    echo -e "  ${BOLD}Developed by Yashab Alam${NC}"
-    echo -e "  GitHub:   ${CYAN}https://github.com/yashab-cyber${NC}"
-    echo -e "  LinkedIn: ${CYAN}https://www.linkedin.com/in/yashab-alam${NC}"
-    echo -e "  Email:    yashabalam707@gmail.com | yashabalam9@gmail.com"
-    echo -e "  ${RED}❤️  Support: https://github.com/yashab-cyber/hackbot/blob/main/DONATE.md${NC}"
+    echo -e "  Website:  ${CYAN}https://hackbot.co.in${NC}"
+    echo -e "  X:        ${CYAN}https://x.com/hackbot07${NC}"
+    echo -e "  GitHub:   ${CYAN}https://github.com/hackbot/hackbot${NC}"
     echo ""
 }
 

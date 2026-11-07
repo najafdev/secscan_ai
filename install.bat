@@ -5,7 +5,7 @@ REM ═════════════════════════�
 setlocal enabledelayedexpansion
 
 set VERSION=1.1.0
-set REPO=yashab-cyber/hackbot
+set REPO=hackbot/hackbot
 
 echo.
 echo   _   _            _    ____        _
@@ -16,12 +16,10 @@ echo  ^|_^| ^|_^|\__,_^|\___^|_^|\_\____/ \___/ \__^|
 echo.
 echo   AI Cybersecurity Assistant — Installer v%VERSION%
 echo   ---------------------------------------------
-echo   Developed by Yashab Alam
-echo   GitHub:   https://github.com/yashab-cyber
-echo   LinkedIn: https://www.linkedin.com/in/yashab-alam
-echo   Email:    yashabalam707@gmail.com ^| yashabalam9@gmail.com
+echo   Website:  https://hackbot.co.in
+echo   X:        https://x.com/hackbot07
+echo   GitHub:   https://github.com/hackbot/hackbot
 echo   ---------------------------------------------
-echo   Support HackBot: https://github.com/yashab-cyber/hackbot/blob/main/DONATE.md
 echo.
 
 REM ── Check Python ───────────────────────────────────────────────────────────────
@@ -142,11 +140,9 @@ echo     hackbot --gui              # Launch web GUI
 echo.
 echo   WARNING: Only test systems you have explicit authorization to test!
 echo.
-echo   Developed by Yashab Alam
-echo   GitHub:   https://github.com/yashab-cyber
-echo   LinkedIn: https://www.linkedin.com/in/yashab-alam
-echo   Email:    yashabalam707@gmail.com ^| yashabalam9@gmail.com
-echo   Support:  https://github.com/yashab-cyber/hackbot/blob/main/DONATE.md
+echo   Website:  https://hackbot.co.in
+echo   X:        https://x.com/hackbot07
+echo   GitHub:   https://github.com/hackbot/hackbot
 echo.
 
 REM ── Desktop Shortcut ───────────────────────────────────────────────────────

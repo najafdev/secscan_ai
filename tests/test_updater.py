@@ -42,7 +42,7 @@ def test_check_for_updates_newer_available(mock_urlopen):
     mock_resp = MagicMock()
     mock_resp.read.return_value = json.dumps({
         "tag_name": "v99.0.0",
-        "html_url": "https://github.com/yashab-cyber/hackbot/releases/tag/v99.0.0",
+        "html_url": "https://github.com/hackbot/hackbot/releases/tag/v99.0.0",
         "body": "## Release Notes\n- New feature",
         "published_at": "2026-03-01T12:00:00Z",
     }).encode()

@@ -453,27 +453,21 @@ class HackBotApp:
 
     def _show_version(self) -> None:
         print_info(f"HackBot v{__version__}")
-        console.print("[dim]  Developed by[/] [bold]Yashab Alam[/]")
-        console.print("[dim]  GitHub:[/]   https://github.com/yashab-cyber")
-        console.print("[dim]  LinkedIn:[/] https://www.linkedin.com/in/yashab-alam")
+        console.print("[dim]  Website:[/]  https://hackbot.co.in")
+        console.print("[dim]  X:[/]        https://x.com/hackbot07")
+        console.print("[dim]  GitHub:[/]   https://github.com/hackbot/hackbot")
 
     def _show_donate(self) -> None:
-        console.print("\n[bold bright_red]❤️  Support HackBot[/]\n")
-        console.print("HackBot is free & open-source. If it has helped you,")
-        console.print("please consider supporting its development!\n")
-        console.print("[bold]Developer:[/]  Yashab Alam")
-        console.print("[bold]GitHub:[/]     https://github.com/yashab-cyber")
-        console.print("[bold]LinkedIn:[/]   https://www.linkedin.com/in/yashab-alam")
-        console.print("[bold]Email:[/]      yashabalam707@gmail.com")
-        console.print("[bold]Email:[/]      yashabalam9@gmail.com")
-        console.print("\n[dim]For donation inquiries, sponsorship, or collaboration —[/]")
-        console.print("[dim]reach out through any of the links above.[/]")
-        console.print("[dim]See DONATE.md for more details.[/]\n")
+        console.print("\n[bold bright_cyan]🌐  HackBot Community & Links[/]\n")
+        console.print("[bold]Website:[/]    https://hackbot.co.in")
+        console.print("[bold]X (Twitter):[/] https://x.com/hackbot07")
+        console.print("[bold]GitHub:[/]     https://github.com/hackbot/hackbot")
+        console.print("[bold]CA:[/]         Soon Available\n")
 
     def _show_manual(self) -> None:
         console.print("\n[bold bright_cyan]📖  HackBot User Manual[/]\n")
         console.print("The complete manual is available online and in the [bold]manual/[/] folder.\n")
-        console.print("[bold]Online:[/]  [underline]https://github.com/yashab-cyber/hackbot/tree/main/manual[/]")
+        console.print("[bold]Online:[/]  [underline]https://github.com/hackbot/hackbot/tree/main/manual[/]")
         console.print("[bold]Local:[/]   manual/README.md\n")
         console.print("[bold]Sections:[/]")
         console.print("  1. Getting Started        — Installation, first run, setup")

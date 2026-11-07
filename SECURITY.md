@@ -140,9 +140,8 @@ If you discover a security vulnerability **in HackBot's code**, please report it
 
 | Channel | Contact |
 |---------|---------|
-| 📧 **Email** (preferred) | [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com) |
-| 📧 **Alternate email** | [yashabalam9@gmail.com](mailto:yashabalam9@gmail.com) |
-| 🐙 **GitHub Security Advisory** | [Create a private advisory](https://github.com/yashab-cyber/hackbot/security/advisories/new) |
+| 📧 **Email** | [hackbot07@yahoo.com](mailto:hackbot07@yahoo.com) |
+| 🐙 **GitHub Security Advisory** | [Create a private advisory](https://github.com/hackbot/hackbot/security/advisories/new) |
 
 ### Disclosure Guidelines
 
@@ -253,9 +252,10 @@ By using HackBot, you agree to:
 
 | Channel | Contact |
 |---------|---------|
-| **Security issues** | [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com) |
-| **General questions** | [GitHub Discussions](https://github.com/yashab-cyber/hackbot/discussions) |
-| **Bug reports** | [GitHub Issues](https://github.com/yashab-cyber/hackbot/issues) |
+| **Security issues** | [hackbot07@yahoo.com](mailto:hackbot07@yahoo.com) |
+| **General questions** | [GitHub Discussions](https://github.com/hackbot/hackbot/discussions) |
+| **Bug reports** | [GitHub Issues](https://github.com/hackbot/hackbot/issues) |
+| **X (Twitter)** | [@hackbot07](https://x.com/hackbot07) |
 | **Community** | [Discord](https://discord.gg/X2tgYHXYq) |
 
 ---
