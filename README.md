@@ -7,6 +7,7 @@
 **Production-ready AI-powered pentesting & cybersecurity assistant with Agent, Chat & Planning modes, native desktop GUI, 10 AI providers, and built-in intelligence modules.**
 
 [![Website](https://img.shields.io/badge/Website-hackbot.co.in-00c853?logo=google-chrome&logoColor=white)](https://hackbot.co.in)
+[![CA](https://img.shields.io/badge/CA-Soon%20Available-orange?logo=blockchain-dot-com&logoColor=white)](https://hackbot.co.in)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg)]()
@@ -16,9 +17,20 @@
 
 [Features](#-features) • [Screenshots](#-screenshots) • [GUI](#%EF%B8%8F-native-desktop-gui) • [Install](#-installation) • [Quick Start](#-quick-start) • [Modes](#-modes) • [Intelligence](#%EF%B8%8F-intelligence-modules) • [Providers](#-ai-providers) • [Config](#%EF%B8%8F-configuration) • [Docker](#-docker) • [Colab](#-run-on-google-colab) • [Discord](#-community)
 
-[Website](https://hackbot.co.in) • [Plugin Marketplace](https://hackbot.co.in/marketplace)
+[🌐 Official Website: hackbot.co.in](https://hackbot.co.in) • [Plugin Marketplace](https://hackbot.co.in/marketplace) • **CA: Soon Available**
 
 </div>
+
+---
+
+## ℹ️ About HackBot
+
+**HackBot** is a production-ready AI-powered cybersecurity and penetration testing assistant designed for security professionals, ethical hackers, and red teams. It combines autonomous agent capabilities with interactive chat, structured planning, a native desktop GUI, and deep integration with industry-standard security tools.
+
+- 🌐 **Official Website:** [https://hackbot.co.in](https://hackbot.co.in)
+- 🪙 **Contract Address (CA):** `Soon Available`
+- 🧩 **Plugin Marketplace:** [https://hackbot.co.in/marketplace](https://hackbot.co.in/marketplace)
+- 💬 **Official Community:** [Discord](https://discord.gg/ustvByS8eT)
 
 ---
 
