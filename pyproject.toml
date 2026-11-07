@@ -3,83 +3,118 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "openos"
-version = "0.3.0"
-description = "OpenOS — A Debian-based AI Operating System with natural language control"
+name = "hackbot"
+version = "1.2.5"
+description = "HackBot — Production-ready AI cybersecurity assistant with Agent, Chat & Planning modes"
 readme = "README.md"
-license = {text = "GPL-3.0-or-later"}
-requires-python = ">=3.11"
+license = {text = "MIT"}
+requires-python = ">=3.9"
 authors = [
-    {name = "Yashab Alam", email = "yashabalam9@gmail.com"},
+    {name = "Yashab Alam", email = "yashabalam707@gmail.com"},
 ]
-keywords = ["ai", "operating-system", "linux", "debian", "natural-language", "llm"]
+keywords = ["cybersecurity", "pentesting", "ai", "hacking", "security"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
-    "Environment :: X11 Applications :: GTK",
-    "Intended Audience :: End Users/Desktop",
-    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-    "Operating System :: POSIX :: Linux",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
-    "Topic :: Desktop Environment",
-    "Topic :: System :: Operating System",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
 ]
 dependencies = [
-    "ollama>=0.4.0",
-    "rich>=13.0",
-    "prompt-toolkit>=3.0",
     "click>=8.1",
-    "pydantic>=2.0",
-    "psutil>=5.9",
-    "pydbus>=0.6",
-    "toml>=0.10",
-    "watchdog>=3.0",
-    "thefuzz[speedup]>=0.20",
-    "openai>=1.0",
+    "rich>=13.0",
+    "prompt_toolkit>=3.0",
+    "openai>=1.10",
     "pyyaml>=6.0",
+    "jinja2>=3.1",
+    "requests>=2.31",
+    "python-nmap>=0.7",
+    "aiohttp>=3.9",
+    "pydantic>=2.5",
+    "python-dotenv>=1.0",
+    "platformdirs>=4.0",
+    "markdown-it-py>=3.0",
 ]
 
 [project.optional-dependencies]
-voice = [
-    "edge-tts>=6.0",
-    "sounddevice>=0.4",
-    "soundfile>=0.12",
-    "numpy>=1.24",
-    "pvporcupine>=3.0",
-    "faster-whisper>=0.9",
+gui = [
+    "flask>=3.0",
+    "pywebview>=5.0",
 ]
-desktop = [
-    "PyGObject>=3.44",
+pdf = [
+    "reportlab>=4.0",
+    "matplotlib>=3.7",
+    "Pillow>=10.0",
 ]
 dev = [
-    "pytest>=7.4",
-    "pytest-asyncio>=0.21",
-    "mypy>=1.5",
-    "ruff>=0.1",
+    "pytest>=7.0",
+    "pytest-asyncio>=0.23",
+    "mypy>=1.8",
+    "ruff>=0.2",
+    "black>=24.0",
+]
+telegram = [
+    "python-telegram-bot>=21.0",
+    "qrcode[pil]>=7.4",
+]
+rag = [
+    "chromadb>=0.5.0",
+]
+all = [
+    "flask>=3.0",
+    "pywebview>=5.0",
+    "reportlab>=4.0",
+    "matplotlib>=3.7",
+    "Pillow>=10.0",
+    "shodan>=1.30",
+    "censys>=2.2",
+    "dnspython>=2.5",
+    "scapy>=2.5",
+    "paramiko>=3.4",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.1",
+    "python-telegram-bot>=21.0",
+    "qrcode[pil]>=7.4",
+    "chromadb>=0.5.0",
 ]
 
 [project.scripts]
-openos = "openos_core.shell.cli:main"
-openos-voice = "openos_core.voice.engine:main"
-openos-daemon = "openos_core.daemon.openos_daemon:main"
-openos-desktop = "openos_desktop.app:main"
-openos-install = "openos_installer.app:main"
+hackbot = "hackbot.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yashab-cyber/hackbot"
+Repository = "https://github.com/yashab-cyber/hackbot"
+Issues = "https://github.com/yashab-cyber/hackbot/issues"
+Donate = "https://github.com/yashab-cyber/hackbot/blob/main/DONATE.md"
+LinkedIn = "https://www.linkedin.com/in/yashab-alam"
 
 [tool.setuptools.packages.find]
-include = ["openos_core*", "openos_desktop*", "openos_installer*"]
+where = ["."]
+include = ["hackbot*"]
+
+[tool.setuptools.package-data]
+"hackbot.gui" = ["templates/**/*", "static/**/*"]
+"*" = ["public/*.png"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py39"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "N", "W"]
+select = ["E", "F", "W", "I", "N", "UP"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
 
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"
 warn_return_any = true
 warn_unused_configs = true
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-asyncio_mode = "auto"

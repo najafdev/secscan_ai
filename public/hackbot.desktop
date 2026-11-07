@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=HackBot
+GenericName=AI Cybersecurity Assistant
+Comment=AI-powered pentesting & cybersecurity assistant with Agent, Chat & Planning modes
+Exec=hackbot --gui
+Icon=hackbot
+Terminal=false
+Categories=Security;Network;System;Utility;
+Keywords=hacking;pentesting;cybersecurity;security;nmap;ai;
+StartupNotify=true
+StartupWMClass=hackbot

@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  hackbot:
+    build: .
+    container_name: hackbot
+    stdin_open: true
+    tty: true
+    environment:
+      - HACKBOT_API_KEY=${HACKBOT_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - HACKBOT_MODEL=${HACKBOT_MODEL:-gpt-4o}
+      - HACKBOT_PROVIDER=${HACKBOT_PROVIDER:-openai}
+    volumes:
+      - hackbot-data:/root/.local/share/hackbot
+      - hackbot-config:/root/.config/hackbot
+    network_mode: host  # Needed for network scanning
+    cap_add:
+      - NET_RAW       # Needed for raw socket tools like nmap
+      - NET_ADMIN     # Needed for network interfaces
+
+volumes:
+  hackbot-data:
+  hackbot-config:

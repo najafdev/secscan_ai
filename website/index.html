@@ -1,279 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenOS — The AI-Native Operating System</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackBot — AI Cybersecurity Assistant</title>
+  <meta name="description" content="Production-ready AI-powered pentesting & cybersecurity assistant with Agent, Chat & Planning modes, native desktop GUI, 10 AI providers, and built-in intelligence modules.">
+  <meta name="keywords" content="hackbot, cybersecurity, penetration testing, AI, nmap, pentest, security tools, vulnerability scanner">
+  <meta name="author" content="Yashab Alam">
+  <meta property="og:title" content="HackBot — AI Cybersecurity Assistant">
+  <meta property="og:description" content="Production-ready AI-powered pentesting & cybersecurity assistant with autonomous Agent Mode, 10 AI providers, and 30+ tool integrations.">
+  <meta property="og:image" content="images/logo.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="bg-glow-1"></div>
-    <div class="bg-glow-2"></div>
-    <div class="bg-glow-3"></div>
+  <!-- Navigation -->
+  <nav class="nav" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="images/logo.png" alt="HackBot" width="32" height="32">
+        <span>HackBot</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#modes">Modes</a></li>
+        <li><a href="#intelligence">Intelligence</a></li>
+        <li><a href="#providers">Providers</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="https://github.com/yashab-cyber/hackbot" class="btn btn-sm" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <header>
-        <div class="announcement-bar">
-            <div class="container announcement-content">
-                <span class="announcement-badge">TOKEN CA</span>
-                <span class="announcement-text">🚀 <strong>CA:</strong> <code class="ca-text">BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump</code></span>
-                <button class="ca-copy-btn" onclick="copyCA('BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump', this)" title="Copy CA">Copy</button>
-                <a href="https://pump.fun/coin/BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump" class="announcement-link" target="_blank" rel="noopener">pump.fun →</a>
-            </div>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <img src="images/logo.png" alt="HackBot Logo" class="hero-logo" width="140" height="140">
+        <h1 class="hero-title">Hack<span class="accent">Bot</span></h1>
+        <p class="hero-subtitle">AI Cybersecurity Assistant</p>
+        <p class="hero-desc">Production-ready AI-powered pentesting assistant with autonomous Agent Mode, native desktop GUI, 10 AI providers, and 30+ security tool integrations.</p>
+        <div class="hero-badges">
+          <span class="badge">Python 3.9+</span>
+          <span class="badge">MIT License</span>
+          <span class="badge">384 Tests</span>
+          <span class="badge">Cross-Platform</span>
         </div>
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="logo.png" alt="OpenOS Logo">
-                <span class="logo-text">OpenOS</span>
-            </a>
-            <nav class="nav-links" id="nav-links">
-                <a href="#features">Features</a>
-                <a href="#connect">Connect</a>
-                <a href="https://github.com/openos07/openos/blob/main/donate.md" target="_blank" rel="noopener">Donate</a>
-                <a href="#install" class="btn-header mobile-nav-btn">Install Now</a>
-            </nav>
-            <div class="header-actions">
-                <a href="#install" class="btn-header desktop-nav-btn">Install Now</a>
-                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+        <div class="hero-actions">
+          <a href="#install" class="btn btn-primary btn-lg">Get Started</a>
+          <a href="https://github.com/yashab-cyber/hackbot" class="btn btn-outline btn-lg" target="_blank" rel="noopener">View on GitHub</a>
+          <a href="https://discord.gg/X2tgYHXYq" class="btn btn-discord btn-lg" target="_blank" rel="noopener">Join Discord</a>
         </div>
-    </header>
+        <div class="hero-terminal">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">hackbot</span>
+          </div>
+          <div class="terminal-body">
+            <pre><code><span class="t-prompt">$</span> hackbot agent scanme.nmap.org
 
-    <main class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="ca-hero-banner" onclick="copyCA('BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump', this)" title="Click to copy Contract Address">
-                <span class="pulse-dot"></span>
-                <strong>CA:</strong> <span class="ca-address">BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump</span>
-                <span class="ca-copy-tag">📋 Copy</span>
-            </div>
-            <br>
-            <div class="badge">OpenOS v0.3.0 is live</div>
-            <h1>The AI-Native<br><span>Operating System</span></h1>
-            <p>A Debian-based Linux environment powered by local AI. Talk to your computer in plain English, and let the assistant execute commands, manage files, and orchestrate tasks offline.</p>
-            <div class="hero-btns">
-                <a href="#install" class="btn-primary">Get Started</a>
-                <a href="https://pump.fun/coin/BCfjgpTgka8KkPFuLXoTJe35EU3tiHuAx8wLQe5vpump" target="_blank" rel="noopener" class="btn-ca">pump.fun</a>
-                <a href="https://github.com/openos07/openos" class="btn-secondary">GitHub</a>
-            </div>
+<span class="t-info">⚡ HackBot v1.2.4 | AI Cybersecurity Assistant</span>
+<span class="t-info">🤖 Agent Mode — Autonomous security testing</span>
 
-            <!-- Terminal Simulator -->
-            <div class="terminal-simulator">
-                <div class="terminal-header">
-                    <div class="terminal-buttons">
-                        <div class="terminal-btn btn-red"></div>
-                        <div class="terminal-btn btn-yellow"></div>
-                        <div class="terminal-btn btn-green"></div>
-                    </div>
-                    <div class="terminal-title">openos@live-system:~</div>
-                </div>
-                <div class="terminal-body">
-                    <div class="terminal-input-line">
-                        <span class="prompt">openos&gt;</span>
-                        <span id="terminal-input"></span><span class="cursor"></span>
-                    </div>
-                    <div id="terminal-output" class="terminal-output"></div>
-                </div>
-            </div>
-        </section>
+<span class="t-accent">Phase 1: Reconnaissance</span>
+<span class="t-dim">▶ Executing: nmap</span>
+  nmap -sV -sC scanme.nmap.org
 
-        <!-- Features Section -->
-        <section id="features" class="features">
-            <div class="section-header">
-                <h2>AI Integration Redefined</h2>
-                <p>Features built from the ground up to give you full natural language control over your machine.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🗣️</div>
-                    <h3>Natural Language Interface</h3>
-                    <p>Type or speak commands directly. OpenOS maps your requests into actions—whether you need to open applications, rearrange windows, or retrieve information.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>100% Local Intelligence</h3>
-                    <p>Powered entirely by Ollama. Your data never leaves your machine. Enjoy complete offline capabilities and total control over your personal computing environment.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Intelligent Protection</h3>
-                    <p>Built-in security rules ensure that destructive or high-risk actions (like deleting system files or formatting partitions) always prompt you for authorization first.</p>
-                </div>
-            </div>
-        </section>
+<span class="t-success">◀ nmap SUCCESS</span> (exit=0, 32.1s)
+┌──────────────────────────────────────┐
+│ PORT     STATE SERVICE VERSION       │
+│ 22/tcp   open  ssh     OpenSSH 6.6  │
+│ 80/tcp   open  http    Apache 2.4.7 │
+│ 9929/tcp open  nping-echo            │
+└──────────────────────────────────────┘
 
-        <!-- Installation Instructions -->
-        <section id="install" class="features" style="border-top: 1px solid var(--border-color); padding: 80px 0;">
-            <div class="section-header">
-                <h2>Simple Installation</h2>
-                <p>Set up OpenOS in your current environment or build a custom live ISO.</p>
-            </div>
-            <div class="features-grid install-grid">
-                <div class="feature-card install-card">
-                    <h3>1. Clone Repository</h3>
-                    <p class="code-snippet">
-                        git clone https://github.com/openos07/openos.git<br>
-                        cd openos
-                    </p>
-                </div>
-                <div class="feature-card install-card">
-                    <h3>2. Install Dependencies</h3>
-                    <p class="code-snippet">
-                        make install-all<br>
-                        make setup-ollama
-                    </p>
-                </div>
-                <div class="feature-card install-card">
-                    <h3>3. Run OpenOS Shell</h3>
-                    <p class="code-snippet">
-                        make run-shell
-                    </p>
-                </div>
-            </div>
-        </section>
+<span class="t-finding">🔍 [Info] Open SSH Service Detected</span>
+  OpenSSH 6.6 on port 22
 
-        <!-- Connect Section -->
-        <section id="connect" class="connect">
-            <div class="section-header">
-                <h2>Connect with the Creator</h2>
-                <p>Have questions, ideas, or feedback? Get in touch with the lead developer, Yashab Alam.</p>
-            </div>
-            <div class="connect-grid" style="max-width: 400px; margin: 40px auto 0 auto;">
-                <a href="https://x.com/_gh0st0fs0l" class="connect-card" target="_blank">
-                    <div class="connect-icon">𝕏</div>
-                    <h3>X (Twitter)</h3>
-                    <p>@_gh0st0fs0l</p>
-                </a>
-            </div>
-            <div class="email-section">
-                <p>For donation or sponsorship inquiries, reach out via email:</p>
-                <div class="email-links">
-                    <a href="mailto:yashabalam9@gmail.com" class="btn-secondary">yashabalam9@gmail.com</a>
-                    <a href="mailto:yashabalam707@gmail.com" class="btn-secondary">yashabalam707@gmail.com</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container footer-grid">
-            <div class="footer-left">
-                <span style="font-weight: 700; color: white;">OpenOS</span>
-                <span>Created by Yashab Alam. GPL-3.0 License.</span>
-            </div>
-            <div class="footer-right">
-                <a href="https://github.com/openos07/openos/blob/main/donate.md" target="_blank" rel="noopener">Donate</a>
-                <a href="https://github.com/openos07/openos">GitHub</a>
-                <a href="#features">Features</a>
-            </div>
+<span class="t-accent">Phase 2: Web Application Scanning...</span></code></pre>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <!-- Terminal Simulator Script -->
-    <script>
-        const commands = [
-            {
-                input: 'clean my system',
-                output: '🧠 System Maintenance Triggered...\n🔍 Analyzing system...\n🧹 Found 1.2 GB cache in ~/.cache/\n🧹 Found 450 MB logs in /var/log/\n🚀 Cleanup complete! Saved 1.65 GB disk space.'
-            },
-            {
-                input: 'open my project files',
-                output: '🧠 App Launcher Triggered...\n📁 Opening folder: ~/Projects/OpenOS\n💻 Launching text editor: VS Code\n✅ Project workspace ready!'
-            },
-            {
-                input: 'spongebob theme song',
-                output: '🧠 Media Player Triggered...\n🔍 Searching local music library for: spongebob theme song\n🎵 Track found: Spongebob Squarepants Theme\n🔊 Output device: Internal Speakers\n▶️ Playing track...'
-            }
-        ];
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2 class="section-title">Features</h2>
+      <p class="section-desc">Everything you need for professional cybersecurity assessments, powered by AI.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>Agent Mode</h3>
+          <p>Autonomous penetration testing — runs real security tools, analyzes results, adapts strategy in real-time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Chat Mode</h3>
+          <p>Interactive cybersecurity Q&A with streaming responses and conversation memory.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Planning Mode</h3>
+          <p>Generates structured pentest plans, checklists, and attack methodologies with 8 templates.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🖥️</div>
+          <h3>Native Desktop GUI</h3>
+          <p>Full-featured graphical interface with dark theme, powered by Flask + pywebview.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>CVE / Exploit Lookup</h3>
+          <p>Real-time CVE search against NVD, exploit PoC discovery via GitHub, nmap→CVE auto-mapping.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>OSINT Module</h3>
+          <p>Subdomain enumeration, DNS recon, WHOIS, email harvesting, tech stack fingerprinting.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🗺️</div>
+          <h3>Network Topology</h3>
+          <p>Interactive D3.js force-directed graph from nmap/masscan output with subnet grouping.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Compliance Mapping</h3>
+          <p>Auto-map findings to PCI DSS v4.0, NIST 800-53, OWASP Top 10, ISO 27001.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔀</div>
+          <h3>Diff Reports</h3>
+          <p>Compare assessments — see new, fixed, and persistent vulnerabilities at a glance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Multi-Target Campaigns</h3>
+          <p>Coordinated assessments across multiple hosts with cross-target intelligence sharing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h3>Custom Plugins</h3>
+          <p>Python plugin system — register your own scripts as agent-callable tools.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>AI Remediation</h3>
+          <p>Auto-generate fix commands, config patches, and code snippets for each finding.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔌</div>
+          <h3>HTTP Proxy</h3>
+          <p>Built-in intercepting proxy for capturing, inspecting, replaying, and flagging web traffic.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>Memory & Sessions</h3>
+          <p>Auto-save conversations, session history, continue truncated responses, conversation summarization.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>10 AI Providers</h3>
+          <p>OpenAI, Anthropic, Gemini, Groq, Mistral, DeepSeek, Together AI, OpenRouter, Ollama, Local.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Auto Reporting</h3>
+          <p>HTML, Markdown, JSON, and professional PDF reports with executive summary and charts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Safe Mode</h3>
+          <p>Command validation, blocked dangerous commands, risky-command confirmation prompts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>30+ Tool Integrations</h3>
+          <p>nmap, nikto, sqlmap, nuclei, ffuf, subfinder, hydra, gobuster, and many more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        let commandIndex = 0;
-        const inputEl = document.getElementById('terminal-input');
-        const outputEl = document.getElementById('terminal-output');
+  <!-- Screenshots Section -->
+  <section class="section section-dark" id="screenshots">
+    <div class="container">
+      <h2 class="section-title">Screenshots</h2>
+      <p class="section-desc">Beautiful terminal UI and native desktop GUI.</p>
+      <div class="screenshots-grid">
+        <div class="screenshot-card">
+          <h3>CLI View</h3>
+          <img src="images/screenshots/hackbot-cli-view.png" alt="HackBot CLI View" loading="lazy">
+        </div>
+        <div class="screenshot-card">
+          <h3>GUI View</h3>
+          <img src="images/screenshots/hackbot-gui-view.png" alt="HackBot GUI View" loading="lazy">
+        </div>
+        <div class="screenshot-card">
+          <h3>Settings</h3>
+          <img src="images/screenshots/hackbot-settings.png" alt="HackBot Settings" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function typeCommand() {
-            const cmd = commands[commandIndex];
-            let charIndex = 0;
-            inputEl.textContent = '';
-            outputEl.textContent = '';
+  <!-- Modes Section -->
+  <section class="section" id="modes">
+    <div class="container">
+      <h2 class="section-title">Three Powerful Modes</h2>
+      <p class="section-desc">Choose the right mode for your workflow.</p>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-header agent">
+            <span class="mode-icon">🤖</span>
+            <h3>Agent Mode</h3>
+            <span class="mode-tag">Autonomous</span>
+          </div>
+          <div class="mode-body">
+            <p>The core feature. Autonomously plans assessments, executes real security tools, analyzes output, adapts strategy, tracks findings, and generates reports.</p>
+            <ul>
+              <li>Plans structured methodology</li>
+              <li>Executes nmap, nikto, nuclei, etc.</li>
+              <li>Analyzes output & determines next steps</li>
+              <li>Tracks findings with severity ratings</li>
+              <li>Recommends CVE lookups after detection</li>
+              <li>Generates PDF reports automatically</li>
+            </ul>
+            <div class="mode-code">
+              <code>hackbot agent scanme.nmap.org</code>
+            </div>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-header chat">
+            <span class="mode-icon">💬</span>
+            <h3>Chat Mode</h3>
+            <span class="mode-tag">Interactive</span>
+          </div>
+          <div class="mode-body">
+            <p>Interactive AI chat with deep cybersecurity knowledge, streaming responses, and conversation memory.</p>
+            <ul>
+              <li>Streaming AI responses</li>
+              <li>Auto-save conversations</li>
+              <li>Continue truncated responses</li>
+              <li>Conversation summarization</li>
+              <li>SQL injection, XSS, reverse shells</li>
+              <li>CTF challenges & bug bounty tips</li>
+            </ul>
+            <div class="mode-code">
+              <code>hackbot</code>
+            </div>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-header plan">
+            <span class="mode-icon">📋</span>
+            <h3>Planning Mode</h3>
+            <span class="mode-tag">Strategic</span>
+          </div>
+          <div class="mode-body">
+            <p>Generate structured pentest plans with methodology, tools, and timelines. 8 built-in templates.</p>
+            <ul>
+              <li>Web Application Pentest</li>
+              <li>Network Penetration Test</li>
+              <li>API Security Assessment</li>
+              <li>Cloud Security Audit</li>
+              <li>Active Directory Pentest</li>
+              <li>Red Team Engagement</li>
+            </ul>
+            <div class="mode-code">
+              <code>hackbot plan example.com --type web_pentest</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            const typingInterval = setInterval(() => {
-                if (charIndex < cmd.input.length) {
-                    inputEl.textContent += cmd.input[charIndex];
-                    charIndex++;
-                } else {
-                    clearInterval(typingInterval);
-                    setTimeout(() => {
-                        outputEl.textContent = cmd.output;
-                        setTimeout(() => {
-                            commandIndex = (commandIndex + 1) % commands.length;
-                            setTimeout(typeCommand, 3000);
-                        }, 2000);
-                    }, 500);
-                }
-            }, 100);
-        }
+  <!-- Intelligence Modules Section -->
+  <section class="section section-dark" id="intelligence">
+    <div class="container">
+      <h2 class="section-title">Intelligence Modules</h2>
+      <p class="section-desc">Built-in security intelligence beyond simple scanning.</p>
+      <div class="intel-grid">
+        <div class="intel-card">
+          <h3>🛡️ CVE / Exploit Lookup</h3>
+          <p>Real-time vulnerability intelligence powered by the NVD and GitHub exploit search.</p>
+          <ul>
+            <li>NVD Lookup — full details (CVSS, severity, CWEs)</li>
+            <li>Keyword search with severity filtering</li>
+            <li>Nmap→CVE automatic mapping</li>
+            <li>Exploit PoC search on GitHub</li>
+          </ul>
+          <div class="intel-code"><code>/cve apache 2.4</code></div>
+        </div>
+        <div class="intel-card">
+          <h3>🌐 OSINT Module</h3>
+          <p>Passive intelligence gathering for reconnaissance — no active scanning required.</p>
+          <ul>
+            <li>Subdomain enumeration (crt.sh + DNS brute)</li>
+            <li>DNS records (A, AAAA, MX, NS, TXT, CNAME, SOA)</li>
+            <li>WHOIS / RDAP lookup</li>
+            <li>Email harvesting &amp; tech stack fingerprinting</li>
+          </ul>
+          <div class="intel-code"><code>/osint example.com</code></div>
+        </div>
+        <div class="intel-card">
+          <h3>🗺️ Network Topology</h3>
+          <p>Parse nmap or masscan output into interactive network topology maps.</p>
+          <ul>
+            <li>Nmap text &amp; XML parsing</li>
+            <li>Interactive D3.js force-directed graph</li>
+            <li>ASCII rendering in terminal</li>
+            <li>Subnet grouping &amp; markdown summary</li>
+          </ul>
+          <div class="intel-code"><code>/topology scan_results.txt</code></div>
+        </div>
+        <div class="intel-card">
+          <h3>📋 Compliance Mapping</h3>
+          <p>Auto-map findings to compliance framework controls with gap analysis.</p>
+          <ul>
+            <li>PCI DSS v4.0 (22 controls)</li>
+            <li>NIST 800-53 Rev 5 (22 controls)</li>
+            <li>OWASP Top 10 2021 (10 controls)</li>
+            <li>ISO 27001:2022 (19 controls)</li>
+          </ul>
+          <div class="intel-code"><code>/compliance pci nist</code></div>
+        </div>
+        <div class="intel-card">
+          <h3>🔧 AI Remediation Engine</h3>
+          <p>Auto-generate actionable fix commands, configuration patches, and code snippets.</p>
+          <ul>
+            <li>20+ built-in vulnerability rules</li>
+            <li>Shell commands ready to copy-paste</li>
+            <li>Nginx, Apache, sshd config patches</li>
+            <li>Multi-language code fix examples</li>
+          </ul>
+          <div class="intel-code"><code>/remediate --ai</code></div>
+        </div>
+        <div class="intel-card">
+          <h3>🔌 HTTP Proxy</h3>
+          <p>Built-in intercepting proxy for web application testing.</p>
+          <ul>
+            <li>Auto-detect auth tokens, SQL patterns, API keys</li>
+            <li>Domain scoping &amp; request replay</li>
+            <li>Traffic export &amp; flagged requests</li>
+            <li>Full request/response inspection</li>
+          </ul>
+          <div class="intel-code"><code>/proxy start</code></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Start typing loop
-        setTimeout(typeCommand, 1000);
+  <!-- AI Providers Section -->
+  <section class="section" id="providers">
+    <div class="container">
+      <h2 class="section-title">10 AI Providers</h2>
+      <p class="section-desc">Switch providers instantly. Use cloud APIs or run 100% locally with Ollama.</p>
+      <div class="providers-grid">
+        <div class="provider-card">
+          <h4>OpenAI</h4>
+          <p>GPT-5.2, GPT-4o, o3-mini</p>
+        </div>
+        <div class="provider-card">
+          <h4>Anthropic</h4>
+          <p>Claude Opus 4.6, Sonnet 4</p>
+        </div>
+        <div class="provider-card">
+          <h4>Google Gemini</h4>
+          <p>Gemini 3 Pro, 2.5 Pro</p>
+        </div>
+        <div class="provider-card">
+          <h4>Groq</h4>
+          <p>LLaMA 3.3 70B, ultra-fast</p>
+        </div>
+        <div class="provider-card">
+          <h4>Mistral AI</h4>
+          <p>Mistral Large 2, Codestral</p>
+        </div>
+        <div class="provider-card">
+          <h4>DeepSeek</h4>
+          <p>DeepSeek V3, R1 reasoning</p>
+        </div>
+        <div class="provider-card">
+          <h4>Together AI</h4>
+          <p>LLaMA 3.1 405B, Qwen 2.5</p>
+        </div>
+        <div class="provider-card">
+          <h4>OpenRouter</h4>
+          <p>All models, one API key</p>
+        </div>
+        <div class="provider-card highlight">
+          <h4>Ollama</h4>
+          <p>100% local, no API key</p>
+        </div>
+        <div class="provider-card">
+          <h4>Local / Custom</h4>
+          <p>Any OpenAI-compatible server</p>
+        </div>
+      </div>
+      <div class="provider-example">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">switch providers</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code><span class="t-prompt">$</span> hackbot --provider ollama --model llama3.2
+<span class="t-prompt">$</span> hackbot --provider anthropic --model claude-sonnet-4-20250514
+<span class="t-prompt">$</span> hackbot --provider groq --model llama-3.3-70b-versatile</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Mobile Navigation Toggle
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navLinks = document.getElementById('nav-links');
+  <!-- Installation Section -->
+  <section class="section section-dark" id="install">
+    <div class="container">
+      <h2 class="section-title">Installation</h2>
+      <p class="section-desc">Get started in seconds. Works on Linux, macOS, and Windows.</p>
+      <div class="install-tabs">
+        <button class="install-tab active" data-tab="one-line">One-Line</button>
+        <button class="install-tab" data-tab="pip">pip</button>
+        <button class="install-tab" data-tab="pipx">pipx</button>
+        <button class="install-tab" data-tab="source">Source</button>
+        <button class="install-tab" data-tab="docker">Docker</button>
+        <button class="install-tab" data-tab="windows">Windows</button>
+      </div>
+      <div class="install-panels">
+        <div class="install-panel active" id="tab-one-line">
+          <div class="code-block">
+            <div class="code-header"><span>Linux / macOS</span><button class="copy-btn" data-copy="curl -sSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh | bash">Copy</button></div>
+            <pre><code>curl -sSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh | bash</code></pre>
+          </div>
+          <p class="install-note">Full install with security tools:</p>
+          <div class="code-block">
+            <div class="code-header"><span>Full install</span><button class="copy-btn" data-copy="curl -sSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh | bash -s full">Copy</button></div>
+            <pre><code>curl -sSL https://raw.githubusercontent.com/yashab-cyber/hackbot/main/install.sh | bash -s full</code></pre>
+          </div>
+        </div>
+        <div class="install-panel" id="tab-pip">
+          <div class="code-block">
+            <div class="code-header"><span>Full install (GUI + PDF + all)</span><button class="copy-btn" data-copy='pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"'>Copy</button></div>
+            <pre><code>pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"</code></pre>
+          </div>
+          <div class="code-block">
+            <div class="code-header"><span>Minimal (CLI only)</span><button class="copy-btn" data-copy="pip install git+https://github.com/yashab-cyber/hackbot.git">Copy</button></div>
+            <pre><code>pip install git+https://github.com/yashab-cyber/hackbot.git</code></pre>
+          </div>
+        </div>
+        <div class="install-panel" id="tab-pipx">
+          <div class="code-block">
+            <div class="code-header"><span>Isolated install</span><button class="copy-btn" data-copy='pipx install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"'>Copy</button></div>
+            <pre><code>pipx install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"</code></pre>
+          </div>
+        </div>
+        <div class="install-panel" id="tab-source">
+          <div class="code-block">
+            <div class="code-header"><span>From source (development)</span><button class="copy-btn" data-copy='git clone https://github.com/yashab-cyber/hackbot.git
+cd hackbot
+pip install -e ".[all,dev]"'>Copy</button></div>
+            <pre><code>git clone https://github.com/yashab-cyber/hackbot.git
+cd hackbot
+pip install -e ".[all,dev]"</code></pre>
+          </div>
+        </div>
+        <div class="install-panel" id="tab-docker">
+          <div class="code-block">
+            <div class="code-header"><span>Docker</span><button class="copy-btn" data-copy="docker build -t hackbot .
+docker run -it -e HACKBOT_API_KEY=your-key --network host hackbot">Copy</button></div>
+            <pre><code>docker build -t hackbot .
+docker run -it -e HACKBOT_API_KEY=your-key --network host hackbot</code></pre>
+          </div>
+        </div>
+        <div class="install-panel" id="tab-windows">
+          <div class="code-block">
+            <div class="code-header"><span>Windows (PowerShell)</span><button class="copy-btn" data-copy='pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"'>Copy</button></div>
+            <pre><code>pip install "hackbot[all] @ git+https://github.com/yashab-cyber/hackbot.git"</code></pre>
+          </div>
+          <p class="install-note">Or clone and run the installer:</p>
+          <div class="code-block">
+            <div class="code-header"><span>Installer</span><button class="copy-btn" data-copy="git clone https://github.com/yashab-cyber/hackbot.git
+cd hackbot
+install.bat">Copy</button></div>
+            <pre><code>git clone https://github.com/yashab-cyber/hackbot.git
+cd hackbot
+install.bat</code></pre>
+          </div>
+        </div>
+      </div>
 
-        if (mobileToggle && navLinks) {
-            mobileToggle.addEventListener('click', () => {
-                mobileToggle.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                document.body.classList.toggle('menu-open');
-            });
+      <!-- Quick Start -->
+      <div class="quickstart">
+        <h3>Quick Start</h3>
+        <div class="quickstart-steps">
+          <div class="qs-step">
+            <span class="qs-num">1</span>
+            <h4>Set Your API Key</h4>
+            <code>export HACKBOT_API_KEY=sk-your-key</code>
+          </div>
+          <div class="qs-step">
+            <span class="qs-num">2</span>
+            <h4>Launch HackBot</h4>
+            <code>hackbot</code>
+          </div>
+          <div class="qs-step">
+            <span class="qs-num">3</span>
+            <h4>Start Testing</h4>
+            <code>/agent scanme.nmap.org</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    document.body.classList.remove('menu-open');
-                });
-            });
-        }
+  <!-- Tools Section -->
+  <section class="section" id="tools">
+    <div class="container">
+      <h2 class="section-title">30+ Security Tools</h2>
+      <p class="section-desc">HackBot integrates with industry-standard security tools.</p>
+      <div class="tools-grid">
+        <div class="tool-group">
+          <h4>Scanning</h4>
+          <div class="tool-tags">
+            <span class="tool-tag">nmap</span>
+            <span class="tool-tag">masscan</span>
+          </div>
+        </div>
+        <div class="tool-group">
+          <h4>Web Testing</h4>
+          <div class="tool-tags">
+            <span class="tool-tag">nikto</span>
+            <span class="tool-tag">dirb</span>
+            <span class="tool-tag">gobuster</span>
+            <span class="tool-tag">ffuf</span>
+            <span class="tool-tag">wfuzz</span>
+            <span class="tool-tag">whatweb</span>
+          </div>
+        </div>
+        <div class="tool-group">
+          <h4>Vulnerability</h4>
+          <div class="tool-tags">
+            <span class="tool-tag">nuclei</span>
+            <span class="tool-tag">sqlmap</span>
+          </div>
+        </div>
+        <div class="tool-group">
+          <h4>Recon</h4>
+          <div class="tool-tags">
+            <span class="tool-tag">subfinder</span>
+            <span class="tool-tag">amass</span>
+            <span class="tool-tag">httpx</span>
+            <span class="tool-tag">whois</span>
+            <span class="tool-tag">dig</span>
+          </div>
+        </div>
+        <div class="tool-group">
+          <h4>Password</h4>
+          <div class="tool-tags">
+            <span class="tool-tag">hydra</span>
+            <span class="tool-tag">john</span>
+            <span class="tool-tag">hashcat</span>
+          </div>
+        </div>
+        <div class="tool-group">
+          <h4>SSL / TLS</h4>
+          <div class="tool-tags">
+            <span class="tool-tag">testssl</span>
+            <span class="tool-tag">sslscan</span>
+            <span class="tool-tag">openssl</span>
+          </div>
+        </div>
+        <div class="tool-group">
+          <h4>Network</h4>
+          <div class="tool-tags">
+            <span class="tool-tag">netcat</span>
+            <span class="tool-tag">traceroute</span>
+            <span class="tool-tag">ping</span>
+            <span class="tool-tag">curl</span>
+            <span class="tool-tag">wget</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Copy CA to clipboard function
-        function copyCA(text, el) {
-            function showSuccess() {
-                const tag = el.querySelector ? el.querySelector('.ca-copy-tag') : null;
-                const target = tag || el;
-                const prev = target.textContent;
-                target.textContent = '✓ Copied!';
-                setTimeout(() => {
-                    target.textContent = prev;
-                }, 2000);
-            }
+  <!-- Architecture Section -->
+  <section class="section section-dark" id="architecture">
+    <div class="container">
+      <h2 class="section-title">Architecture</h2>
+      <p class="section-desc">Clean, modular Python architecture designed for extensibility.</p>
+      <div class="arch-tree">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">project structure</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>hackbot/
+├── cli.py               <span class="t-dim"># Main CLI — 40+ commands, interactive REPL</span>
+├── config.py            <span class="t-dim"># Configuration management (YAML + env vars)</span>
+├── memory.py            <span class="t-dim"># Session memory &amp; conversation summarization</span>
+├── reporting.py         <span class="t-dim"># Report generation (HTML / MD / JSON)</span>
+├── core/
+│   ├── engine.py        <span class="t-dim"># AI engine — 10 providers, LLM communication</span>
+│   ├── runner.py        <span class="t-dim"># Tool execution (sandboxed subprocess)</span>
+│   ├── cve.py           <span class="t-dim"># CVE / exploit lookup (NVD + GitHub)</span>
+│   ├── osint.py         <span class="t-dim"># OSINT recon (subdomains, DNS, WHOIS)</span>
+│   ├── topology.py      <span class="t-dim"># Network topology parser &amp; visualizer</span>
+│   ├── compliance.py    <span class="t-dim"># Compliance mapping (4 frameworks)</span>
+│   ├── campaigns.py     <span class="t-dim"># Multi-target campaign system</span>
+│   ├── diff_report.py   <span class="t-dim"># Assessment diff engine</span>
+│   ├── pdf_report.py    <span class="t-dim"># Professional PDF reports</span>
+│   ├── plugins.py       <span class="t-dim"># Custom plugin system</span>
+│   ├── remediation.py   <span class="t-dim"># AI Remediation engine</span>
+│   └── proxy.py         <span class="t-dim"># HTTP Proxy / Traffic Capture</span>
+├── modes/
+│   ├── chat.py          <span class="t-dim"># Chat mode (Q&amp;A + auto-save)</span>
+│   ├── agent.py         <span class="t-dim"># Agent mode (autonomous testing)</span>
+│   └── plan.py          <span class="t-dim"># Planning mode (8 templates)</span>
+├── gui/
+│   ├── app.py           <span class="t-dim"># Flask backend (25+ API routes, SSE)</span>
+│   └── templates/
+│       └── index.html   <span class="t-dim"># Single-page frontend (dark theme, D3.js)</span>
+└── ui/
+    └── __init__.py      <span class="t-dim"># Rich terminal UI components</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(showSuccess).catch(() => {
-                    fallbackCopy(text);
-                });
-            } else {
-                fallbackCopy(text);
-            }
+  <!-- Author / Donate Section -->
+  <section class="section" id="author">
+    <div class="container">
+      <div class="author-grid">
+        <div class="author-card">
+          <h2>About the Author</h2>
+          <h3>Yashab Alam</h3>
+          <p>Creator & Lead Developer</p>
+          <div class="author-links">
+            <a href="https://github.com/yashab-cyber" target="_blank" rel="noopener">🐙 GitHub</a>
+            <a href="https://www.linkedin.com/in/yashab-alam" target="_blank" rel="noopener">💼 LinkedIn</a>
+            <a href="mailto:yashabalam707@gmail.com">📧 Email</a>
+          </div>
+        </div>
+        <div class="donate-card">
+          <h2>❤️ Support HackBot</h2>
+          <p>HackBot is free & open-source. If it has helped you, please consider supporting its development!</p>
+          <p>Donations help cover infrastructure, development, documentation, and keeping HackBot free for everyone.</p>
+          <div class="donate-actions">
+            <a href="https://github.com/yashab-cyber/hackbot" class="btn btn-primary" target="_blank" rel="noopener">⭐ Star on GitHub</a>
+            <a href="https://discord.gg/X2tgYHXYq" class="btn btn-discord" target="_blank" rel="noopener">💬 Join Discord</a>
+            <a href="mailto:yashabalam707@gmail.com" class="btn btn-outline">📧 Contact for Donations</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            function fallbackCopy(val) {
-                const temp = document.createElement('textarea');
-                temp.value = val;
-                temp.style.position = 'fixed';
-                temp.style.opacity = '0';
-                document.body.appendChild(temp);
-                temp.select();
-                try {
-                    document.execCommand('copy');
-                    showSuccess();
-                } catch (e) {}
-                document.body.removeChild(temp);
-            }
-        }
-    </script>
+  <!-- Disclaimer -->
+  <section class="section section-dark disclaimer-section">
+    <div class="container">
+      <div class="disclaimer">
+        <h3>⚠️ Disclaimer</h3>
+        <p><strong>HackBot is designed for authorized security testing only.</strong> Always obtain explicit written permission before testing any system. Follow responsible disclosure practices. Comply with all applicable laws and regulations. The developers are not responsible for misuse. <strong>Never use this tool against systems you don't own or have authorization to test.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="HackBot" width="28" height="28">
+          <span>HackBot v1.2.4</span>
+        </div>
+        <p>Built for ethical hackers, by ethical hackers. 🛡️</p>
+        <div class="footer-links">
+          <a href="https://github.com/yashab-cyber/hackbot" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://discord.gg/X2tgYHXYq" target="_blank" rel="noopener">Discord</a>
+          <a href="https://github.com/yashab-cyber/hackbot/issues" target="_blank" rel="noopener">Report Bug</a>
+          <a href="https://colab.research.google.com/github/yashab-cyber/hackbot/blob/main/examples/HackBot_Colab.ipynb" target="_blank" rel="noopener">Google Colab</a>
+          <a href="mailto:yashabalam707@gmail.com">Contact</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Yashab Alam. MIT License.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,3541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HackBot — AI Cybersecurity Assistant</title>
+<link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/png">
+<style>
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*,:before,:after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#1c2333;--bg4:#21283b;
+  --border:#30363d;--border2:#444c56;
+  --text:#c9d1d9;--text-dim:#8b949e;--text-bright:#f0f6fc;
+  --green:#3fb950;--green-dim:#238636;--cyan:#58a6ff;--cyan2:#79c0ff;
+  --red:#f85149;--orange:#f0883e;--yellow:#d29922;--purple:#bc8cff;--magenta:#f778ba;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --radius:8px;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;overflow:hidden;user-select:none}
+
+/* ── Titlebar (native desktop feel) ───────────────────────────────────────── */
+.titlebar{display:flex;align-items:center;justify-content:space-between;height:36px;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 12px;-webkit-app-region:drag;flex-shrink:0}
+.titlebar-title{font-size:.78rem;color:var(--text-dim);font-weight:500;display:flex;align-items:center;gap:6px}
+.titlebar-title .accent{color:var(--green)}
+.titlebar-traffic{display:flex;gap:7px;-webkit-app-region:no-drag}
+.titlebar-dot{width:12px;height:12px;border-radius:50%;cursor:pointer;transition:opacity .15s;opacity:.85}
+.titlebar-dot:hover{opacity:1}
+.titlebar-dot.close{background:#ff5f57}
+.titlebar-dot.minimize{background:#ffbd2e}
+.titlebar-dot.maximize{background:#28c840}
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+.app-frame{display:flex;flex-direction:column;height:100vh;width:100vw}
+.app{display:flex;flex:1;overflow:hidden}
+.sidebar{width:260px;min-width:260px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:width .18s ease,min-width .18s ease}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.app.sidebar-collapsed .sidebar{width:60px;min-width:60px}
+.app.sidebar-collapsed .logo{padding:12px 8px;justify-content:center;flex-direction:column;gap:8px}
+.app.sidebar-collapsed .logo-brand h1,.app.sidebar-collapsed .logo-brand span,.app.sidebar-collapsed .nav-section-title,.app.sidebar-collapsed .nav-btn span:not(.icon),.app.sidebar-collapsed .sidebar-footer{display:none}
+.app.sidebar-collapsed .logo-brand img{margin-right:0!important}
+.app.sidebar-collapsed .nav{padding:8px}
+.app.sidebar-collapsed .nav-btn{justify-content:center;padding:12px}
+.app.sidebar-collapsed .sidebar-toggle{width:32px;height:28px;justify-content:center}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+.logo{padding:16px 12px 16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo-brand{display:flex;align-items:center;gap:8px;min-width:0}
+.logo h1{font-size:1.3rem;color:var(--green);letter-spacing:1px;white-space:nowrap}
+.logo span{font-size:.75rem;color:var(--text-dim);white-space:nowrap}
+.sidebar-toggle{width:30px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--bg3);color:var(--text);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;line-height:1;transition:all .15s;flex-shrink:0}
+.sidebar-toggle:hover{border-color:var(--border2);background:var(--bg4);color:var(--text-bright)}
+
+.nav{flex:1;padding:12px;overflow-y:auto}
+.nav-section{margin-bottom:16px}
+.nav-section-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);padding:4px 12px;margin-bottom:4px}
+.nav-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:none;background:transparent;color:var(--text);border-radius:var(--radius);cursor:pointer;font-size:.9rem;text-align:left;transition:all .15s}
+.nav-btn:hover{background:var(--bg4);color:var(--text-bright)}
+.nav-btn.active{background:var(--green-dim);color:var(--text-bright)}
+.nav-btn .icon{font-size:1.1rem;width:22px;text-align:center}
+
+.sidebar-footer{padding:12px;border-top:1px solid var(--border)}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.status-dot.ok{background:var(--green)}
+.status-dot.err{background:var(--red)}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.header{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg2);min-height:52px}
+.header-title{font-size:1rem;font-weight:600;display:flex;align-items:center;gap:8px}
+.header-actions{display:flex;gap:8px}
+.btn{padding:6px 14px;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg3);color:var(--text);cursor:pointer;font-size:.8rem;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--border2);background:var(--bg4);color:var(--text-bright)}
+.btn-primary{background:var(--green-dim);border-color:var(--green-dim);color:var(--text-bright)}
+.btn-primary:hover{background:#2ea043}
+.btn-danger{border-color:var(--red);color:var(--red)}
+.btn-danger:hover{background:rgba(248,81,73,.15)}
+.btn-sm{padding:4px 10px;font-size:.75rem}
+
+/* ── Chat Area ────────────────────────────────────────────────────────────── */
+.chat-area{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;scroll-behavior:smooth}
+.msg{max-width:85%;animation:fadeIn .2s ease}
+.msg-user{align-self:flex-end}
+.msg-assistant{align-self:flex-start}
+.msg-bubble{padding:12px 16px;border-radius:12px;line-height:1.6;word-wrap:break-word}
+.msg-user .msg-bubble{background:var(--green-dim);color:var(--text-bright);border-bottom-right-radius:4px}
+.msg-assistant .msg-bubble{background:var(--bg3);border:1px solid var(--border);border-bottom-left-radius:4px}
+.msg-label{font-size:.7rem;color:var(--text-dim);margin-bottom:4px;padding:0 4px}
+.msg-user .msg-label{text-align:right}
+
+/* Markdown inside messages */
+.msg-bubble h1,.msg-bubble h2,.msg-bubble h3{margin:12px 0 6px;color:var(--cyan)}
+.msg-bubble h1{font-size:1.2rem}.msg-bubble h2{font-size:1.05rem}.msg-bubble h3{font-size:.95rem}
+.msg-bubble p{margin:6px 0}
+.msg-bubble ul,.msg-bubble ol{margin:6px 0 6px 20px}
+.msg-bubble li{margin:2px 0}
+.msg-bubble code{font-family:var(--mono);background:var(--bg);padding:2px 6px;border-radius:4px;font-size:.85em}
+.msg-bubble pre{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px;margin:8px 0;overflow-x:auto}
+.msg-bubble pre code{background:none;padding:0}
+.msg-bubble blockquote{border-left:3px solid var(--cyan);padding-left:12px;margin:8px 0;color:var(--text-dim)}
+.msg-bubble table{border-collapse:collapse;margin:8px 0;width:100%}
+.msg-bubble th,.msg-bubble td{border:1px solid var(--border);padding:6px 10px;text-align:left}
+.msg-bubble th{background:var(--bg4)}
+.msg-bubble a{color:var(--cyan)}
+.msg-bubble strong{color:var(--text-bright)}
+
+/* System messages */
+.msg-system{align-self:center;max-width:90%}
+.msg-system .msg-bubble{background:transparent;border:1px dashed var(--border);color:var(--text-dim);text-align:center;font-size:.85rem;padding:8px 20px}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.typing-indicator{display:flex;gap:4px;padding:4px 8px;align-items:center}
+.typing-indicator span{width:6px;height:6px;background:var(--text-dim);border-radius:50%;animation:blink 1.4s infinite both}
+.typing-indicator span:nth-child(2){animation-delay:.2s}
+.typing-indicator span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+
+/* ── Input Area ───────────────────────────────────────────────────────────── */
+.input-area{padding:16px 20px;border-top:1px solid var(--border);background:var(--bg2)}
+.input-row{display:flex;gap:10px;align-items:flex-end}
+.input-wrapper{flex:1;position:relative}
+textarea#userInput,textarea#agentInput,textarea#planInput{width:100%;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-bright);font-family:var(--font);font-size:.9rem;resize:none;outline:none;min-height:44px;max-height:200px;line-height:1.4;transition:border-color .15s}
+textarea#userInput:focus,textarea#agentInput:focus,textarea#planInput:focus{border-color:var(--cyan)}
+textarea#userInput::placeholder,textarea#agentInput::placeholder,textarea#planInput::placeholder{color:var(--text-dim)}
+textarea#agentInput{min-height:56px}
+.send-btn{padding:12px 20px;border-radius:var(--radius);border:none;background:var(--green-dim);color:var(--text-bright);cursor:pointer;font-size:1rem;transition:background .15s;flex-shrink:0;height:44px}
+.send-btn:hover{background:#2ea043}
+.send-btn:disabled{opacity:.4;cursor:not-allowed}
+.input-hint{font-size:.7rem;color:var(--text-dim);margin-top:4px;padding-left:4px}
+
+/* ── Agent Panel ──────────────────────────────────────────────────────────── */
+.agent-start-panel{padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;flex:1}
+.agent-start-panel h2{color:var(--green);font-size:1.3rem}
+.agent-form{display:flex;flex-direction:column;gap:12px;width:100%;max-width:500px}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group label{font-size:.8rem;color:var(--text-dim);font-weight:600}
+.form-input{padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-bright);font-size:.9rem;outline:none;transition:border .15s}
+.form-input:focus{border-color:var(--cyan)}
+
+/* ── Settings Panel ───────────────────────────────────────────────────────── */
+.settings-panel{flex:1;overflow-y:auto;padding:24px}
+.settings-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.settings-card h3{color:var(--cyan);margin-bottom:12px;font-size:1rem}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.setting-row{display:flex;flex-direction:column;gap:4px}
+.setting-row label{font-size:.8rem;color:var(--text-dim)}
+.setting-row input,.setting-row select{padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text-bright);font-size:.85rem;outline:none}
+.setting-row input:focus,.setting-row select:focus{border-color:var(--cyan)}
+
+/* ── Tools Panel ──────────────────────────────────────────────────────────── */
+.tools-panel{flex:1;overflow-y:auto;padding:24px}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.tool-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px;display:flex;align-items:center;gap:10px}
+.tool-card.installed{border-color:var(--green-dim)}
+.tool-icon{font-size:1.2rem}
+.tool-name{font-weight:600;font-size:.9rem}
+.tool-path{font-size:.7rem;color:var(--text-dim);font-family:var(--mono)}
+
+/* ── Findings Panel ───────────────────────────────────────────────────────── */
+.finding-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px}
+.finding-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.severity-badge{padding:3px 10px;border-radius:4px;font-size:.75rem;font-weight:700;color:#fff}
+.severity-Critical{background:var(--red)}.severity-High{background:var(--orange)}.severity-Medium{background:var(--yellow)}.severity-Low{background:var(--cyan)}.severity-Info{background:var(--text-dim)}
+
+/* ── Session Cards ────────────────────────────────────────────────────────── */
+.session-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;cursor:pointer;transition:all .15s;display:flex;justify-content:space-between;align-items:center}
+.session-card:hover{border-color:var(--cyan);background:var(--bg3)}
+.session-meta{flex:1}
+.session-name{font-weight:600;font-size:.9rem;color:var(--text-bright)}
+.session-info{font-size:.75rem;color:var(--text-dim);margin-top:2px}
+.session-mode{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.7rem;font-weight:600;margin-right:6px}
+.session-mode.chat{background:rgba(63,185,80,.15);color:var(--green)}
+.session-mode.agent{background:rgba(248,81,73,.15);color:var(--red)}
+.session-mode.plan{background:rgba(88,166,255,.15);color:var(--cyan)}
+.session-actions{display:flex;gap:6px}
+.session-actions .btn{padding:4px 8px;font-size:.7rem}
+.continue-banner{padding:8px 16px;background:rgba(88,166,255,.1);border:1px solid var(--cyan);border-radius:6px;margin:8px 20px;display:flex;align-items:center;justify-content:space-between;animation:fadeIn .3s ease;flex-shrink:0}
+.continue-banner p{font-size:.85rem;color:var(--cyan);margin:0}
+.continue-banner .btn{padding:6px 16px}
+
+/* ── Panels ───────────────────────────────────────────────────────────────── */
+.panel{display:none;flex-direction:column;flex:1;overflow:hidden}
+.panel.active{display:flex}
+
+/* ── Toast ────────────────────────────────────────────────────────────────── */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;color:var(--text);font-size:.85rem;z-index:1000;animation:fadeIn .2s ease;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.toast.success{border-color:var(--green-dim);color:var(--green)}
+.toast.error{border-color:var(--red);color:var(--red)}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media(max-width:768px){
+  .sidebar{width:60px;min-width:60px}
+  .logo{padding:12px 8px;justify-content:center;flex-direction:column;gap:8px}
+  .sidebar .logo-brand h1,.sidebar .logo-brand span,.nav-section-title,.nav-btn span:not(.icon),.sidebar-footer{display:none}
+  .sidebar .logo-brand img{margin-right:0!important}
+  .nav{padding:8px}
+  .nav-btn{justify-content:center;padding:12px}
+  .titlebar-title span.full{display:none}
+}
+
+/* Allow text selection inside chat bubbles and code */
+.msg-bubble,.msg-bubble *,.form-input,textarea,input,pre,code{user-select:text}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--border2)}
+</style>
+</head>
+<body>
+<div class="app-frame">
+
+<!-- ── Titlebar ─────────────────────────────────────────────────────────── -->
+<div class="titlebar">
+  <div class="titlebar-title">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="" style="width:18px;height:18px;border-radius:3px;margin-right:6px;vertical-align:middle">
+    <span class="full">HackBot — AI Cybersecurity Assistant</span>
+    <span style="display:none" class="short">HackBot</span>
+  </div>
+  <div class="titlebar-traffic" id="windowControls">
+    <div class="titlebar-dot minimize" title="Minimize" onclick="windowAction('minimize')"></div>
+    <div class="titlebar-dot maximize" title="Maximize" onclick="windowAction('maximize')"></div>
+    <div class="titlebar-dot close" title="Close" onclick="windowAction('close')"></div>
+  </div>
+</div>
+
+<div class="app" id="appRoot">
+
+<!-- ── Sidebar ──────────────────────────────────────────────────────────── -->
+<div class="sidebar" id="sidebar" aria-label="Primary navigation">
+  <div class="logo">
+    <div class="logo-brand">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="HackBot" style="width:40px;height:40px;border-radius:8px;margin-right:0;vertical-align:middle">
+      <h1>HackBot</h1>
+      <span>v{{ version }}</span>
+    </div>
+    <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Collapse sidebar" aria-expanded="true" aria-controls="sidebarNav" onclick="toggleSidebar()" title="Collapse sidebar">
+      <span id="sidebarToggleIcon">&lsaquo;</span>
+    </button>
+  </div>
+
+  <div class="nav" id="sidebarNav">
+    <div class="nav-section">
+      <div class="nav-section-title">Modes</div>
+      <button class="nav-btn active" data-panel="chat" onclick="switchPanel('chat')">
+        <span class="icon">💬</span><span>Chat</span>
+      </button>
+      <button class="nav-btn" data-panel="agent" onclick="switchPanel('agent')">
+        <span class="icon">🤖</span><span>Agent</span>
+      </button>
+      <button class="nav-btn" data-panel="plan" onclick="switchPanel('plan')">
+        <span class="icon">📋</span><span>Planning</span>
+      </button>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-title">Tools</div>
+      <button class="nav-btn" data-panel="tools" onclick="switchPanel('tools')">
+        <span class="icon">🔧</span><span>Security Tools</span>
+      </button>
+      <button class="nav-btn" data-panel="cve" onclick="switchPanel('cve')">
+        <span class="icon">🛡️</span><span>CVE Lookup</span>
+      </button>
+      <button class="nav-btn" data-panel="osint" onclick="switchPanel('osint')">
+        <span class="icon">🌐</span><span>OSINT</span>
+      </button>
+      <button class="nav-btn" data-panel="topology" onclick="switchPanel('topology')">
+        <span class="icon">🗺️</span><span>Topology</span>
+      </button>
+      <button class="nav-btn" data-panel="compliance" onclick="switchPanel('compliance')">
+        <span class="icon">📋</span><span>Compliance</span>
+      </button>
+      <button class="nav-btn" data-panel="diff" onclick="switchPanel('diff')">
+        <span class="icon">🔀</span><span>Diff Report</span>
+      </button>
+      <button class="nav-btn" data-panel="findings" onclick="switchPanel('findings')">
+        <span class="icon">🔍</span><span>Findings</span>
+      </button>
+      <button class="nav-btn" data-panel="scripts" onclick="switchPanel('scripts')">
+        <span class="icon">📜</span><span>Scripts</span>
+      </button>
+      <button class="nav-btn" data-panel="sessions" onclick="switchPanel('sessions')">
+        <span class="icon">💾</span><span>Sessions</span>
+      </button>
+      <button class="nav-btn" data-panel="campaigns" onclick="switchPanel('campaigns'); loadCampaigns()">
+        <span class="icon">🎯</span><span>Campaigns</span>
+      </button>
+      <button class="nav-btn" data-panel="proxy" onclick="switchPanel('proxy')">
+        <span class="icon">🔌</span><span>Proxy</span>
+      </button>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-title">System</div>
+      <button class="nav-btn" data-panel="plugins" onclick="switchPanel('plugins'); loadPlugins()">
+        <span class="icon">🧩</span><span>Plugins</span>
+      </button>
+      <button class="nav-btn" data-panel="settings" onclick="switchPanel('settings')">
+        <span class="icon">⚙️</span><span>Settings</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div style="margin-bottom:8px">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText" style="font-size:.75rem;color:var(--text-dim)">Loading...</span>
+    </div>
+    <div style="font-size:.7rem;color:var(--text-dim);line-height:1.4">
+      Developed by <a href="https://github.com/yashab-cyber" target="_blank" style="color:var(--primary);text-decoration:none">Yashab Alam</a><br>
+      <a href="https://hackbot.co.in" target="_blank" style="color:var(--green);text-decoration:none;margin-right:6px" title="HackBot Website">🌐 Website</a>
+      <a href="https://www.linkedin.com/in/yashab-alam" target="_blank" style="color:var(--text-dim);text-decoration:none;margin-right:6px" title="LinkedIn">💼 LinkedIn</a>
+      <a href="mailto:yashabalam707@gmail.com" style="color:var(--text-dim);text-decoration:none;margin-right:6px" title="Email">📧 Email</a>
+      <a href="https://github.com/yashab-cyber/hackbot/blob/main/DONATE.md" target="_blank" style="color:#e06c75;text-decoration:none;margin-right:6px" title="Support HackBot">❤️ Donate</a>
+      <a href="https://github.com/yashab-cyber/hackbot/tree/main/manual" target="_blank" style="color:var(--text-dim);text-decoration:none" title="User Manual">📖 Manual</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Main Content ────────────────────────────────────────────────────── -->
+<div class="main">
+
+  <!-- ── Chat Panel ────────────────────────────────────────────────────── -->
+  <div class="panel active" id="panel-chat">
+    <div class="header">
+      <div class="header-title">💬 Chat Mode</div>
+      <div class="header-actions">
+        <button class="btn btn-sm btn-primary" id="chatContinueBtn" onclick="continueChat()" style="display:none">▶ Continue</button>
+        <button class="btn btn-sm" onclick="clearChat()">🗑 Clear</button>
+      </div>
+    </div>
+    <div class="chat-area" id="chatMessages">
+      <div class="msg msg-system">
+        <div class="msg-bubble">Welcome to HackBot Chat. Ask any cybersecurity question. Sessions auto-save.</div>
+      </div>
+    </div>
+    <div class="input-area">
+      <div class="input-row">
+        <div class="input-wrapper">
+          <textarea id="userInput" rows="1" placeholder="Ask a cybersecurity question..." onkeydown="handleKey(event,'chat')"></textarea>
+        </div>
+        <button class="send-btn" id="sendBtn" onclick="sendChat()">▶</button>
+      </div>
+      <div class="input-hint">Enter to send • Shift+Enter for new line • Sessions auto-save automatically</div>
+    </div>
+  </div>
+
+  <!-- ── Agent Panel ───────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-agent">
+    <div class="header">
+      <div class="header-title">🤖 Agent Mode — <span id="agentTargetLabel">No active assessment</span></div>
+      <div class="header-actions">
+        <button class="btn btn-sm btn-primary" id="agentContinueBtn" onclick="continueAgent()" style="display:none">▶ Continue</button>
+        <button class="btn btn-sm" id="agentStepBtn" onclick="agentStep()" style="display:none">▶ Step</button>
+        <button class="btn btn-sm btn-danger" id="agentStopBtn" onclick="agentStop()" style="display:none">⏹ Stop</button>
+        <button class="btn btn-sm" id="agentExportBtn" onclick="agentExport()" style="display:none">📄 Export</button>
+        <button class="btn btn-sm" id="agentPdfBtn" onclick="agentExportPdf()" style="display:none">📕 PDF Report</button>
+      </div>
+    </div>
+
+    <!-- Agent Start Form -->
+    <div class="agent-start-panel" id="agentStartForm">
+      <h2>🤖 Start Security Assessment</h2>
+      <p style="color:var(--text-dim);text-align:center;max-width:500px">
+        The agent will autonomously plan and execute a penetration test against the target.
+        It runs real security tools, adapts its strategy based on results, and uses the
+        <strong>Zero-Day Discovery Engine</strong> to detect anomalies, run smart fuzzing,
+        and build exploit chains from findings.
+      </p>
+      <div class="agent-form">
+        <div class="form-group">
+          <label>Target (IP, Domain, or URL) *</label>
+          <input class="form-input" id="agentTarget" placeholder="e.g. scanme.nmap.org or 192.168.1.0/24">
+        </div>
+        <div class="form-group">
+          <label>Scope (optional)</label>
+          <input class="form-input" id="agentScope" placeholder="e.g. Web app only, ports 80,443">
+        </div>
+        <div class="form-group">
+          <label>Instructions (optional)</label>
+          <textarea class="form-input" id="agentInstructions" rows="3" placeholder="e.g. Focus on OWASP Top 10, skip brute force..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="align-self:center;padding:12px 32px;font-size:1rem" onclick="agentStart()">
+          🚀 Start Assessment
+        </button>
+      </div>
+    </div>
+
+    <!-- Agent Execution View (hidden until started) -->
+    <div id="agentExecutionView" style="display:none;flex:1;flex-direction:column;overflow:hidden">
+      <div style="display:flex;flex:1;overflow:hidden">
+        <!-- Left Pane: Step List -->
+        <div style="width:280px;min-width:280px;border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg2)">
+          <div style="padding:10px 16px;font-weight:600;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase">Execution Steps</div>
+          <div id="agentStepList" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px">
+            <!-- Steps go here -->
+          </div>
+        </div>
+        
+        <!-- Right Pane: Terminal Output -->
+        <div style="flex:1;display:flex;flex-direction:column;background:var(--bg)">
+          <div style="padding:10px 16px;font-weight:600;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text-dim);background:var(--bg2);letter-spacing:1px;text-transform:uppercase">Live Terminal</div>
+          <div id="agentTerminal" style="flex:1;overflow-y:auto;padding:16px;font-family:var(--mono);font-size:.85rem;white-space:pre-wrap;color:#e6edf3">
+            <!-- Terminal output goes here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Pane: AI Thoughts / Logs -->
+      <div style="height:220px;min-height:220px;border-top:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg3)">
+        <div style="padding:8px 16px;font-weight:600;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text-dim);background:var(--bg2);letter-spacing:1px;text-transform:uppercase">Agent Thoughts & Reasoning</div>
+        <div class="chat-area" id="agentThoughts" style="flex:1;padding:12px 20px;gap:8px">
+          <!-- Markdown thoughts go here -->
+        </div>
+      </div>
+    </div>
+
+    <div class="input-area" id="agentInputArea" style="display:none;border-top:1px solid var(--border)">
+      <div class="input-row">
+        <div class="input-wrapper">
+          <textarea id="agentInput" rows="2" placeholder="Guide the agent or type a command..." onkeydown="handleKey(event,'agent')"></textarea>
+        </div>
+        <button class="send-btn" id="agentSendBtn" onclick="agentStep()">▶</button>
+      </div>
+      <div class="input-hint">Agent scans auto-run after Start • Press Stop to halt • Enter sends guidance when idle • /run &lt;command&gt; executes a tool directly</div>
+    </div>
+  </div>
+
+  <!-- ── Plan Panel ────────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-plan">
+    <div class="header">
+      <div class="header-title">📋 Planning Mode</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="clearPlan()">🗑 Clear</button>
+      </div>
+    </div>
+
+    <!-- Plan quick-start bar -->
+    <div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <label style="font-size:.8rem;color:var(--text-dim)">Quick Plan:</label>
+      <input class="form-input" id="planTarget" placeholder="Target..." style="width:200px;padding:6px 10px;font-size:.85rem">
+      <select class="form-input" id="planType" style="padding:6px 10px;font-size:.85rem">
+        <option value="web_pentest">Web Pentest</option>
+        <option value="network_pentest">Network Pentest</option>
+        <option value="api_pentest">API Assessment</option>
+        <option value="cloud_audit">Cloud Audit</option>
+        <option value="ad_pentest">AD Pentest</option>
+        <option value="mobile_pentest">Mobile Pentest</option>
+        <option value="red_team">Red Team</option>
+        <option value="bug_bounty">Bug Bounty</option>
+      </select>
+      <button class="btn btn-primary btn-sm" onclick="createPlan()">Generate Plan</button>
+    </div>
+
+    <div class="chat-area" id="planMessages">
+      <div class="msg msg-system">
+        <div class="msg-bubble">Use the quick-plan bar above or describe what you need.</div>
+      </div>
+    </div>
+    <div class="input-area">
+      <div class="input-row">
+        <div class="input-wrapper">
+          <textarea id="planInput" rows="1" placeholder="Ask about methodology, scope, tools..." onkeydown="handleKey(event,'plan')"></textarea>
+        </div>
+        <button class="send-btn" onclick="sendPlan()">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Tools Panel ───────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-tools">
+    <div class="header">
+      <div class="header-title">🔧 Security Tools</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="loadTools()">🔄 Refresh</button>
+      </div>
+    </div>
+    <div class="tools-panel" id="toolsList">
+      <p style="color:var(--text-dim)">Loading tools...</p>
+    </div>
+  </div>
+
+  <!-- ── Findings Panel ────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-findings">
+    <div class="header">
+      <div class="header-title">🔍 Findings</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="loadFindings()">🔄 Refresh</button>
+        <button class="btn btn-sm" onclick="agentExport()">📄 Export</button>
+        <button class="btn btn-sm" onclick="agentExportPdf()">📕 PDF Report</button>
+        <button class="btn btn-sm" onclick="generateRemediations()">🔧 Remediate</button>
+      </div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:24px" id="findingsList">
+      <p style="color:var(--text-dim)">No findings yet. Run an agent assessment first.</p>
+    </div>
+  </div>
+
+  <!-- ── Scripts Panel ─────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-scripts">
+    <div class="header">
+      <div class="header-title">📜 Generated Scripts</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="loadScripts()">🔄 Refresh</button>
+      </div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:24px" id="scriptsList">
+      <p style="color:var(--text-dim)">No scripts yet. Run an agent assessment and use script actions.</p>
+    </div>
+  </div>
+
+  <!-- ── Sessions Panel ────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-sessions">
+    <div class="header">
+      <div class="header-title">💾 Session History</div>
+      <div class="header-actions">
+        <select id="sessionModeFilter" onchange="loadSessions()" style="padding:4px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.8rem">
+          <option value="">All Modes</option>
+          <option value="chat">Chat</option>
+          <option value="agent">Agent</option>
+          <option value="plan">Plan</option>
+        </select>
+        <button class="btn btn-sm" onclick="loadSessions()">🔄 Refresh</button>
+      </div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:24px" id="sessionsList">
+      <p style="color:var(--text-dim)">Loading sessions...</p>
+    </div>
+  </div>
+
+  <!-- ── Replay Mode Panel ─────────────────────────────────────────────── -->
+  <div class="panel" id="panel-replay" style="display:none;flex-direction:column;height:100%">
+    <div class="header" style="flex-shrink:0">
+      <div class="header-title">⏪ Replay Mode — <span id="replayTargetLabel">Loading...</span></div>
+      <div class="header-actions" style="display:flex;gap:12px;align-items:center">
+        <div style="font-size:0.8rem;color:var(--text-dim);min-width:60px" id="replaySpeedContainer"><span id="replaySpeedLabel">1x</span> Speed</div>
+        <input type="range" id="replaySpeedSlider" min="1" max="10" value="1" style="width:100px" oninput="document.getElementById('replaySpeedLabel').textContent = this.value + 'x'; replaySpeed = parseInt(this.value)">
+        <button class="btn btn-sm" id="replayPrevBtn" onclick="replayPrevStep()">⏮ Prev</button>
+        <button class="btn btn-sm btn-primary" id="replayPlayBtn" onclick="toggleReplay()">▶ Play</button>
+        <button class="btn btn-sm" id="replayNextBtn" onclick="replayNextStep()">⏭ Next</button>
+        <button class="btn btn-sm btn-danger" onclick="closeReplay()">✖ Close</button>
+      </div>
+    </div>
+    
+    <div style="display:flex;flex:1;flex-direction:column;overflow:hidden">
+      <div style="display:flex;flex:1;overflow:hidden">
+        <!-- Left Pane: Step List -->
+        <div style="width:280px;min-width:280px;border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg2)">
+          <div style="padding:10px 16px;font-weight:600;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase">Execution Steps</div>
+          <div id="replayStepList" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px">
+          </div>
+        </div>
+        
+        <!-- Right Pane: Terminal Output -->
+        <div style="flex:1;display:flex;flex-direction:column;background:var(--bg)">
+          <div style="padding:10px 16px;font-weight:600;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text-dim);background:var(--bg2);letter-spacing:1px;text-transform:uppercase">Terminal Emulation</div>
+          <div id="replayTerminal" style="flex:1;overflow-y:auto;padding:16px;font-family:var(--mono);font-size:.85rem;white-space:pre-wrap;color:#e6edf3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Pane: AI Thoughts / Logs -->
+      <div style="height:220px;min-height:220px;border-top:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg3)">
+        <div style="padding:8px 16px;font-weight:600;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text-dim);background:var(--bg2);letter-spacing:1px;text-transform:uppercase">Recorded Thoughts & Reasoning</div>
+        <div class="chat-area" id="replayThoughts" style="flex:1;padding:12px 20px;gap:8px">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Diff Report Panel ─────────────────────────────────────────────── -->
+  <div class="panel" id="panel-diff">
+    <div class="header">
+      <div class="header-title">🔀 Assessment Diff Report</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="loadDiffSessions()">🔄 Refresh Sessions</button>
+      </div>
+    </div>
+    <div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:200px">
+        <label style="font-size:.75rem;color:var(--text-dim);font-weight:600">BASELINE (older)</label>
+        <select id="diffOldSession" style="padding:6px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.85rem">
+          <option value="">Select baseline session...</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:200px">
+        <label style="font-size:.75rem;color:var(--text-dim);font-weight:600">CURRENT (newer)</label>
+        <select id="diffNewSession" style="padding:6px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.85rem">
+          <option value="">Select current session...</option>
+          <option value="__current__">🟢 Active Agent Assessment</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="runDiffCompare()" style="align-self:flex-end">🔀 Compare</button>
+    </div>
+    <div style="flex:1;overflow:auto;padding:20px" id="diffResults">
+      <div style="text-align:center;color:var(--text-dim);padding:60px 20px">
+        <p style="font-size:2rem">🔀</p>
+        <p style="margin:12px 0">Compare two assessments of the same target</p>
+        <p style="font-size:.8rem">Select a baseline and a current session to see new, fixed, and persistent vulnerabilities</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CVE Lookup Panel ──────────────────────────────────────────────── -->
+  <div class="panel" id="panel-cve">
+    <div class="header">
+      <div class="header-title">🛡️ CVE / Exploit Lookup</div>
+    </div>
+    <div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <select id="cveSearchType" style="padding:6px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.85rem">
+        <option value="keyword">Keyword Search</option>
+        <option value="id">CVE ID Lookup</option>
+        <option value="exploit">Exploit Search</option>
+      </select>
+      <input class="form-input" id="cveQuery" placeholder="e.g. Log4j, CVE-2021-44228, Apache 2.4.49" style="flex:1;min-width:200px;padding:6px 10px;font-size:.85rem" onkeydown="if(event.key==='Enter')cveSearch()">
+      <select id="cveSeverity" style="padding:6px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.85rem">
+        <option value="">Any Severity</option>
+        <option value="CRITICAL">Critical</option>
+        <option value="HIGH">High</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="LOW">Low</option>
+      </select>
+      <button class="btn btn-primary btn-sm" onclick="cveSearch()">🔍 Search</button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:24px" id="cveResults">
+      <div style="text-align:center;color:var(--text-dim);padding:40px">
+        <p style="font-size:2rem">🛡️</p>
+        <p style="margin:12px 0">Search the NVD database for CVEs and known exploits</p>
+        <p style="font-size:.8rem">Supports CVE IDs, product names, version strings, and keywords</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── OSINT Panel ───────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-osint">
+    <div class="header">
+      <div class="header-title">🌐 OSINT Reconnaissance</div>
+    </div>
+    <div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <input class="form-input" id="osintDomain" placeholder="Target domain (e.g. example.com)" style="flex:1;min-width:200px;padding:6px 10px;font-size:.85rem" onkeydown="if(event.key==='Enter')osintScan()">
+      <select id="osintType" style="padding:6px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:.85rem">
+        <option value="full">Full Scan</option>
+        <option value="subdomains">Subdomains Only</option>
+        <option value="dns">DNS Records Only</option>
+        <option value="whois">WHOIS Only</option>
+        <option value="techstack">Tech Stack Only</option>
+      </select>
+      <button class="btn btn-primary btn-sm" onclick="osintScan()">🚀 Scan</button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:24px" id="osintResults">
+      <div style="text-align:center;color:var(--text-dim);padding:40px">
+        <p style="font-size:2rem">🌐</p>
+        <p style="margin:12px 0">Passive intelligence gathering on any domain</p>
+        <p style="font-size:.8rem">Subdomains • DNS • WHOIS • Tech Stack • Email Harvesting</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Topology Panel ────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-topology">
+    <div class="header">
+      <div class="header-title">🗺️ Network Topology</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="loadTopologyFromAgent()">📡 From Agent Scans</button>
+      </div>
+    </div>
+    <div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <textarea id="topologyInput" placeholder="Paste nmap or masscan output here..." style="flex:1;min-width:200px;padding:6px 10px;font-size:.85rem;font-family:var(--mono);background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);resize:vertical;min-height:60px;max-height:150px"></textarea>
+      <button class="btn btn-primary btn-sm" onclick="parseTopology()" style="align-self:flex-start;margin-top:4px">🗺️ Visualize</button>
+    </div>
+    <div style="flex:1;overflow:hidden;display:flex;flex-direction:column" id="topologyContainer">
+      <!-- D3.js Graph Canvas -->
+      <div id="topologyGraph" style="flex:1;position:relative;overflow:hidden;background:var(--bg)">
+        <svg id="topoSvg" width="100%" height="100%"></svg>
+        <div id="topologyPlaceholder" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:var(--text-dim)">
+          <p style="font-size:2rem">🗺️</p>
+          <p style="margin:12px 0">Paste scan output above or load from agent history</p>
+          <p style="font-size:.8rem">Supports nmap and masscan output formats</p>
+        </div>
+      </div>
+      <!-- Stats bar -->
+      <div id="topologyStats" style="padding:8px 16px;border-top:1px solid var(--border);background:var(--bg2);font-size:.8rem;color:var(--text-dim);display:none">
+        <span id="topoStatHosts">0 hosts</span> • <span id="topoStatServices">0 services</span> • <span id="topoStatSubnets">0 subnets</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Compliance Panel ──────────────────────────────────────────────── -->
+  <div class="panel" id="panel-compliance">
+    <div class="header">
+      <div class="header-title">📋 Compliance Mapping</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="complianceFromAgent()">📡 From Agent Findings</button>
+      </div>
+    </div>
+    <div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <select id="complianceFrameworks" multiple style="flex:1;min-width:200px;padding:6px 10px;font-size:.85rem;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);min-height:80px">
+        <option value="pci" selected>PCI DSS v4.0</option>
+        <option value="nist" selected>NIST 800-53 Rev 5</option>
+        <option value="owasp" selected>OWASP Top 10 (2021)</option>
+        <option value="iso" selected>ISO 27001:2022</option>
+      </select>
+      <div style="display:flex;flex-direction:column;gap:6px;align-self:flex-start">
+        <button class="btn btn-primary btn-sm" onclick="complianceFromAgent()">🔍 Map Findings</button>
+      </div>
+    </div>
+    <div style="flex:1;overflow:auto;padding:20px" id="complianceResults">
+      <div style="text-align:center;color:var(--text-dim);padding:60px 20px">
+        <p style="font-size:2rem">📋</p>
+        <p style="margin:12px 0">Run an agent assessment, then click "From Agent Findings" to map findings to compliance controls</p>
+        <p style="font-size:.8rem">Supports PCI DSS v4.0, NIST 800-53 Rev 5, OWASP Top 10 (2021), and ISO 27001:2022</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Campaigns Panel ─────────────────────────────────────────────── -->
+  <div class="panel" id="panel-campaigns">
+    <div class="header">
+      <div class="header-title">🎯 Multi-Target Campaigns</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" id="campaignRefreshBtn" onclick="loadCampaigns()">🔄 Refresh</button>
+        <button class="btn btn-sm" id="campaignNewBtn" onclick="showCampaignForm()">➕ New Campaign</button>
+      </div>
+    </div>
+    <div style="flex:1;overflow:auto;padding:20px" id="campaignsContent">
+      <!-- New Campaign Form (hidden by default) -->
+      <div id="campaignForm" style="display:none;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px">
+        <h4 style="color:var(--green);margin:0 0 12px">New Campaign</h4>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div>
+            <label style="font-size:.75rem;color:var(--text-dim);font-weight:600;display:block;margin-bottom:4px">CAMPAIGN NAME</label>
+            <input class="form-input" id="campaignName" placeholder="e.g. Internal Audit Q1" style="width:100%;padding:6px 10px;font-size:.85rem">
+          </div>
+          <div>
+            <label style="font-size:.75rem;color:var(--text-dim);font-weight:600;display:block;margin-bottom:4px">TARGETS (one per line)</label>
+            <textarea id="campaignTargets" placeholder="192.168.1.1&#10;192.168.1.2&#10;app.example.com&#10;api.example.com" style="width:100%;min-height:100px;padding:6px 10px;font-size:.85rem;font-family:var(--mono);background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);resize:vertical"></textarea>
+          </div>
+          <div style="display:flex;gap:10px">
+            <div style="flex:1">
+              <label style="font-size:.75rem;color:var(--text-dim);font-weight:600;display:block;margin-bottom:4px">SCOPE (optional)</label>
+              <input class="form-input" id="campaignScope" placeholder="e.g. Web apps only, no DoS" style="width:100%;padding:6px 10px;font-size:.85rem">
+            </div>
+            <div style="width:120px">
+              <label style="font-size:.75rem;color:var(--text-dim);font-weight:600;display:block;margin-bottom:4px">MAX STEPS</label>
+              <input type="number" id="campaignMaxSteps" value="50" min="5" max="200" style="width:100%;padding:6px 10px;font-size:.85rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text)">
+            </div>
+          </div>
+          <div>
+            <label style="font-size:.75rem;color:var(--text-dim);font-weight:600;display:block;margin-bottom:4px">INSTRUCTIONS (optional)</label>
+            <textarea id="campaignInstructions" placeholder="Additional instructions for the agent..." style="width:100%;min-height:60px;padding:6px 10px;font-size:.85rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);resize:vertical"></textarea>
+          </div>
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <button class="btn btn-sm" onclick="hideCampaignForm()">Cancel</button>
+            <button class="btn btn-primary btn-sm" onclick="createCampaign()">🚀 Create Campaign</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active campaign dashboard (hidden by default) -->
+      <div id="campaignDashboard" style="display:none">
+        <div id="campaignDashHeader" style="margin-bottom:16px"></div>
+        <div id="campaignTargetList" style="margin-bottom:16px"></div>
+        <div id="campaignActions" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px"></div>
+        <div id="campaignFindings"></div>
+      </div>
+
+      <!-- Campaign list / placeholder -->
+      <div id="campaignPlaceholder" style="text-align:center;color:var(--text-dim);padding:60px 20px">
+        <p style="font-size:2rem">🎯</p>
+        <p style="margin:12px 0">Define a scope with multiple hosts and run coordinated assessments</p>
+        <p style="font-size:.8rem">Click "New Campaign" to get started</p>
+      </div>
+      <div id="campaignListArea"></div>
+    </div>
+  </div>
+
+  <!-- ── Proxy Panel ──────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-proxy">
+    <div class="header">
+      <div class="header-title">🔌 HTTP Proxy / Traffic Capture</div>
+      <div class="header-actions">
+        <button class="btn btn-sm btn-primary" id="proxyStartBtn" onclick="startProxy()">Start Proxy</button>
+        <button class="btn btn-sm btn-danger" id="proxyStopBtn" onclick="stopProxy()" style="display:none">Stop Proxy</button>
+        <button class="btn btn-sm" onclick="loadProxyTraffic()">Refresh</button>
+        <button class="btn btn-sm" onclick="clearProxyTraffic()">Clear</button>
+        <button class="btn btn-sm" onclick="exportProxyTraffic()">Export</button>
+      </div>
+    </div>
+    <div style="flex:1;overflow:auto;padding:20px" id="proxyContent">
+      <!-- Status bar -->
+      <div id="proxyStatusBar" style="display:flex;gap:20px;align-items:center;padding:12px 16px;background:var(--surface);border-radius:8px;margin-bottom:16px">
+        <div><strong>Status:</strong> <span id="proxyStatusLabel" style="color:var(--text-dim)">Stopped</span></div>
+        <div><strong>Requests:</strong> <span id="proxyReqCount">0</span></div>
+        <div><strong>Bytes:</strong> <span id="proxyBytes">0</span></div>
+        <div><strong>Avg:</strong> <span id="proxyAvgMs">0</span>ms</div>
+        <div><strong>Flagged:</strong> <span id="proxyFlagCount" style="color:var(--danger)">0</span></div>
+      </div>
+      <!-- Controls row -->
+      <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+        <input type="number" id="proxyPortInput" value="8080" min="1024" max="65535" style="width:80px;padding:6px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text)" title="Proxy port">
+        <input type="text" id="proxyFilterInput" placeholder="Filter traffic…" style="flex:1;min-width:200px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text)" onkeydown="if(event.key==='Enter')loadProxyTraffic()">
+        <select id="proxyMethodFilter" style="padding:6px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text)" onchange="loadProxyTraffic()">
+          <option value="">All Methods</option>
+          <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option><option>PATCH</option><option>HEAD</option><option>OPTIONS</option>
+        </select>
+        <input type="text" id="proxyScopeInput" placeholder="Scope: domain1.com, domain2.com" style="flex:1;min-width:200px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text)">
+        <button class="btn btn-sm" onclick="setProxyScope()">Set Scope</button>
+        <button class="btn btn-sm" onclick="showFlaggedTraffic()">Show Flagged</button>
+      </div>
+      <!-- Traffic table -->
+      <div id="proxyTrafficArea">
+        <div id="proxyPlaceholder" style="text-align:center;color:var(--text-dim);padding:60px 20px">
+          <p style="font-size:2rem">🔌</p>
+          <p style="margin:12px 0">Start the proxy to capture and inspect HTTP traffic</p>
+          <p style="font-size:.8rem">Configure your browser/tool to use <code>127.0.0.1:8080</code> as HTTP proxy</p>
+        </div>
+      </div>
+      <!-- Detail overlay -->
+      <div id="proxyDetailOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;padding:40px;overflow:auto" onclick="if(event.target===this)this.style.display='none'">
+        <div style="max-width:900px;margin:0 auto;background:var(--bg);border-radius:12px;padding:24px;border:1px solid var(--border)">
+          <div style="display:flex;justify-content:space-between;margin-bottom:16px">
+            <strong>📝 Request Detail</strong>
+            <button class="btn btn-sm" onclick="document.getElementById('proxyDetailOverlay').style.display='none'">Close</button>
+          </div>
+          <div id="proxyDetailContent" style="white-space:pre-wrap;font-family:monospace;font-size:.85rem;line-height:1.5"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Plugins Panel ──────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-plugins">
+    <div class="header">
+      <div class="header-title">🧩 Custom Plugins</div>
+      <div class="header-actions">
+        <a class="btn btn-sm" href="https://hackbot.co.in/marketplace" target="_blank" rel="noopener">🛒 Marketplace</a>
+        <button class="btn btn-sm" onclick="reloadPlugins()">🔄 Reload</button>
+        <button class="btn btn-sm" onclick="showPluginDir()">📁 Plugin Dir</button>
+      </div>
+    </div>
+    <div style="flex:1;overflow:auto;padding:20px" id="pluginsContent">
+      <div style="text-align:center;color:var(--text-dim);padding:60px 20px">
+        <p style="font-size:2rem">🧩</p>
+        <p style="margin:12px 0">Register custom Python scripts as agent-callable tools</p>
+        <p style="font-size:.8rem">Place <code>.py</code> files in <code>~/.config/hackbot/plugins/</code> to auto-discover them</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Settings Panel ────────────────────────────────────────────────── -->
+  <div class="panel" id="panel-settings">
+    <div class="header">
+      <div class="header-title">⚙️ Settings</div>
+      <div class="header-actions">
+        <button class="btn btn-primary btn-sm" onclick="saveSettings()">💾 Save</button>
+      </div>
+    </div>
+    <div class="settings-panel">
+
+      <!-- Provider Card -->
+      <div class="settings-card">
+        <h3>🤖 AI Provider</h3>
+        <div class="settings-grid">
+          <div class="setting-row" style="grid-column:span 2">
+            <label>Provider</label>
+            <select id="setProvider" onchange="onProviderChange()">
+              <!-- populated dynamically -->
+            </select>
+          </div>
+          <div class="setting-row" style="grid-column:span 2">
+            <label>Model <span id="modelCtx" style="color:var(--text-dim);font-weight:normal"></span></label>
+            <select id="setModel" onchange="onModelSelect()">
+              <!-- populated dynamically -->
+            </select>
+          </div>
+          <div class="setting-row" id="customModelRow" style="display:none;grid-column:span 2">
+            <label>Custom Model ID</label>
+            <input id="setCustomModel" placeholder="Enter model identifier...">
+          </div>
+          <div class="setting-row">
+            <label>API Key <span id="keyEnvHint" style="color:var(--text-dim);font-weight:normal"></span></label>
+            <input id="setApiKey" type="password" placeholder="sk-...">
+          </div>
+          <div class="setting-row">
+            <label>Base URL (auto-filled per provider)</label>
+            <input id="setBaseUrl" placeholder="Leave empty for default">
+          </div>
+        </div>
+      </div>
+
+      <!-- Model Tuning Card -->
+      <div class="settings-card">
+        <h3>🎛️ Model Parameters</h3>
+        <div class="settings-grid">
+          <div class="setting-row">
+            <label>Temperature: <span id="tempValue">0.2</span></label>
+            <input type="range" id="setTemperature" min="0" max="2" step="0.05" value="0.2" oninput="document.getElementById('tempValue').textContent=this.value" style="accent-color:var(--green)">
+          </div>
+          <div class="setting-row">
+            <label>Max Tokens</label>
+            <select id="setMaxTokens">
+              <option value="1024">1024</option>
+              <option value="2048">2048</option>
+              <option value="4096" selected>4096</option>
+              <option value="8192">8192</option>
+              <option value="16384">16384</option>
+              <option value="32768">32768</option>
+              <option value="65536">65536</option>
+              <option value="131072">131072</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent Card -->
+      <div class="settings-card">
+        <h3>🛡️ Agent Settings</h3>
+        <div class="settings-grid">
+          <div class="setting-row">
+            <label>Safe Mode</label>
+            <select id="setSafeMode">
+              <option value="true">Enabled</option>
+              <option value="false">Disabled</option>
+            </select>
+          </div>
+          <div class="setting-row">
+            <label>Auto Confirm</label>
+            <select id="setAutoConfirm">
+              <option value="false">Ask for risky commands</option>
+              <option value="true">Auto confirm all</option>
+            </select>
+          </div>
+          <div class="setting-row">
+            <label>Sudo Mode</label>
+            <select id="setSudoMode">
+              <option value="false">Disabled</option>
+              <option value="true">Run all commands with sudo</option>
+            </select>
+          </div>
+          <div class="setting-row">
+            <label>Sudo Password <span style="color:var(--text-dim);font-weight:normal">(avoids repeated prompts)</span></label>
+            <input id="setSudoPassword" type="password" placeholder="Enter sudo password..." autocomplete="off">
+            <span id="sudoPassHint" style="font-size:.7rem;color:var(--text-dim);margin-top:2px"></span>
+          </div>
+          <div class="setting-row">
+            <label>Report Format</label>
+            <select id="setReportFormat">
+              <option value="html">HTML</option>
+              <option value="markdown">Markdown</option>
+              <option value="json">JSON</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language Card -->
+      <div class="settings-card">
+        <h3>🌍 Language</h3>
+        <div class="settings-grid">
+          <div class="setting-row" style="grid-column:span 2">
+            <label>Response Language <span style="color:var(--text-dim);font-weight:normal">(AI will respond in this language)</span></label>
+            <select id="setLanguage">
+              <!-- populated dynamically by loadSettings -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Setup Card -->
+      <div class="settings-card">
+        <h3>⚡ Quick Setup</h3>
+        <p style="color:var(--text-dim);margin-bottom:12px;font-size:.85rem">
+          Alternatively, set one of these environment variables and restart:
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px" id="envVarHints">
+          <!-- populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Update Card -->
+      <div class="settings-card">
+        <h3>🔄 Updates</h3>
+        <div id="updateInfo" style="margin-bottom:12px">
+          <p style="color:var(--text-dim);font-size:.85rem">Check if a newer version of HackBot is available.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-sm" style="background:var(--cyan);color:var(--bg)" onclick="checkForUpdates()">🔍 Check for Updates</button>
+          <button class="btn btn-sm" style="background:var(--green);color:var(--bg);display:none" id="btnInstallUpdate" onclick="installUpdate()">⬆️ Install Update</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+</div><!-- /app-frame -->
+
+<!-- ── Markdown Renderer (marked.js via CDN) ─────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- ── D3.js for Topology Graph ──────────────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+// ── State ───────────────────────────────────────────────────────────────────
+const SIDEBAR_COLLAPSED_KEY = 'hackbot.sidebar.collapsed';
+let currentPanel = 'chat';
+let agentRunning = false;
+let agentAutoRunActive = false;
+let agentActionInFlight = false;
+let agentStopRequested = false;
+let sendingChat = false;
+let sendingPlan = false;
+
+// ── Markdown Setup ──────────────────────────────────────────────────────────
+if (typeof marked !== 'undefined') {
+  marked.setOptions({ breaks: true, gfm: true });
+}
+function renderMd(text) {
+  if (typeof marked !== 'undefined') {
+    try { return marked.parse(text); } catch(e) {}
+  }
+  return text.replace(/\n/g, '<br>');
+}
+
+// ── Panel Switching ─────────────────────────────────────────────────────────
+function applySidebarCollapsed(collapsed) {
+  const appRoot = document.getElementById('appRoot');
+  const toggle = document.getElementById('sidebarToggle');
+  const icon = document.getElementById('sidebarToggleIcon');
+  if (!appRoot || !toggle || !icon) return;
+
+  appRoot.classList.toggle('sidebar-collapsed', collapsed);
+  toggle.setAttribute('aria-expanded', String(!collapsed));
+  toggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+  toggle.title = collapsed ? 'Expand sidebar' : 'Collapse sidebar';
+  icon.innerHTML = collapsed ? '&rsaquo;' : '&lsaquo;';
+
+  try {
+    localStorage.setItem(SIDEBAR_COLLAPSED_KEY, String(collapsed));
+  } catch (e) {}
+}
+
+function toggleSidebar() {
+  const appRoot = document.getElementById('appRoot');
+  const collapsed = appRoot ? !appRoot.classList.contains('sidebar-collapsed') : false;
+  applySidebarCollapsed(collapsed);
+}
+
+function initSidebarState() {
+  let collapsed = false;
+  try {
+    collapsed = localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === 'true';
+  } catch (e) {}
+  applySidebarCollapsed(collapsed);
+}
+
+function switchPanel(name) {
+  currentPanel = name;
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('panel-' + name);
+  if (panel) panel.classList.add('active');
+  const btn = document.querySelector(`.nav-btn[data-panel="${name}"]`);
+  if (btn) btn.classList.add('active');
+
+  if (name === 'tools') loadTools();
+  if (name === 'findings') loadFindings();
+  if (name === 'scripts') loadScripts();
+  if (name === 'settings') loadSettings();
+  if (name === 'sessions') loadSessions();
+  if (name === 'proxy') loadProxyStatus();
+}
+
+// ── Textarea Auto-resize ────────────────────────────────────────────────────
+document.querySelectorAll('textarea').forEach(ta => {
+  ta.addEventListener('input', () => {
+    ta.style.height = 'auto';
+    ta.style.height = Math.min(ta.scrollHeight, 200) + 'px';
+  });
+});
+
+function handleKey(e, mode) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    if (mode === 'chat') sendChat();
+    else if (mode === 'agent') agentStep();
+    else if (mode === 'plan') sendPlan();
+  }
+}
+
+// ── Helper: Add Message ─────────────────────────────────────────────────────
+function addMsg(container, role, content, isHtml = false) {
+  const area = typeof container === 'string' ? document.getElementById(container) : container;
+  const div = document.createElement('div');
+  div.className = `msg msg-${role}`;
+  const label = role === 'user' ? 'You' : role === 'assistant' ? 'HackBot' : '';
+  div.innerHTML = `
+    ${label ? `<div class="msg-label">${label}</div>` : ''}
+    <div class="msg-bubble">${isHtml ? content : renderMd(content)}</div>
+  `;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+  return div;
+}
+
+function addTypingIndicator(container) {
+  const area = typeof container === 'string' ? document.getElementById(container) : container;
+  const div = document.createElement('div');
+  div.className = 'msg msg-assistant';
+  div.id = 'typing-' + container;
+  div.innerHTML = `
+    <div class="msg-label">HackBot</div>
+    <div class="msg-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>
+  `;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+  return div;
+}
+
+function removeTypingIndicator(container) {
+  const el = document.getElementById('typing-' + container);
+  if (el) el.remove();
+}
+
+// ── Toast Notifications ─────────────────────────────────────────────────────
+function toast(msg, type = '') {
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+// ── SSE Helper ──────────────────────────────────────────────────────────────
+function streamSSE(url, body, container, { onDone, onMeta, onStep } = {}) {
+  return new Promise((resolve) => {
+    const area = typeof container === 'string' ? document.getElementById(container) : container;
+    const result = { ok: true, text: '', complete: false, error: null };
+
+    // Create the assistant message
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'msg msg-assistant';
+    msgDiv.innerHTML = `<div class="msg-label">HackBot</div><div class="msg-bubble"></div>`;
+    area.appendChild(msgDiv);
+    const bubble = msgDiv.querySelector('.msg-bubble');
+    let fullText = '';
+    let settled = false;
+
+    function finish() {
+      if (settled) return;
+      settled = true;
+      result.text = fullText;
+      bubble.innerHTML = renderMd(fullText);
+      area.scrollTop = area.scrollHeight;
+      if (onDone) onDone(fullText, result);
+      resolve(result);
+    }
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then(resp => {
+      if (!resp.ok) {
+        return resp.json().catch(() => ({})).then(data => {
+          result.ok = false;
+          result.error = data.error || 'Request failed';
+          bubble.innerHTML = renderMd(`**Error:** ${result.error}`);
+          resolve(result);
+        });
+      }
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      function read() {
+        reader.read().then(({ done, value }) => {
+          if (done) {
+            finish();
+            return;
+          }
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || '';
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue;
+            const payload = line.slice(6);
+            if (payload === '[DONE]') {
+              finish();
+              return;
+            }
+            try {
+              const data = JSON.parse(payload);
+              if (data.token) {
+                fullText += data.token;
+                // Render periodically for performance
+                bubble.innerHTML = renderMd(fullText) + '<span class="typing-indicator" style="display:inline-flex"><span></span><span></span><span></span></span>';
+                area.scrollTop = area.scrollHeight;
+              }
+              if (data.step && onStep) {
+                onStep(data.step);
+              }
+              if (data.complete !== undefined) {
+                result.complete = Boolean(data.complete);
+                if (onMeta) onMeta(data);
+              }
+            } catch (e) {}
+          }
+          read();
+        });
+      }
+      read();
+    }).catch(err => {
+      result.ok = false;
+      result.error = err.message;
+      bubble.innerHTML = renderMd(`**Error:** ${err.message}`);
+      resolve(result);
+    });
+  });
+}
+
+// ── Chat Mode ───────────────────────────────────────────────────────────────
+async function sendChat() {
+  if (sendingChat) return;
+  const input = document.getElementById('userInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  sendingChat = true;
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('sendBtn').disabled = true;
+  hideContinueBanner('chat');
+
+  addMsg('chatMessages', 'user', msg);
+
+  await streamSSE('/api/chat', { message: msg }, 'chatMessages');
+
+  sendingChat = false;
+  document.getElementById('sendBtn').disabled = false;
+  input.focus();
+
+  // Check if response was truncated
+  checkTruncation('chat');
+}
+
+async function continueChat() {
+  if (sendingChat) return;
+  sendingChat = true;
+  hideContinueBanner('chat');
+  document.getElementById('sendBtn').disabled = true;
+
+  await streamSSE('/api/chat/continue', {}, 'chatMessages');
+
+  sendingChat = false;
+  document.getElementById('sendBtn').disabled = false;
+  document.getElementById('userInput').focus();
+
+  checkTruncation('chat');
+}
+
+function clearChat() {
+  fetch('/api/chat/clear', { method: 'POST' });
+  hideContinueBanner('chat');
+  document.getElementById('chatMessages').innerHTML = `
+    <div class="msg msg-system"><div class="msg-bubble">Conversation cleared.</div></div>
+  `;
+}
+
+// ── Agent Mode ──────────────────────────────────────────────────────────────
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function updateAgentControls() {
+  const stepBtn = document.getElementById('agentStepBtn');
+  const sendBtn = document.getElementById('agentSendBtn');
+  const input = document.getElementById('agentInput');
+  const busy = agentActionInFlight || agentAutoRunActive;
+
+  if (stepBtn) {
+    stepBtn.disabled = busy;
+    stepBtn.textContent = agentAutoRunActive ? '⏳ Auto Running' : '▶ Step';
+    stepBtn.title = agentAutoRunActive
+      ? 'Assessment is running automatically. Press Stop to halt.'
+      : 'Run one agent step manually';
+  }
+  if (sendBtn) sendBtn.disabled = busy;
+  if (input) {
+    input.placeholder = busy
+      ? 'Agent is running automatically. Press Stop before adding guidance...'
+      : 'Guide the agent or type a command...';
+  }
+}
+
+async function refreshAgentRunningState() {
+  try {
+    const resp = await fetch('/api/agent/findings');
+    if (!resp.ok) return agentRunning;
+    const data = await resp.json();
+    if (typeof data.is_running === 'boolean') agentRunning = data.is_running;
+  } catch (e) {}
+  return agentRunning;
+}
+
+async function agentStart() {
+  if (agentActionInFlight) return;
+  const target = document.getElementById('agentTarget').value.trim();
+  if (!target) { toast('Target is required', 'error'); return; }
+
+  const scope = document.getElementById('agentScope').value.trim();
+  const instructions = document.getElementById('agentInstructions').value.trim();
+
+  // Switch to execution view
+  document.getElementById('agentStartForm').style.display = 'none';
+  document.getElementById('agentExecutionView').style.display = 'flex';
+  document.getElementById('agentInputArea').style.display = 'block';
+  document.getElementById('agentTargetLabel').textContent = target;
+  document.getElementById('agentStepBtn').style.display = '';
+  document.getElementById('agentStopBtn').style.display = '';
+  document.getElementById('agentExportBtn').style.display = '';
+  document.getElementById('agentPdfBtn').style.display = '';
+  
+  // Clear panes
+  document.getElementById('agentStepList').innerHTML = '';
+  document.getElementById('agentTerminal').innerHTML = '';
+  document.getElementById('agentThoughts').innerHTML = '';
+  agentRunning = true;
+  agentAutoRunActive = false;
+  agentStopRequested = false;
+  agentActionInFlight = true;
+  updateAgentControls();
+
+  addMsg('agentThoughts', 'system',
+    `Starting assessment against <strong>${target}</strong>` +
+    (scope ? ` | Scope: ${scope}` : ''), true);
+
+  const startResult = await streamSSE('/api/agent/start',
+    { target, scope, instructions },
+    'agentThoughts',
+    { 
+      onStep: renderAgentStep
+    }
+  );
+  agentActionInFlight = false;
+  updateAgentControls();
+
+  const stillRunning = await refreshAgentRunningState();
+  const truncated = await checkTruncation('agent');
+  if (startResult.ok && stillRunning && !truncated && !agentStopRequested) {
+    await startAgentAutoRun();
+  } else if (!startResult.ok) {
+    agentRunning = false;
+    updateAgentControls();
+  }
+}
+
+async function runAgentStep(message = '') {
+  if (agentActionInFlight) {
+    return { ok: false, complete: false, error: 'Agent request already in progress', text: '' };
+  }
+
+  hideContinueBanner('agent');
+  agentActionInFlight = true;
+  updateAgentControls();
+
+  let stepComplete = false;
+  const result = await streamSSE('/api/agent/step',
+    { message },
+    'agentThoughts',
+    {
+      onMeta: (data) => {
+        if (data.complete) {
+          stepComplete = true;
+          agentRunning = false;
+          toast('Assessment complete!', 'success');
+        }
+      },
+      onStep: renderAgentStep
+    }
+  );
+
+  agentActionInFlight = false;
+  if (result.complete || stepComplete) {
+    result.complete = true;
+    agentRunning = false;
+    agentAutoRunActive = false;
+  }
+  if (!result.ok) {
+    agentAutoRunActive = false;
+    toast(result.error || 'Agent step failed', 'error');
+  }
+  updateAgentControls();
+  return result;
+}
+
+async function startAgentAutoRun() {
+  if (agentAutoRunActive || agentActionInFlight || !agentRunning) return;
+
+  agentAutoRunActive = true;
+  agentStopRequested = false;
+  updateAgentControls();
+
+  while (agentAutoRunActive && agentRunning && !agentStopRequested) {
+    const stepResult = await runAgentStep('');
+    if (!stepResult.ok || stepResult.complete || !agentRunning || agentStopRequested) break;
+
+    const truncated = await checkTruncation('agent');
+    if (truncated) {
+      agentAutoRunActive = false;
+      toast('Agent response was truncated. Click Continue to resume.', 'error');
+      break;
+    }
+
+    await delay(300);
+  }
+
+  agentAutoRunActive = false;
+  updateAgentControls();
+}
+
+async function agentStep() {
+  const input = document.getElementById('agentInput');
+  const msg = input ? input.value.trim() : '';
+
+  if (agentAutoRunActive || agentActionInFlight) {
+    toast('Agent is already running. Press Stop before sending guidance.', 'error');
+    return;
+  }
+
+  if (msg) {
+    addMsg('agentThoughts', 'user', msg);
+    input.value = '';
+    input.style.height = 'auto';
+  }
+
+  // Check for /run command
+  if (msg.startsWith('/run ')) {
+    const cmd = msg.slice(5).trim();
+    try {
+      const resp = await fetch('/api/agent/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ command: cmd }),
+      });
+      const data = await resp.json();
+      const status = data.success ? '✅ SUCCESS' : '❌ FAILED';
+      addMsg('agentThoughts', 'assistant',
+        `**\`${cmd}\`** — ${status} (exit=${data.return_code}, ${data.duration}s)\n\`\`\`\n${data.stdout || data.stderr || '(no output)'}\n\`\`\``
+      );
+    } catch (e) {
+      addMsg('agentThoughts', 'assistant', `**Error:** ${e.message}`);
+    }
+    return;
+  }
+
+  if (!agentRunning) {
+    toast('No active assessment', 'error');
+    return;
+  }
+
+  const result = await runAgentStep(msg);
+  if (result.ok && !result.complete) await checkTruncation('agent');
+}
+
+function escapeHtml(text) {
+  return (text || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                     .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+
+function renderAgentStep(step) {
+  // Update left panel
+  const list = document.getElementById('agentStepList');
+  const d = document.createElement('div');
+  d.style.padding = '8px 12px';
+  d.style.background = 'var(--bg3)';
+  d.style.border = '1px solid var(--border)';
+  d.style.borderRadius = '6px';
+  d.style.flexShrink = '0';
+  const statusIcon = step.tool_result ? (step.tool_result.success ? '✅' : '❌') : (step.action === 'complete' ? '🎉' : '⏱️');
+  const title = step.tool_result ? step.tool_result.tool : step.action;
+  
+  d.innerHTML = `<div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Step ${step.step_num}</div>
+                 <div style="font-size:0.85rem;font-weight:600">${statusIcon} ${escapeHtml(title)}</div>
+                 <div style="font-size:0.75rem;color:var(--text-dim);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeHtml(step.description)}</div>`;
+  list.appendChild(d);
+  list.scrollTop = list.scrollHeight;
+
+  // Update terminal
+  const term = document.getElementById('agentTerminal');
+  if (step.tool_result && step.tool_result.command) {
+    let out = `<span style="color:var(--cyan);font-weight:600">$ ${escapeHtml(step.tool_result.command)}</span>\n`;
+    if (step.tool_result.stdout) {
+      let stdout = step.tool_result.stdout;
+      if (stdout.length > 5000) stdout = stdout.substring(0, 5000) + '\n... [truncated]';
+      out += escapeHtml(stdout) + '\n';
+    }
+    if (step.tool_result.stderr) {
+      out += `<span style="color:var(--red)">${escapeHtml(step.tool_result.stderr)}</span>\n`;
+    }
+    term.innerHTML += out + '\n';
+    term.scrollTop = term.scrollHeight;
+  }
+}
+
+async function continueAgent() {
+  if (agentActionInFlight) {
+    toast('Agent is already running. Press Stop before continuing manually.', 'error');
+    return;
+  }
+
+  hideContinueBanner('agent');
+  const shouldResumeAutoRun = agentRunning && !agentStopRequested;
+  agentActionInFlight = true;
+  updateAgentControls();
+
+  const result = await streamSSE('/api/agent/continue',
+    {},
+    'agentThoughts',
+    {
+      onMeta: (data) => {
+        if (data.complete) {
+          agentRunning = false;
+          agentAutoRunActive = false;
+          toast('Assessment complete!', 'success');
+        }
+      }
+    }
+  );
+
+  agentActionInFlight = false;
+  if (result.complete) {
+    agentRunning = false;
+    agentAutoRunActive = false;
+  }
+  updateAgentControls();
+
+  const truncated = await checkTruncation('agent');
+  if (shouldResumeAutoRun && result.ok && !result.complete && !truncated) {
+    await startAgentAutoRun();
+  }
+}
+
+async function agentStop() {
+  agentStopRequested = true;
+  agentAutoRunActive = false;
+  updateAgentControls();
+
+  try {
+    const resp = await fetch('/api/agent/stop', { method: 'POST' });
+    const data = await resp.json();
+    agentRunning = false;
+    addMsg('agentThoughts', 'system', 'Assessment stopped.', true);
+    if (data.summary) addMsg('agentThoughts', 'assistant', data.summary);
+    toast('Assessment stopped', 'success');
+  } catch (e) {
+    toast('Failed to stop: ' + e.message, 'error');
+  } finally {
+    updateAgentControls();
+  }
+}
+
+async function agentExport() {
+  try {
+    const resp = await fetch('/api/agent/export', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
+    const data = await resp.json();
+    if (data.ok) toast('Report saved: ' + data.path, 'success');
+    else toast(data.error || 'Export failed', 'error');
+  } catch (e) {
+    toast('Export failed: ' + e.message, 'error');
+  }
+}
+
+async function agentExportPdf() {
+  try {
+    toast('Generating PDF report...', 'info');
+    const resp = await fetch('/api/agent/export-pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
+    const data = await resp.json();
+    if (data.ok) toast('PDF report saved: ' + data.path, 'success');
+    else toast(data.error || 'PDF generation failed', 'error');
+  } catch (e) {
+    toast('PDF generation failed: ' + e.message, 'error');
+  }
+}
+
+// ── Plan Mode ───────────────────────────────────────────────────────────────
+async function createPlan() {
+  const target = document.getElementById('planTarget').value.trim();
+  if (!target) { toast('Target is required', 'error'); return; }
+  const planType = document.getElementById('planType').value;
+
+  addMsg('planMessages', 'user', `Create a ${planType.replace('_',' ')} plan for ${target}`);
+
+  await streamSSE('/api/plan/create',
+    { target, type: planType },
+    'planMessages'
+  );
+}
+
+async function sendPlan() {
+  if (sendingPlan) return;
+  const input = document.getElementById('planInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  sendingPlan = true;
+  input.value = '';
+  input.style.height = 'auto';
+
+  addMsg('planMessages', 'user', msg);
+  await streamSSE('/api/plan/ask', { message: msg }, 'planMessages');
+  sendingPlan = false;
+  input.focus();
+}
+
+function clearPlan() {
+  fetch('/api/plan/clear', { method: 'POST' });
+  document.getElementById('planMessages').innerHTML = `
+    <div class="msg msg-system"><div class="msg-bubble">Planning session cleared.</div></div>
+  `;
+}
+
+// ── Tools ───────────────────────────────────────────────────────────────────
+async function loadTools() {
+  const container = document.getElementById('toolsList');
+  try {
+    const resp = await fetch('/api/tools');
+    const data = await resp.json();
+    let html = `<p style="margin-bottom:16px;color:var(--green)"><strong>${data.available}/${data.total}</strong> tools available</p><div class="tools-grid">`;
+    for (const [name, path] of Object.entries(data.installed)) {
+      html += `<div class="tool-card installed"><span class="tool-icon">✅</span><div><div class="tool-name">${name}</div><div class="tool-path">${path}</div></div></div>`;
+    }
+    for (const name of data.missing) {
+      html += `<div class="tool-card"><span class="tool-icon">❌</span><div><div class="tool-name">${name}</div><div class="tool-path">Not installed</div></div></div>`;
+    }
+    html += '</div>';
+    container.innerHTML = html;
+  } catch (e) {
+    container.innerHTML = `<p style="color:var(--red)">Failed to load tools: ${e.message}</p>`;
+  }
+}
+
+// ── Findings ────────────────────────────────────────────────────────────────
+async function loadFindings() {
+  const container = document.getElementById('findingsList');
+  try {
+    const resp = await fetch('/api/agent/findings');
+    const data = await resp.json();
+    if (!data.findings || data.findings.length === 0) {
+      container.innerHTML = '<p style="color:var(--text-dim)">No findings yet. Run an agent assessment first.</p>';
+      return;
+    }
+    let html = `<p style="margin-bottom:16px"><strong>${data.findings.length}</strong> findings | Target: <strong>${data.target}</strong></p>`;
+    for (const f of data.findings) {
+      html += `
+        <div class="finding-card">
+          <div class="finding-header">
+            <span class="severity-badge severity-${f.severity}">${f.severity}</span>
+            <strong>${f.title}</strong>
+          </div>
+          <p>${f.description}</p>
+          ${f.evidence ? `<pre><code>${escapeHtml(f.evidence)}</code></pre>` : ''}
+          ${f.recommendation ? `<div style="border-left:3px solid var(--cyan);padding-left:10px;margin-top:8px;color:var(--cyan2)"><strong>Recommendation:</strong> ${f.recommendation}</div>` : ''}
+        </div>
+      `;
+    }
+    container.innerHTML = html;
+  } catch (e) {
+    container.innerHTML = `<p style="color:var(--red)">Failed to load findings: ${e.message}</p>`;
+  }
+}
+
+// ── Scripts ─────────────────────────────────────────────────────────────────
+async function loadScripts() {
+  const container = document.getElementById('scriptsList');
+  try {
+    const resp = await fetch('/api/agent/scripts');
+    const data = await resp.json();
+
+    if (!data.scripts || data.scripts.length === 0) {
+      container.innerHTML = '<p style="color:var(--text-dim)">No scripts generated yet.</p>';
+      return;
+    }
+
+    let html = `<p style="margin-bottom:16px"><strong>${data.count || data.scripts.length}</strong> scripts | Target: <strong>${escapeHtml(data.target || 'n/a')}</strong></p>`;
+
+    for (const s of data.scripts) {
+      html += `
+        <div class="finding-card">
+          <div class="finding-header">
+            <span class="severity-badge severity-Low">${escapeHtml((s.language || 'script').toUpperCase())}</span>
+            <strong>${escapeHtml(s.name || 'generated_script')}</strong>
+          </div>
+          ${s.purpose ? `<p>${escapeHtml(s.purpose)}</p>` : ''}
+          ${s.path ? `<div style="color:var(--text-dim);font-size:.85rem;margin:6px 0"><strong>Saved:</strong> ${escapeHtml(s.path)}</div>` : ''}
+          <pre><code>${escapeHtml(s.content || '')}</code></pre>
+          ${s.created_at ? `<div style="color:var(--text-dim);font-size:.8rem;margin-top:8px">Created: ${escapeHtml(s.created_at)}</div>` : ''}
+        </div>
+      `;
+    }
+    container.innerHTML = html;
+  } catch (e) {
+    container.innerHTML = `<p style="color:var(--red)">Failed to load scripts: ${escapeHtml(e.message)}</p>`;
+  }
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// ── Remediation ─────────────────────────────────────────────────────────────
+async function generateRemediations(index) {
+  const container = document.getElementById('findingsList');
+  try {
+    const body = {};
+    if (index !== undefined) body.index = index;
+    const resp = await fetch('/api/agent/remediate', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body),
+    });
+    const data = await resp.json();
+    if (!data.ok) {
+      alert(data.error || 'No findings to remediate');
+      return;
+    }
+    let html = `<div style="margin-bottom:12px"><button class="btn btn-sm" onclick="loadFindings()" style="margin-right:8px">← Back to Findings</button><strong>🔧 Remediation Report</strong> — ${data.remediations.length} findings</div>`;
+    for (const r of data.remediations) {
+      const pColor = {'immediate':'var(--red)','high':'var(--orange)','medium':'var(--yellow)','low':'var(--blue)','informational':'var(--text-dim)'}[r.priority] || 'var(--text)';
+      html += `<div class="finding-card" style="border-left:3px solid ${pColor}">`;
+      html += `<div class="finding-header"><span class="severity-badge severity-${r.finding_severity}">${r.finding_severity}</span><strong>${escapeHtml(r.finding_title)}</strong></div>`;
+      html += `<p style="color:var(--cyan2);margin:4px 0">${escapeHtml(r.summary)}</p>`;
+      for (const s of r.steps) {
+        const icon = {'command':'💻','config':'⚙️','code':'📝','reference':'📖'}[s.type] || '•';
+        html += `<div style="background:var(--bg2);border-radius:6px;padding:10px;margin:6px 0">`;
+        html += `<strong>${icon} ${escapeHtml(s.title)}</strong>`;
+        if (s.description) html += `<div style="color:var(--text-dim);font-size:.85rem;margin:2px 0">${escapeHtml(s.description)}</div>`;
+        if (s.filename) html += `<div style="color:var(--purple);font-size:.8rem">File: ${escapeHtml(s.filename)}</div>`;
+        if (s.content) html += `<pre style="background:var(--bg1);padding:8px;border-radius:4px;margin:4px 0;overflow-x:auto;font-size:.8rem"><code>${escapeHtml(s.content)}</code></pre>`;
+        html += `</div>`;
+      }
+      if (r.references && r.references.length > 0) {
+        html += `<div style="margin-top:6px;font-size:.8rem"><strong>📚 References:</strong> `;
+        html += r.references.map(ref => `<a href="${encodeURI(ref)}" target="_blank" style="color:var(--cyan)">${escapeHtml(ref)}</a>`).join(' | ');
+        html += `</div>`;
+      }
+      html += `</div>`;
+    }
+    container.innerHTML = html;
+  } catch (e) {
+    alert('Failed to generate remediations: ' + e.message);
+  }
+}
+
+// ── Truncation / Continue ────────────────────────────────────────────────────
+async function checkTruncation(mode) {
+  try {
+    const url = mode === 'chat' ? '/api/chat/truncated' : '/api/agent/truncated';
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (data.truncated) {
+      showContinueBanner(mode);
+      return true;
+    } else {
+      hideContinueBanner(mode);
+      return false;
+    }
+  } catch (e) {
+    return false;
+  }
+}
+
+function showContinueBanner(mode) {
+  if (mode === 'chat') {
+    document.getElementById('chatContinueBtn').style.display = '';
+  } else if (mode === 'agent') {
+    document.getElementById('agentContinueBtn').style.display = '';
+  }
+}
+
+function hideContinueBanner(mode) {
+  if (mode === 'chat') {
+    document.getElementById('chatContinueBtn').style.display = 'none';
+  } else if (mode === 'agent') {
+    document.getElementById('agentContinueBtn').style.display = 'none';
+  }
+}
+
+// ── Sessions ────────────────────────────────────────────────────────────────
+async function loadSessions() {
+  const container = document.getElementById('sessionsList');
+  const modeFilter = document.getElementById('sessionModeFilter').value;
+
+  try {
+    const url = modeFilter ? `/api/sessions?mode=${modeFilter}` : '/api/sessions';
+    const resp = await fetch(url);
+    const sessions = await resp.json();
+
+    if (!sessions || sessions.length === 0) {
+      container.innerHTML = '<p style="color:var(--text-dim)">No saved sessions yet. Start chatting and sessions will auto-save.</p>';
+      return;
+    }
+
+    const modeIcons = { chat: '💬', agent: '🤖', plan: '📋' };
+    let html = `<p style="margin-bottom:16px;color:var(--text-dim)">${sessions.length} saved session${sessions.length !== 1 ? 's' : ''}</p>`;
+
+    for (const s of sessions) {
+      const date = new Date(s.updated * 1000);
+      const ts = date.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const icon = modeIcons[s.mode] || '💬';
+
+      html += `
+        <div class="session-card" onclick="restoreSession('${s.id}')">
+          <div class="session-meta">
+            <div class="session-name">
+              <span class="session-mode ${s.mode}">${icon} ${s.mode}</span>
+              ${escapeHtml(s.name || s.id)}
+            </div>
+            <div class="session-info">
+              ${s.message_count} messages • ${ts}
+              ${s.target ? ' • Target: ' + escapeHtml(s.target) : ''}
+            </div>
+          </div>
+          <div class="session-actions" onclick="event.stopPropagation()">
+            ${s.mode === 'agent' ? `<button class="btn btn-sm btn-primary" onclick="openReplay('${s.id}')" title="Replay">⏪</button>` : ''}
+            <button class="btn btn-sm" onclick="restoreSession('${s.id}')" title="Load">📂</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteSession('${s.id}')" title="Delete">🗑</button>
+          </div>
+        </div>
+      `;
+    }
+    container.innerHTML = html;
+  } catch (e) {
+    container.innerHTML = `<p style="color:var(--red)">Failed to load sessions: ${e.message}</p>`;
+  }
+}
+
+async function restoreSession(sessionId) {
+  try {
+    // First load the session data to display messages
+    const resp = await fetch(`/api/sessions/${sessionId}`);
+    if (!resp.ok) { toast('Session not found', 'error'); return; }
+    const data = await resp.json();
+
+    // Restore into active chat
+    const restoreResp = await fetch(`/api/sessions/restore/${sessionId}`, { method: 'POST' });
+    const restoreData = await restoreResp.json();
+    if (!restoreData.ok) { toast(restoreData.error || 'Failed to restore', 'error'); return; }
+
+    // Switch to chat panel and render messages
+    switchPanel('chat');
+    const area = document.getElementById('chatMessages');
+    area.innerHTML = `
+      <div class="msg msg-system">
+        <div class="msg-bubble">Session restored: ${escapeHtml(data.name || sessionId)} (${data.message_count || 0} messages)</div>
+      </div>
+    `;
+
+    // Render all messages from the session
+    for (const msg of (data.messages || [])) {
+      addMsg('chatMessages', msg.role, msg.content);
+    }
+
+    toast('Session restored!', 'success');
+  } catch (e) {
+    toast('Failed to restore: ' + e.message, 'error');
+  }
+}
+
+async function deleteSession(sessionId) {
+  try {
+    await fetch(`/api/sessions/${sessionId}`, { method: 'DELETE' });
+    toast('Session deleted', 'success');
+    loadSessions();
+  } catch (e) {
+    toast('Failed to delete: ' + e.message, 'error');
+  }
+}
+
+// ── Replay Mode ─────────────────────────────────────────────────────────────
+
+let replaySteps = [];
+let replayCurrentIndex = 0;
+let replaySpeed = 1;
+let replayInterval = null;
+let isReplaying = false;
+
+async function openReplay(sessionId) {
+  // Hide all panels, show replay panel
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-replay').style.display = 'flex';
+  document.getElementById('panel-replay').classList.add('active');
+
+  document.getElementById('replayTargetLabel').textContent = 'Loading...';
+  document.getElementById('replayStepList').innerHTML = '';
+  document.getElementById('replayTerminal').innerHTML = '';
+  document.getElementById('replayThoughts').innerHTML = '';
+  
+  try {
+    const resp = await fetch(`/api/agent/replay/${sessionId}`);
+    if (!resp.ok) {
+      toast('Failed to load replay data for ' + sessionId, 'error');
+      closeReplay();
+      return;
+    }
+    const data = await resp.json();
+    replaySteps = data.steps || [];
+    replayCurrentIndex = 0;
+    document.getElementById('replayTargetLabel').textContent = `Session ${sessionId} (${replaySteps.length} steps)`;
+    
+    // Play automatically
+    if (replaySteps.length > 0) {
+      toggleReplay();
+    }
+  } catch(e) {
+    toast('Error loading replay: ' + e.message, 'error');
+    closeReplay();
+  }
+}
+
+function closeReplay() {
+  pauseReplay();
+  document.getElementById('panel-replay').style.display = 'none';
+  showPanel('panel-sessions');
+}
+
+function toggleReplay() {
+  if (isReplaying) { pauseReplay(); }
+  else { playReplay(); }
+}
+
+function playReplay() {
+  if (replayCurrentIndex >= replaySteps.length) return; // Done
+  isReplaying = true;
+  document.getElementById('replayPlayBtn').innerHTML = '⏸ Pause';
+  
+  const step = document.getElementById('replaySpeedSlider').value;
+  replaySpeed = parseInt(step) || 1;
+  const delayMs = Math.max(100, 2000 / replaySpeed); // e.g., 2s at 1x, 200ms at 10x
+  
+  replayInterval = setTimeout(() => {
+    replayNextStep();
+    if (isReplaying) playReplay();
+  }, delayMs);
+}
+
+function pauseReplay() {
+  isReplaying = false;
+  document.getElementById('replayPlayBtn').innerHTML = '▶ Play';
+  if (replayInterval) clearTimeout(replayInterval);
+}
+
+function replayNextStep() {
+  if (replayCurrentIndex >= replaySteps.length) {
+    pauseReplay();
+    return;
+  }
+  const step = replaySteps[replayCurrentIndex];
+  renderReplayStep(step);
+  replayCurrentIndex++;
+}
+
+function replayPrevStep() {
+  if (replayCurrentIndex <= 0) return;
+  // Re-rendering everything from scratch since we don't store DOM diffs
+  pauseReplay();
+  replayCurrentIndex--;
+  document.getElementById('replayStepList').innerHTML = '';
+  document.getElementById('replayTerminal').innerHTML = '';
+  document.getElementById('replayThoughts').innerHTML = '';
+  
+  for (let i = 0; i < replayCurrentIndex; i++) {
+    renderReplayStep(replaySteps[i]);
+  }
+}
+
+function renderReplayStep(step) {
+  // Left Panel
+  const list = document.getElementById('replayStepList');
+  const d = document.createElement('div');
+  d.style.padding = '8px 12px';
+  d.style.background = 'var(--bg3)';
+  d.style.border = '1px solid var(--border)';
+  d.style.borderRadius = '6px';
+  d.style.flexShrink = '0';
+  const statusIcon = step.tool_result ? (step.tool_result.success ? '✅' : '❌') : (step.action === 'complete' ? '🎉' : '⏱️');
+  const title = step.tool_result ? step.tool_result.tool : step.action;
+  
+  d.innerHTML = `<div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px">Step ${step.step_num}</div>
+                 <div style="font-size:0.85rem;font-weight:600">${statusIcon} ${escapeHtml(title)}</div>
+                 <div style="font-size:0.75rem;color:var(--text-dim);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeHtml(step.description)}</div>`;
+  list.appendChild(d);
+  list.scrollTop = list.scrollHeight;
+
+  // Right Panel Term
+  const term = document.getElementById('replayTerminal');
+  if (step.tool_result && step.tool_result.command) {
+    let out = `<span style="color:var(--cyan);font-weight:600">$ ${escapeHtml(step.tool_result.command)}</span>\n`;
+    if (step.tool_result.stdout) {
+      let stdout = step.tool_result.stdout;
+      if (stdout.length > 5000) stdout = stdout.substring(0, 5000) + '\n... [truncated]';
+      out += escapeHtml(stdout) + '\n';
+    }
+    if (step.tool_result.stderr) {
+      out += `<span style="color:var(--red)">${escapeHtml(step.tool_result.stderr)}</span>\n`;
+    }
+    term.innerHTML += out + '\n';
+    term.scrollTop = term.scrollHeight;
+  }
+
+  // Bottom Panel Thoughts
+  if (step.ai_analysis) {
+    const t = document.getElementById('replayThoughts');
+    const b = document.createElement('div');
+    b.className = 'msg msg-assistant';
+    b.innerHTML = `<div class="msg-label">Thought (Step ${step.step_num})</div><div class="msg-bubble">${renderMd(step.ai_analysis)}</div>`;
+    t.appendChild(b);
+    t.scrollTop = t.scrollHeight;
+  }
+}
+
+// ── CVE Lookup ──────────────────────────────────────────────────────────────
+async function cveSearch() {
+  const query = document.getElementById('cveQuery').value.trim();
+  if (!query) { toast('Enter a search query', 'error'); return; }
+
+  const container = document.getElementById('cveResults');
+  container.innerHTML = '<p style="color:var(--text-dim)">Searching NVD database...</p>';
+
+  const searchType = document.getElementById('cveSearchType').value;
+  const severity = document.getElementById('cveSeverity').value;
+
+  try {
+    let url, body;
+    if (searchType === 'id') {
+      url = '/api/cve/lookup';
+      body = { cve_id: query };
+    } else if (searchType === 'exploit') {
+      url = '/api/cve/exploits';
+      body = { query };
+    } else {
+      url = '/api/cve/search';
+      body = { keyword: query, severity, max_results: 20 };
+    }
+
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await resp.json();
+
+    if (data.error) {
+      container.innerHTML = `<p style="color:var(--red)">❌ ${escapeHtml(data.error)}</p>`;
+      return;
+    }
+
+    if (searchType === 'exploit') {
+      // Render exploits
+      if (!data.exploits || data.exploits.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-dim)">No exploits found.</p>';
+        return;
+      }
+      let html = `<p style="margin-bottom:16px"><strong>${data.count}</strong> exploits found for "${escapeHtml(query)}"</p>`;
+      for (const e of data.exploits) {
+        html += `
+          <div class="finding-card">
+            <div class="finding-header">
+              <span class="severity-badge severity-High">Exploit</span>
+              <strong><a href="${escapeHtml(e.url)}" target="_blank" style="color:var(--cyan)">${escapeHtml(e.title)}</a></strong>
+            </div>
+            <p>${escapeHtml(e.description || '')}</p>
+            <div style="font-size:.8rem;color:var(--text-dim);margin-top:6px">
+              Source: ${escapeHtml(e.source)} ${e.stars ? '⭐ ' + e.stars : ''} ${e.language ? '• ' + e.language : ''}
+            </div>
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+    } else if (data.report) {
+      // Render markdown report
+      container.innerHTML = `<div class="msg-bubble">${renderMd(data.report)}</div>`;
+    } else if (data.result) {
+      // Single CVE
+      const c = data.result;
+      container.innerHTML = `
+        <div class="finding-card">
+          <div class="finding-header">
+            <span class="severity-badge severity-${c.severity === 'CRITICAL' ? 'Critical' : c.severity === 'HIGH' ? 'High' : c.severity === 'MEDIUM' ? 'Medium' : 'Low'}">${c.severity} (CVSS ${c.cvss_score})</span>
+            <strong>${escapeHtml(c.cve_id)}</strong>
+          </div>
+          <p>${escapeHtml(c.description)}</p>
+          ${c.weaknesses.length ? '<p><strong>CWE:</strong> ' + c.weaknesses.join(', ') + '</p>' : ''}
+          ${c.published ? '<p style="color:var(--text-dim);font-size:.85rem">Published: ' + c.published + '</p>' : ''}
+          ${c.references.length ? '<p><strong>References:</strong></p><ul>' + c.references.map(r => '<li><a href="' + r + '" target="_blank" style="color:var(--cyan);font-size:.85rem">' + r.substring(0,80) + '</a></li>').join('') + '</ul>' : ''}
+        </div>
+      `;
+    }
+  } catch (e) {
+    container.innerHTML = `<p style="color:var(--red)">Failed: ${escapeHtml(e.message)}</p>`;
+  }
+}
+
+// ── OSINT ────────────────────────────────────────────────────────────────────
+async function osintScan() {
+  const domain = document.getElementById('osintDomain').value.trim();
+  if (!domain) { toast('Enter a domain', 'error'); return; }
+
+  const scanType = document.getElementById('osintType').value;
+  const container = document.getElementById('osintResults');
+  container.innerHTML = '<p style="color:var(--text-dim)">🔍 Scanning... This may take a moment.</p>';
+
+  try {
+    let url, body;
+    if (scanType === 'subdomains') {
+      url = '/api/osint/subdomains';
+      body = { domain };
+    } else if (scanType === 'dns') {
+      url = '/api/osint/dns';
+      body = { domain };
+    } else if (scanType === 'whois') {
+      url = '/api/osint/whois';
+      body = { domain };
+    } else if (scanType === 'techstack') {
+      url = '/api/osint/techstack';
+      body = { target: domain };
+    } else {
+      // Full scan uses SSE
+      const resp = await fetch('/api/osint/scan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ domain }),
+      });
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const payload = line.slice(6);
+          if (payload === '[DONE]') break;
+          try {
+            const data = JSON.parse(payload);
+            if (data.error) {
+              container.innerHTML = `<p style="color:var(--red)">❌ ${escapeHtml(data.error)}</p>`;
+            } else if (data.markdown) {
+              container.innerHTML = `<div class="msg-bubble">${renderMd(data.markdown)}</div>`;
+            }
+          } catch(e) {}
+        }
+      }
+      return;
+    }
+
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await resp.json();
+
+    if (data.error) {
+      container.innerHTML = `<p style="color:var(--red)">❌ ${escapeHtml(data.error)}</p>`;
+      return;
+    }
+
+    // Render specific results
+    let html = '';
+    if (scanType === 'subdomains') {
+      html = `<p style="margin-bottom:12px"><strong>${data.count}</strong> subdomains found</p>`;
+      html += '<table style="width:100%;border-collapse:collapse"><tr><th style="text-align:left;padding:6px;border-bottom:1px solid var(--border);color:var(--cyan)">Subdomain</th><th style="text-align:left;padding:6px;border-bottom:1px solid var(--border);color:var(--cyan)">IP</th><th style="text-align:left;padding:6px;border-bottom:1px solid var(--border);color:var(--cyan)">Source</th></tr>';
+      for (const s of data.subdomains) {
+        html += `<tr><td style="padding:6px;border-bottom:1px solid var(--border)">${escapeHtml(s.subdomain)}</td><td style="padding:6px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.85rem">${escapeHtml(s.ip || '—')}</td><td style="padding:6px;border-bottom:1px solid var(--border);color:var(--text-dim)">${escapeHtml(s.source)}</td></tr>`;
+      }
+      html += '</table>';
+    } else if (scanType === 'dns') {
+      html = `<p style="margin-bottom:12px"><strong>${data.count}</strong> DNS records</p>`;
+      html += '<table style="width:100%;border-collapse:collapse"><tr><th style="text-align:left;padding:6px;border-bottom:1px solid var(--border);color:var(--cyan)">Type</th><th style="text-align:left;padding:6px;border-bottom:1px solid var(--border);color:var(--cyan)">Value</th><th style="text-align:left;padding:6px;border-bottom:1px solid var(--border);color:var(--cyan)">TTL</th></tr>';
+      for (const r of data.records) {
+        html += `<tr><td style="padding:6px;border-bottom:1px solid var(--border);color:var(--green);font-weight:600">${escapeHtml(r.type)}</td><td style="padding:6px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.85rem">${escapeHtml(r.value)}</td><td style="padding:6px;border-bottom:1px solid var(--border);color:var(--text-dim)">${r.ttl}</td></tr>`;
+      }
+      html += '</table>';
+    } else if (scanType === 'whois') {
+      html = '<div class="settings-card"><h3>WHOIS: ' + escapeHtml(data.domain) + '</h3>';
+      if (data.registrar) html += `<p><strong>Registrar:</strong> ${escapeHtml(data.registrar)}</p>`;
+      if (data.org) html += `<p><strong>Organization:</strong> ${escapeHtml(data.org)}</p>`;
+      if (data.creation_date) html += `<p><strong>Created:</strong> ${escapeHtml(data.creation_date)}</p>`;
+      if (data.expiration_date) html += `<p><strong>Expires:</strong> ${escapeHtml(data.expiration_date)}</p>`;
+      if (data.name_servers && data.name_servers.length) html += `<p><strong>Name Servers:</strong> ${data.name_servers.map(n => escapeHtml(n)).join(', ')}</p>`;
+      if (data.emails && data.emails.length) html += `<p><strong>Contacts:</strong> ${data.emails.map(e => escapeHtml(e)).join(', ')}</p>`;
+      html += '</div>';
+    } else if (scanType === 'techstack') {
+      html = '<div class="settings-card"><h3>Tech Stack: ' + escapeHtml(data.url) + '</h3>';
+      if (data.server) html += `<p><strong>Server:</strong> <span style="color:var(--green)">${escapeHtml(data.server)}</span></p>`;
+      if (data.powered_by) html += `<p><strong>Powered By:</strong> <span style="color:var(--cyan)">${escapeHtml(data.powered_by)}</span></p>`;
+      if (data.technologies && data.technologies.length) {
+        html += '<p style="margin-top:12px"><strong>Detected Technologies:</strong></p><div class="tools-grid" style="margin-top:8px">';
+        for (const t of data.technologies) {
+          html += `<div class="tool-card installed"><span class="tool-icon">✅</span><div><div class="tool-name">${escapeHtml(t.name)}</div><div class="tool-path">${escapeHtml(t.category)}</div></div></div>`;
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+    container.innerHTML = html;
+  } catch (e) {
+    container.innerHTML = `<p style="color:var(--red)">Failed: ${escapeHtml(e.message)}</p>`;
+  }
+}
+
+// ── Topology Visualization ──────────────────────────────────────────────────
+let currentTopology = null;
+
+async function parseTopology() {
+  const output = document.getElementById('topologyInput').value.trim();
+  if (!output) { toast('Paste scan output first', 'error'); return; }
+
+  try {
+    const resp = await fetch('/api/topology/parse', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ output }),
+    });
+    const data = await resp.json();
+    if (data.error) { toast(data.error, 'error'); return; }
+    currentTopology = data.topology;
+    renderTopologyGraph(data.topology);
+    updateTopologyStats(data.topology.stats);
+  } catch (e) {
+    toast('Failed: ' + e.message, 'error');
+  }
+}
+
+async function loadTopologyFromAgent() {
+  try {
+    const resp = await fetch('/api/topology/from-agent');
+    const data = await resp.json();
+    if (data.error) { toast(data.error, 'error'); return; }
+    currentTopology = data.topology;
+    renderTopologyGraph(data.topology);
+    updateTopologyStats(data.topology.stats);
+    toast('Topology loaded from agent scans', 'success');
+  } catch (e) {
+    toast('Failed: ' + e.message, 'error');
+  }
+}
+
+function updateTopologyStats(stats) {
+  document.getElementById('topologyStats').style.display = '';
+  document.getElementById('topoStatHosts').textContent = stats.total_hosts + ' hosts';
+  document.getElementById('topoStatServices').textContent = stats.total_services + ' services';
+  document.getElementById('topoStatSubnets').textContent = stats.subnets + ' subnets';
+}
+
+function renderTopologyGraph(topo) {
+  document.getElementById('topologyPlaceholder').style.display = 'none';
+
+  const svg = d3.select('#topoSvg');
+  svg.selectAll('*').remove();
+
+  const container = document.getElementById('topologyGraph');
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+
+  svg.attr('width', width).attr('height', height);
+
+  const g = svg.append('g');
+
+  // Zoom
+  const zoom = d3.zoom().scaleExtent([0.2, 4]).on('zoom', (event) => {
+    g.attr('transform', event.transform);
+  });
+  svg.call(zoom);
+
+  // Color map
+  const colorMap = {
+    scanner: '#3fb950',
+    subnet: '#58a6ff',
+    host: '#f0883e',
+    service: '#bc8cff',
+  };
+
+  const sizeMap = { scanner: 18, subnet: 14, host: 10, service: 6 };
+
+  // Build D3 data
+  const nodes = topo.nodes.map(n => ({
+    ...n,
+    radius: sizeMap[n.type] || 8,
+    color: colorMap[n.type] || '#8b949e',
+  }));
+
+  const nodeIds = new Set(nodes.map(n => n.id));
+  const links = topo.edges
+    .filter(e => nodeIds.has(e.source) && nodeIds.has(e.target))
+    .map(e => ({ ...e }));
+
+  // Force simulation
+  const simulation = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(100))
+    .force('charge', d3.forceManyBody().strength(-300))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(d => d.radius + 10));
+
+  // Links
+  const link = g.append('g')
+    .selectAll('line')
+    .data(links)
+    .enter().append('line')
+    .attr('stroke', '#30363d')
+    .attr('stroke-width', 1.5)
+    .attr('stroke-dasharray', d => d.type === 'scan' ? '5,5' : 'none');
+
+  // Nodes
+  const node = g.append('g')
+    .selectAll('g')
+    .data(nodes)
+    .enter().append('g')
+    .call(d3.drag()
+      .on('start', (event, d) => { if (!event.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+      .on('end', (event, d) => { if (!event.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; })
+    );
+
+  node.append('circle')
+    .attr('r', d => d.radius)
+    .attr('fill', d => d.color)
+    .attr('stroke', d => d.status === 'down' ? '#f85149' : d.color)
+    .attr('stroke-width', 2)
+    .attr('opacity', d => d.status === 'down' ? 0.5 : 0.9);
+
+  // Labels
+  node.append('text')
+    .text(d => d.label.length > 25 ? d.label.substring(0, 22) + '...' : d.label)
+    .attr('x', d => d.radius + 5)
+    .attr('y', 4)
+    .attr('font-size', '11px')
+    .attr('fill', '#c9d1d9')
+    .attr('font-family', 'var(--font)');
+
+  // Tooltip on hover
+  node.append('title').text(d => {
+    let tip = `${d.label}\nType: ${d.type}`;
+    if (d.ip) tip += `\nIP: ${d.ip}`;
+    if (d.os) tip += `\nOS: ${d.os}`;
+    if (d.ports && d.ports.length) {
+      tip += `\nPorts: ${d.ports.map(p => p.port + '/' + (p.protocol || 'tcp') + ' ' + (p.service || '')).join(', ')}`;
+    }
+    return tip;
+  });
+
+  // Port badges on host nodes
+  node.filter(d => d.type === 'host' && d.ports && d.ports.length > 0)
+    .append('text')
+    .text(d => d.ports.length + ' ports')
+    .attr('x', d => d.radius + 5)
+    .attr('y', 16)
+    .attr('font-size', '9px')
+    .attr('fill', '#8b949e')
+    .attr('font-family', 'var(--mono)');
+
+  simulation.on('tick', () => {
+    link
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y);
+
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+}
+
+// ── Compliance ──────────────────────────────────────────────────────────────
+
+async function complianceFromAgent() {
+  const area = document.getElementById('complianceResults');
+  const sel = document.getElementById('complianceFrameworks');
+  const frameworks = Array.from(sel.selectedOptions).map(o => o.value);
+  const fwParam = frameworks.length < 4 ? `?frameworks=${frameworks.join(',')}` : '';
+
+  area.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim)">Mapping findings to compliance frameworks...</div>';
+  try {
+    const resp = await fetch(`/api/compliance/from-agent${fwParam}`);
+    if (!resp.ok) {
+      const err = await resp.json();
+      area.innerHTML = `<div style="text-align:center;padding:40px;color:var(--red)">${err.error || 'No agent findings available'}</div>`;
+      return;
+    }
+    const data = await resp.json();
+    renderComplianceReport(data.report, area);
+  } catch (e) {
+    area.innerHTML = `<div style="text-align:center;padding:40px;color:var(--red)">Error: ${e.message}</div>`;
+  }
+}
+
+function renderComplianceReport(report, container) {
+  if (!report || !report.mappings || Object.keys(report.mappings).length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim)">No compliance mappings generated. Findings may not match known compliance patterns.</div>';
+    return;
+  }
+
+  const statusIcon = {fail: '🔴', warn: '🟡', pass: '🟢', not_tested: '⚪'};
+  const statusLabel = {fail: 'FAIL', warn: 'WARN', pass: 'PASS', not_tested: 'N/T'};
+
+  let html = '<div style="margin-bottom:20px">';
+  html += `<h3 style="color:var(--green);margin-bottom:12px">📋 Compliance Mapping — ${report.target || 'Assessment'}</h3>`;
+  html += `<p style="color:var(--text-dim);font-size:.85rem">${report.total_findings} findings analyzed across ${report.frameworks.length} frameworks</p>`;
+
+  // Summary cards
+  html += '<div style="display:flex;gap:12px;flex-wrap:wrap;margin:16px 0">';
+  for (const [fw, counts] of Object.entries(report.summary || {})) {
+    const total = (counts.fail || 0) + (counts.warn || 0) + (counts.pass || 0) + (counts.not_tested || 0);
+    const failPct = total ? Math.round((counts.fail || 0) / total * 100) : 0;
+    const barColor = failPct > 50 ? 'var(--red)' : failPct > 25 ? 'var(--yellow)' : 'var(--green)';
+    html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:200px;flex:1">`;
+    html += `<div style="font-weight:600;font-size:.85rem;margin-bottom:8px">${fw}</div>`;
+    html += `<div style="display:flex;gap:12px;font-size:.8rem">`;
+    html += `<span style="color:var(--red)">🔴 ${counts.fail || 0}</span>`;
+    html += `<span style="color:var(--yellow)">🟡 ${counts.warn || 0}</span>`;
+    html += `<span style="color:var(--green)">🟢 ${counts.pass || 0}</span>`;
+    html += `</div>`;
+    html += `<div style="margin-top:8px;height:4px;background:var(--bg);border-radius:2px;overflow:hidden">`;
+    html += `<div style="height:100%;width:${failPct}%;background:${barColor};border-radius:2px"></div>`;
+    html += `</div>`;
+    html += `<div style="font-size:.75rem;color:var(--text-dim);margin-top:4px">${failPct}% failing</div>`;
+    html += `</div>`;
+  }
+  html += '</div>';
+
+  // Per-framework tables
+  for (const [fw, mappings] of Object.entries(report.mappings || {})) {
+    html += `<details open style="margin-top:16px"><summary style="cursor:pointer;font-weight:600;color:var(--blue);font-size:.95rem;padding:8px 0">${fw} (${mappings.length} controls)</summary>`;
+    html += '<table style="width:100%;border-collapse:collapse;font-size:.8rem;margin-top:8px">';
+    html += '<thead><tr style="border-bottom:2px solid var(--border);text-align:left">';
+    html += '<th style="padding:6px 8px;width:70px">Status</th><th style="padding:6px 8px;width:100px">Control</th><th style="padding:6px 8px">Title</th><th style="padding:6px 8px">Finding</th></tr></thead><tbody>';
+    for (const m of mappings) {
+      const c = m.control;
+      const icon = statusIcon[m.status] || '⚪';
+      const label = statusLabel[m.status] || m.status;
+      const rowBg = m.status === 'fail' ? 'rgba(248,81,73,0.05)' : m.status === 'warn' ? 'rgba(210,153,34,0.05)' : 'transparent';
+      html += `<tr style="border-bottom:1px solid var(--border);background:${rowBg}">`;
+      html += `<td style="padding:6px 8px">${icon} ${label}</td>`;
+      html += `<td style="padding:6px 8px;font-family:var(--mono);font-weight:600">${c.control_id}</td>`;
+      html += `<td style="padding:6px 8px">${c.title}</td>`;
+      html += `<td style="padding:6px 8px;color:var(--text-dim)">${m.finding_title || ''}</td>`;
+      html += '</tr>';
+    }
+    html += '</tbody></table></details>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+// ── Campaigns ───────────────────────────────────────────────────────────────
+
+function showCampaignForm() {
+  document.getElementById('campaignForm').style.display = 'block';
+  document.getElementById('campaignPlaceholder').style.display = 'none';
+}
+function hideCampaignForm() {
+  document.getElementById('campaignForm').style.display = 'none';
+  document.getElementById('campaignName').value = '';
+  document.getElementById('campaignTargets').value = '';
+  document.getElementById('campaignScope').value = '';
+  document.getElementById('campaignInstructions').value = '';
+}
+
+async function createCampaign() {
+  const name = document.getElementById('campaignName').value.trim();
+  const raw = document.getElementById('campaignTargets').value.trim();
+  const scope = document.getElementById('campaignScope').value.trim();
+  const instructions = document.getElementById('campaignInstructions').value.trim();
+  const maxSteps = parseInt(document.getElementById('campaignMaxSteps').value) || 50;
+  if (!name) { alert('Campaign name is required'); return; }
+  const targets = raw.split('\n').map(t => t.trim()).filter(Boolean);
+  if (!targets.length) { alert('At least one target is required'); return; }
+  try {
+    const resp = await fetch('/api/campaigns', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ name, targets, scope, instructions, max_steps_per_target: maxSteps }),
+    });
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.error || 'Failed to create campaign'); return; }
+    hideCampaignForm();
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function loadCampaigns() {
+  const content = document.getElementById('campaignsContent');
+  const placeholder = document.getElementById('campaignPlaceholder');
+  const listArea = document.getElementById('campaignListArea');
+  const dashboard = document.getElementById('campaignDashboard');
+  try {
+    const resp = await fetch('/api/campaigns');
+    const data = await resp.json();
+    const campaigns = data.campaigns || [];
+    const activeId = data.active_id;
+
+    // If there's an active campaign, load its dashboard
+    if (activeId) {
+      const cResp = await fetch('/api/campaigns/' + activeId);
+      if (cResp.ok) {
+        const c = await cResp.json();
+        renderCampaignDashboard(c);
+        dashboard.style.display = 'block';
+        placeholder.style.display = 'none';
+      }
+    } else {
+      dashboard.style.display = 'none';
+    }
+
+    // Render campaign list
+    if (campaigns.length === 0 && !activeId) {
+      placeholder.style.display = 'block';
+      listArea.innerHTML = '';
+      return;
+    }
+    if (!activeId) placeholder.style.display = 'none';
+
+    let html = '<h4 style="color:var(--text-dim);margin:16px 0 8px;font-size:.8rem">SAVED CAMPAIGNS</h4>';
+    for (const c of campaigns) {
+      const isActive = c.id === activeId;
+      const ts = new Date((c.updated_at || 0) * 1000).toLocaleString();
+      const statusColor = {draft:'var(--text-dim)', running:'var(--yellow)', paused:'var(--blue)', completed:'var(--green)', aborted:'var(--red)'}[c.status] || 'var(--text-dim)';
+      html += `<div style="background:var(--bg3);border:1px solid ${isActive?'var(--green)':'var(--border)'};border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">`;
+      html += `<div>`;
+      html += `<strong style="color:var(--text)">${c.name || c.id}</strong>`;
+      if (isActive) html += ` <span style="color:var(--green);font-size:.75rem">● ACTIVE</span>`;
+      html += `<div style="font-size:.8rem;color:var(--text-dim);margin-top:2px">`;
+      html += `<span style="color:${statusColor}">${c.status}</span> · ${c.target_count} targets · ${c.total_findings} findings · ${c.progress_pct}%`;
+      html += `</div></div>`;
+      html += `<div style="display:flex;gap:6px">`;
+      if (!isActive) html += `<button class="btn btn-sm" onclick="activateCampaign('${c.id}')" style="font-size:.75rem">Load</button>`;
+      html += `<button class="btn btn-sm" onclick="deleteCampaign('${c.id}')" style="font-size:.75rem;color:var(--red)">✕</button>`;
+      html += `</div></div>`;
+    }
+    listArea.innerHTML = html;
+  } catch(e) {
+    listArea.innerHTML = `<div style="color:var(--red);padding:20px">Error loading campaigns: ${e.message}</div>`;
+  }
+}
+
+function renderCampaignDashboard(c) {
+  const header = document.getElementById('campaignDashHeader');
+  const targetList = document.getElementById('campaignTargetList');
+  const actions = document.getElementById('campaignActions');
+  const findings = document.getElementById('campaignFindings');
+
+  const statusColor = {draft:'var(--text-dim)', running:'var(--yellow)', paused:'var(--blue)', completed:'var(--green)', aborted:'var(--red)'}[c.status] || 'var(--text-dim)';
+  const statusIcon = {draft:'📝', running:'🔄', paused:'⏸️', completed:'✅', aborted:'❌'}[c.status] || '?';
+
+  // Header cards
+  let h = '<div style="display:flex;gap:12px;flex-wrap:wrap">';
+  h += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;flex:1;min-width:180px"><div style="font-size:.75rem;color:var(--text-dim);margin-bottom:2px">CAMPAIGN</div><div style="font-size:1.1rem;color:var(--green)">${c.name || c.id}</div></div>`;
+  h += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:120px;text-align:center"><div style="font-size:.75rem;color:var(--text-dim);margin-bottom:2px">STATUS</div><div style="font-size:1.1rem;color:${statusColor}">${statusIcon} ${c.status}</div></div>`;
+  h += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:100px;text-align:center"><div style="font-size:.75rem;color:var(--text-dim);margin-bottom:2px">PROGRESS</div><div style="font-size:1.1rem">${c.completed_count}/${c.target_count}</div></div>`;
+  h += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:100px;text-align:center"><div style="font-size:.75rem;color:var(--text-dim);margin-bottom:2px">FINDINGS</div><div style="font-size:1.1rem;color:var(--yellow)">${c.total_findings}</div></div>`;
+  h += '</div>';
+
+  // Progress bar
+  const pct = c.progress_pct || 0;
+  h += `<div style="margin-top:12px;background:var(--bg);border-radius:4px;height:6px;overflow:hidden"><div style="background:var(--green);height:100%;width:${pct}%;transition:width 0.3s"></div></div>`;
+  header.innerHTML = h;
+
+  // Target list
+  const statusIcons = {pending:'⏳', running:'🔄', completed:'✅', failed:'❌', skipped:'⏭️'};
+  const results = c.results || {};
+  let tl = '<h4 style="color:var(--text-dim);margin:0 0 8px;font-size:.8rem">TARGETS</h4>';
+  (c.targets || []).forEach((t, i) => {
+    const r = results[t] || {status:'pending', findings:[], steps:0};
+    const fc = (r.findings || []).length;
+    const dur = r.completed_at && r.started_at ? Math.round(r.completed_at - r.started_at) + 's' : '-';
+    const icon = statusIcons[r.status] || '?';
+    const sColor = {pending:'var(--text-dim)', running:'var(--yellow)', completed:'var(--green)', failed:'var(--red)', skipped:'var(--text-dim)'}[r.status];
+    tl += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">`;
+    tl += `<div><span style="color:${sColor}">${icon}</span> <strong style="color:var(--text)">${t}</strong> <span style="font-size:.75rem;color:var(--text-dim)">${r.status}</span></div>`;
+    tl += `<div style="font-size:.8rem;color:var(--text-dim)">${fc} findings · ${r.steps} steps · ${dur}</div>`;
+    tl += `<div style="display:flex;gap:4px">`;
+    if (r.status === 'pending' && c.status === 'running') {
+      tl += `<button class="btn btn-primary btn-sm" onclick="startCampaignTarget('${t}')" style="font-size:.7rem;padding:2px 8px">▶ Assess</button>`;
+      tl += `<button class="btn btn-sm" onclick="skipCampaignTarget('${t}')" style="font-size:.7rem;padding:2px 8px">Skip</button>`;
+    }
+    if (r.status === 'running') {
+      tl += `<button class="btn btn-sm" onclick="completeCampaignTarget('${t}')" style="font-size:.7rem;padding:2px 8px;color:var(--green)">✓ Complete</button>`;
+    }
+    tl += `</div></div>`;
+  });
+  targetList.innerHTML = tl;
+
+  // Action buttons
+  let ab = '';
+  if (c.status === 'draft') {
+    ab += `<button class="btn btn-primary btn-sm" onclick="startActiveCampaign()">🚀 Start Campaign</button>`;
+  }
+  if (c.status === 'running') {
+    ab += `<button class="btn btn-sm" onclick="pauseActiveCampaign()">⏸️ Pause</button>`;
+    ab += `<button class="btn btn-sm" style="color:var(--red)" onclick="abortActiveCampaign()">🛑 Abort</button>`;
+  }
+  if (c.status === 'paused') {
+    ab += `<button class="btn btn-primary btn-sm" onclick="resumeActiveCampaign()">▶ Resume</button>`;
+    ab += `<button class="btn btn-sm" style="color:var(--red)" onclick="abortActiveCampaign()">🛑 Abort</button>`;
+  }
+  if (c.total_findings > 0) {
+    ab += `<button class="btn btn-sm" onclick="showCampaignFindings()">📋 All Findings</button>`;
+    ab += `<button class="btn btn-sm" onclick="exportCampaignReport()">📁 Export Report</button>`;
+  }
+  actions.innerHTML = ab;
+
+  // Severity summary
+  const sc = c.severity_counts || {};
+  if (Object.keys(sc).length) {
+    const sevColors = {Critical:'var(--red)', High:'#f97583', Medium:'var(--yellow)', Low:'var(--blue)', Info:'var(--text-dim)'};
+    let sf = '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">';
+    for (const sev of ['Critical','High','Medium','Low','Info']) {
+      if (sc[sev]) sf += `<span style="background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:2px 8px;font-size:.8rem;color:${sevColors[sev]||'var(--text)'}">${sev}: ${sc[sev]}</span>`;
+    }
+    sf += '</div>';
+    findings.innerHTML = sf;
+  } else {
+    findings.innerHTML = '';
+  }
+}
+
+async function activateCampaign(id) {
+  try {
+    await fetch('/api/campaigns/' + id + '/activate', { method: 'POST' });
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function deleteCampaign(id) {
+  if (!confirm('Delete this campaign?')) return;
+  try {
+    await fetch('/api/campaigns/' + id, { method: 'DELETE' });
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function startActiveCampaign() {
+  try {
+    const resp = await fetch('/api/campaigns/active/start', { method: 'POST' });
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.error || 'Failed to start'); return; }
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function startCampaignTarget(target) {
+  // Switch to agent panel to show the assessment
+  switchPanel('agent');
+  const messages = document.getElementById('agentThoughts');
+  const startForm = document.getElementById('agentStartForm');
+  const execView = document.getElementById('agentExecutionView');
+  const inputArea = document.getElementById('agentInputArea');
+  if (startForm) startForm.style.display = 'none';
+  if (execView) execView.style.display = 'flex';
+  if (messages) { messages.innerHTML = ''; }
+  if (inputArea) inputArea.style.display = 'block';
+  document.getElementById('agentTargetLabel').textContent = '🎯 Campaign: ' + target;
+
+  agentRunning = true;
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'msg msg-assistant';
+  msgDiv.innerHTML = '<div class="msg-label">HackBot</div><div class="msg-bubble"></div>';
+  if (messages) messages.appendChild(msgDiv);
+  const contentDiv = msgDiv.querySelector('.msg-bubble');
+
+  try {
+    const resp = await fetch('/api/campaigns/active/start-target', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ target }),
+    });
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    let fullText = '';
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const payload = line.slice(6);
+          if (payload === '[DONE]') break;
+          try {
+            const d = JSON.parse(payload);
+            if (d.token) { fullText += d.token; contentDiv.innerHTML = marked.parse(fullText); }
+          } catch(e) {}
+        }
+      }
+    }
+    if (fullText) contentDiv.innerHTML = marked.parse(fullText);
+  } catch(e) {
+    contentDiv.innerHTML = `<span style="color:var(--red)">Error: ${e.message}</span>`;
+  }
+}
+
+async function completeCampaignTarget(target) {
+  try {
+    await fetch('/api/campaigns/active/complete-target', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ target }),
+    });
+    switchPanel('campaigns');
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function skipCampaignTarget(target) {
+  try {
+    await fetch('/api/campaigns/active/skip-target', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ target, reason: 'Skipped via GUI' }),
+    });
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function pauseActiveCampaign() {
+  try {
+    await fetch('/api/campaigns/active/pause', { method:'POST' });
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function abortActiveCampaign() {
+  if (!confirm('Abort this campaign? Running targets will be marked as failed.')) return;
+  try {
+    await fetch('/api/campaigns/active/abort', { method:'POST' });
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function resumeActiveCampaign() {
+  try {
+    await fetch('/api/campaigns/active/start', { method:'POST' });
+    await loadCampaigns();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function showCampaignFindings() {
+  try {
+    const resp = await fetch('/api/campaigns/active/findings');
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.error || 'Failed'); return; }
+    const findings = data.all_findings || [];
+    const area = document.getElementById('campaignFindings');
+    const sevColors = {Critical:'var(--red)', High:'#f97583', Medium:'var(--yellow)', Low:'var(--blue)', Info:'var(--text-dim)'};
+    let html = `<h4 style="margin:12px 0 8px;color:var(--text-dim);font-size:.8rem">ALL FINDINGS (${findings.length})</h4>`;
+    for (const f of findings) {
+      html += `<div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px 12px;margin-bottom:6px">`;
+      html += `<div style="display:flex;justify-content:space-between"><strong style="color:var(--text)">${f.title||'Untitled'}</strong><span style="color:${sevColors[f.severity]||'var(--text-dim)'};font-size:.8rem">${f.severity||'Info'}</span></div>`;
+      html += `<div style="font-size:.8rem;color:var(--text-dim);margin-top:2px">Target: ${f.campaign_target||'?'}</div>`;
+      if (f.description) html += `<div style="font-size:.85rem;margin-top:4px;color:var(--text)">${f.description.substring(0,200)}</div>`;
+      html += `</div>`;
+    }
+    area.innerHTML = html;
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function exportCampaignReport() {
+  try {
+    const resp = await fetch('/api/campaigns/active/report', { method:'POST' });
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.error || 'Failed'); return; }
+    alert('Campaign report saved: ' + data.path);
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+// ── Proxy / Traffic Capture ─────────────────────────────────────────────────
+
+async function loadProxyStatus() {
+  try {
+    const r = await fetch('/api/proxy/status');
+    const d = await r.json();
+    const running = d.is_running;
+    document.getElementById('proxyStatusLabel').textContent = running ? `Running on :${d.port}` : 'Stopped';
+    document.getElementById('proxyStatusLabel').style.color = running ? 'var(--success)' : 'var(--text-dim)';
+    document.getElementById('proxyReqCount').textContent = d.total_requests || 0;
+    document.getElementById('proxyBytes').textContent = (d.total_bytes || 0).toLocaleString();
+    document.getElementById('proxyAvgMs').textContent = d.avg_duration_ms || 0;
+    document.getElementById('proxyFlagCount').textContent = d.flags || 0;
+    document.getElementById('proxyStartBtn').style.display = running ? 'none' : '';
+    document.getElementById('proxyStopBtn').style.display = running ? '' : 'none';
+    if (d.total_requests > 0) loadProxyTraffic();
+  } catch(e) { console.error('Proxy status error:', e); }
+}
+
+async function startProxy() {
+  const port = parseInt(document.getElementById('proxyPortInput').value) || 8080;
+  try {
+    const r = await fetch('/api/proxy/start', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({port})});
+    const d = await r.json();
+    if (d.ok) { loadProxyStatus(); } else { alert(d.error || 'Failed to start proxy'); }
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function stopProxy() {
+  try {
+    const r = await fetch('/api/proxy/stop', {method: 'POST'});
+    const d = await r.json();
+    if (d.ok) { loadProxyStatus(); } else { alert(d.error || 'Failed to stop proxy'); }
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function loadProxyTraffic() {
+  const filter = document.getElementById('proxyFilterInput').value;
+  const method = document.getElementById('proxyMethodFilter').value;
+  const params = new URLSearchParams();
+  if (filter) params.set('filter', filter);
+  if (method) params.set('method', method);
+  try {
+    const r = await fetch('/api/proxy/traffic?' + params.toString());
+    const d = await r.json();
+    const area = document.getElementById('proxyTrafficArea');
+    if (!d.traffic || d.traffic.length === 0) {
+      area.innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:40px">No captured traffic</div>';
+      return;
+    }
+    let html = '<table style="width:100%;border-collapse:collapse;font-size:.85rem"><thead><tr style="border-bottom:2px solid var(--border)">';
+    html += '<th style="text-align:left;padding:8px">#</th>';
+    html += '<th style="text-align:left;padding:8px">Method</th>';
+    html += '<th style="text-align:left;padding:8px">URL</th>';
+    html += '<th style="text-align:center;padding:8px">Status</th>';
+    html += '<th style="text-align:right;padding:8px">Size</th>';
+    html += '<th style="text-align:right;padding:8px">Time</th>';
+    html += '<th style="text-align:left;padding:8px">Flags</th>';
+    html += '<th style="text-align:center;padding:8px">Actions</th>';
+    html += '</tr></thead><tbody>';
+    for (const t of d.traffic) {
+      const statusColor = t.status_code >= 400 ? 'var(--danger)' : t.status_code >= 300 ? '#f0ad4e' : 'var(--success)';
+      const methodColor = {'GET':'#61afef','POST':'#98c379','PUT':'#e5c07b','DELETE':'#e06c75','PATCH':'#c678dd'}[t.method] || 'var(--text)';
+      const flags = (t.flags || []).map(f => '<span style="background:var(--danger);color:#fff;padding:1px 6px;border-radius:10px;font-size:.75rem;margin-left:2px">' + f + '</span>').join(' ');
+      html += `<tr style="border-bottom:1px solid var(--border);cursor:pointer" onclick="showProxyDetail(${t.id})">`;
+      html += `<td style="padding:6px 8px;color:var(--text-dim)">${t.id}</td>`;
+      html += `<td style="padding:6px 8px;font-weight:600;color:${methodColor}">${t.method}</td>`;
+      html += `<td style="padding:6px 8px;max-width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${t.url}">${t.url}</td>`;
+      html += `<td style="padding:6px 8px;text-align:center;color:${statusColor};font-weight:600">${t.status_code || '-'}</td>`;
+      html += `<td style="padding:6px 8px;text-align:right">${(t.response_size || 0).toLocaleString()}B</td>`;
+      html += `<td style="padding:6px 8px;text-align:right">${(t.duration_ms || 0).toFixed(0)}ms</td>`;
+      html += `<td style="padding:6px 8px">${flags}</td>`;
+      html += `<td style="padding:6px 8px;text-align:center"><button class="btn btn-sm" onclick="event.stopPropagation();replayProxyRequest(${t.id})" title="Replay">🔄</button></td>`;
+      html += '</tr>';
+    }
+    html += '</tbody></table>';
+    html += `<div style="margin-top:12px;color:var(--text-dim);font-size:.8rem">${d.count} request(s) shown</div>`;
+    area.innerHTML = html;
+    loadProxyStatus();
+  } catch(e) { console.error('Traffic load error:', e); }
+}
+
+async function showProxyDetail(id) {
+  try {
+    const r = await fetch('/api/proxy/traffic/' + id);
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('proxyDetailContent').innerHTML = marked.parse(d.markdown || '');
+      document.getElementById('proxyDetailOverlay').style.display = '';
+    }
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function replayProxyRequest(id) {
+  try {
+    const r = await fetch('/api/proxy/replay', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({id})});
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('proxyDetailContent').innerHTML = marked.parse(d.markdown || '');
+      document.getElementById('proxyDetailOverlay').style.display = '';
+    } else { alert(d.error || 'Replay failed'); }
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function clearProxyTraffic() {
+  try {
+    const r = await fetch('/api/proxy/clear', {method: 'POST'});
+    const d = await r.json();
+    if (d.ok) { loadProxyStatus(); document.getElementById('proxyTrafficArea').innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:40px">Traffic cleared</div>'; }
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function setProxyScope() {
+  const input = document.getElementById('proxyScopeInput').value.trim();
+  const domains = input ? input.split(',').map(d => d.trim()).filter(Boolean) : [];
+  try {
+    const r = await fetch('/api/proxy/scope', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({domains})});
+    const d = await r.json();
+    if (d.ok) { alert(d.scope.length ? 'Scope set: ' + d.scope.join(', ') : 'Scope cleared — capturing all domains'); }
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function showFlaggedTraffic() {
+  try {
+    const r = await fetch('/api/proxy/flags');
+    const d = await r.json();
+    const area = document.getElementById('proxyTrafficArea');
+    if (!d.traffic || d.traffic.length === 0) {
+      area.innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:40px">No flagged traffic</div>';
+      return;
+    }
+    let html = '<div style="margin-bottom:12px;font-weight:600;color:var(--danger)">🚩 Flagged Requests (' + d.count + ')</div>';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:.85rem"><thead><tr style="border-bottom:2px solid var(--border)">';
+    html += '<th style="text-align:left;padding:8px">#</th><th style="text-align:left;padding:8px">Method</th>';
+    html += '<th style="text-align:left;padding:8px">URL</th><th style="text-align:center;padding:8px">Status</th>';
+    html += '<th style="text-align:left;padding:8px">Flags</th></tr></thead><tbody>';
+    for (const t of d.traffic) {
+      const flags = (t.flags || []).map(f => '<span style="background:var(--danger);color:#fff;padding:1px 6px;border-radius:10px;font-size:.75rem;margin-left:2px">' + f + '</span>').join(' ');
+      html += `<tr style="border-bottom:1px solid var(--border);cursor:pointer" onclick="showProxyDetail(${t.id})">`;
+      html += `<td style="padding:6px 8px;color:var(--text-dim)">${t.id}</td>`;
+      html += `<td style="padding:6px 8px;font-weight:600">${t.method}</td>`;
+      html += `<td style="padding:6px 8px;max-width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.url}</td>`;
+      html += `<td style="padding:6px 8px;text-align:center">${t.status_code || '-'}</td>`;
+      html += `<td style="padding:6px 8px">${flags}</td></tr>`;
+    }
+    html += '</tbody></table>';
+    area.innerHTML = html;
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function exportProxyTraffic() {
+  try {
+    const r = await fetch('/api/proxy/export');
+    const d = await r.json();
+    if (d.ok) {
+      const blob = new Blob([d.data || JSON.stringify(d, null, 2)], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'traffic_capture.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+// ── Plugins ─────────────────────────────────────────────────────────────────
+
+async function loadPlugins() {
+  const area = document.getElementById('pluginsContent');
+  try {
+    const resp = await fetch('/api/plugins');
+    const data = await resp.json();
+    if (!resp.ok) { area.innerHTML = `<div style="text-align:center;padding:40px;color:var(--red)">${data.error || 'Failed to load plugins'}</div>`; return; }
+
+    const plugins = data.plugins || [];
+    const errors = data.errors || [];
+    let html = '';
+
+    // Info bar
+    html += `<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">`;
+    html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;flex:1;min-width:180px">`;
+    html += `<div style="font-size:.75rem;color:var(--text-dim);margin-bottom:2px">PLUGINS DIR</div>`;
+    html += `<div style="font-size:.85rem;font-family:var(--mono);word-break:break-all">${data.plugins_dir || '~/.config/hackbot/plugins/'}</div>`;
+    html += `</div>`;
+    html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:100px;text-align:center">`;
+    html += `<div style="font-size:.75rem;color:var(--text-dim);margin-bottom:2px">LOADED</div>`;
+    html += `<div style="font-size:1.4rem;color:var(--green)">${plugins.length}</div>`;
+    html += `</div>`;
+    if (errors.length) {
+      html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:100px;text-align:center">`;
+      html += `<div style="font-size:.75rem;color:var(--text-dim);margin-bottom:2px">ERRORS</div>`;
+      html += `<div style="font-size:1.4rem;color:var(--red)">${errors.length}</div>`;
+      html += `</div>`;
+    }
+    html += `</div>`;
+
+    if (plugins.length === 0 && errors.length === 0) {
+      html += `<div style="text-align:center;padding:40px;color:var(--text-dim)">`;
+      html += `<p style="font-size:1.5rem">🧩</p>`;
+      html += `<p style="margin:12px 0">No plugins found</p>`;
+      html += `<p style="font-size:.8rem">Place <code>.py</code> files in the plugins directory to get started</p>`;
+      html += `</div>`;
+    }
+
+    // Plugin cards
+    for (const p of plugins) {
+      const statusBadge = p.enabled
+        ? '<span style="color:var(--green);font-size:.8rem">● Enabled</span>'
+        : '<span style="color:var(--red);font-size:.8rem">● Disabled</span>';
+      const argList = Object.entries(p.args || {}).map(([k,v]) => `<code>${k}</code>: ${v}`).join(', ') || '<span style="color:var(--text-dim)">No arguments</span>';
+
+      html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px">`;
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">`;
+      html += `<div><strong style="color:var(--green);font-size:1rem">${p.name}</strong>`;
+      if (p.version) html += ` <span style="color:var(--text-dim);font-size:.75rem">v${p.version}</span>`;
+      if (p.category) html += ` <span style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:.7rem;margin-left:6px">${p.category}</span>`;
+      html += `</div>${statusBadge}</div>`;
+      html += `<p style="color:var(--text);margin:4px 0 8px;font-size:.85rem">${p.description || 'No description'}</p>`;
+      html += `<div style="font-size:.8rem;margin-bottom:8px"><strong>Args:</strong> ${argList}</div>`;
+      if (p.author) html += `<div style="font-size:.75rem;color:var(--text-dim)">By ${p.author}</div>`;
+
+      // Execute area
+      html += `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center" id="pluginExec_${p.name}">`;
+      const argKeys = Object.keys(p.args || {});
+      for (const k of argKeys) {
+        html += `<input class="form-input" placeholder="${k}" id="plugArg_${p.name}_${k}" style="flex:1;min-width:120px;padding:4px 8px;font-size:.8rem">`;
+      }
+      html += `<button class="btn btn-primary btn-sm" onclick="executePlugin('${p.name}')" style="font-size:.8rem">▶ Run</button>`;
+      html += `</div>`;
+      html += `</div>`;
+    }
+
+    // Errors section
+    if (errors.length) {
+      html += `<div style="margin-top:16px"><h4 style="color:var(--red);margin-bottom:8px">⚠️ Load Errors</h4>`;
+      for (const e of errors) {
+        html += `<div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px 12px;margin-bottom:6px;font-size:.8rem;font-family:var(--mono);color:var(--red)">${e}</div>`;
+      }
+      html += `</div>`;
+    }
+
+    area.innerHTML = html;
+  } catch(e) { area.innerHTML = `<div style="text-align:center;padding:40px;color:var(--red)">Error loading plugins: ${e.message}</div>`; }
+}
+
+async function reloadPlugins() {
+  const area = document.getElementById('pluginsContent');
+  area.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim)">Reloading plugins...</div>';
+  try {
+    const resp = await fetch('/api/plugins/reload', { method: 'POST' });
+    const data = await resp.json();
+    if (!resp.ok) { area.innerHTML = `<div style="text-align:center;padding:40px;color:var(--red)">${data.error || 'Reload failed'}</div>`; return; }
+    await loadPlugins();
+  } catch(e) { area.innerHTML = `<div style="text-align:center;padding:40px;color:var(--red)">Reload error: ${e.message}</div>`; }
+}
+
+function showPluginDir() {
+  const area = document.getElementById('pluginsContent');
+  fetch('/api/plugins').then(r => r.json()).then(data => {
+    alert('Plugin directory: ' + (data.plugins_dir || '~/.config/hackbot/plugins/'));
+  });
+}
+
+async function executePlugin(name) {
+  // Gather args from inputs
+  const args = {};
+  document.querySelectorAll(`[id^="plugArg_${name}_"]`).forEach(el => {
+    const key = el.id.replace(`plugArg_${name}_`, '');
+    if (el.value.trim()) args[key] = el.value.trim();
+  });
+  const execDiv = document.getElementById(`pluginExec_${name}`);
+  const origHTML = execDiv.innerHTML;
+  execDiv.innerHTML += '<div id="plugResult_' + name + '" style="width:100%;margin-top:8px;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:.8rem;font-family:var(--mono);white-space:pre-wrap;color:var(--text-dim)">Running...</div>';
+  try {
+    const resp = await fetch('/api/plugins/execute', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ name, args }),
+    });
+    const result = await resp.json();
+    const resultDiv = document.getElementById(`plugResult_${name}`);
+    if (result.success) {
+      resultDiv.style.color = 'var(--green)';
+      resultDiv.textContent = result.output || '(no output)';
+      resultDiv.textContent += `\n\n⏱️ ${result.duration.toFixed(2)}s`;
+    } else {
+      resultDiv.style.color = 'var(--red)';
+      resultDiv.textContent = `Error: ${result.error || 'Unknown error'}`;
+    }
+  } catch(e) {
+    const resultDiv = document.getElementById(`plugResult_${name}`);
+    if (resultDiv) { resultDiv.style.color = 'var(--red)'; resultDiv.textContent = `Error: ${e.message}`; }
+  }
+}
+
+// ── Diff Report ─────────────────────────────────────────────────────────────
+
+async function loadDiffSessions() {
+  try {
+    const resp = await fetch('/api/diff/sessions');
+    const sessions = await resp.json();
+    const oldSel = document.getElementById('diffOldSession');
+    const newSel = document.getElementById('diffNewSession');
+    const prevOld = oldSel.value;
+    const prevNew = newSel.value;
+    oldSel.innerHTML = '<option value="">Select baseline session...</option>';
+    newSel.innerHTML = '<option value="">Select current session...</option><option value="__current__">🟢 Active Agent Assessment</option>';
+    for (const s of sessions) {
+      const ts = new Date(s.updated * 1000).toLocaleString();
+      const label = `${s.target || 'Unknown'} — ${s.finding_count} findings — ${ts}`;
+      oldSel.innerHTML += `<option value="${s.id}">${label}</option>`;
+      newSel.innerHTML += `<option value="${s.id}">${label}</option>`;
+    }
+    if (prevOld) oldSel.value = prevOld;
+    if (prevNew) newSel.value = prevNew;
+  } catch (e) { console.error('Failed to load diff sessions:', e); }
+}
+
+async function runDiffCompare() {
+  const oldId = document.getElementById('diffOldSession').value;
+  const newId = document.getElementById('diffNewSession').value;
+  const area = document.getElementById('diffResults');
+
+  if (!oldId) { area.innerHTML = '<div style="text-align:center;padding:40px;color:var(--red)">Please select a baseline session</div>'; return; }
+  if (!newId) { area.innerHTML = '<div style="text-align:center;padding:40px;color:var(--red)">Please select a current session</div>'; return; }
+
+  area.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim)">Comparing assessments...</div>';
+  try {
+    const body = newId === '__current__'
+      ? { old_session_id: oldId, use_current: true }
+      : { old_session_id: oldId, new_session_id: newId };
+    const resp = await fetch('/api/diff/compare', {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body),
+    });
+    if (!resp.ok) {
+      const err = await resp.json();
+      area.innerHTML = `<div style="text-align:center;padding:40px;color:var(--red)">${err.error || 'Comparison failed'}</div>`;
+      return;
+    }
+    const data = await resp.json();
+    renderDiffReport(data.report, area);
+  } catch (e) { area.innerHTML = `<div style="text-align:center;padding:40px;color:var(--red)">Error: ${e.message}</div>`; }
+}
+
+function renderDiffReport(r, container) {
+  if (!r) { container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim)">No diff data</div>'; return; }
+
+  const trendIcon = {Improved:'📉', Degraded:'📈', Unchanged:'➡️'};
+  const trendColor = {Improved:'var(--green)', Degraded:'var(--red)', Unchanged:'var(--text-dim)'};
+  const sevColor = {Critical:'var(--red)',High:'#f97583',Medium:'var(--yellow)',Low:'var(--blue)',Info:'var(--text-dim)'};
+
+  let html = '<div style="margin-bottom:20px">';
+  html += `<h3 style="color:var(--green);margin-bottom:8px">🔀 Diff Report — ${r.target || 'Unknown'}</h3>`;
+  html += `<p style="color:var(--text-dim);font-size:.85rem">${r.summary || 'No changes'}</p>`;
+
+  // Trend card
+  html += '<div style="display:flex;gap:12px;flex-wrap:wrap;margin:16px 0">';
+  html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:180px">`;
+  html += `<div style="font-size:.75rem;color:var(--text-dim);margin-bottom:4px">OVERALL TREND</div>`;
+  html += `<div style="font-size:1.5rem;color:${trendColor[r.trend]||'var(--text)'}">${trendIcon[r.trend]||'➡️'} ${r.trend}</div>`;
+  html += '</div>';
+  html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:150px">`;
+  html += `<div style="font-size:.75rem;color:var(--text-dim);margin-bottom:4px">RISK SCORE</div>`;
+  html += `<div style="font-size:1.1rem">${r.risk_score_old.toFixed(1)} → <strong>${r.risk_score_new.toFixed(1)}</strong></div>`;
+  html += '</div>';
+  html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:120px">`;
+  html += `<div style="font-size:.75rem;color:var(--text-dim);margin-bottom:4px">FINDINGS</div>`;
+  html += `<div style="font-size:1.1rem">${r.total_old} → <strong>${r.total_new}</strong></div>`;
+  html += '</div>';
+  html += '</div>';
+
+  // Stats cards
+  html += '<div style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0">';
+  const stats = [
+    { label:'New', count: (r.new_findings||[]).length, color:'var(--red)', icon:'🆕' },
+    { label:'Fixed', count: (r.fixed_findings||[]).length, color:'var(--green)', icon:'✅' },
+    { label:'Persistent', count: (r.persistent_findings||[]).length, color:'var(--yellow)', icon:'⚠️' },
+    { label:'Regressions', count: (r.regression_findings||[]).length, color:'#f97583', icon:'🔴' },
+  ];
+  for (const s of stats) {
+    html += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:130px;text-align:center">`;
+    html += `<div style="font-size:1.3rem">${s.icon}</div>`;
+    html += `<div style="font-size:1.5rem;font-weight:700;color:${s.color}">${s.count}</div>`;
+    html += `<div style="font-size:.75rem;color:var(--text-dim)">${s.label}</div>`;
+    html += '</div>';
+  }
+  html += '</div>';
+
+  // Severity delta table
+  if (r.severity_deltas && r.severity_deltas.length > 0) {
+    html += '<details open style="margin-top:16px"><summary style="cursor:pointer;font-weight:600;color:var(--blue);font-size:.95rem;padding:8px 0">📊 Severity Breakdown</summary>';
+    html += '<table style="width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px">';
+    html += '<thead><tr style="border-bottom:2px solid var(--border);text-align:left">';
+    html += '<th style="padding:6px 8px">Severity</th><th style="padding:6px 8px">Baseline</th><th style="padding:6px 8px">Current</th><th style="padding:6px 8px">Change</th></tr></thead><tbody>';
+    for (const sd of r.severity_deltas) {
+      const deltaColor = sd.delta > 0 ? 'var(--red)' : sd.delta < 0 ? 'var(--green)' : 'var(--text-dim)';
+      html += `<tr style="border-bottom:1px solid var(--border)">`;
+      html += `<td style="padding:6px 8px;font-weight:600;color:${sevColor[sd.severity]||'var(--text)'}">${sd.severity}</td>`;
+      html += `<td style="padding:6px 8px">${sd.old_count}</td>`;
+      html += `<td style="padding:6px 8px">${sd.new_count}</td>`;
+      html += `<td style="padding:6px 8px;color:${deltaColor};font-weight:600">${sd.direction} ${Math.abs(sd.delta)}</td>`;
+      html += '</tr>';
+    }
+    html += '</tbody></table></details>';
+  }
+
+  // Finding sections
+  function renderFindingSection(title, icon, findings, color, strikethrough) {
+    if (!findings || findings.length === 0) return '';
+    let s = `<details open style="margin-top:16px"><summary style="cursor:pointer;font-weight:600;color:${color};font-size:.95rem;padding:8px 0">${icon} ${title} (${findings.length})</summary>`;
+    for (const f of findings) {
+      const sc = sevColor[f.severity] || 'var(--text)';
+      const titleText = strikethrough ? `<s>${f.title}</s>` : f.title;
+      s += `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:8px 0">`;
+      s += `<div style="display:flex;align-items:center;gap:8px">`;
+      s += `<span style="padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:600;background:${sc}20;color:${sc}">${f.severity}</span>`;
+      s += `<span style="font-weight:600">${titleText}</span>`;
+      if (f.old_severity) s += `<span style="font-size:.75rem;color:var(--text-dim)">(was ${f.old_severity})</span>`;
+      s += '</div>';
+      if (f.description && !strikethrough) s += `<p style="margin:8px 0 0;font-size:.85rem;color:var(--text-dim)">${f.description}</p>`;
+      if (f.recommendation && !strikethrough) s += `<p style="margin:4px 0 0;font-size:.8rem;color:var(--blue)">💡 ${f.recommendation}</p>`;
+      s += '</div>';
+    }
+    s += '</details>';
+    return s;
+  }
+
+  html += renderFindingSection('New Vulnerabilities', '🆕', r.new_findings, 'var(--red)', false);
+  html += renderFindingSection('Fixed Vulnerabilities', '✅', r.fixed_findings, 'var(--green)', true);
+  html += renderFindingSection('Persistent Vulnerabilities', '⚠️', r.persistent_findings, 'var(--yellow)', false);
+  html += renderFindingSection('Regressions', '🔴', r.regression_findings, '#f97583', false);
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+// ── Settings ────────────────────────────────────────────────────────────────
+let _providers = {};  // cached provider registry
+
+async function loadProviders() {
+  if (Object.keys(_providers).length > 0) return _providers;
+  try {
+    const resp = await fetch('/api/providers');
+    _providers = await resp.json();
+  } catch (e) { _providers = {}; }
+  return _providers;
+}
+
+function populateProviderSelect(current) {
+  const sel = document.getElementById('setProvider');
+  sel.innerHTML = '';
+  for (const [key, p] of Object.entries(_providers)) {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = p.name;
+    if (key === current) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+function populateModelSelect(providerKey, currentModel) {
+  const sel = document.getElementById('setModel');
+  sel.innerHTML = '';
+  const provider = _providers[providerKey];
+  if (!provider) return;
+
+  for (const m of provider.models) {
+    const opt = document.createElement('option');
+    opt.value = m.id;
+    opt.textContent = `${m.name}`;
+    opt.dataset.ctx = m.ctx;
+    if (m.id === currentModel) opt.selected = true;
+    sel.appendChild(opt);
+  }
+  // Add "Custom..." option
+  const custom = document.createElement('option');
+  custom.value = '__custom__';
+  custom.textContent = '— Custom model ID —';
+  sel.appendChild(custom);
+
+  // If current model not in list, select custom
+  const found = provider.models.some(m => m.id === currentModel);
+  if (!found && currentModel) {
+    custom.selected = true;
+    document.getElementById('customModelRow').style.display = '';
+    document.getElementById('setCustomModel').value = currentModel;
+  } else {
+    document.getElementById('customModelRow').style.display = 'none';
+  }
+
+  onModelSelect();
+
+  // Show env var hint
+  const hint = document.getElementById('keyEnvHint');
+  if (provider.env_key) {
+    hint.textContent = `(or set ${provider.env_key})`;
+  } else {
+    hint.textContent = '(not required)';
+  }
+
+  // Populate env var hints in Quick Setup card
+  const envDiv = document.getElementById('envVarHints');
+  envDiv.innerHTML = '';
+  for (const [k, p] of Object.entries(_providers)) {
+    if (p.env_key) {
+      const tag = document.createElement('code');
+      tag.style.cssText = 'background:var(--bg);padding:4px 8px;border-radius:4px;font-size:.8rem;color:var(--cyan)';
+      tag.textContent = p.env_key;
+      envDiv.appendChild(tag);
+    }
+  }
+}
+
+function onProviderChange() {
+  const provider = document.getElementById('setProvider').value;
+  const p = _providers[provider];
+  if (p && p.models.length > 0) {
+    populateModelSelect(provider, p.models[0].id);
+  }
+  // Update base URL placeholder
+  document.getElementById('setBaseUrl').placeholder = p ? p.base_url : '';
+}
+
+function onModelSelect() {
+  const sel = document.getElementById('setModel');
+  const selected = sel.options[sel.selectedIndex];
+  if (sel.value === '__custom__') {
+    document.getElementById('customModelRow').style.display = '';
+    document.getElementById('modelCtx').textContent = '';
+  } else {
+    document.getElementById('customModelRow').style.display = 'none';
+    const ctx = selected?.dataset?.ctx;
+    document.getElementById('modelCtx').textContent = ctx ? `(${Number(ctx).toLocaleString()} ctx)` : '';
+  }
+}
+
+async function loadSettings() {
+  await loadProviders();
+  try {
+    const resp = await fetch('/api/config');
+    const data = await resp.json();
+    populateProviderSelect(data.provider || 'openai');
+    populateModelSelect(data.provider || 'openai', data.model || '');
+    document.getElementById('setBaseUrl').value = data.base_url || '';
+    document.getElementById('setTemperature').value = data.temperature ?? 0.2;
+    document.getElementById('tempValue').textContent = data.temperature ?? 0.2;
+    document.getElementById('setMaxTokens').value = String(data.max_tokens || 4096);
+    document.getElementById('setSafeMode').value = String(data.safe_mode);
+    document.getElementById('setAutoConfirm').value = String(data.auto_confirm);
+    document.getElementById('setSudoMode').value = String(data.sudo_mode ?? false);
+    document.getElementById('setSudoPassword').value = '';
+    const sudoHint = document.getElementById('sudoPassHint');
+    if (data.has_sudo_password) {
+      sudoHint.innerHTML = '🔑 <span style="color:var(--green)">Password saved</span> — leave blank to keep current';
+    } else {
+      sudoHint.textContent = 'No password set — sudo will prompt each time';
+    }
+    document.getElementById('setReportFormat').value = data.report_format || 'html';
+
+    // Populate language dropdown
+    const langSelect = document.getElementById('setLanguage');
+    langSelect.innerHTML = '';
+    const languages = data.supported_languages || {'English': 'English'};
+    for (const [name, native] of Object.entries(languages)) {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name === native ? name : `${name} (${native})`;
+      langSelect.appendChild(opt);
+    }
+    langSelect.value = data.language || 'English';
+  } catch (e) {
+    toast('Failed to load settings', 'error');
+  }
+}
+
+async function checkForUpdates() {
+  const infoDiv = document.getElementById('updateInfo');
+  const installBtn = document.getElementById('btnInstallUpdate');
+  infoDiv.innerHTML = '<p style="color:var(--cyan);font-size:.85rem">Checking for updates...</p>';
+  installBtn.style.display = 'none';
+  try {
+    const resp = await fetch('/api/update/check');
+    const data = await resp.json();
+    if (data.error) {
+      infoDiv.innerHTML = '<p style="color:var(--red);font-size:.85rem">❌ ' + escapeHtml(data.error) + '</p>';
+      return;
+    }
+    let html = '<p style="font-size:.85rem">'
+      + '<span style="color:var(--text-dim)">Current:</span> <b>v' + escapeHtml(data.current_version) + '</b>'
+      + ' &nbsp;|&nbsp; '
+      + '<span style="color:var(--text-dim)">Latest:</span> <b>v' + escapeHtml(data.latest_version) + '</b>'
+      + '</p>';
+    if (data.update_available) {
+      html += '<p style="color:var(--green);font-size:.85rem;margin-top:6px">✨ Update available! v' + escapeHtml(data.current_version) + ' → v' + escapeHtml(data.latest_version) + '</p>';
+      if (data.published_at) html += '<p style="color:var(--text-dim);font-size:.8rem">Released: ' + escapeHtml(data.published_at.slice(0,10)) + '</p>';
+      installBtn.style.display = 'inline-flex';
+    } else {
+      html += '<p style="color:var(--green);font-size:.85rem;margin-top:6px">✅ You\'re up to date!</p>';
+    }
+    infoDiv.innerHTML = html;
+  } catch (e) {
+    infoDiv.innerHTML = '<p style="color:var(--red);font-size:.85rem">Failed to check for updates</p>';
+  }
+}
+
+async function installUpdate() {
+  const infoDiv = document.getElementById('updateInfo');
+  const installBtn = document.getElementById('btnInstallUpdate');
+  installBtn.disabled = true;
+  installBtn.textContent = '⏳ Updating...';
+  infoDiv.innerHTML = '<p style="color:var(--cyan);font-size:.85rem">Installing update... this may take a minute.</p>';
+  try {
+    const resp = await fetch('/api/update/install', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ force: false }),
+    });
+    const data = await resp.json();
+    if (data.success) {
+      infoDiv.innerHTML = '<p style="color:var(--green);font-size:.85rem">✅ ' + escapeHtml(data.message).replace(/\n/g, '<br>') + '</p>';
+      toast('Update installed! Restart HackBot to use the new version.', 'success');
+    } else {
+      infoDiv.innerHTML = '<p style="color:var(--red);font-size:.85rem">❌ ' + escapeHtml(data.message) + '</p>';
+      toast('Update failed', 'error');
+    }
+  } catch (e) {
+    infoDiv.innerHTML = '<p style="color:var(--red);font-size:.85rem">Update request failed</p>';
+    toast('Update request failed', 'error');
+  }
+  installBtn.disabled = false;
+  installBtn.textContent = '⬆️ Install Update';
+}
+
+async function saveSettings() {
+  const modelSel = document.getElementById('setModel');
+  let model = modelSel.value;
+  if (model === '__custom__') {
+    model = document.getElementById('setCustomModel').value.trim();
+    if (!model) { toast('Enter a custom model ID', 'error'); return; }
+  }
+
+  const body = {
+    provider: document.getElementById('setProvider').value,
+    model: model,
+    base_url: document.getElementById('setBaseUrl').value,
+    temperature: parseFloat(document.getElementById('setTemperature').value),
+    max_tokens: parseInt(document.getElementById('setMaxTokens').value),
+    safe_mode: document.getElementById('setSafeMode').value === 'true',
+    auto_confirm: document.getElementById('setAutoConfirm').value === 'true',
+    sudo_mode: document.getElementById('setSudoMode').value === 'true',
+    report_format: document.getElementById('setReportFormat').value,
+    language: document.getElementById('setLanguage').value,
+  };
+  const sudoPass = document.getElementById('setSudoPassword').value;
+  if (sudoPass) {
+    body.sudo_password = sudoPass;
+    body.sudo_mode = true;  // auto-enable sudo mode when password is set
+    document.getElementById('setSudoMode').value = 'true';
+  }
+  const apiKey = document.getElementById('setApiKey').value;
+  if (apiKey) body.api_key = apiKey;
+
+  try {
+    const resp = await fetch('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await resp.json();
+    if (data.ok) {
+      // Show validation result if present
+      if (data.validation) {
+        if (data.validation.valid) {
+          toast(data.validation.message, 'success');
+        } else {
+          toast('⚠️ ' + data.validation.message, 'error');
+        }
+      } else {
+        toast('Settings saved!', 'success');
+      }
+      checkStatus();
+    }
+  } catch (e) {
+    toast('Failed to save: ' + e.message, 'error');
+  }
+}
+
+// ── Status Check ────────────────────────────────────────────────────────────
+async function checkStatus() {
+  try {
+    const resp = await fetch('/api/status');
+    const data = await resp.json();
+    const dot = document.getElementById('statusDot');
+    const text = document.getElementById('statusText');
+    if (data.configured) {
+      dot.className = 'status-dot ok';
+      text.textContent = `${data.provider}/${data.model}`;
+    } else {
+      dot.className = 'status-dot err';
+      text.textContent = 'No API key';
+    }
+  } catch (e) {
+    document.getElementById('statusDot').className = 'status-dot err';
+    document.getElementById('statusText').textContent = 'Disconnected';
+  }
+}
+
+// ── Init ────────────────────────────────────────────────────────────────────
+initSidebarState();
+checkStatus();
+setInterval(checkStatus, 30000);
+document.getElementById('userInput').focus();
+
+// ── Native Window Controls (pywebview) ──────────────────────────────────────
+// Detect if running inside pywebview (native window) or browser
+const isNative = typeof window.pywebview !== 'undefined' ||
+                 navigator.userAgent.includes('pywebview');
+
+function windowAction(action) {
+  // pywebview JS API is available on window.pywebview
+  if (typeof window.pywebview !== 'undefined' && window.pywebview.api) {
+    if (action === 'minimize') window.pywebview.api.minimize();
+    else if (action === 'maximize') window.pywebview.api.toggle_fullscreen();
+    else if (action === 'close') window.close();
+  } else {
+    // Browser fallback
+    if (action === 'close') window.close();
+  }
+}
+
+// Hide traffic light controls in browser mode (they only work in native)
+if (!isNative) {
+  // Keep controls visible but make them cosmetic in browser mode
+  // The titlebar still gives an app-like feel
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // Ctrl+1/2/3 switch panels
+  if (e.ctrlKey && e.key === '1') { e.preventDefault(); switchPanel('chat'); }
+  if (e.ctrlKey && e.key === '2') { e.preventDefault(); switchPanel('agent'); }
+  if (e.ctrlKey && e.key === '3') { e.preventDefault(); switchPanel('plan'); }
+  // Ctrl+, opens settings
+  if (e.ctrlKey && e.key === ',') { e.preventDefault(); switchPanel('settings'); }
+  // Escape to focus input
+  if (e.key === 'Escape') {
+    const input = document.getElementById('userInput') ||
+                  document.getElementById('agentInput') ||
+                  document.getElementById('planInput');
+    if (input) input.focus();
+  }
+});
+</script>
+</body>
+</html>

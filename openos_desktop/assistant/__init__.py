@@ -1,1 +1,0 @@
-"""OpenOS AI Assistant window."""
